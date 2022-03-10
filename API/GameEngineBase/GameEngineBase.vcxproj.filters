@@ -1,9 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="GameEngineWindow.h" />
+    <Filter Include="Platform">
+      <UniqueIdentifier>{7063e7da-8f07-4ca3-bb67-1cabaf917bc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{59e31425-9594-4d02-a2b6-76b55aeebf31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameEngineWindow.cpp" />
+    <ClCompile Include="GameEngineWindow.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineDebug.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameEngineWindow.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngineDebug.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
