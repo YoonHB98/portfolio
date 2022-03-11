@@ -12,7 +12,7 @@ int __stdcall WinMain(_In_ HINSTANCE hInstance,
    //두개의 윈도우를 띄울 필요가 없음
     GameEngineWindow::GetInst().CreateGameWindow(hInstance, "mario");
     GameEngineWindow::GetInst().ShowGameWindow();
-    GameEngineWindow::GetInst().Loop();
+    GameEngineWindow::GetInst().MessageLoop();
 
     GameEngineWindow::Destroy();
  

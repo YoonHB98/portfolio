@@ -1,8 +1,42 @@
 #include "GameEngineWindow.h"
 #include "GameEngineDebug.h"
 
+//HWND hWnd 어떤 윈도우에 무슨일이 생겼는지 그 윈도우의 핸들
+//UINT message 그 메세지의 종류가 뭔지
+// WPARAM wParam 
+//LPARAM lParam
+
+int Xmove = 0;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+    switch (message)
+    {
+    case WM_CREATE:
+        return DefWindowProc(hWnd, message, wParam, lParam);
+    case WM_SETFOCUS:
+        return DefWindowProc(hWnd, message, wParam, lParam);
+    case WM_DESTROY:
+        GameEngineWindow::GetInst().off();
+        return DefWindowProc(hWnd, message, wParam, lParam);
+        //윈도우 화면에 뭔가가 그려진다면
+    case WM_PAINT: 
+    {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hWnd, &ps);
+        //출력에 필요한 정보를 가지는 데이터 구조체
+        Rectangle(hdc, 100, 100, 200, 200);
+        EndPaint(hWnd, &ps);
+        return DefWindowProc(hWnd, message, wParam, lParam);
+    }
+    case WM_MOUSEMOVE:
+    {
+        return DefWindowProc(hWnd, message, wParam, lParam);
+        Rectangle(GameEngineWindow::GetInst().GETDC(), 100, 100, 200, 200);
+    }
+    default:
+        break;
+    }
+
     return DefWindowProc(hWnd, message, wParam, lParam);
 }
 
@@ -11,6 +45,7 @@ GameEngineWindow* GameEngineWindow::Inst_ = new GameEngineWindow();
 GameEngineWindow::GameEngineWindow()
     : hInst_(nullptr)
     , hWnd_(nullptr)
+    ,WindowOn_(true)
 {
 }
 
@@ -18,7 +53,10 @@ GameEngineWindow::~GameEngineWindow()
 {
 }
 
-
+void GameEngineWindow::off()
+{
+    WindowOn_ = false;
+}
 
 void GameEngineWindow::RegClass(HINSTANCE _hInst)
 {
@@ -57,8 +95,13 @@ void GameEngineWindow::CreateGameWindow(HINSTANCE _hInst, const std::string& _Ti
     
     //(lpClassName, lpWindowName, dwStyle, x, y, \
  nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam)
+    //윈도우를 조작하는 핸들
     hWnd_ = CreateWindowExA(0L, "GameEngineWindowClass", Title_.c_str(), WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, _hInst, nullptr);
+    //화면에 무언가를 그리는 핸들
+    HDC_ = GetDC(hWnd_);
+
+    
     if (!hWnd_)
     {
         return;
@@ -75,4 +118,16 @@ void GameEngineWindow::ShowGameWindow()
     }
     ShowWindow(hWnd_, SW_SHOW);
     UpdateWindow(hWnd_);
+}
+
+void GameEngineWindow::MessageLoop()
+{
+    MSG msg;
+    while (WindowOn_)
+    {
+        if (GetMessage(&msg, nullptr, 0, 0))
+        {
+            DispatchMessage(&msg);
+        }
+    }
 }
