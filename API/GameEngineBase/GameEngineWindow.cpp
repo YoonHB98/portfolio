@@ -6,15 +6,11 @@
 // WPARAM wParam 
 //LPARAM lParam
 
-int Xmove = 0;
+float XMove = 0;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-    case WM_CREATE:
-        return DefWindowProc(hWnd, message, wParam, lParam);
-    case WM_SETFOCUS:
-        return DefWindowProc(hWnd, message, wParam, lParam);
     case WM_DESTROY:
         GameEngineWindow::GetInst().off();
         return DefWindowProc(hWnd, message, wParam, lParam);
@@ -24,14 +20,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         PAINTSTRUCT ps;
         HDC hdc = BeginPaint(hWnd, &ps);
         //출력에 필요한 정보를 가지는 데이터 구조체
-        Rectangle(hdc, 100, 100, 200, 200);
         EndPaint(hWnd, &ps);
         return DefWindowProc(hWnd, message, wParam, lParam);
-    }
-    case WM_MOUSEMOVE:
-    {
-        return DefWindowProc(hWnd, message, wParam, lParam);
-        Rectangle(GameEngineWindow::GetInst().GETDC(), 100, 100, 200, 200);
     }
     default:
         break;
@@ -46,11 +36,23 @@ GameEngineWindow::GameEngineWindow()
     : hInst_(nullptr)
     , hWnd_(nullptr)
     ,WindowOn_(true)
+    , HDC_(nullptr)
 {
 }
 
 GameEngineWindow::~GameEngineWindow()
 {
+    if (nullptr != HDC_)
+    {
+        ReleaseDC(hWnd_, HDC_);
+        HDC_ = nullptr;
+
+    }
+    if (nullptr != hWnd_)
+    {
+        DestroyWindow(hWnd_);
+        hWnd_ = nullptr;
+    }
 }
 
 void GameEngineWindow::off()
@@ -120,14 +122,22 @@ void GameEngineWindow::ShowGameWindow()
     UpdateWindow(hWnd_);
 }
 
-void GameEngineWindow::MessageLoop()
+void GameEngineWindow::MessageLoop(void(*_LoopFunction)())
 {
     MSG msg;
     while (WindowOn_)
-    {
-        if (GetMessage(&msg, nullptr, 0, 0))
+    { 
+     
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
+            TranslateMessage(&msg);
             DispatchMessage(&msg);
         }
+
+        if (nullptr == _LoopFunction)
+        {
+            continue;
+        }
+        _LoopFunction();
     }
 }
