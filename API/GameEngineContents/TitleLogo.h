@@ -1,7 +1,7 @@
 #pragma once
-
+#include <GameEngine/GameEngineActor.h>
 // Ό³Έν :
-class TitleLogo
+class TitleLogo : public GameEngineActor
 {
 public:
 	// constrcuter destructer

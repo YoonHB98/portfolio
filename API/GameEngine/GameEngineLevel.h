@@ -19,6 +19,10 @@ protected:
 	virtual void Loading() = 0;
 
 private:
-
+	template<typename ActorType>
+	ActorType* CreateActor(const std::string& _Name)
+	{
+		return nullptr;
+	}
 };
 
