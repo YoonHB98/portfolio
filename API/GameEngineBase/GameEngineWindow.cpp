@@ -63,9 +63,7 @@ void GameEngineWindow::off()
 void GameEngineWindow::RegClass(HINSTANCE _hInst)
 {
     WNDCLASSEXA wcex;
-
     wcex.cbSize = sizeof(WNDCLASSEX);
-
     wcex.style = CS_HREDRAW | CS_VREDRAW;
     wcex.lpfnWndProc = WndProc;
     wcex.cbClsExtra = 0;
@@ -122,8 +120,15 @@ void GameEngineWindow::ShowGameWindow()
     UpdateWindow(hWnd_);
 }
 
-void GameEngineWindow::MessageLoop(void(*_LoopFunction)())
+void GameEngineWindow::MessageLoop(void(*_InitLoopFunction)(), void(*_LoopFunction)())
 {
+    //윈도우는 준비되어 있고
+    //루프를 돌기전에 뭔가 준비할게 있다면 준비함수  
+    if (nullptr != _InitLoopFunction)
+    {
+        _InitLoopFunction();
+
+    }
     MSG msg;
     while (WindowOn_)
     { 
