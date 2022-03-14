@@ -16,6 +16,7 @@ void Mario::GameInit()
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<PlayLevel>("play");
 	CreateLevel<EndingLevel>("Ending");
+	ChangeLevel("Title");
 }
 void Mario::GameLoop()
 {
