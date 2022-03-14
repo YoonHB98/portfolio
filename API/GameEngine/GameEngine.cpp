@@ -1,4 +1,5 @@
 #include "GameEngine.h"
+#include <GameEngineBase/GameEngineWindow.h>
 
 GameEngine::GameEngine() 
 {
@@ -21,7 +22,28 @@ void GameEngine::GameEnd()
 
  }
 
+void GameEngine::WindowCreate()
+{
+	 GameEngineWindow::GetInst().CreateGameWindow(nullptr, "Mario");
+     GameEngineWindow::GetInst().ShowGameWindow();
+     GameEngineWindow::GetInst().MessageLoop(EngineInit, EngineLoop);
+
+}
+
 void CreateLevel(const std::string& _Level)
 {
+    
+}
 
+void GameEngine::EngineInit()
+{
+    UserContents_->GameInit();
+}
+void GameEngine::EngineLoop()
+{
+    UserContents_->GameLoop();
+}
+void GameEngine::EngineEnd()
+{
+    UserContents_->GameEnd();
 }

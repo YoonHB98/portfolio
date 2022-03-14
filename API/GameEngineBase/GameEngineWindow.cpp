@@ -120,6 +120,7 @@ void GameEngineWindow::ShowGameWindow()
     UpdateWindow(hWnd_);
 }
 
+//전역함수 두개 넣어주면 루프 돌려줌
 void GameEngineWindow::MessageLoop(void(*_InitLoopFunction)(), void(*_LoopFunction)())
 {
     //윈도우는 준비되어 있고
