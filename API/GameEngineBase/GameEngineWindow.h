@@ -27,23 +27,22 @@ public:
 	void RegClass(HINSTANCE _hInst);
 	void CreateGameWindow(HINSTANCE _hInst, const std::string& _Title);
 	void ShowGameWindow();
-	void MessageLoop(void(*_InitLoopFunction)(), void(*_LoopFunction)());
+	void MessageLoop(void(*_InitFunction)(), void(*_LoopFunction)());
 
-	void off();
-	
+	void Off();
+
 	static inline HDC GETDC()
 	{
 		return Inst_->HDC_;
 	}
+
 protected:
 
 private:
 	std::string Title_;
-	bool  WindowOn_;
-
+	bool WindowOn_;
 	HINSTANCE hInst_;
 	HWND hWnd_;
-
 	HDC HDC_;
 
 	// constrcuter destructer

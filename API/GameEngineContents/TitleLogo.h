@@ -15,6 +15,8 @@ public:
 	TitleLogo& operator=(TitleLogo&& _Other) noexcept = delete;
 
 protected:
+	void Start();
+	void Render();
 
 private:
 

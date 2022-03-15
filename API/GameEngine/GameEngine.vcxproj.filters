@@ -3,7 +3,7 @@
   <ItemGroup>
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameEngineActor.h">
-      <Filter>Actor</Filter>
+      <Filter>Object\Actor</Filter>
     </ClInclude>
     <ClInclude Include="GameEngineLevel.h">
       <Filter>Object</Filter>
@@ -12,18 +12,18 @@
   <ItemGroup>
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameEngineActor.cpp">
-      <Filter>Actor</Filter>
+      <Filter>Object\Actor</Filter>
     </ClCompile>
     <ClCompile Include="GameEngineLevel.cpp">
       <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Actor">
-      <UniqueIdentifier>{eeb910ea-39ee-4418-b17b-7b55c331d5b2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object">
       <UniqueIdentifier>{e17993fc-5967-4e05-ae0d-962d8d3bae4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Actor">
+      <UniqueIdentifier>{eeb910ea-39ee-4418-b17b-7b55c331d5b2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

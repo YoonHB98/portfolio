@@ -34,9 +34,9 @@ public:
 		EngineEnd();
 	}
 
+	//게임 시작하면 글로벌은 무조건 있으므로
 	static GameEngine& GlobalEngine()
 	{
-		//엔진 시작하면 무조건 글로벌은 있으므로
 		if (nullptr == UserContents_)
 		{
 			MsgBoxAssert("GEngine ERROR Engine Is Not Start ");

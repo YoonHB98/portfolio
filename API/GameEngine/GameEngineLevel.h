@@ -1,8 +1,10 @@
 #pragma once
 #include "GameEngineBase/GameEngineNameObject.h"
+#include <list>
+#include<map>
 
-// 설명 :
 class GameEngine;
+class GameEngineActor;
 class GameEngineLevel : public GameEngineNameObject
 {
 	friend GameEngine;
@@ -29,11 +31,29 @@ protected:
 	//바뀔때 바뀌기 전 레벨이 실행하는 함수
 	virtual void SceneChangeEnd() {}
 
-private:
 	template<typename ActorType>
-	ActorType* CreateActor(const std::string& _Name)
+	ActorType* CreateActor(const std::string& _Name, int _Order)
 	{
+		ActorType* NewActor = new ActorType();
+		NewActor->SetName(_Name);
+
+		NewActor->SetLevel(this);
+
+		std::list<GameEngineActor*>& Group = AllActor_[_Order];
+		Group.push_back(NewActor);
+
+		//if (FindGroup ==AllActor_.end())
+		//{
+		//	AllActor_.insert(std::map<int, std::list<GameEngineActor*>>::value_type());
+		//}
+
 		return nullptr;
 	}
+
+private:
+	std::map<int, std::list<GameEngineActor*>> AllActor_;
+
+	void ActorUpdate();
+	void ActorRender();
 };
 

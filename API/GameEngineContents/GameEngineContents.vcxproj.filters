@@ -33,6 +33,10 @@
     <ClInclude Include="EndingCredit.h">
       <Filter>Ending</Filter>
     </ClInclude>
+    <ClInclude Include="Mario.h" />
+    <ClInclude Include="TitleBackGround.h">
+      <Filter>Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -52,6 +56,10 @@
     </ClCompile>
     <ClCompile Include="EndingCredit.cpp">
       <Filter>Ending</Filter>
+    </ClCompile>
+    <ClCompile Include="Mario.cpp" />
+    <ClCompile Include="TitleBackGround.cpp">
+      <Filter>Title</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

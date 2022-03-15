@@ -12,7 +12,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
     case WM_DESTROY:
-        GameEngineWindow::GetInst().off();
+        GameEngineWindow::GetInst().Off();
         return DefWindowProc(hWnd, message, wParam, lParam);
         //윈도우 화면에 뭔가가 그려진다면
     case WM_PAINT: 
@@ -55,7 +55,7 @@ GameEngineWindow::~GameEngineWindow()
     }
 }
 
-void GameEngineWindow::off()
+void GameEngineWindow::Off()
 {
     WindowOn_ = false;
 }
