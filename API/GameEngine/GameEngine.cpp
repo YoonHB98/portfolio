@@ -56,7 +56,17 @@ void GameEngine::EngineLoop()
     //실행하는 도중에 CurrentLevel_이 바뀌지 않게
     if (nullptr != NextLevel_)
     {
+        if (nullptr != CurrentLevel_)
+        {
+            CurrentLevel_->SceneChangeEnd();
+        }
         CurrentLevel_ = NextLevel_;
+
+        if (nullptr != CurrentLevel_)
+        {
+            CurrentLevel_->SceneChangeStart();
+        }
+
         NextLevel_ = nullptr;
     }
     //돌릴 수 없으면
@@ -68,6 +78,7 @@ void GameEngine::EngineLoop()
 
     // 레벨수준 시간제한이 있는 게임이라면
     // 매 프레임마다 시간을 체크해야하는데 그런일을 
+    // 게임 그 자체의 루프
     CurrentLevel_->Update();
 
 }

@@ -23,6 +23,11 @@ protected:
 
 	// 레벨수준의 업데이트
 	virtual void Update() = 0;
+	//레벨이 바뀔때 뭔가 하고 싶으면
+	//바뀔떄 바뀐 레벨이 실행하는 함수
+	virtual void SceneChangeStart() {}
+	//바뀔때 바뀌기 전 레벨이 실행하는 함수
+	virtual void SceneChangeEnd() {}
 
 private:
 	template<typename ActorType>
