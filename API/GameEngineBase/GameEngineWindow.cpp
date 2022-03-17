@@ -157,5 +157,5 @@ void GameEngineWindow::SetWindowScaleAndPosition(float4 _Pos, float4 _Scale)
 
     Scale_ = _Scale;
 
-    SetWindowPos(hWnd_, nullptr, _Pos.ix(), _Pos.iy(), Rc.right - Rc.left, Rc.bottom - Rc.top, SWP_NOZORDER)
+    SetWindowPos(hWnd_, nullptr, _Pos.ix(), _Pos.iy(), Rc.right - Rc.left, Rc.bottom - Rc.top, SWP_NOZORDER);
 }
