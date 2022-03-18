@@ -34,7 +34,7 @@ public:
 
 	void Off();
 
-	static inline HDC GETHDC()
+	static inline HDC GetHDC()
 	{
 		return Inst_->HDC_;
 	}

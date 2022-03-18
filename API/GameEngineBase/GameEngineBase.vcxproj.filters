@@ -13,6 +13,9 @@
     <Filter Include="Math">
       <UniqueIdentifier>{9bb2658d-53cc-4af5-9f1a-d4039ed8af18}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{dd9a2d5c-aab5-441f-a420-aeade14c6269}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineWindow.cpp">

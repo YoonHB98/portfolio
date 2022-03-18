@@ -28,6 +28,11 @@ public:
 	float z;
 	float w;
 	
+public:
+	bool IsZero2D()
+	{
+		return x == 0.0f && y == 0.0f;
+	}
 
 public:
 	int ix()
@@ -50,9 +55,10 @@ public:
 	{
 		return static_cast<int>(w);
 	}
+	//절반크기 친구들
 	int hix()
 	{
-		//반만
+		
 		return static_cast<int>(x * 0.5f);
 	}
 
@@ -66,9 +72,32 @@ public:
 		return static_cast<int>(z * 0.5f);
 	}
 
+	//반으로 반환
 	float4 Half()
 	{
 		return { x * 0.5f, y * 0.5f , z * 0.5f, 1.0f };
+	}
+
+public:
+	float4()
+		: x(0.0f), y(0.0f), z(0.0f), w(1.0f)
+	{
+
+	}
+	float4(float _x, float _y)
+		: x(_x), y(_y), z(0.0f), w(1.0f)
+	{
+
+	}
+	float4(float _x, float _y, float _z)
+		: x(_x), y(_y), z(_z), w(1.0f)
+	{
+
+	}
+	float4(float _x, float _y, float _z, float _w)
+		: x(_x), y(_y), z(_z), w(_w)
+	{
+
 	}
 };
 
@@ -79,6 +108,7 @@ public:
 	float4 Scale;
 
 public:
+	//점 중심으로 방향
 	int CenterLeft()
 	{
 		return Pos.ix() - Scale.hix();
@@ -100,6 +130,7 @@ public:
 	}
 
 public:
+	//포지션과 스케일 받고
 	GameEngineRect(float4 _Pos, float4 _Scale)
 		:Pos(_Pos)
 		, Scale(_Scale)
