@@ -33,7 +33,9 @@ public:
 	void BitCopy(GameEngineImage* _Other);
 
 	void BitCopy(GameEngineImage* _Other, const float4& _CopyPos, const float4& _OtherPivot, const float4& _OtherPivotScale);
+
 protected:
+
 
 private:
 	HDC ImageDC_;

@@ -1,7 +1,7 @@
 #include "Mario.h"
 #include "PlayLevel.h"
+#include "EndingLevel.h"
 #include "TitleLevel.h"
-#include  "EndingLevel.h"
 #include <GameEngineBase/GameEngineWindow.h>
 
 Mario::Mario() 
@@ -19,8 +19,9 @@ void Mario::GameInit()
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<PlayLevel>("Play");
 	CreateLevel<EndingLevel>("Ending");
-	ChangeLevel("Title");
+	ChangeLevel("Play");
 }
+
 void Mario::GameLoop()
 {
 
@@ -29,4 +30,3 @@ void Mario::GameEnd()
 {
 
 }
-

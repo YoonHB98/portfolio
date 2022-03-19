@@ -3,7 +3,7 @@
 #include <string>
 #include <GameEngineBase/GameEngineDebug.h>
 
-// 게임엔진 게임 그자체의 시작점과 끝점 실행중을 담당
+// 게임엔진이란 게임 그자체의 시작점과 끝점 실행중을 담당하는 녀석이다.
 // 설명 :
 class GameEngineImage;
 class GameEngineLevel;
@@ -41,7 +41,6 @@ public:
 		WindowCreate();
 		EngineEnd();
 	}
-
 	//게임 시작하면 글로벌은 무조건 있으므로
 	static GameEngine& GlobalEngine()
 	{
@@ -83,3 +82,10 @@ private:
 
 
 };
+
+//class IGameEngineInstance
+//{
+//	virtual void GameInit() = 0;
+//	virtual void GameLoop() = 0;
+//	virtual void GameEnd() = 0;
+//};

@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
+
 // Ό³Έν :
 class TitleBackGround : public GameEngineActor
 {
@@ -16,9 +17,7 @@ public:
 
 protected:
 	void Start() override;
-
 	void Render() override;
-
 private:
 
 };

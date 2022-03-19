@@ -2,6 +2,8 @@
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineBase/GameEngineWindow.h>
 
+// #pragma comment(lib, "msimg32.lib")
+
 GameEngineImage::GameEngineImage()
 	: ImageDC_(nullptr)
 {
@@ -10,8 +12,8 @@ GameEngineImage::GameEngineImage()
 GameEngineImage::~GameEngineImage()
 {
 	// window에서 할당해온녀석들은 릭으로 체크가 안되지만
-// 지워주는게 깔끔하다.
-// 당연히 윈도우에게 할당해왔으므로 윈도우의 함수를 이용해서 지워야한다.
+	// 지워주는게 깔끔하다.
+	// 당연히 윈도우에게 할당해왔으므로 윈도우의 함수를 이용해서 지워야한다.
 
 	if (nullptr != BitMap_)
 	{
@@ -31,7 +33,6 @@ GameEngineImage::~GameEngineImage()
 		ImageDC_ = nullptr;
 	}
 }
-
 
 bool GameEngineImage::Create(HDC _DC)
 {
@@ -69,7 +70,8 @@ bool GameEngineImage::Create(float4 _Scale)
 
 void GameEngineImage::ImageScaleCheck()
 {
-	// DC 내부에 박혀있는 BITMAP을 꺼내오는 함수
+	//처음에 BITMAP은 비어있으므로 DC에는 언제나 비트맵이 있으니
+// DC 내부에 박혀있는 BITMAP을 꺼내오는 함수
 	HBITMAP CurrentBitMap = (HBITMAP)GetCurrentObject(ImageDC_, OBJ_BITMAP);
 	GetObject(CurrentBitMap, sizeof(BITMAP), &Info_);
 }
@@ -82,7 +84,7 @@ void GameEngineImage::BitCopy(GameEngineImage* _Other)
 // 다른 이미지가 들어와서
 void GameEngineImage::BitCopy(GameEngineImage* _Other, const float4& _CopyPos, const float4& _OtherPivot, const float4& _OtherPivotScale)
 {
-	// 윈도우에서 지원해주는 일반적인 dc vs dc의 복사함수
+
 	BitBlt(
 		ImageDC_, // 여기에 복사해라.
 		_CopyPos.ix(), // 내 이미지의 이 부분 x

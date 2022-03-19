@@ -23,7 +23,6 @@ public:
 	{
 		return Position_;
 	}
-
 	inline float4 GetScale()
 	{
 		return Scale_;
@@ -33,7 +32,6 @@ public:
 	{
 		Position_ = _Value;
 	}
-
 	inline void SetScale(float4 _Value)
 	{
 		Scale_ = _Value;
@@ -41,15 +39,14 @@ public:
 
 
 protected:
-	//시작할때 생성자에서 못하는 부분 처리
+	// 시작할때 뭔가를 하고 싶은데 생성자에서는 절대로 못할 부분들을 처리한다.
 	virtual void Start() = 0;
-
-	//게임이 실행될때 지속적으로 호출
-	virtual  void Update() {};
-
-	virtual void Render() {};
+	// 지속적으로 게임이 실행될때 호출된다.
+	virtual void Update() {}
+	virtual void Render() {}
 
 	void DebugRectRender();
+
 private:
 	GameEngineLevel* Level_;
 	float4 Position_;
@@ -60,5 +57,7 @@ private:
 	{
 		Level_ = _Level;
 	}
+
+
 };
 

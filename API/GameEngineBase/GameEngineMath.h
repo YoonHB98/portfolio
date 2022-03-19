@@ -35,6 +35,7 @@ public:
 	}
 
 public:
+	//const 하면 this 도 const -> 자신의 멤버변수가 변경되는 함수를 못씀
 	int ix() const
 	{
 		//float 을 int로 형변환

@@ -24,7 +24,9 @@ public:
 		delete Inst_;
 		Inst_ = nullptr;
 	}
+
 	GameEngineImage* Create(const std::string& _Name, float4 _Scale);
+
 	GameEngineImage* Create(const std::string& _Name, HDC _DC);
 
 private:

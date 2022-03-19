@@ -1,8 +1,9 @@
 #pragma once
 #include "GameEngineBase/GameEngineNameObject.h"
 #include <list>
-#include<map>
+#include <map>
 
+// 설명 :
 class GameEngine;
 class GameEngineActor;
 class GameEngineLevel : public GameEngineNameObject
@@ -12,6 +13,8 @@ public:
 	// constrcuter destructer
 	GameEngineLevel();
 
+	// 면접때 물어보면 알아야 합니다.
+	// 이건 정말 중요하기 때문
 	virtual ~GameEngineLevel();
 
 	// delete Function
@@ -21,14 +24,14 @@ public:
 	GameEngineLevel& operator=(GameEngineLevel&& _Other) noexcept = delete;
 
 protected:
-	virtual void Loading() = 0;
 
-	// 레벨수준의 업데이트
+	//레벨 수준의 업데이트
+	virtual void Loading() = 0;
+	// 이 레벨이 현재 레벨일때 해야할일을 실행한다.
 	virtual void Update() = 0;
-	//레벨이 바뀔때 뭔가 하고 싶으면
-	//바뀔떄 바뀐 레벨이 실행하는 함수
+	// Current레벨 => Next레벨로 이전할때 현재레벨이 실행하는 함수.
 	virtual void LevelChangeStart() {}
-	//바뀔때 바뀌기 전 레벨이 실행하는 함수
+	// Current레벨 => Next레벨로 이전할때 이전레벨이 실행하는 함수.
 	virtual void LevelChangeEnd() {}
 
 	template<typename ActorType>
@@ -42,14 +45,8 @@ protected:
 		NewActor->SetLevel(this);
 		//세팅 다 하고 시작
 		StartActor->Start();
-
 		std::list<GameEngineActor*>& Group = AllActor_[_Order];
 		Group.push_back(NewActor);
-
-		//if (FindGroup ==AllActor_.end())
-		//{
-		//	AllActor_.insert(std::map<int, std::list<GameEngineActor*>>::value_type());
-		//}
 
 		return nullptr;
 	}

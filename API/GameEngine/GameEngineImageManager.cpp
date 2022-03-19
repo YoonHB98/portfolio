@@ -22,7 +22,6 @@ GameEngineImageManager::~GameEngineImageManager()
 	}
 }
 
-
 GameEngineImage* GameEngineImageManager::Create(const std::string& _Name, HDC _DC)
 {
 	if (AllRes.end() != AllRes.find(_Name))

@@ -44,6 +44,7 @@ public:
 		return Inst_->Scale_;
 	}
 
+
 protected:
 
 private:

@@ -13,6 +13,12 @@
     <Filter Include="Ending">
       <UniqueIdentifier>{14033693-3b00-46ed-b6af-a4761cd0232d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Play\Global">
+      <UniqueIdentifier>{28c91243-31a0-47f7-aedd-e134ed296b15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play\Global\UI">
+      <UniqueIdentifier>{c839c097-c4b1-489b-8dfc-16ff56f1ed90}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TitleLevel.h">
@@ -37,6 +43,18 @@
     <ClInclude Include="TitleBackGround.h">
       <Filter>Title</Filter>
     </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Play\Global\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin.h">
+      <Filter>Play\Global\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Play\Global\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Play\Global\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -60,6 +78,18 @@
     <ClCompile Include="Mario.cpp" />
     <ClCompile Include="TitleBackGround.cpp">
       <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Point.cpp">
+      <Filter>Play\Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Coin.cpp">
+      <Filter>Play\Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Play\Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Play\Global\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
