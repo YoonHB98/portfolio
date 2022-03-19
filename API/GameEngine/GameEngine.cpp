@@ -1,6 +1,7 @@
 #include "GameEngine.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include "GameEngineLevel.h"
+#include "GameEngineImageManager.h"
 
 std::map<std::string, GameEngineLevel*> GameEngine::AllLevel_;
 //현재 레벨
@@ -10,6 +11,12 @@ GameEngineLevel* GameEngine::NextLevel_ = nullptr;
 GameEngine* GameEngine::UserContents_ = nullptr;
 // 그려지면 화면에 진짜 나오게 되는 이미지
 GameEngineImage* GameEngine::WindowMainImage_ = nullptr; 
+GameEngineImage* GameEngine::BackBufferImage_ = nullptr;
+
+HDC GameEngine::BackBufferDC()
+{
+    return BackBufferImage_->ImageDC();
+}
 
 GameEngine::GameEngine()
 {
@@ -47,7 +54,11 @@ void GameEngine::WindowCreate()
 
 void GameEngine::EngineInit()
 {
+    // 여기서 윈도우의 크기가 결정될것
     UserContents_->GameInit();
+
+    // 백버퍼를 만들어 낸다.
+    BackBufferImage_ = GameEngineImageManager::GetInst()->Create("BackBuffer", GameEngineWindow::GetScale());
 }
 void GameEngine::EngineLoop()
 {
@@ -101,6 +112,7 @@ void GameEngine::EngineEnd()
         }
         delete StartIter->second;
     }
+    GameEngineImageManager::Destroy();
 
     GameEngineWindow::Destroy();
 }
