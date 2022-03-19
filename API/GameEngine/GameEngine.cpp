@@ -8,7 +8,8 @@ GameEngineLevel* GameEngine::CurrentLevel_ = nullptr;
 GameEngineLevel* GameEngine::NextLevel_ = nullptr;
 //먼게임임
 GameEngine* GameEngine::UserContents_ = nullptr;
-
+// 그려지면 화면에 진짜 나오게 되는 이미지
+GameEngineImage* GameEngine::WindowMainImage_ = nullptr; 
 
 GameEngine::GameEngine()
 {

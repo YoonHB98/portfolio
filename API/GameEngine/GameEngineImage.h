@@ -18,8 +18,9 @@ public:
 	GameEngineImage& operator=(GameEngineImage&& _Other) noexcept = delete;
 
 	bool Create(float4 _Scale);
+	bool Create(HDC _DC);
 
-	inline float4 Scale()
+	inline float4 GetScale()
 	{
 		return float4(static_cast<float>(Info_.bmWidth), static_cast<float>(Info_.bmHeight));
 	}
@@ -29,8 +30,10 @@ public:
 		return ImageDC_;
 	}
 
-protected:
+	void BitCopy(GameEngineImage* _Other);
 
+	void BitCopy(GameEngineImage* _Other, const float4& _CopyPos, const float4& _OtherPivot, const float4& _OtherPivotScale);
+protected:
 
 private:
 	HDC ImageDC_;
