@@ -127,7 +127,7 @@ public:
 
 	int CenterBot()
 	{
-		return Pos.ix() - Scale.hix();
+		return Pos.iy() + Scale.hiy();
 	}
 
 public:

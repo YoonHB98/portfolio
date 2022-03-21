@@ -43,16 +43,7 @@
     <ClInclude Include="TitleBackGround.h">
       <Filter>Title</Filter>
     </ClInclude>
-    <ClInclude Include="Point.h">
-      <Filter>Play\Global\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Coin.h">
-      <Filter>Play\Global\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="World.h">
-      <Filter>Play\Global\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Time.h">
+    <ClInclude Include="TopUI.h">
       <Filter>Play\Global\UI</Filter>
     </ClInclude>
   </ItemGroup>
@@ -79,16 +70,7 @@
     <ClCompile Include="TitleBackGround.cpp">
       <Filter>Title</Filter>
     </ClCompile>
-    <ClCompile Include="Point.cpp">
-      <Filter>Play\Global\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Coin.cpp">
-      <Filter>Play\Global\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="World.cpp">
-      <Filter>Play\Global\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Time.cpp">
+    <ClCompile Include="TopUI.cpp">
       <Filter>Play\Global\UI</Filter>
     </ClCompile>
   </ItemGroup>

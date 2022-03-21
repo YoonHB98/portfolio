@@ -27,10 +27,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Coin.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="EndingCredit.h">
       <SubType>
       </SubType>
@@ -51,14 +47,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Point.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Time.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="TitleBackGround.h" />
     <ClInclude Include="TitleLevel.h">
       <SubType>
@@ -68,16 +56,12 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="World.h">
+    <ClInclude Include="TopUI.h">
       <SubType>
       </SubType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Coin.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="EndingCredit.cpp">
       <SubType>
       </SubType>
@@ -98,14 +82,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Point.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Time.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="TitleBackGround.cpp" />
     <ClCompile Include="TitleLevel.cpp">
       <SubType>
@@ -115,7 +91,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="World.cpp">
+    <ClCompile Include="TopUI.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -1,12 +1,11 @@
 #include "PlayLevel.h"
-#include "Point.h"
+#include "TopUI.h"
 
 enum class ORDER
 {
 	BACKGROUND,
-	Point,
-	MONSTER,
-	UI
+	TopUI,
+
 };
 
 PlayLevel::PlayLevel()
@@ -28,6 +27,7 @@ void PlayLevel::Update()
 }
 void PlayLevel::LevelChangeStart()
 {
-	CreateActor<Point>("PointUI", (int)ORDER::Point);
+	CreateActor<TopUI>("TopUII", (int)ORDER::TopUI);
+	
 
 }
