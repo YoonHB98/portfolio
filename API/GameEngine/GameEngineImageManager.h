@@ -25,9 +25,15 @@ public:
 		Inst_ = nullptr;
 	}
 
-	GameEngineImage* Create(const std::string& _Name, float4 _Scale);
+	GameEngineImage* Find(const std::string& _Name);
 
+	// 내가 비어있는 이미지를 만드는 기능
+	GameEngineImage* Create(const std::string& _Name, const float4& _Scale);
 	GameEngineImage* Create(const std::string& _Name, HDC _DC);
+
+	GameEngineImage* Load(const std::string& _Path);
+	GameEngineImage* Load(const std::string& _Path, const std::string& _Name);
+
 
 private:
 	// constrcuter destructer

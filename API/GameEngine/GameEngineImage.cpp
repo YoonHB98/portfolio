@@ -53,6 +53,39 @@ bool GameEngineImage::Create(float4 _Scale)
 	// 이미지 크기만한
 	BitMap_ = CreateCompatibleBitmap(GameEngineWindow::GetHDC(), _Scale.ix(), _Scale.iy());
 
+	// 비어있지가 않음 DC는 HBitMap의 간섭하는 친구 따라서 HBitMap 없으면 의미가 없음
+	//따라서 윈도우가 11짜리 의미없는 비트맵을 붙임
+	//그러므로 비어있지 않은 DC
+	ImageDC_ = CreateCompatibleDC(nullptr);
+
+	if (nullptr == ImageDC_)
+	{
+		MsgBoxAssert("ImageDc 생성에 실패했습니다.");
+	}
+	//11짜리를  이미지로 바꿔줘
+	OldBitMap_ = (HBITMAP)SelectObject(ImageDC_, BitMap_);
+
+	ImageScaleCheck();
+
+	return true;
+}
+
+bool GameEngineImage::Load(const std::string& _Path)
+{
+	BitMap_ = static_cast<HBITMAP>(LoadImageA(
+		nullptr,
+		_Path.c_str(),
+		IMAGE_BITMAP,
+		0,
+		0,
+		LR_LOADFROMFILE
+	));
+
+	if (nullptr == BitMap_)
+	{
+		MsgBoxAssertString(_Path + " 이미지 로드에 실패했습니다. 여러분들이 살펴봐야할 문제 1. 경로는 제대로 됐나요? 2. 디버깅은 제대로 봤나요");
+	}
+
 	// 비어있지가 않아요
 	ImageDC_ = CreateCompatibleDC(nullptr);
 
@@ -68,6 +101,7 @@ bool GameEngineImage::Create(float4 _Scale)
 	return true;
 }
 
+
 void GameEngineImage::ImageScaleCheck()
 {
 	//처음에 BITMAP은 비어있으므로 DC에는 언제나 비트맵이 있으니
@@ -75,6 +109,39 @@ void GameEngineImage::ImageScaleCheck()
 	HBITMAP CurrentBitMap = (HBITMAP)GetCurrentObject(ImageDC_, OBJ_BITMAP);
 	GetObject(CurrentBitMap, sizeof(BITMAP), &Info_);
 }
+
+
+void GameEngineImage::BitCopy(GameEngineImage* _Other, const float4& _CopyPos)
+{
+	BitCopy(_Other, _CopyPos, float4{ 0, 0 }, _Other->GetScale());
+}
+
+void GameEngineImage::BitCopyCenter(GameEngineImage* _Other, const float4& _CopyPos)
+{
+	BitCopy(_Other, _CopyPos - _Other->GetScale().Half(), float4{ 0, 0 }, _Other->GetScale());
+}
+
+void GameEngineImage::BitCopyCenterPivot(GameEngineImage* _Other, const float4& _CopyPos, const float4& _CopyPivot)
+{
+	BitCopy(_Other, _CopyPos - _Other->GetScale().Half() + _CopyPivot, float4{ 0, 0 }, _Other->GetScale());
+}
+
+void GameEngineImage::BitCopyBot(GameEngineImage* _Other, const float4& _CopyPos)
+{
+	float4 ImagePivot = _Other->GetScale().Half();
+	ImagePivot.y = _Other->GetScale().y;
+
+	BitCopy(_Other, _CopyPos - ImagePivot, float4{ 0, 0 }, _Other->GetScale());
+}
+
+void GameEngineImage::BitCopyBotPivot(GameEngineImage* _Other, const float4& _CopyPos, const float4& _CopyPivot)
+{
+	float4 ImagePivot = _Other->GetScale().Half();
+	ImagePivot.y = _Other->GetScale().y;
+
+	BitCopy(_Other, _CopyPos - ImagePivot + _CopyPivot, float4{ 0, 0 }, _Other->GetScale());
+}
+
 
 void GameEngineImage::BitCopy(GameEngineImage* _Other)
 {

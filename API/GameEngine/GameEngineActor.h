@@ -1,8 +1,11 @@
 #pragma once
 #include <GameEngineBase/GameEngineNameObject.h>
 #include <GameEngineBase/GameEngineMath.h>
+#include "GameEngineEnum.h"
+#include <list>
 
 // 설명 :
+class GameEngineRenderer;
 class GameEngineLevel;
 class GameEngineActor : public GameEngineNameObject
 {
@@ -58,6 +61,17 @@ private:
 		Level_ = _Level;
 	}
 
+public:
+	// 벡터의 값
+	// 가장 빠를겁니다.
+	// 디폴트 인자는 선언에서만 지정 가능
+	GameEngineRenderer* CreateRenderer(const std::string& _Image, RenderPivot _PivotType = RenderPivot::TOP, const float4& _PivotPos = { 0,0 });
 
+private:
+	std::list<GameEngineRenderer*> RenderList_;
 };
+
+
+
+
 

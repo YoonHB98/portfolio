@@ -30,3 +30,8 @@ private:
 MessageBoxA(nullptr, Text, "Error", MB_OK); \
 assert(false); \
 
+#define MsgBoxAssertString(Text) 	MessageBeep(0); \
+MessageBoxA(nullptr, (Text).c_str(), "Error", MB_OK); \
+assert(false); 
+
+
