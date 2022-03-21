@@ -61,13 +61,17 @@ private:
 		Level_ = _Level;
 	}
 
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // Render
 public:
-	// 벡터의 값
-	// 가장 빠를겁니다.
+
 	// 디폴트 인자는 선언에서만 지정 가능
 	GameEngineRenderer* CreateRenderer(const std::string& _Image, RenderPivot _PivotType = RenderPivot::TOP, const float4& _PivotPos = { 0,0 });
 
 private:
+	// 플레이어 하나에도 hp바 등등 내용이 많아지므로
+	// 그걸 전담하는 클래스를 만들어서 세부적인 내용은 그걸로
+	// 벡터로 하면 붙어서 new로 하면 어디 할당되는지 모름 따라서 벡터가 제일 효율이 좋긴함
+	// 리스트에 힙으로 관리함 일단
 	std::list<GameEngineRenderer*> RenderList_;
 };
 

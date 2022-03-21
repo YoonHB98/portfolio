@@ -73,17 +73,17 @@ bool GameEngineImage::Create(float4 _Scale)
 bool GameEngineImage::Load(const std::string& _Path)
 {
 	BitMap_ = static_cast<HBITMAP>(LoadImageA(
-		nullptr,
-		_Path.c_str(),
+		nullptr, 
+		_Path.c_str(), //배열 const char 로 리턴
 		IMAGE_BITMAP,
-		0,
-		0,
+		0, //크기
+		0, //크기
 		LR_LOADFROMFILE
 	));
 
 	if (nullptr == BitMap_)
 	{
-		MsgBoxAssertString(_Path + " 이미지 로드에 실패했습니다. 여러분들이 살펴봐야할 문제 1. 경로는 제대로 됐나요? 2. 디버깅은 제대로 봤나요");
+		MsgBoxAssertString(_Path + " 이미지 로드에 실패했습니다.1. 경로 or 디버깅 체크");
 	}
 
 	// 비어있지가 않아요

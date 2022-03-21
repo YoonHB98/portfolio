@@ -2,7 +2,7 @@
 #include "GameEngineImage.h"
 #include "GameEngineEnum.h"
 
-// 설명 :
+// 설명 :  그려주는 친구
 class GameEngineRenderer
 {
 public:
