@@ -41,6 +41,7 @@ GameEngineImage* GameEngineImageManager::Find(const std::string& _Name)
 
 GameEngineImage* GameEngineImageManager::Create(const std::string& _Name, HDC _DC)
 {
+	//실수 방지용 문자열 그냥 다 대문자로
 	std::string EngineName = GameEngineString::ToUpperReturn(_Name);
 
 	if (AllRes.end() != AllRes.find(EngineName))

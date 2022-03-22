@@ -14,12 +14,14 @@ TopUI::~TopUI()
 
 void TopUI::Start()
 {
-	SetPosition({ 680, 100 });
+	SetPosition(GameEngineWindow::GetScale().Half());
+	//SetPosition({ 680, 100 });
 	SetScale({ 1360, 200 });
-	/*CreateRenderer("mollu.bmp");*/
+	//CreateRenderer("mollu.bmp");
 
 }
 
+//랜더러가 다 돌아가고 랜더링
 void TopUI::Render()
 {
 	//GameEngineImage* FindImage = GameEngineImageManager::GetInst()->Find("mollu.bmp");

@@ -2,6 +2,9 @@
 #include "GameEngineActorSubObject.h"
 #include "GameEngineEnum.h"
 
+
+//액터가 먼저냐 랜더가 먼저냐 처럼 상하가 확실하면 쓰는대 아니면 순환참조 위험성
+//그냥 include안하고 전방선언만
 class GameEngineImage;
 // 설명 :  그려주는 친구
 class GameEngineRenderer : public GameEngineActorSubObject
@@ -47,7 +50,7 @@ protected:
 	void Render();
 
 private:
-	GameEngineImage* Image_;
+	GameEngineImage* Image_; //이미지
 	RenderPivot PivotType_; // 센터 bot
 	RenderScaleMode ScaleMode_;
 	float4 RenderPivot_;

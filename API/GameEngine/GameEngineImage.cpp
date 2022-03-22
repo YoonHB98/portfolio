@@ -2,7 +2,8 @@
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineBase/GameEngineWindow.h>
 
-// #pragma comment(lib, "msimg32.lib")
+
+ #pragma comment(lib, "msimg32.lib")
 
 GameEngineImage::GameEngineImage()
 	: ImageDC_(nullptr)
@@ -53,16 +54,14 @@ bool GameEngineImage::Create(float4 _Scale)
 	// 이미지 크기만한
 	BitMap_ = CreateCompatibleBitmap(GameEngineWindow::GetHDC(), _Scale.ix(), _Scale.iy());
 
-	// 비어있지가 않음 DC는 HBitMap의 간섭하는 친구 따라서 HBitMap 없으면 의미가 없음
-	//따라서 윈도우가 11짜리 의미없는 비트맵을 붙임
-	//그러므로 비어있지 않은 DC
+	// 비어있지가 않아요
 	ImageDC_ = CreateCompatibleDC(nullptr);
 
 	if (nullptr == ImageDC_)
 	{
 		MsgBoxAssert("ImageDc 생성에 실패했습니다.");
 	}
-	//11짜리를  이미지로 바꿔줘
+
 	OldBitMap_ = (HBITMAP)SelectObject(ImageDC_, BitMap_);
 
 	ImageScaleCheck();
@@ -73,17 +72,17 @@ bool GameEngineImage::Create(float4 _Scale)
 bool GameEngineImage::Load(const std::string& _Path)
 {
 	BitMap_ = static_cast<HBITMAP>(LoadImageA(
-		nullptr, 
-		_Path.c_str(), //배열 const char 로 리턴
+		nullptr,
+		_Path.c_str(),
 		IMAGE_BITMAP,
-		0, //크기
-		0, //크기
+		0,
+		0,
 		LR_LOADFROMFILE
 	));
 
 	if (nullptr == BitMap_)
 	{
-		MsgBoxAssertString(_Path + " 이미지 로드에 실패했습니다.1. 경로 or 디버깅 체크");
+		MsgBoxAssertString(_Path + " 이미지 로드에 실패했습니다. 여러분들이 살펴봐야할 문제 1. 경로는 제대로 됐나요? 2. 디버깅은 제대로 봤나요");
 	}
 
 	// 비어있지가 않아요
@@ -101,15 +100,12 @@ bool GameEngineImage::Load(const std::string& _Path)
 	return true;
 }
 
-
 void GameEngineImage::ImageScaleCheck()
 {
-	//처음에 BITMAP은 비어있으므로 DC에는 언제나 비트맵이 있으니
-// DC 내부에 박혀있는 BITMAP을 꺼내오는 함수
+	// DC 내부에 박혀있는 BITMAP을 꺼내오는 함수
 	HBITMAP CurrentBitMap = (HBITMAP)GetCurrentObject(ImageDC_, OBJ_BITMAP);
 	GetObject(CurrentBitMap, sizeof(BITMAP), &Info_);
 }
-
 
 void GameEngineImage::BitCopy(GameEngineImage* _Other, const float4& _CopyPos)
 {
@@ -150,7 +146,7 @@ void GameEngineImage::BitCopy(GameEngineImage* _Other)
 // 다른 이미지가 들어와서
 void GameEngineImage::BitCopy(GameEngineImage* _Other, const float4& _CopyPos, const float4& _CopyScale, const float4& _OtherPivot)
 {
-
+	// 윈도우에서 지원해주는 일반적인 dc vs dc의 복사함수입니다.
 	BitBlt(
 		ImageDC_, // 여기에 복사해라.
 		_CopyPos.ix(), // 내 이미지의 이 부분 x
@@ -181,7 +177,7 @@ void GameEngineImage::TransCopy(GameEngineImage* _Other, const float4& _CopyPos,
 	const float4& _CopyScale,
 	const float4& _OtherPivot, const float4& _OtherScale, unsigned int _TransColor)
 {
-
+	// 윈도우에서 지원해주는 일반적인 dc vs dc의 복사함수입니다.
 	TransparentBlt(
 		ImageDC_, // 여기에 복사해라.
 		_CopyPos.ix(), // 내 이미지의 이 부분 x

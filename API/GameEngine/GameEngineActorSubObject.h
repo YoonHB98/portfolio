@@ -1,6 +1,6 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
-// 설명 :
+// 설명 : 액터는 아니고 액터에서 기능을 따로 때어놓은 친구
 class GameEngineActorSubObject
 {
 public:

@@ -65,7 +65,7 @@ private:
 public:
 
 	// 디폴트 인자는 선언에서만 지정 가능
-	GameEngineRenderer* CreateRenderer(const std::string& _Image, RenderPivot _PivotType = RenderPivot::TOP, const float4& _PivotPos = { 0,0 });
+	GameEngineRenderer* CreateRenderer(const std::string& _Image, RenderPivot _PivotType = RenderPivot::CENTER, const float4& _PivotPos = { 0,0 });
 
 	void Renderering();
 private:

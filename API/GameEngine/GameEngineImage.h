@@ -31,13 +31,11 @@ public:
 	{
 		return ImageDC_;
 	}
-	// //Bit
+
+	// BitBlt
 	void BitCopy(GameEngineImage* _Other);
-
 	void BitCopy(GameEngineImage* _Other, const float4& _CopyPos);
-
 	void BitCopyCenter(GameEngineImage* _Other, const float4& _CopyPos);
-
 	void BitCopyCenterPivot(GameEngineImage* _Other, const float4& _CopyPos, const float4& _CopyPivot);
 	void BitCopyBot(GameEngineImage* _Other, const float4& _CopyPos);
 	void BitCopyBotPivot(GameEngineImage* _Other, const float4& _CopyPos, const float4& _CopyPivot);
@@ -59,7 +57,6 @@ public:
 	void TransCopy(GameEngineImage* _Other, const float4& _CopyPos,
 		const float4& _CopyScale,
 		const float4& _OtherPivot, const float4& _OtherScale, unsigned int _TransColor);
-
 
 protected:
 

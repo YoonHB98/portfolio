@@ -3,6 +3,8 @@
 #include "GameEngine.h"
 #include <GameEngineBase/GameEngineDebug.h>
 
+#pragma comment(lib, "msimg32.lib")
+
 GameEngineRenderer::GameEngineRenderer()
 	: Image_(nullptr)
 	, PivotType_(RenderPivot::CENTER)
@@ -17,7 +19,8 @@ GameEngineRenderer::~GameEngineRenderer()
 
 void GameEngineRenderer::SetImage(const std::string& _Name)
 {
-	GameEngineImage* FindImage = GameEngineImageManager::GetInst()->Find("Idle.bmp");
+	//이미지 찾아오고
+	GameEngineImage* FindImage = GameEngineImageManager::GetInst()->Find(_Name);
 	if (nullptr == FindImage)
 	{
 		MsgBoxAssertString(_Name + "존재하지 않는 이미지를 랜더러에 세팅하려고 했습니다.");

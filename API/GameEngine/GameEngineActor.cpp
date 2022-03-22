@@ -11,6 +11,7 @@ GameEngineActor::GameEngineActor()
 
 GameEngineActor::~GameEngineActor() 
 {
+	//한번 받고 쓰는 이유 함수 호출스택 쌓기 싫어서
 	std::list<GameEngineRenderer*>::iterator StartIter = RenderList_.begin();
 	std::list<GameEngineRenderer*>::iterator EndIter = RenderList_.end();
 	for (; StartIter != EndIter; ++StartIter)
