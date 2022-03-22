@@ -2,5 +2,13 @@
 
 enum class RenderPivot
 {
-	TOP
+	CENTER,
+	TOP,
+	BOT
+};
+
+enum class RenderScaleMode
+{
+	Image,
+	User,
 };
