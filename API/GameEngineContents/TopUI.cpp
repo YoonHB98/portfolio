@@ -14,9 +14,14 @@ TopUI::~TopUI()
 
 void TopUI::Start()
 {
-	SetPosition(GameEngineWindow::GetScale().Half());
+
+	SetPosition({ 680, 50 });
 	//SetPosition({ 680, 100 });
-	SetScale({ 1360, 200 });
+	SetScale({ 100, 200 });
+	CreateRendererToScale("TOP.bmp", float4(1360.0f, 140.0f), RenderPivot::CENTER, float4(0.0f, 0.0f));
+
+	
+	
 	//CreateRenderer("mollu.bmp");
 
 }
