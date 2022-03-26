@@ -9,6 +9,7 @@ class GameEngineRenderer;
 class GameEngineLevel;
 class GameEngineActor : public GameEngineNameObject
 {
+	//// ActorBase
 public:
 	friend GameEngineLevel;
 
@@ -30,6 +31,12 @@ public:
 	{
 		return Scale_;
 	}
+
+	inline void SetMove(float4 _Value)
+	{
+		Position_ += _Value;
+	}
+
 
 	inline void SetPosition(float4 _Value)
 	{
