@@ -2,6 +2,11 @@
 #include <GameEngine/GameEngine.h>
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngine/GameEngineImageManager.h>
+#include <GameEngine/GameEngineRenderer.h>
+
+
+
+
 
 TopUI::TopUI()
 {
@@ -18,7 +23,10 @@ void TopUI::Start()
 	SetPosition({ 680, 50 });
 	//SetPosition({ 680, 100 });
 	SetScale({ 100, 200 });
-	CreateRendererToScale("TOP.bmp", float4(1360.0f, 140.0f), RenderPivot::CENTER, float4(0.0f, 0.0f));
+
+	CreateRenderer("TOP.bmp");
+
+
 
 	
 	

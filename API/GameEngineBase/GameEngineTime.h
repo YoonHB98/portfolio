@@ -12,6 +12,7 @@ public:
 		return Inst_;
 	}
 
+
 	static void Destroy()
 	{
 		if (nullptr != Inst_)
@@ -25,9 +26,9 @@ public:
 	void Reset();
 	void Update();
 
-	inline float GetDeltaTime()
+	static inline float GetDeltaTime()
 	{
-		return DeltaTime_;
+		return Inst_->DeltaTime_;
 	}
 
 

@@ -85,6 +85,7 @@ void GameEngine::EngineLoop()
         }
 
         NextLevel_ = nullptr;
+        //로딩동안 델타타임 안재도록 리셋
         GameEngineTime::GetInst()->Reset();
     }
 
@@ -101,6 +102,7 @@ void GameEngine::EngineLoop()
     CurrentLevel_->ActorUpdate();
     CurrentLevel_->ActorRender();
     WindowMainImage_->BitCopy(BackBufferImage_);
+    CurrentLevel_->ActorRelease();
 
 }
 
@@ -122,10 +124,10 @@ void GameEngine::EngineEnd()
 
 
     GameEngineImageManager::Destroy();
-
-    GameEngineWindow::Destroy();
     GameEngineInput::Destroy();
     GameEngineTime::Destroy();
+
+    GameEngineWindow::Destroy();
 }
 
 void GameEngine::ChangeLevel(const std::string& _Name)

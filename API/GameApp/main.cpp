@@ -11,6 +11,7 @@ int __stdcall WinMain(_In_ HINSTANCE hInstance,
 {
 
 
+    new int();
     GameEngine::Start<Mario>();
 
 

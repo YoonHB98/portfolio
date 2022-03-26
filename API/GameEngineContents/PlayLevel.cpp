@@ -27,7 +27,6 @@ void PlayLevel::Update()
 }
 void PlayLevel::LevelChangeStart()
 {
-	CreateActor<TopUI>("TopUI", (int)ORDER::TopUI);
-	
+	CreateActor<TopUI>((int)ORDER::TopUI);
 
 }

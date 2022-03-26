@@ -4,7 +4,10 @@
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineTime.h>
+#include <GameEngine/GameEngineLevel.h> // 레벨을 통해서
+// #include "이걸 " 만들때 
 Player::Player()
+	: Speed_(100.0f)
 {
 }
 
@@ -19,7 +22,6 @@ void Player::Start()
 	SetScale({ 100, 100 });
 
 	CreateRenderer("Idle.bmp");
-	CreateRendererToScale("hpbar.bmp", float4(300.0f, 20.0f), RenderPivot::CENTER, float4(0.0f, -100.0f));
 
 	if (false == GameEngineInput::GetInst()->IsKey("MoveLeft"))
 	{
@@ -29,7 +31,6 @@ void Player::Start()
 		GameEngineInput::GetInst()->CreateKey("MoveUp", 'W');
 		GameEngineInput::GetInst()->CreateKey("MoveDown", 'S');
 		GameEngineInput::GetInst()->CreateKey("Jump", VK_LSHIFT);
-		GameEngineInput::GetInst()->CreateKey("Fire", VK_SPACE);
 		// VK_LBUTTON; 마우스
 	}
 }
