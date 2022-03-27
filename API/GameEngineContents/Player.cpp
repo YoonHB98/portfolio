@@ -4,6 +4,8 @@
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineTime.h>
+#include <GameEngine/GameEngineRenderer.h>
+
 #include <GameEngine/GameEngineLevel.h> // 레벨을 통해서
 // #include "이걸 " 만들때 
 Player::Player()
@@ -15,13 +17,14 @@ Player::~Player()
 {
 }
 
-
 void Player::Start()
 {
 	SetPosition(GameEngineWindow::GetScale().Half());
 	SetScale({ 100, 100 });
 
-	CreateRenderer("Idle.bmp");
+
+	CreateRenderer("Mario.bmp");
+
 
 	if (false == GameEngineInput::GetInst()->IsKey("MoveLeft"))
 	{
@@ -65,7 +68,7 @@ void Player::Update()
 
 }
 
-// 랜더러가 다 돌아가고 랜더링이 됩니다.
+// 랜더러가 다 돌아가고 랜더링
 void Player::Render()
 {
 

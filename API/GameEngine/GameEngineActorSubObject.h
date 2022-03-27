@@ -3,10 +3,12 @@
 // 설명 : 액터는 아니고 액터에서 기능을 따로 때어놓은 친구
 class GameEngineActorSubObject
 {
+	friend GameEngineActor;
+
 public:
 	// constrcuter destructer
 	GameEngineActorSubObject();
-	~GameEngineActorSubObject();
+	virtual ~GameEngineActorSubObject();
 
 	// delete Function
 	GameEngineActorSubObject(const GameEngineActorSubObject& _Other) = delete;
@@ -18,6 +20,7 @@ public:
 	{
 		return Actor_;
 	}
+
 protected:
 	inline void SetActor(GameEngineActor* _Actor)
 	{
@@ -27,5 +30,6 @@ protected:
 
 private:
 	GameEngineActor* Actor_;
+
 };
 

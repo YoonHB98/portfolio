@@ -9,7 +9,7 @@ GameEngineActor::GameEngineActor()
 
 }
 
-GameEngineActor::~GameEngineActor() 
+GameEngineActor::~GameEngineActor()
 {
 	//한번 받고 쓰는 이유 함수 호출스택 쌓기 싫어서
 	std::list<GameEngineRenderer*>::iterator StartIter = RenderList_.begin();
@@ -37,7 +37,7 @@ void GameEngineActor::DebugRectRender()
 		DebugRect.CenterTop(),
 		DebugRect.CenterRight(),
 		DebugRect.CenterBot()
-		);
+	);
 }
 GameEngineRenderer* GameEngineActor::CreateRenderer(
 	const std::string& _Image,
