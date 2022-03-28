@@ -27,11 +27,27 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Boss.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EndingCredit.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="EndingLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Flower.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FlyingTurtle.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Goomba.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -47,12 +63,28 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TitleBackGround.h" />
-    <ClInclude Include="TitleLevel.h">
+    <ClInclude Include="Stage1.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TitleLogo.h">
+    <ClInclude Include="Stage2.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage3.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage4.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TitleBackGround.h" />
+    <ClInclude Include="TitleCharacter.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TitleLevel.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -60,13 +92,37 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Trutle.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="UnderStage.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Boss.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="EndingCredit.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="EndingLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Flower.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="FlyingTurtle.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Goomba.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -82,16 +138,40 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Stage1.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage2.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage3.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage4.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TitleBackGround.cpp" />
+    <ClCompile Include="TitleCharacter.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TitleLevel.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="TitleLogo.cpp">
+    <ClCompile Include="TopUI.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="TopUI.cpp">
+    <ClCompile Include="Trutle.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="UnderStage.cpp">
       <SubType>
       </SubType>
     </ClCompile>

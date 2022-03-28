@@ -19,6 +19,12 @@
     <Filter Include="Play\Global\UI">
       <UniqueIdentifier>{c839c097-c4b1-489b-8dfc-16ff56f1ed90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Level\Stage1">
+      <UniqueIdentifier>{e64119aa-4939-4362-a1d3-9e409ec18219}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play\Monster">
+      <UniqueIdentifier>{88a48b28-6f44-429e-a7f3-e4043ad796a0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TitleLevel.h">
@@ -29,9 +35,6 @@
     </ClInclude>
     <ClInclude Include="EndingLevel.h">
       <Filter>Level</Filter>
-    </ClInclude>
-    <ClInclude Include="TitleLogo.h">
-      <Filter>Title</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Play</Filter>
@@ -46,6 +49,37 @@
     <ClInclude Include="TopUI.h">
       <Filter>Play\Global\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Stage1.h">
+      <Filter>Level\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage2.h">
+      <Filter>Level\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage3.h">
+      <Filter>Level\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage4.h">
+      <Filter>Level\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="UnderStage.h">
+      <Filter>Level\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="Trutle.h">
+      <Filter>Play\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Goomba.h">
+      <Filter>Play\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyingTurtle.h">
+      <Filter>Play\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Flower.h">
+      <Filter>Play\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h" />
+    <ClInclude Include="TitleCharacter.h">
+      <Filter>Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -56,9 +90,6 @@
     </ClCompile>
     <ClCompile Include="EndingLevel.cpp">
       <Filter>Level</Filter>
-    </ClCompile>
-    <ClCompile Include="TitleLogo.cpp">
-      <Filter>Title</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Play</Filter>
@@ -72,6 +103,37 @@
     </ClCompile>
     <ClCompile Include="TopUI.cpp">
       <Filter>Play\Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage1.cpp">
+      <Filter>Level\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage2.cpp">
+      <Filter>Level\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage3.cpp">
+      <Filter>Level\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage4.cpp">
+      <Filter>Level\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="UnderStage.cpp">
+      <Filter>Level\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Trutle.cpp">
+      <Filter>Play\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Goomba.cpp">
+      <Filter>Play\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="FlyingTurtle.cpp">
+      <Filter>Play\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Flower.cpp">
+      <Filter>Play\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="TitleCharacter.cpp">
+      <Filter>Title</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
