@@ -21,11 +21,11 @@ Player::~Player()
 
 void Player::Start()
 {
-	SetPosition(GameEngineWindow::GetScale().Half());
-	SetScale({ 100, 100 });
+	SetPosition(float4{ 0, 1078 });
 
+	GameEngineRenderer* Mario = CreateRenderer("Mario.bmp");
+	Mario->SetTransColor(RGB(146, 144, 255));
 
-	CreateRenderer("Mario.bmp");
 
 
 	if (false == GameEngineInput::GetInst()->IsKey("MoveLeft"))
@@ -33,8 +33,6 @@ void Player::Start()
 		// 이때 대문자여야 합니다.
 		GameEngineInput::GetInst()->CreateKey("MoveLeft", 'A');
 		GameEngineInput::GetInst()->CreateKey("MoveRight", 'D');
-		GameEngineInput::GetInst()->CreateKey("MoveUp", 'W');
-		GameEngineInput::GetInst()->CreateKey("MoveDown", 'S');
 		GameEngineInput::GetInst()->CreateKey("Jump", VK_LSHIFT);
 		// VK_LBUTTON; 마우스
 	}
@@ -51,15 +49,9 @@ void Player::Update()
 	{
 		SetMove(float4::RIGHT);
 	}
-
-	if (true == GameEngineInput::GetInst()->IsPress("MoveUp"))
+	if (true == GameEngineInput::GetInst()->IsPress("Jump"))
 	{
 		SetMove(float4::UP);
-	}
-
-	if (true == GameEngineInput::GetInst()->IsPress("MoveDown"))
-	{
-		SetMove(float4::DOWN);
 	}
 
 	// 내가 키를 눌렀다면 움직여라.

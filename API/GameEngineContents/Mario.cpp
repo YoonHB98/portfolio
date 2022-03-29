@@ -1,5 +1,6 @@
 #include "Mario.h"
 #include "PlayLevel.h"
+#include "Stage1.h"
 #include "EndingLevel.h"
 #include "TitleLevel.h"
 #include <GameEngineBase/GameEngineWindow.h>
@@ -19,7 +20,7 @@ Mario::~Mario()
 
 void Mario::GameInit()
 {
-	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 0, 0}, { 1360, 1280 });
+	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 0, 0}, { 1224, 1148 });
 
 	
 
@@ -43,6 +44,7 @@ void Mario::GameInit()
 
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<PlayLevel>("Play");
+	CreateLevel<Stage1>("Stage1");
 	CreateLevel<EndingLevel>("Ending");
 	ChangeLevel("Title");
 }

@@ -4,8 +4,7 @@
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineBase/GameEngineTime.h>
 
-// 
-// 11111111 00000000 11111111
+
 
 #pragma comment(lib, "msimg32.lib")
 

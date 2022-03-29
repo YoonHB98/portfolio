@@ -25,6 +25,9 @@
     <Filter Include="Play\Monster">
       <UniqueIdentifier>{88a48b28-6f44-429e-a7f3-e4043ad796a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{5c4203cd-9de7-4dca-a6c2-fe80f14b8526}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TitleLevel.h">
@@ -80,6 +83,9 @@
     <ClInclude Include="TitleCharacter.h">
       <Filter>Title</Filter>
     </ClInclude>
+    <ClInclude Include="Map1.h">
+      <Filter>Map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -134,6 +140,9 @@
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="TitleCharacter.cpp">
       <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Map1.cpp">
+      <Filter>Map</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

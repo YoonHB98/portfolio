@@ -4,7 +4,7 @@
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngine/GameEngineRenderer.h>
 
-
+#pragma comment(lib, "msimg32.lib")
 
 
 
@@ -20,12 +20,14 @@ TopUI::~TopUI()
 void TopUI::Start()
 {
 
-	SetPosition({ 680, 50 });
+
 	//SetPosition({ 680, 100 });
-	SetScale({ 100, 200 });
 
-	CreateRenderer("TOP.bmp");
 
+
+	GameEngineRenderer * Top = CreateRenderer("TOP.bmp");
+	Top->SetPivot(float4(612, 77.5));
+	Top->SetTransColor(RGB(146, 144, 255));
 
 
 	
