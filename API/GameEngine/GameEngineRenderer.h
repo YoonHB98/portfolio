@@ -1,12 +1,11 @@
-#pragma once
+ï»¿#pragma once
 #include "GameEngineActorSubObject.h"
 #include "GameEngineEnum.h"
+#include <map>
 
 
-//¾×ÅÍ°¡ ¸ÕÀú³Ä ·£´õ°¡ ¸ÕÀú³Ä Ã³·³ »óÇÏ°¡ È®½ÇÇÏ¸é ¾²´Â´ë ¾Æ´Ï¸é ¼øÈ¯ÂüÁ¶ À§Çè¼º
-//±×³É include¾ÈÇÏ°í Àü¹æ¼±¾ð¸¸
+// ï¿½ï¿½ï¿½ï¿½ : ï¿½×¸ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 class GameEngineImage;
-// ¼³¸í :  ±×·ÁÁÖ´Â Ä£±¸
 class GameEngineRenderer : public GameEngineActorSubObject
 {
 	friend GameEngineActor;
@@ -21,7 +20,6 @@ public:
 	GameEngineRenderer(GameEngineRenderer&& _Other) noexcept = delete;
 	GameEngineRenderer& operator=(const GameEngineRenderer& _Other) = delete;
 	GameEngineRenderer& operator=(GameEngineRenderer&& _Other) noexcept = delete;
-
 
 	inline void SetTransColor(unsigned int _Color)
 	{
@@ -43,6 +41,7 @@ public:
 		ScaleMode_ = _Mode;
 	}
 
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	void SetImageScale();
 
 	inline void SetScale(const float4& _Scale)
@@ -51,27 +50,85 @@ public:
 		RenderScale_ = _Scale;
 	}
 
-
+	inline GameEngineImage* GetImage()
+	{
+		return Image_;
+	}
 
 	void SetImage(const std::string& _Name);
 
-	void SetIndex(size_t _Index, float4 _Scale = { -1.0f, -1.0f });
+	// 
+	void SetIndex(size_t _Index);
+
+
 
 protected:
 	void Render();
 
 private:
-	GameEngineImage* Image_; //ÀÌ¹ÌÁö
-	RenderPivot PivotType_; // ¼¾ÅÍ bot
+	friend class FrameAnimation;
+
+	GameEngineImage* Image_;
+	RenderPivot PivotType_; // ï¿½ï¿½ï¿½ï¿½ / bot
 	RenderScaleMode ScaleMode_;
 	float4 RenderPivot_;
-	// È­¸é¿¡ ±×·ÁÁö´Â Å©±â
 	float4 RenderScale_;
-	// ÀÌ¹ÌÁö¿¡¼­ Àß¶ó³»´Â Å©±â
 	float4 RenderImageScale_;
 	float4 RenderImagePivot_;
-
 	unsigned int TransColor_;
 
-};
 
+
+	///////////////////////////////////////////////////////////////// ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½
+
+private:
+	class FrameAnimation
+	{
+	public:
+		GameEngineRenderer* Renderer_;
+		GameEngineImage* Image_;
+		int CurrentFrame_;
+		int StartFrame_;
+		int EndFrame_;
+		float CurrentInterTime_;
+		float InterTime_;
+		bool Loop_;
+
+	public:
+		FrameAnimation()
+			: Image_(nullptr),
+			CurrentFrame_(-1),
+			StartFrame_(-1),
+			EndFrame_(-1),
+			CurrentInterTime_(0.1f),
+			InterTime_(0.1f),
+			Loop_(true)
+
+		{
+
+		}
+
+	public:
+		void Update();
+
+		void Reset()
+		{
+			CurrentFrame_ = StartFrame_;
+			CurrentInterTime_ = InterTime_;
+		}
+	};
+
+public:
+	void CreateAnimation(const std::string& _Image, const std::string& _Name, int _StartIndex, int _EndIndex, float _InterTime, bool _Loop = true);
+
+	// ï¿½É¼ï¿½ï¿½ï¿½ 
+	void ChangeAnimation(const std::string& _Name);
+
+
+private:
+	std::map<std::string, FrameAnimation> Animations_;
+	FrameAnimation* CurrentAnimation_;
+
+
+
+};

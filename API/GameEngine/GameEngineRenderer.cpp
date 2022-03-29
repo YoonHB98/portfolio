@@ -1,7 +1,9 @@
-#include "GameEngineRenderer.h"
+ï»¿#include "GameEngineRenderer.h"
 #include "GameEngineImageManager.h"
 #include "GameEngine.h"
 #include <GameEngineBase/GameEngineDebug.h>
+#include <GameEngineBase/GameEngineTime.h>
+
 
 #pragma comment(lib, "msimg32.lib")
 
@@ -22,7 +24,7 @@ void GameEngineRenderer::SetImageScale()
 {
 	if (nullptr == Image_)
 	{
-		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ÀÌ¹ÌÁö·Î Å©±â¸¦ Á¶ÀýÇÏ·Á°í Çß½À´Ï´Ù.");
+		MsgBoxAssert("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
 		return;
 	}
 
@@ -31,13 +33,13 @@ void GameEngineRenderer::SetImageScale()
 	RenderImageScale_ = Image_->GetScale();
 }
 
+
 void GameEngineRenderer::SetImage(const std::string& _Name)
 {
-	//ÀÌ¹ÌÁö Ã£¾Æ¿À°í
 	GameEngineImage* FindImage = GameEngineImageManager::GetInst()->Find(_Name);
 	if (nullptr == FindImage)
 	{
-		MsgBoxAssertString(_Name + "Á¸ÀçÇÏÁö ¾Ê´Â ÀÌ¹ÌÁö¸¦ ·£´õ·¯¿¡ ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
+		MsgBoxAssertString(_Name + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
 		return;
 	}
 
@@ -47,16 +49,18 @@ void GameEngineRenderer::SetImage(const std::string& _Name)
 
 void GameEngineRenderer::Render()
 {
+	if (nullptr != CurrentAnimation_)
+	{
+		CurrentAnimation_->Update();
+	}
+
 	if (nullptr == Image_)
 	{
-		MsgBoxAssert("·£´õ·¯¿¡ ÀÌ¹ÌÁö°¡ ¼¼ÆÃµÇ¾î ÀÖÁö ¾ÊÀ¸¸é ·£´õ¸µÀÌ ¾ÈµË´Ï´Ù.");
+		MsgBoxAssert("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÃµÇ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ÈµË´Ï´ï¿½.");
 		return;
 	}
 
 	float4 RenderPos = GetActor()->GetPosition() + RenderPivot_;
-
-
-
 
 	switch (PivotType_)
 	{
@@ -64,32 +68,101 @@ void GameEngineRenderer::Render()
 		GameEngine::BackBufferImage()->TransCopy(Image_, RenderPos - RenderScale_.Half(), RenderScale_, RenderImagePivot_, RenderImageScale_, TransColor_);
 		break;
 	case RenderPivot::BOT:
-
+		// GameEngine::BackBufferImage()->TransCopyCenterScale(Image_, RenderPos, RenderScale, TransColor_);
 		break;
 	default:
 		break;
 	}
-
 }
-void GameEngineRenderer::SetIndex(size_t _Index, float4 _Scale)
+
+void GameEngineRenderer::SetIndex(size_t _Index)
 {
 	if (false == Image_->IsCut())
 	{
-		MsgBoxAssert("ÀÌ¹ÌÁö¸¦ ºÎºÐÀûÀ¸·Î »ç¿ëÇÒ¼ö ÀÖ°Ô Àß·ÁÁöÀÖÁö ¾ÊÀº ÀÌ¹ÌÁö ÀÔ´Ï´Ù.");
+		MsgBoxAssert("ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ò¼ï¿½ ï¿½Ö°ï¿½ ï¿½ß·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½Ô´Ï´ï¿½.");
 		return;
 	}
 
 	RenderImagePivot_ = Image_->GetCutPivot(_Index);
-	if (-1.0f == _Scale.x ||
-		-1.0f == _Scale.y)
-	{
 	RenderScale_ = Image_->GetCutScale(_Index);
 	RenderImageScale_ = Image_->GetCutScale(_Index);
-	}
-	else
+}
+
+/////////////////////////////////////// ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½
+
+
+void GameEngineRenderer::ChangeAnimation(const std::string& _Name)
+{
+	std::map<std::string, FrameAnimation>::iterator FindIter = Animations_.find(_Name);
+
+	if (Animations_.end() == FindIter)
 	{
-		RenderScale_ = _Scale;
+		MsgBoxAssert("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
+		return;
+	}
+
+	CurrentAnimation_ = &FindIter->second;
+}
+
+void GameEngineRenderer::CreateAnimation(
+	const std::string& _Image,
+	const std::string& _Name,
+	int _StartIndex,
+	int _EndIndex,
+	float _InterTime,
+	bool _Loop /*= true*/)
+{
+	GameEngineImage* FindImage = GameEngineImageManager::GetInst()->Find(_Image);
+
+	if (nullptr == FindImage)
+	{
+		MsgBoxAssert("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
+		return;
+	}
+
+	if (Animations_.end() != Animations_.find(_Name))
+	{
+		MsgBoxAssert("ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß½ï¿½ï¿½Ï´ï¿½..");
+		return;
+	}
+
+	//FrameAnimation Animation;
+	//Animation.insert(std::make_pair(, FrameAnimation()));
+	FrameAnimation& NewAnimation = Animations_[_Name];
+	NewAnimation.Renderer_ = this;
+	NewAnimation.Image_ = FindImage;
+	NewAnimation.CurrentFrame_ = _StartIndex;
+	NewAnimation.StartFrame_ = _StartIndex;
+	NewAnimation.EndFrame_ = _EndIndex;
+	NewAnimation.CurrentInterTime_ = _InterTime;
+	NewAnimation.InterTime_ = _InterTime;
+	NewAnimation.Loop_ = _Loop;
+
+
+}
+
+void GameEngineRenderer::FrameAnimation::Update()
+{
+	CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime();
+	if (0 >= CurrentInterTime_)
+	{
+		CurrentInterTime_ = InterTime_;
+		++CurrentFrame_;
+
+		if (EndFrame_ < CurrentFrame_)
+		{
+			if (true == Loop_)
+			{
+				CurrentFrame_ = StartFrame_;
+			}
+			else
+			{
+				CurrentFrame_ = EndFrame_;
+			}
+		}
 	}
 
 
+	Renderer_->Image_ = Image_;
+	Renderer_->SetIndex(CurrentFrame_);
 }

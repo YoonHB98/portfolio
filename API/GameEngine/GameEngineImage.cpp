@@ -1,20 +1,18 @@
-#include "GameEngineImage.h"
+ï»¿#include "GameEngineImage.h"
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineBase/GameEngineWindow.h>
 
-
- #pragma comment(lib, "msimg32.lib")
+// #pragma comment(lib, "msimg32.lib")
 
 GameEngineImage::GameEngineImage()
-	: ImageDC_(nullptr)
+	:ImageDC_(nullptr)
 {
 }
 
 GameEngineImage::~GameEngineImage()
 {
-	// window¿¡¼­ ÇÒ´çÇØ¿Â³à¼®µéÀº ¸¯À¸·Î Ã¼Å©°¡ ¾ÈµÇÁö¸¸
-	// Áö¿öÁÖ´Â°Ô ±ò²ûÇÏ´Ù.
-	// ´ç¿¬È÷ À©µµ¿ì¿¡°Ô ÇÒ´çÇØ¿ÔÀ¸¹Ç·Î À©µµ¿ìÀÇ ÇÔ¼ö¸¦ ÀÌ¿ëÇØ¼­ Áö¿ö¾ßÇÑ´Ù.
+	// Windowï¿½ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½ï¿½ ï¿½Èµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´Â°ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½Ò´ï¿½ï¿½Ø¿ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 
 	if (nullptr != BitMap_)
 	{
@@ -46,20 +44,18 @@ bool GameEngineImage::Create(float4 _Scale)
 {
 	if (true == _Scale.IsZero2D())
 	{
-		MsgBoxAssert("Å©±â°¡ 0ÀÎ ÀÌ¹ÌÁö¸¦ Á¦ÀÛÇÏ·Á°í Çß½À´Ï´Ù.");
+		MsgBoxAssert("Å©ï¿½â°¡ 0ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
 		return false;
 	}
 
-	// ¸ÕÀú ºñÆ®¸ÊÀ» ¸¸µé¾î
-	// ÀÌ¹ÌÁö Å©±â¸¸ÇÑ
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ Å©ï¿½â¸¸ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 	BitMap_ = CreateCompatibleBitmap(GameEngineWindow::GetHDC(), _Scale.ix(), _Scale.iy());
 
-	// ºñ¾îÀÖÁö°¡ ¾Ê¾Æ¿ä
 	ImageDC_ = CreateCompatibleDC(nullptr);
 
 	if (nullptr == ImageDC_)
 	{
-		MsgBoxAssert("ImageDc »ý¼º¿¡ ½ÇÆÐÇß½À´Ï´Ù.");
+		MsgBoxAssert("ImageDc ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
 	}
 
 	OldBitMap_ = (HBITMAP)SelectObject(ImageDC_, BitMap_);
@@ -82,15 +78,15 @@ bool GameEngineImage::Load(const std::string& _Path)
 
 	if (nullptr == BitMap_)
 	{
-		MsgBoxAssertString(_Path + " ÀÌ¹ÌÁö ·Îµå¿¡ ½ÇÆÐÇß½À´Ï´Ù. ¿©·¯ºÐµéÀÌ »ìÆìºÁ¾ßÇÒ ¹®Á¦ 1. °æ·Î´Â Á¦´ë·Î µÆ³ª¿ä? 2. µð¹ö±ëÀº Á¦´ë·Î ºÃ³ª¿ä");
+		MsgBoxAssertString(_Path + " ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½Îµå¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1. ï¿½ï¿½Î´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ³ï¿½ï¿½ï¿½? 2. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã³ï¿½ï¿½ï¿½");
 	}
 
-	// ºñ¾îÀÖÁö°¡ ¾Ê¾Æ¿ä
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½É¸ï¿½ï¿½ï¿½ DCï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	ImageDC_ = CreateCompatibleDC(nullptr);
 
 	if (nullptr == ImageDC_)
 	{
-		MsgBoxAssert("ImageDc »ý¼º¿¡ ½ÇÆÐÇß½À´Ï´Ù.");
+		MsgBoxAssert("ImageDc ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
 	}
 
 	OldBitMap_ = (HBITMAP)SelectObject(ImageDC_, BitMap_);
@@ -102,7 +98,7 @@ bool GameEngineImage::Load(const std::string& _Path)
 
 void GameEngineImage::ImageScaleCheck()
 {
-	// DC ³»ºÎ¿¡ ¹ÚÇôÀÖ´Â BITMAPÀ» ²¨³»¿À´Â ÇÔ¼ö
+	// DC ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ BITMAPï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 	HBITMAP CurrentBitMap = (HBITMAP)GetCurrentObject(ImageDC_, OBJ_BITMAP);
 	GetObject(CurrentBitMap, sizeof(BITMAP), &Info_);
 }
@@ -143,59 +139,68 @@ void GameEngineImage::BitCopy(GameEngineImage* _Other)
 	BitCopy(_Other, { 0, 0 }, _Other->GetScale(), { 0, 0 });
 }
 
-// ´Ù¸¥ ÀÌ¹ÌÁö°¡ µé¾î¿Í¼­
+// ï¿½Ù¸ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í¼ï¿½
 void GameEngineImage::BitCopy(GameEngineImage* _Other, const float4& _CopyPos, const float4& _CopyScale, const float4& _OtherPivot)
 {
-	// À©µµ¿ì¿¡¼­ Áö¿øÇØÁÖ´Â ÀÏ¹ÝÀûÀÎ dc vs dcÀÇ º¹»çÇÔ¼öÀÔ´Ï´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½ï¿½ dc vs dcï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½Ô´Ï´ï¿½.
 	BitBlt(
-		ImageDC_, // ¿©±â¿¡ º¹»çÇØ¶ó.
-		_CopyPos.ix(), // ³» ÀÌ¹ÌÁöÀÇ ÀÌ ºÎºÐ x
-		_CopyPos.iy(), // ³» ÀÌ¹ÌÁöÀÇ ÀÌ ºÎºÐ y ¿¡ º¹»çÇØ¶ó
-		_CopyScale.ix(), // ³» ÀÌ¹ÌÁöÀÇ ÀÌ Å©±â¸¸Å­ x
-		_CopyScale.iy(), // ³» ÀÌ¹ÌÁöÀÇ ÀÌ Å©±â¸¸Å­ y
-		_Other->ImageDC_, // º¹»çÇÏ·Á´Â ´ë»óÀº
-		_OtherPivot.ix(), // º¹»çÇÏ·Á´Â ´ë»óÀÇ ½ÃÀÛÁ¡X
-		_OtherPivot.iy(),// º¹»çÇÏ·Á´Â ´ë»óÀÇ ½ÃÀÛÁ¡Y
-		SRCCOPY // º¹»çÇÏ¶ó´Â ¸í·É
+		ImageDC_, // ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½.
+		_CopyPos.ix(), // ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Îºï¿½ x
+		_CopyPos.iy(), // ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Îºï¿½ y ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½
+		_CopyScale.ix(), // ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Å©ï¿½â¸¸Å­ x
+		_CopyScale.iy(), // ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Å©ï¿½â¸¸Å­ y
+		_Other->ImageDC_, // ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+		_OtherPivot.ix(), // ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½X
+		_OtherPivot.iy(),// ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Y
+		SRCCOPY // ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	);
 }
 
 //////////////////////////////////////////////////////////////////////// Trans
 
 
-// ´Ù¸¥ ÀÌ¹ÌÁö°¡ µé¾î¿Í¼­
 void GameEngineImage::TransCopy(GameEngineImage* _Other, const float4& _CopyPos,
 	const float4& _CopyScale,
 	const float4& _OtherPivot, const float4& _OtherScale, unsigned int _TransColor)
 {
-	// À©µµ¿ì¿¡¼­ Áö¿øÇØÁÖ´Â ÀÏ¹ÝÀûÀÎ dc vs dcÀÇ º¹»çÇÔ¼öÀÔ´Ï´Ù.
+	// TransCopy(_Other, _CopyPos - _RenderScale.Half(), _RenderScale, _RenderPivot, _Other->GetScale(), _TransColor);
+
 	TransparentBlt(
-		ImageDC_, // ¿©±â¿¡ º¹»çÇØ¶ó.
-		_CopyPos.ix(), // ³» ÀÌ¹ÌÁöÀÇ ÀÌ ºÎºÐ x
-		_CopyPos.iy(), // ³» ÀÌ¹ÌÁöÀÇ ÀÌ ºÎºÐ y ¿¡ º¹»çÇØ¶ó
-		_CopyScale.ix(), // ³» ÀÌ¹ÌÁöÀÇ ÀÌ Å©±â¸¸Å­ x
-		_CopyScale.iy(), // ³» ÀÌ¹ÌÁöÀÇ ÀÌ Å©±â¸¸Å­ y
-		_Other->ImageDC_, // º¹»çÇÏ·Á´Â ´ë»óÀº
-		_OtherPivot.ix(), // º¹»çÇÏ·Á´Â ´ë»óÀÇ ½ÃÀÛÁ¡X
-		_OtherPivot.iy(),// º¹»çÇÏ·Á´Â ´ë»óÀÇ ½ÃÀÛÁ¡Y
-		_OtherScale.ix(), // º¹»çÇÏ·Á´Â ´ë»óÀÇ ½ÃÀÛÁ¡X
-		_OtherScale.iy(),// º¹»çÇÏ·Á´Â ´ë»óÀÇ ½ÃÀÛÁ¡Y
-		_TransColor // º¹»çÇÏ¶ó´Â ¸í·É
+		ImageDC_, // ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½(ï¿½ì¸® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½)
+		_CopyPos.ix(), // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ y
+		_CopyPos.iy(), // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ y
+		_CopyScale.ix(), // ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Å©ï¿½â¸¸Å­ x
+		_CopyScale.iy(), // ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Å©ï¿½â¸¸Å­ y
+		_Other->ImageDC_, // ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Å±â¿¡ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½?Ä¿ï¿½ï¿½)
+		_OtherPivot.ix(), // ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½X ï¿½ï¿½Ä¡
+		_OtherPivot.iy(),// ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Y
+		_OtherScale.ix(), // ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½X Å©ï¿½ï¿½
+		_OtherScale.iy(),// ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Y
+		_TransColor // ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	);
+}
+
+
+void GameEngineImage::CutCount(int _x, int _y)
+{
+	float4 Scale = { GetScale().x / _x, GetScale().y / _y };
+	Cut(Scale);
 }
 
 void GameEngineImage::Cut(const float4& _CutSize)
 {
+	// ï¿½ï¿½ï¿½Â¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù°ï¿½.
 	if (0 != (GetScale().ix() % _CutSize.ix()))
 	{
-		MsgBoxAssert("ÀÚ¸¦¼ö ÀÖ´Â ¼öÄ¡°¡ µü ¸Â¾Æ¶³¾îÁöÁö ¾Ê½À´Ï´Ù.");
+		MsgBoxAssert("ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ ï¿½Â¾Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
 	}
 
 	if (0 != (GetScale().iy() % _CutSize.iy()))
 	{
-		MsgBoxAssert("ÀÚ¸¦¼ö ÀÖ´Â ¼öÄ¡°¡ µü ¸Â¾Æ¶³¾îÁöÁö ¾Ê½À´Ï´Ù.");
+		MsgBoxAssert("ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ ï¿½Â¾Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
 	}
 
+	// ï¿½ï¿½ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½
 	int XCount = GetScale().ix() / _CutSize.ix();
 	int YCount = GetScale().iy() / _CutSize.iy();
 
