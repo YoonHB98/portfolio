@@ -4,7 +4,7 @@
 #include <Windows.h>
 #include <vector>
 
-// ���� : 
+// 설명 : 
 class GameEngineImage : public GameEngineNameObject
 {
 public:
@@ -35,7 +35,7 @@ public:
 		return ImageDC_;
 	}
 
-	// 
+	// 가장 근본
 	void BitCopy(GameEngineImage* _Other, const float4& _CopyPos,
 		const float4& _CopyScale,
 		const float4& _OtherPivot);
@@ -48,7 +48,7 @@ public:
 
 
 
-	// Trans 
+	// Trans 이걸로 통일
 	void TransCopy(GameEngineImage* _Other, const float4& _CopyPos,
 		const float4& _CopyScale,
 		const float4& _OtherPivot, const float4& _OtherScale, unsigned int _TransColor);
@@ -93,3 +93,4 @@ private:
 
 	void ImageScaleCheck();
 };
+

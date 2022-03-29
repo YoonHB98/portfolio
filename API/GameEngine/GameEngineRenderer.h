@@ -4,7 +4,7 @@
 #include <map>
 
 
-// ���� : �׸��°� �����ִ� Ŭ����
+// 설명 : 그리는걸 도와주는 클래스
 class GameEngineImage;
 class GameEngineRenderer : public GameEngineActorSubObject
 {
@@ -41,7 +41,7 @@ public:
 		ScaleMode_ = _Mode;
 	}
 
-	// ������ ������ �� �ƴ϶� �̹��� �����ϵ� ���� ������
+	// 렌더러 스케일 뿐 아니라 이미지 스케일도 같이 맞춰줌
 	void SetImageScale();
 
 	inline void SetScale(const float4& _Scale)
@@ -69,7 +69,7 @@ private:
 	friend class FrameAnimation;
 
 	GameEngineImage* Image_;
-	RenderPivot PivotType_; // ���� / bot
+	RenderPivot PivotType_; // 센터 / bot
 	RenderScaleMode ScaleMode_;
 	float4 RenderPivot_;
 	float4 RenderScale_;
@@ -79,7 +79,7 @@ private:
 
 
 
-	///////////////////////////////////////////////////////////////// �ִϸ��̼�
+	///////////////////////////////////////////////////////////////// 애니메이션
 
 private:
 	class FrameAnimation
@@ -121,7 +121,7 @@ private:
 public:
 	void CreateAnimation(const std::string& _Image, const std::string& _Name, int _StartIndex, int _EndIndex, float _InterTime, bool _Loop = true);
 
-	// �ɼ��� 
+	// 옵션을 
 	void ChangeAnimation(const std::string& _Name);
 
 

@@ -4,6 +4,8 @@
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineBase/GameEngineTime.h>
 
+// 
+// 11111111 00000000 11111111
 
 #pragma comment(lib, "msimg32.lib")
 
@@ -24,7 +26,7 @@ void GameEngineRenderer::SetImageScale()
 {
 	if (nullptr == Image_)
 	{
-		MsgBoxAssert("�������� �ʴ� �̹����� ũ�⸦ �����Ϸ��� �߽��ϴ�.");
+		MsgBoxAssert("존재하지 않는 이미지로 크기를 조절하려고 했습니다.");
 		return;
 	}
 
@@ -39,7 +41,7 @@ void GameEngineRenderer::SetImage(const std::string& _Name)
 	GameEngineImage* FindImage = GameEngineImageManager::GetInst()->Find(_Name);
 	if (nullptr == FindImage)
 	{
-		MsgBoxAssertString(_Name + "�������� �ʴ� �̹����� �������� �����Ϸ��� �߽��ϴ�.");
+		MsgBoxAssertString(_Name + "존재하지 않는 이미지를 랜더러에 세팅하려고 했습니다.");
 		return;
 	}
 
@@ -56,7 +58,7 @@ void GameEngineRenderer::Render()
 
 	if (nullptr == Image_)
 	{
-		MsgBoxAssert("�������� �̹����� ���õǾ� ���� ������ �������� �ȵ˴ϴ�.");
+		MsgBoxAssert("랜더러에 이미지가 세팅되어 있지 않으면 랜더링이 안됩니다.");
 		return;
 	}
 
@@ -79,7 +81,7 @@ void GameEngineRenderer::SetIndex(size_t _Index)
 {
 	if (false == Image_->IsCut())
 	{
-		MsgBoxAssert("�̹����� �κ������� ����Ҽ� �ְ� �߷������� ���� �̹��� �Դϴ�.");
+		MsgBoxAssert("이미지를 부분적으로 사용할수 있게 잘려지있지 않은 이미지 입니다.");
 		return;
 	}
 
@@ -88,7 +90,7 @@ void GameEngineRenderer::SetIndex(size_t _Index)
 	RenderImageScale_ = Image_->GetCutScale(_Index);
 }
 
-/////////////////////////////////////// �ִϸ��̼�
+/////////////////////////////////////// 애니메이션
 
 
 void GameEngineRenderer::ChangeAnimation(const std::string& _Name)
@@ -97,7 +99,7 @@ void GameEngineRenderer::ChangeAnimation(const std::string& _Name)
 
 	if (Animations_.end() == FindIter)
 	{
-		MsgBoxAssert("�������� �ʴ� �ִϸ��̼����� ü���� �Ϸ��� �߽��ϴ�.");
+		MsgBoxAssert("존재하지 않는 애니메이션으로 체인지 하려고 했습니다.");
 		return;
 	}
 
@@ -116,13 +118,13 @@ void GameEngineRenderer::CreateAnimation(
 
 	if (nullptr == FindImage)
 	{
-		MsgBoxAssert("�������� �ʴ� �̹����� �ִϸ��̼��� ������� �߽��ϴ�.");
+		MsgBoxAssert("존재하지 않는 이미지로 애니메이션을 만들려고 했습니다.");
 		return;
 	}
 
 	if (Animations_.end() != Animations_.find(_Name))
 	{
-		MsgBoxAssert("�̹� �����ϴ� �ִϸ��̼��� �� ������� �߽��ϴ�..");
+		MsgBoxAssert("이미 존재하는 애니메이션을 또 만들려고 했습니다..");
 		return;
 	}
 

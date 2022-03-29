@@ -11,8 +11,8 @@ GameEngineImage::GameEngineImage()
 
 GameEngineImage::~GameEngineImage()
 {
-	// Window���� �Ҵ��� �� �ֵ��� ������ üũ�� �ȵ����� �����ִ°� ����ϴ�.
-	// �����쿡�� �Ҵ��ؿ����Ƿ� �������� �Լ��� �̿��ؼ� �������Ѵ�.
+	// Window에서 할당해 온 애들은 릭으로 체크가 안되지만 지워주는게 깔끔하다.
+	// 윈도우에세 할당해왔으므로 윈도우의 함수를 이용해서 지워야한다.
 
 	if (nullptr != BitMap_)
 	{
@@ -44,18 +44,18 @@ bool GameEngineImage::Create(float4 _Scale)
 {
 	if (true == _Scale.IsZero2D())
 	{
-		MsgBoxAssert("ũ�Ⱑ 0�� �̹����� �����Ϸ��� �߽��ϴ�.");
+		MsgBoxAssert("크기가 0인 이미지를 제작하려고 했습니다.");
 		return false;
 	}
 
-	// ���� �̹��� ũ�⸸�� ��Ʈ�� ������ֱ�
+	// 먼저 이미지 크기만한 비트맵 만들어주기
 	BitMap_ = CreateCompatibleBitmap(GameEngineWindow::GetHDC(), _Scale.ix(), _Scale.iy());
 
 	ImageDC_ = CreateCompatibleDC(nullptr);
 
 	if (nullptr == ImageDC_)
 	{
-		MsgBoxAssert("ImageDc ������ �����߽��ϴ�.");
+		MsgBoxAssert("ImageDc 생성에 실패했습니다.");
 	}
 
 	OldBitMap_ = (HBITMAP)SelectObject(ImageDC_, BitMap_);
@@ -78,15 +78,15 @@ bool GameEngineImage::Load(const std::string& _Path)
 
 	if (nullptr == BitMap_)
 	{
-		MsgBoxAssertString(_Path + " �̹��� �ε忡 �����߽��ϴ�. �����е��� ��������� ���� 1. ��δ� ����� �Ƴ���? 2. ������� ����� �ó���");
+		MsgBoxAssertString(_Path + " 이미지 로드에 실패했습니다. 여러분들이 살펴봐야할 문제 1. 경로는 제대로 됐나요? 2. 디버깅은 제대로 봤나요");
 	}
 
-	// ��������� ���� �ɸ��� DC���� �������
+	// 비어있지가 않음 쪼만한 DC같이 만들어줌
 	ImageDC_ = CreateCompatibleDC(nullptr);
 
 	if (nullptr == ImageDC_)
 	{
-		MsgBoxAssert("ImageDc ������ �����߽��ϴ�.");
+		MsgBoxAssert("ImageDc 생성에 실패했습니다.");
 	}
 
 	OldBitMap_ = (HBITMAP)SelectObject(ImageDC_, BitMap_);
@@ -98,7 +98,7 @@ bool GameEngineImage::Load(const std::string& _Path)
 
 void GameEngineImage::ImageScaleCheck()
 {
-	// DC ���ο� �����ִ� BITMAP�� �������� �Լ�
+	// DC 내부에 박혀있는 BITMAP을 꺼내오는 함수
 	HBITMAP CurrentBitMap = (HBITMAP)GetCurrentObject(ImageDC_, OBJ_BITMAP);
 	GetObject(CurrentBitMap, sizeof(BITMAP), &Info_);
 }
@@ -139,20 +139,19 @@ void GameEngineImage::BitCopy(GameEngineImage* _Other)
 	BitCopy(_Other, { 0, 0 }, _Other->GetScale(), { 0, 0 });
 }
 
-// �ٸ� �̹����� ���ͼ�
+// 다른 이미지가 들어와서
 void GameEngineImage::BitCopy(GameEngineImage* _Other, const float4& _CopyPos, const float4& _CopyScale, const float4& _OtherPivot)
 {
-	// �����쿡�� �������ִ� �Ϲ����� dc vs dc�� �����Լ��Դϴ�.
 	BitBlt(
-		ImageDC_, // ���⿡ �����ض�.
-		_CopyPos.ix(), // �� �̹����� �� �κ� x
-		_CopyPos.iy(), // �� �̹����� �� �κ� y �� �����ض�
-		_CopyScale.ix(), // �� �̹����� �� ũ�⸸ŭ x
-		_CopyScale.iy(), // �� �̹����� �� ũ�⸸ŭ y
-		_Other->ImageDC_, // �����Ϸ��� �����
-		_OtherPivot.ix(), // �����Ϸ��� ����� ������X
-		_OtherPivot.iy(),// �����Ϸ��� ����� ������Y
-		SRCCOPY // �����϶�� ����
+		ImageDC_, // 여기에 복사해라.
+		_CopyPos.ix(), // 내 이미지의 이 부분 x
+		_CopyPos.iy(), // 내 이미지의 이 부분 y 에 복사해라
+		_CopyScale.ix(), // 내 이미지의 이 크기만큼 x
+		_CopyScale.iy(), // 내 이미지의 이 크기만큼 y
+		_Other->ImageDC_, // 복사하려는 대상은
+		_OtherPivot.ix(), // 복사하려는 대상의 시작점X
+		_OtherPivot.iy(),// 복사하려는 대상의 시작점Y
+		SRCCOPY // 복사하라는 명령
 	);
 }
 
@@ -166,17 +165,17 @@ void GameEngineImage::TransCopy(GameEngineImage* _Other, const float4& _CopyPos,
 	// TransCopy(_Other, _CopyPos - _RenderScale.Half(), _RenderScale, _RenderPivot, _Other->GetScale(), _TransColor);
 
 	TransparentBlt(
-		ImageDC_, // ���⿡ ����(�츮 �������̹���)
-		_CopyPos.ix(), // ������ �̹����� ��ġ x�������� y
-		_CopyPos.iy(), // ������ �̹����� ��ġ x�������� y
-		_CopyScale.ix(), // �� �̹����� �� ũ�⸸ŭ x
-		_CopyScale.iy(), // �� �̹����� �� ũ�⸸ŭ y
-		_Other->ImageDC_, // �����Ϸ��� �����(�ű⿡ �׷����� �̹����� ����?Ŀ��)
-		_OtherPivot.ix(), // �����Ϸ��� ����� ������X ��ġ
-		_OtherPivot.iy(),// �����Ϸ��� ����� ������Y
-		_OtherScale.ix(), // �����Ϸ��� ����� ������X ũ��
-		_OtherScale.iy(),// �����Ϸ��� ����� ������Y
-		_TransColor // �����϶�� ����
+		ImageDC_, // 여기에 복사(우리 윈도우이미지)
+		_CopyPos.ix(), // 윈도우 이미지의 위치 x에서부터 y
+		_CopyPos.iy(), // 윈도우 이미지의 위치 x에서부터 y
+		_CopyScale.ix(), // 내 이미지의 이 크기만큼 x
+		_CopyScale.iy(), // 내 이미지의 이 크기만큼 y
+		_Other->ImageDC_, // 복사하려는 대상은(거기에 그려지는 이미지가 뭔데?커비)
+		_OtherPivot.ix(), // 복사하려는 대상의 시작점X 위치
+		_OtherPivot.iy(),// 복사하려는 대상의 시작점Y
+		_OtherScale.ix(), // 복사하려는 대상의 시작점X 크기
+		_OtherScale.iy(),// 복사하려는 대상의 시작점Y
+		_TransColor // 복사하라는 명령
 	);
 }
 
@@ -189,18 +188,18 @@ void GameEngineImage::CutCount(int _x, int _y)
 
 void GameEngineImage::Cut(const float4& _CutSize)
 {
-	// ���¾� �������� ������ٰ�.
+	// 딱맞아 떨어지게 만들어줄것.
 	if (0 != (GetScale().ix() % _CutSize.ix()))
 	{
-		MsgBoxAssert("�ڸ��� �ִ� ��ġ�� �� �¾ƶ������� �ʽ��ϴ�.");
+		MsgBoxAssert("자를수 있는 수치가 딱 맞아떨어지지 않습니다.");
 	}
 
 	if (0 != (GetScale().iy() % _CutSize.iy()))
 	{
-		MsgBoxAssert("�ڸ��� �ִ� ��ġ�� �� �¾ƶ������� �ʽ��ϴ�.");
+		MsgBoxAssert("자를수 있는 수치가 딱 맞아떨어지지 않습니다.");
 	}
 
-	// ���μ��� ������ ���ϰ�
+	// 가로세로 갯수를 구하고
 	int XCount = GetScale().ix() / _CutSize.ix();
 	int YCount = GetScale().iy() / _CutSize.iy();
 
@@ -214,3 +213,4 @@ void GameEngineImage::Cut(const float4& _CutSize)
 	}
 
 }
+
