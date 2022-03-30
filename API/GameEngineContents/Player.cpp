@@ -5,6 +5,7 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineTime.h>
 #include <GameEngine/GameEngineRenderer.h>
+#include "PlayerAnimation.h"
 
 #include <GameEngine/GameEngineLevel.h> // 레벨을 통해서
 // #include "이걸 " 만들때 
@@ -23,9 +24,13 @@ void Player::Start()
 {
 	SetPosition(float4{ 0, 1078 });
 
-	GameEngineRenderer* Mario = CreateRenderer("Mario.bmp");
-	Mario->SetTransColor(RGB(146, 144, 255));
+	GameEngineRenderer* Render = CreateRenderer("Mario.bmp");
+	Render->SetTransColor(RGB(146, 144, 255));
 
+
+
+
+	
 
 
 	if (false == GameEngineInput::GetInst()->IsKey("MoveLeft"))
@@ -40,13 +45,20 @@ void Player::Start()
 
 void Player::Update()
 {
+	GameEngineRenderer* RenderRun = CreateRenderer("RunRight.bmp");
+	RenderRun->SetTransColor(RGB(146, 144, 255));
+	RenderRun->SetIndex(0);
+	RenderRun->CreateAnimation("RunRight.bmp", "RunRight", 0, 2, 0.1f, true);
+
 	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
 	{
+
 		SetMove(float4::LEFT /** GameEngineTime::GetDeltaTime()*/);
 	}
 
 	if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
 	{
+		RenderRun->ChangeAnimation("RunRight");
 		SetMove(float4::RIGHT);
 	}
 	if (true == GameEngineInput::GetInst()->IsPress("Jump"))

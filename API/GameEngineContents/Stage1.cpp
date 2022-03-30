@@ -24,7 +24,7 @@ void Stage1::Update()
 void Stage1::LevelChangeStart()
 {
 	CreateActor<TopUI>(2);
-	CreateActor<Player>(1);
+	CreateActor<Player>(2);
 	CreateActor<Map1>(1);
 
 }

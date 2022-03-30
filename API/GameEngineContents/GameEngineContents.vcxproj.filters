@@ -86,6 +86,7 @@
     <ClInclude Include="Map1.h">
       <Filter>Map</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerAnimation.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -144,5 +145,6 @@
     <ClCompile Include="Map1.cpp">
       <Filter>Map</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerAnimation.cpp" />
   </ItemGroup>
 </Project>

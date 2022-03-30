@@ -20,7 +20,8 @@ Mario::~Mario()
 
 void Mario::GameInit()
 {
-	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 0, 0}, { 1224, 1148 });
+	//¿øº» 256 240
+	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 0, 0}, { 1280, 1200 });
 
 	
 
@@ -40,6 +41,10 @@ void Mario::GameInit()
 		GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 	}
 
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("RUNRight.bmp");
+		Image->Cut({ 80, 80});
+	}
 
 
 	CreateLevel<TitleLevel>("Title");

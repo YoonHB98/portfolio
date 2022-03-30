@@ -13,7 +13,7 @@ Map1::~Map1()
 
 void Map1::Start()
 {
-	SetPosition(GameEngineWindow::GetScale().Half()+float4(7462.5, 0));
+	SetPosition(float4(7301, 681));
 	CreateRenderer("11MAP.BMP");
 }
 
