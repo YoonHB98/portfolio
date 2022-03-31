@@ -2,6 +2,7 @@
 #include <GameEngine/GameEngine.h>
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngine/GameEngineImageManager.h>
+#include <GameEngine/GameEngineImage.h>
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineTime.h>
 #include <GameEngine/GameEngineRenderer.h>
@@ -13,6 +14,7 @@
 // #include "이걸 " 만들때 
 Player::Player()
 	: Speed_(100.0f)
+	, Gravity_(1.0f)
 {
 }
 
@@ -26,7 +28,7 @@ void Player::Start()
 {
 	Right = 0;
 	Left = 0;
-	SetPosition(float4{ 0, 1078 });
+	//SetPosition(float4{ 0, 1078 });
 
 	RenderRun = CreateRenderer("Mario.bmp");
 	RenderRun->SetTransColor(RGB(146, 144, 255));
@@ -54,13 +56,28 @@ void Player::Start()
 
 void Player::Update()
 {
-	
-
+	GameEngineImage* WhiteMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	if (nullptr == WhiteMap_)
+	{
+		MsgBoxAssert("맵 충돌용 이미지를 찾지 못했습니다.")
+	}
 	//bool Down_; // 최초 키를 눌렀을때
 	//bool Press_; // 그 이후로 지속적으로 누르고 있을때.
 	//bool Up_; // 누르다가 땠을때 
 	//bool Free_; // 안누르고 있을때.
 	//RenderRun->ChangeAnimation("MarioRight");
+	float4 CheckPos;
+	float4 MoveDir = float4::ZERO;
+	int Color = WhiteMap_->GetImagePixel(GetPosition() - float4(0.0f,120.0f));
+	AccGravity_ += GameEngineTime::GetDeltaTime() * Gravity_;
+	if (RGB(0, 0, 255) == Color)
+	{
+		AccGravity_ = 0.0f;
+
+	}
+	GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
+
+	SetMove(float4::DOWN * AccGravity_);
 	while (Right != 0)
 	{
 		RenderRun->ChangeAnimation("TurnRight");
@@ -86,7 +103,7 @@ void Player::Update()
 				RenderRun->ChangeAnimation("TurnLeft");
 				SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * 200);
 				Sleep(GameEngineTime::GetDeltaTime() * 20);
-				Left = 100;
+				Left = 80;
 				return;
 			}
 		}
@@ -99,7 +116,7 @@ void Player::Update()
 				RenderRun->ChangeAnimation("TurnRight");
 				SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * 200);
 				Sleep(GameEngineTime::GetDeltaTime() * 20);
-				Right = 100;
+				Right = 80;
 				return;
 			}
 		}
@@ -121,7 +138,7 @@ void Player::Update()
 		RenderRun->ChangeAnimation("RunLeft");
 
 		SetMove(float4::LEFT * GameEngineTime::GetDeltaTime() * 500);
-		return;
+		
 	}
 	
 	if (true == GameEngineInput::GetInst()->IsUp("MoveLeft"))
@@ -137,7 +154,7 @@ void Player::Update()
 	
 
 		SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * 500);
-		return;
+		
 	}
 	
 	if (true == GameEngineInput::GetInst()->IsUp("MoveRight"))
@@ -146,7 +163,7 @@ void Player::Update()
 		return;
 	}
 
-	if (true == GameEngineInput::GetInst()->IsDown("Jump"))
+	if (true == GameEngineInput::GetInst()->IsPress("Jump"))
 	{
 		RenderRun->ChangeAnimation("JumpRight");
 		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 1000);
@@ -158,7 +175,7 @@ void Player::Update()
 	//{
 	//	int a = 0;
 	//}
-	Sleep(20);
+
 }
 
 // 랜더러가 다 돌아가고 랜더링

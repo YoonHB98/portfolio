@@ -22,21 +22,21 @@ private:
 
 class float4
 {
-
 public:
 	static float4 LEFT;
 	static float4 RIGHT;
 	static float4 UP;
 	static float4 DOWN;
+	static float4 ZERO;
 
 public:
 	float x;
 	float y;
 	float z;
 	float w;
-	
+
 public:
-	bool IsZero2D()
+	bool IsZero2D() const
 	{
 		return x == 0.0f && y == 0.0f;
 	}
@@ -49,28 +49,27 @@ public:
 		return static_cast<int>(x);
 	}
 
-	int iy()  const
+	int iy() const
 	{
 		return static_cast<int>(y);
 	}
 
-	int iz()  const
+	int iz() const
 	{
 		return static_cast<int>(z);
 	}
 
-	int iw()  const
+	int iw() const
 	{
 		return static_cast<int>(w);
 	}
 	//절반크기 친구들
-	int hix()  const
+	int hix() const
 	{
-		
 		return static_cast<int>(x * 0.5f);
 	}
 
-	int hiy()  const
+	int hiy() const
 	{
 		return static_cast<int>(y * 0.5f);
 	}
@@ -101,6 +100,7 @@ public:
 		return { x * _Value, y * _Value, z * _Value, 1.0f };
 	}
 
+
 	float4& operator+=(const float4& _Other)
 	{
 		x += _Other.x;
@@ -110,6 +110,14 @@ public:
 		return *this;
 	}
 
+	float4& operator-=(const float4& _Other)
+	{
+		x -= _Other.x;
+		y -= _Other.y;
+		z -= _Other.z;
+
+		return *this;
+	}
 
 
 public:
@@ -133,16 +141,17 @@ public:
 	{
 
 	}
+
+
 };
 
-struct  GameEngineRect
+struct GameEngineRect
 {
 public:
 	float4 Pos;
 	float4 Scale;
 
 public:
-	//점 중심으로 방향
 	int CenterLeft()
 	{
 		return Pos.ix() - Scale.hix();
@@ -166,10 +175,9 @@ public:
 public:
 	//포지션과 스케일 받고
 	GameEngineRect(float4 _Pos, float4 _Scale)
-		:Pos(_Pos)
+		: Pos(_Pos)
 		, Scale(_Scale)
 	{
 
 	}
-
 };

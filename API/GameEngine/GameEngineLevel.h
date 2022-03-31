@@ -1,7 +1,9 @@
 #pragma once
-#include "GameEngineBase/GameEngineNameObject.h"
 #include <list>
 #include <map>
+#include <GameEngineBase/GameEngineNameObject.h>
+#include <GameEngineBase/GameEngineMath.h>
+
 
 // 설명 :
 class GameEngine;
@@ -13,8 +15,7 @@ public:
 	// constrcuter destructer
 	GameEngineLevel();
 
-	// 면접때 물어보면 알아야 합니다.
-	// 이건 정말 중요하기 때문
+
 	virtual ~GameEngineLevel();
 
 	// delete Function
@@ -40,6 +41,22 @@ public:
 		return NewActor;
 	}
 
+
+	inline float4 GetCameraPos()
+	{
+		return CameraPos_;
+	}
+
+	inline void MoveCameraPos(const float4& _Value)
+	{
+		CameraPos_ += _Value;
+	}
+
+	inline void SetCameraPos(const float4& _Value)
+	{
+		CameraPos_ = _Value;
+	}
+
 protected:
 
 	//레벨 수준의 업데이트
@@ -53,6 +70,8 @@ protected:
 
 private:
 	std::map<int, std::list<GameEngineActor*>> AllActor_;
+
+	float4 CameraPos_;
 
 	void ActorUpdate();
 	void ActorRender();

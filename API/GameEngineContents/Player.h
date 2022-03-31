@@ -3,7 +3,7 @@
 
 
 // Ό³Έν :
-
+class GameEngineImage;
 class Player : public GameEngineActor
 {
 public:
@@ -23,6 +23,9 @@ protected:
 
 private:
 	float Speed_;
+	float Gravity_;
+	float AccGravity_;
+	GameEngineImage* WhiteMap_;
 	void Start() override;
 	void Update() override;
 	void Render() override;

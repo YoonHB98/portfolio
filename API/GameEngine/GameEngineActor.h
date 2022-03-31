@@ -23,7 +23,6 @@ public:
 	GameEngineActor(GameEngineActor&& _Other) noexcept = delete;
 	GameEngineActor& operator=(const GameEngineActor& _Other) = delete;
 	GameEngineActor& operator=(GameEngineActor&& _Other) noexcept = delete;
-
 	inline GameEngineLevel* GetLevel()
 	{
 		return Level_;
@@ -38,7 +37,6 @@ public:
 		return Scale_;
 	}
 
-
 	inline void SetMove(float4 _Value)
 	{
 		Position_ += _Value;
@@ -52,6 +50,7 @@ public:
 	{
 		Scale_ = _Value;
 	}
+
 
 
 protected:
