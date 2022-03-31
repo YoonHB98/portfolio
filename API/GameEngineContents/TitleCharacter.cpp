@@ -20,6 +20,7 @@ void TitleCharacter::Start()
 
 	GameEngineRenderer* TitleChar = CreateRenderer("Mario.bmp");
 	TitleChar->SetTransColor(RGB(146, 144, 255));
+	TitleChar->SetIndex(0);
 
 	
 }

@@ -123,7 +123,7 @@ public:
 
 	// 옵션을 
 	void ChangeAnimation(const std::string& _Name);
-
+	bool CurrentAnimation(const std::string& _Name);
 
 private:
 	std::map<std::string, FrameAnimation> Animations_;

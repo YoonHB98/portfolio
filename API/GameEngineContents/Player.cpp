@@ -5,7 +5,9 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineTime.h>
 #include <GameEngine/GameEngineRenderer.h>
-#include "PlayerAnimation.h"
+#include <Windows.h>
+
+
 
 #include <GameEngine/GameEngineLevel.h> // 레벨을 통해서
 // #include "이걸 " 만들때 
@@ -22,16 +24,23 @@ Player::~Player()
 
 void Player::Start()
 {
+	Right = 0;
+	Left = 0;
 	SetPosition(float4{ 0, 1078 });
 
-	GameEngineRenderer* Render = CreateRenderer("Mario.bmp");
-	Render->SetTransColor(RGB(146, 144, 255));
-
-
-
+	RenderRun = CreateRenderer("Mario.bmp");
+	RenderRun->SetTransColor(RGB(146, 144, 255));
+	RenderRun->SetIndex(0);
+	RenderRun->CreateAnimation("Mario.bmp", "MarioRight", 0, 0, 0.1f, false);
+	RenderRun->CreateAnimation("Mario.bmp", "MarioLeft", 1, 1, 0.1f, false);
+	RenderRun->CreateAnimation("Mario.bmp", "RunRight", 2, 4, 0.1f, true);
+	RenderRun->CreateAnimation("Mario.bmp", "RunLeft", 5, 7, 0.1f, true);
+	RenderRun->CreateAnimation("Mario.bmp", "TurnRight", 8, 8, 100.0f, false);
+	RenderRun->CreateAnimation("Mario.bmp", "TurnLeft", 9, 9, 20.0f, false);
+	RenderRun->CreateAnimation("Mario.bmp", "JumpRight", 10, 10, 0.1f, false);
+	RenderRun->CreateAnimation("Mario.bmp", "JumpLeft", 11, 11, 0.1f, false);
 
 	
-
 
 	if (false == GameEngineInput::GetInst()->IsKey("MoveLeft"))
 	{
@@ -45,25 +54,103 @@ void Player::Start()
 
 void Player::Update()
 {
-	GameEngineRenderer* RenderRun = CreateRenderer("RunRight.bmp");
-	RenderRun->SetTransColor(RGB(146, 144, 255));
-	RenderRun->SetIndex(0);
-	RenderRun->CreateAnimation("RunRight.bmp", "RunRight", 0, 2, 0.1f, true);
+	
 
+	//bool Down_; // 최초 키를 눌렀을때
+	//bool Press_; // 그 이후로 지속적으로 누르고 있을때.
+	//bool Up_; // 누르다가 땠을때 
+	//bool Free_; // 안누르고 있을때.
+	//RenderRun->ChangeAnimation("MarioRight");
+	while (Right != 0)
+	{
+		RenderRun->ChangeAnimation("TurnRight");
+		Right = Right - 1;
+		SetMove(float4::LEFT * GameEngineTime::GetDeltaTime() * 200);
+		Sleep(GameEngineTime::GetDeltaTime() * 20);
+		return;
+	}
+	while (Left != 0)
+	{
+		RenderRun->ChangeAnimation("TurnLeft");
+		Left  = Left - 1;
+		SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * 200);
+		Sleep(GameEngineTime::GetDeltaTime() * 20);
+		return;
+	}
+
+		if (RenderRun->CurrentAnimation("RunRight"))
+		{
+			if (true == (GameEngineInput::GetInst()->IsDown("MoveLeft") || GameEngineInput::GetInst()->IsPress("MoveLeft")))
+			{
+
+				RenderRun->ChangeAnimation("TurnLeft");
+				SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * 200);
+				Sleep(GameEngineTime::GetDeltaTime() * 20);
+				Left = 100;
+				return;
+			}
+		}
+	
+		if (RenderRun->CurrentAnimation("RunLeft"))
+		{
+			if (true == (GameEngineInput::GetInst()->IsDown("MoveRight") || GameEngineInput::GetInst()->IsPress("MoveRight")))
+			{
+
+				RenderRun->ChangeAnimation("TurnRight");
+				SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * 200);
+				Sleep(GameEngineTime::GetDeltaTime() * 20);
+				Right = 100;
+				return;
+			}
+		}
+	//if (true == GameEngineInput::GetInst()->IsUp("MoveLeft"))
+	//{
+	//	if (true == (GameEngineInput::GetInst()->IsDown("MoveRight") || GameEngineInput::GetInst()->IsPress("MoveRight")))
+	//	{
+	//		RenderRun->ChangeAnimation("TurnRight");
+	//	
+	//		SetMove(float4::LEFT * GameEngineTime::GetDeltaTime() * 200);
+	//		Sleep(GameEngineTime::GetDeltaTime() * 20);
+	//		Right = 100;
+	//	}
+	//}
+	
 	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
 	{
 
-		SetMove(float4::LEFT /** GameEngineTime::GetDeltaTime()*/);
-	}
+		RenderRun->ChangeAnimation("RunLeft");
 
+		SetMove(float4::LEFT * GameEngineTime::GetDeltaTime() * 500);
+		return;
+	}
+	
+	if (true == GameEngineInput::GetInst()->IsUp("MoveLeft"))
+	{
+		RenderRun->ChangeAnimation("MarioLeft");
+		return;
+
+	}
+	
 	if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
 	{
 		RenderRun->ChangeAnimation("RunRight");
-		SetMove(float4::RIGHT);
+	
+
+		SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * 500);
+		return;
 	}
-	if (true == GameEngineInput::GetInst()->IsPress("Jump"))
+	
+	if (true == GameEngineInput::GetInst()->IsUp("MoveRight"))
 	{
-		SetMove(float4::UP);
+		RenderRun->ChangeAnimation("MarioRight");
+		return;
+	}
+
+	if (true == GameEngineInput::GetInst()->IsDown("Jump"))
+	{
+		RenderRun->ChangeAnimation("JumpRight");
+		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 1000);
+		return;
 	}
 
 	// 내가 키를 눌렀다면 움직여라.
@@ -71,7 +158,7 @@ void Player::Update()
 	//{
 	//	int a = 0;
 	//}
-
+	Sleep(20);
 }
 
 // 랜더러가 다 돌아가고 랜더링

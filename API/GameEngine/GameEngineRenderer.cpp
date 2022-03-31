@@ -69,7 +69,9 @@ void GameEngineRenderer::Render()
 		GameEngine::BackBufferImage()->TransCopy(Image_, RenderPos - RenderScale_.Half(), RenderScale_, RenderImagePivot_, RenderImageScale_, TransColor_);
 		break;
 	case RenderPivot::BOT:
-		// GameEngine::BackBufferImage()->TransCopyCenterScale(Image_, RenderPos, RenderScale, TransColor_);
+		float4 Scale = RenderScale_.Half();
+		Scale.y *= 2.0f;
+		GameEngine::BackBufferImage()->TransCopy(Image_, RenderPos - Scale, RenderScale_, RenderImagePivot_, RenderImageScale_, TransColor_);
 		break;
 	default:
 		break;
@@ -91,7 +93,6 @@ void GameEngineRenderer::SetIndex(size_t _Index)
 
 /////////////////////////////////////// 애니메이션
 
-
 void GameEngineRenderer::ChangeAnimation(const std::string& _Name)
 {
 	std::map<std::string, FrameAnimation>::iterator FindIter = Animations_.find(_Name);
@@ -103,6 +104,21 @@ void GameEngineRenderer::ChangeAnimation(const std::string& _Name)
 	}
 
 	CurrentAnimation_ = &FindIter->second;
+}
+
+//std::map<std::string, FrameAnimation> Animations_;
+//FrameAnimation* CurrentAnimation_;
+bool GameEngineRenderer::CurrentAnimation(const std::string& _Name)
+{
+
+	std::map<std::string, FrameAnimation>::iterator FindIter = Animations_.find(_Name);
+
+	if (CurrentAnimation_ == &FindIter->second)
+	{
+		return true;
+	}
+	return false;
+	
 }
 
 void GameEngineRenderer::CreateAnimation(

@@ -1,7 +1,9 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
 
+
 // Ό³Έν :
+
 class Player : public GameEngineActor
 {
 public:
@@ -14,12 +16,13 @@ public:
 	Player(Player&& _Other) noexcept = delete;
 	Player& operator=(const Player& _Other) = delete;
 	Player& operator=(Player&& _Other) noexcept = delete;
-
+	GameEngineRenderer* RenderRun;
+	int Right;
+	int Left;
 protected:
 
 private:
 	float Speed_;
-
 	void Start() override;
 	void Update() override;
 	void Render() override;

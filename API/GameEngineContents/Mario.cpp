@@ -41,10 +41,7 @@ void Mario::GameInit()
 		GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 	}
 
-	{
-		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("RUNRight.bmp");
-		Image->Cut({ 80, 80});
-	}
+
 
 
 	CreateLevel<TitleLevel>("Title");
