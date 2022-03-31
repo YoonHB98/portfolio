@@ -16,7 +16,7 @@ void Stage1::Loading()
 {
 	Player* Mario;
 	Mario = CreateActor<Player>(2);
-	Mario->SetPosition(float4{ 0, 500 });
+	Mario->SetPosition(float4{ 200, 500 });
 	
 
 }

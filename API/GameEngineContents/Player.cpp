@@ -13,8 +13,8 @@
 #include <GameEngine/GameEngineLevel.h> // 레벨을 통해서
 // #include "이걸 " 만들때 
 Player::Player()
-	: Speed_(100.0f)
-	, Gravity_(1.0f)
+	: Speed_(650.0f)
+	, Gravity_(500.0f)
 {
 }
 
@@ -57,6 +57,7 @@ void Player::Start()
 void Player::Update()
 {
 	GameEngineImage* WhiteMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+
 	if (nullptr == WhiteMap_)
 	{
 		MsgBoxAssert("맵 충돌용 이미지를 찾지 못했습니다.")
@@ -68,30 +69,24 @@ void Player::Update()
 	//RenderRun->ChangeAnimation("MarioRight");
 	float4 CheckPos;
 	float4 MoveDir = float4::ZERO;
-	int Color = WhiteMap_->GetImagePixel(GetPosition() - float4(0.0f,120.0f));
-	AccGravity_ += GameEngineTime::GetDeltaTime() * Gravity_;
-	if (RGB(0, 0, 255) == Color)
-	{
-		AccGravity_ = 0.0f;
 
-	}
 	GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
 
-	SetMove(float4::DOWN * AccGravity_);
+
 	while (Right != 0)
 	{
 		RenderRun->ChangeAnimation("TurnRight");
 		Right = Right - 1;
-		SetMove(float4::LEFT * GameEngineTime::GetDeltaTime() * 200);
-		Sleep(GameEngineTime::GetDeltaTime() * 20);
+		MoveDir = float4::LEFT;
+		SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 		return;
 	}
 	while (Left != 0)
 	{
 		RenderRun->ChangeAnimation("TurnLeft");
 		Left  = Left - 1;
-		SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * 200);
-		Sleep(GameEngineTime::GetDeltaTime() * 20);
+		MoveDir = float4::RIGHT;
+		SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 		return;
 	}
 
@@ -101,9 +96,8 @@ void Player::Update()
 			{
 
 				RenderRun->ChangeAnimation("TurnLeft");
-				SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * 200);
-				Sleep(GameEngineTime::GetDeltaTime() * 20);
-				Left = 80;
+				MoveDir = float4::RIGHT ;
+				Left = 120;
 				return;
 			}
 		}
@@ -114,37 +108,27 @@ void Player::Update()
 			{
 
 				RenderRun->ChangeAnimation("TurnRight");
-				SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * 200);
-				Sleep(GameEngineTime::GetDeltaTime() * 20);
-				Right = 80;
+				MoveDir = float4::LEFT;
+				Right = 120;
 				return;
 			}
 		}
-	//if (true == GameEngineInput::GetInst()->IsUp("MoveLeft"))
-	//{
-	//	if (true == (GameEngineInput::GetInst()->IsDown("MoveRight") || GameEngineInput::GetInst()->IsPress("MoveRight")))
-	//	{
-	//		RenderRun->ChangeAnimation("TurnRight");
-	//	
-	//		SetMove(float4::LEFT * GameEngineTime::GetDeltaTime() * 200);
-	//		Sleep(GameEngineTime::GetDeltaTime() * 20);
-	//		Right = 100;
-	//	}
-	//}
+
+	
 	
 	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
 	{
 
 		RenderRun->ChangeAnimation("RunLeft");
 
-		SetMove(float4::LEFT * GameEngineTime::GetDeltaTime() * 500);
+		MoveDir = float4::LEFT;
 		
 	}
 	
 	if (true == GameEngineInput::GetInst()->IsUp("MoveLeft"))
 	{
 		RenderRun->ChangeAnimation("MarioLeft");
-		return;
+		
 
 	}
 	
@@ -153,21 +137,28 @@ void Player::Update()
 		RenderRun->ChangeAnimation("RunRight");
 	
 
-		SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * 500);
+		MoveDir = float4::RIGHT;
 		
 	}
 	
 	if (true == GameEngineInput::GetInst()->IsUp("MoveRight"))
 	{
 		RenderRun->ChangeAnimation("MarioRight");
-		return;
+		
 	}
 
 	if (true == GameEngineInput::GetInst()->IsPress("Jump"))
 	{
-		RenderRun->ChangeAnimation("JumpRight");
-		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 1000);
-		return;
+		if (RenderRun->CurrentAnimation("RunRight") || RenderRun->CurrentAnimation("MarioRight"))
+		{
+			RenderRun->ChangeAnimation("JumpRight");
+		}
+		else
+		{
+			RenderRun->ChangeAnimation("JumpLeft");
+		}
+		MoveDir = float4::UP;
+		
 	}
 
 	// 내가 키를 눌렀다면 움직여라.
@@ -175,6 +166,27 @@ void Player::Update()
 	//{
 	//	int a = 0;
 	//}
+
+
+	{
+		float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+		float4 CheckPos = NextPos- float4(0.0f, 130.0f);
+		int Color = WhiteMap_->GetImagePixel(CheckPos );
+		
+		if (RGB(255, 255, 255) == Color)
+		{
+			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+		}
+	}
+	{
+		int Color = WhiteMap_->GetImagePixel(GetPosition() - float4(0.0f, 120.0f));
+		AccGravity_ += GameEngineTime::GetDeltaTime() * Gravity_;
+		if (RGB(0, 0, 255) == Color)
+		{
+			AccGravity_ = 0.0f;
+		}
+		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * AccGravity_);
+	}
 
 }
 
