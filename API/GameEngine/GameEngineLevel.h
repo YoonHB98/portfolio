@@ -4,18 +4,20 @@
 #include <GameEngineBase/GameEngineNameObject.h>
 #include <GameEngineBase/GameEngineMath.h>
 
-
-// 설명 :
 class GameEngine;
 class GameEngineActor;
+class GameEngineCollision;
 class GameEngineLevel : public GameEngineNameObject
 {
 	friend GameEngine;
+	friend GameEngineActor;
+	friend GameEngineCollision;
+
 public:
 	// constrcuter destructer
 	GameEngineLevel();
 
-
+	// 소멸자 virtual 중요
 	virtual ~GameEngineLevel();
 
 	// delete Function
@@ -23,6 +25,7 @@ public:
 	GameEngineLevel(GameEngineLevel&& _Other) noexcept = delete;
 	GameEngineLevel& operator=(const GameEngineLevel& _Other) = delete;
 	GameEngineLevel& operator=(GameEngineLevel&& _Other) noexcept = delete;
+
 
 	template<typename ActorType>
 	ActorType* CreateActor(int _Order = 0, const std::string& _Name = "")
@@ -38,9 +41,9 @@ public:
 		std::list<GameEngineActor*>& Group = AllActor_[_Order];
 		Group.push_back(NewActor);
 
+
 		return NewActor;
 	}
-
 
 	inline float4 GetCameraPos()
 	{
@@ -57,9 +60,10 @@ public:
 		CameraPos_ = _Value;
 	}
 
-protected:
 
-	//레벨 수준의 업데이트
+protected:
+	// 시점함수
+	// 만들어지면서 리소스나 액터를 만들때 써라
 	virtual void Loading() = 0;
 	// 이 레벨이 현재 레벨일때 해야할일을 실행한다.
 	virtual void Update() = 0;
@@ -75,6 +79,13 @@ private:
 
 	void ActorUpdate();
 	void ActorRender();
+	void CollisionDebugRender();
 	void ActorRelease();
-};
 
+private:
+	// 삭제는 액터가 하지만 실제 사용은 Level
+	// 여기서 함부로 GameEngineCollision*을 delete 하는 일이 있으면 안된다.,
+	std::map<std::string, std::list<GameEngineCollision*>> AllCollision_;
+
+	void AddCollision(const std::string& _GroupName, GameEngineCollision* _Collision);
+};

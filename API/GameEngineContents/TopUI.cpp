@@ -28,7 +28,8 @@ void TopUI::Start()
 	GameEngineRenderer * Top = CreateRenderer("TOP.bmp");
 	float4 TopUIPivot = GameEngineWindow::GetScale().Half();
 	Top->SetPivot(float4(640, 81));
-	Top->SetTransColor(RGB(146, 144, 255));
+	/*Top->SetTransColor(RGB(92, 148, 252));*/
+	Top->CameraEffectOff();
 
 
 	

@@ -1,10 +1,11 @@
 #pragma once
-#include "GameEngine/GameEngineActor.h"
+#include <GameEngine/GameEngineActor.h>
 
 
-// Ό³Έν :
+class GameEngineRenderer;
 class Map1 : public GameEngineActor
 {
+	static Map1* CuBackGround;
 public:
 	// constrcuter destructer
 	Map1();
@@ -16,11 +17,16 @@ public:
 	Map1& operator=(const Map1& _Other) = delete;
 	Map1& operator=(Map1&& _Other) noexcept = delete;
 
+	GameEngineRenderer* GetRenderer()
+	{
+		return Image_;
+	}
+
 protected:
 	void Start() override;
 	void Update() override;
 
 private:
-
+	GameEngineRenderer* Image_;
 };
 

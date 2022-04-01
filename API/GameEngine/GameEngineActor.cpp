@@ -1,7 +1,10 @@
 #include "GameEngineActor.h"
 #include "GameEngine/GameEngine.h"
 #include <GameEngineBase/GameEngineWindow.h>
-#include <GameEngine/GameEngineRenderer.h>
+#include "GameEngineRenderer.h"
+#include "GameEngineCollision.h"
+#include "GameEngineLevel.h"
+
 
 GameEngineActor::GameEngineActor()
 	: Level_(nullptr)
@@ -11,22 +14,40 @@ GameEngineActor::GameEngineActor()
 
 GameEngineActor::~GameEngineActor()
 {
-	std::list<GameEngineRenderer*>::iterator StartIter = RenderList_.begin();
-	std::list<GameEngineRenderer*>::iterator EndIter = RenderList_.end();
-
-	for (; StartIter != EndIter; ++StartIter)
 	{
-		if (nullptr == (*StartIter))
+		std::list<GameEngineRenderer*>::iterator StartIter = RenderList_.begin();
+		std::list<GameEngineRenderer*>::iterator EndIter = RenderList_.end();
+
+		for (; StartIter != EndIter; ++StartIter)
 		{
-			continue;
+			if (nullptr == (*StartIter))
+			{
+				continue;
+			}
+			delete (*StartIter);
+			(*StartIter) = nullptr;
 		}
-		delete (*StartIter);
-		(*StartIter) = nullptr;
+	}
+
+	{
+		std::list<GameEngineCollision*>::iterator StartIter = CollisionList_.begin();
+		std::list<GameEngineCollision*>::iterator EndIter = CollisionList_.end();
+
+		for (; StartIter != EndIter; ++StartIter)
+		{
+			if (nullptr == (*StartIter))
+			{
+				continue;
+			}
+			delete (*StartIter);
+			(*StartIter) = nullptr;
+		}
 	}
 }
 
 void GameEngineActor::DebugRectRender()
 {
+	// 선생님은 기본적으로 중앙을 기준으로하는걸 좋아합니다.
 
 	GameEngineRect DebugRect(Position_, Scale_);
 
@@ -46,7 +67,7 @@ GameEngineRenderer* GameEngineActor::CreateRenderer(RenderPivot _PivotType /*= R
 
 	NewRenderer->SetActor(this);
 	// NewRenderer->SetImage(_Image);
-	NewRenderer->SetPivot({ 0.0, 0.0f });
+	NewRenderer->SetPivot(_PivotPos);
 	NewRenderer->SetPivotType(_PivotType);
 
 	RenderList_.push_back(NewRenderer);
@@ -79,6 +100,11 @@ void GameEngineActor::Renderering()
 
 	for (; StartRenderIter != EndRenderIter; ++StartRenderIter)
 	{
+		if (false == (*StartRenderIter)->IsUpdate())
+		{
+			continue;
+		}
+
 		(*StartRenderIter)->Render();
 	}
 }
@@ -98,4 +124,55 @@ GameEngineRenderer* GameEngineActor::CreateRendererToScale(
 
 	RenderList_.push_back(NewRenderer);
 	return NewRenderer;
+}
+
+GameEngineCollision* GameEngineActor::CreateCollision(const std::string& _GroupName, float4 _Scale, float4 _Pivot /*= { 0, 0 }*/)
+{
+	GameEngineCollision* NewCollision = new GameEngineCollision();
+	NewCollision->SetActor(this);
+	NewCollision->SetPivot(_Pivot);
+	NewCollision->SetScale(_Scale);
+
+	GetLevel()->AddCollision(_GroupName, NewCollision);
+	CollisionList_.push_back(NewCollision);
+	return NewCollision;
+}
+
+void GameEngineActor::Release()
+{
+	{
+		std::list<GameEngineRenderer*>::iterator StartIter = RenderList_.begin();
+		std::list<GameEngineRenderer*>::iterator EndIter = RenderList_.end();
+
+		for (; StartIter != EndIter;)
+		{
+			if (false == (*StartIter)->IsDeath())
+			{
+				++StartIter;
+				continue;
+			}
+
+			delete (*StartIter);
+			StartIter = RenderList_.erase(StartIter);
+		}
+	}
+
+	{
+		std::list<GameEngineCollision*>::iterator StartIter = CollisionList_.begin();
+		std::list<GameEngineCollision*>::iterator EndIter = CollisionList_.end();
+
+		for (; StartIter != EndIter;)
+		{
+			if (false == (*StartIter)->IsDeath())
+			{
+				++StartIter;
+				continue;
+			}
+
+			delete (*StartIter);
+			StartIter = CollisionList_.erase(StartIter);
+		}
+	}
+
+
 }

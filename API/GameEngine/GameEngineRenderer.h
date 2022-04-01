@@ -60,6 +60,15 @@ public:
 	// 
 	void SetIndex(size_t _Index, const float4& _Scale = { -1, -1 });
 
+	void CameraEffectOff()
+	{
+		IsCameraEffect_ = false;
+	}
+
+	void CameraEffectOn()
+	{
+		IsCameraEffect_ = true;
+	}
 
 
 protected:
@@ -68,6 +77,7 @@ protected:
 private:
 	friend class FrameAnimation;
 
+	bool IsCameraEffect_;
 	GameEngineImage* Image_;
 	RenderPivot PivotType_; // 센터 / bot
 	RenderScaleMode ScaleMode_;
@@ -77,7 +87,7 @@ private:
 	float4 RenderImagePivot_;
 	unsigned int TransColor_;
 
-	bool IsCameraEffect_;
+
 
 
 
@@ -126,6 +136,7 @@ public:
 	// 옵션을 
 	void ChangeAnimation(const std::string& _Name);
 	bool CurrentAnimation(const std::string& _Name);
+
 
 private:
 	std::map<std::string, FrameAnimation> Animations_;

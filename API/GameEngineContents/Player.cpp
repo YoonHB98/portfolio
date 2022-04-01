@@ -6,6 +6,7 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineTime.h>
 #include <GameEngine/GameEngineRenderer.h>
+#include <GameEngine/GameEngineCollision.h>
 #include <Windows.h>
 
 
@@ -29,7 +30,7 @@ void Player::Start()
 	Right = 0;
 	Left = 0;
 	//SetPosition(float4{ 0, 1078 });
-
+	PlayerCollision = CreateCollision("PlayerHitBox", { 100, 100 });
 	RenderRun = CreateRenderer("Mario.bmp");
 	RenderRun->SetTransColor(RGB(146, 144, 255));
 	RenderRun->SetIndex(0);
@@ -69,16 +70,64 @@ void Player::Update()
 	//RenderRun->ChangeAnimation("MarioRight");
 	float4 CheckPos;
 	float4 MoveDir = float4::ZERO;
+	float MapSizeX = 14602;
+	float MapSizeY = 1038;
+	float CameraRectX = 1280;
+	float CameraRectY = 1200;
 
 	GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
-
+	if (0 > GetLevel()->GetCameraPos().x)
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.x = 0;
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
+	if (0 > GetLevel()->GetCameraPos().y)
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.y = GetLevel()->GetCameraPos().y - (GetLevel()->GetCameraPos().y);
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
+	if (MapSizeX <= GetLevel()->GetCameraPos().x)
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.x = GetLevel()->GetCameraPos().x - (GetLevel()->GetCameraPos().x + CameraRectX - MapSizeX);
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
+	if (MapSizeY <= (GetLevel()->GetCameraPos().y + CameraRectY))
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.y = GetLevel()->GetCameraPos().y - (GetLevel()->GetCameraPos().y);
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
 
 	while (Right != 0)
 	{
 		RenderRun->ChangeAnimation("TurnRight");
 		Right = Right - 1;
 		MoveDir = float4::LEFT;
-		SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+		{
+			float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+			float4 CheckPos = NextPos - float4(0.0f, 130.0f);
+			CheckPos = CheckPos + MoveDir * float4(40.0f, 80.0f, 1.0f, 1.0f);
+			int Color = WhiteMap_->GetImagePixel(CheckPos);
+
+			if (RGB(255, 255, 255) == Color)
+			{
+				SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+			}
+		}
+		{
+			int Color = WhiteMap_->GetImagePixel(GetPosition() - float4(0.0f, 120.0f));
+			AccGravity_ += GameEngineTime::GetDeltaTime() * Gravity_;
+			if (RGB(0, 0, 0) == Color)
+			{
+
+				AccGravity_ = 0.0f;
+			}
+			SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * AccGravity_);
+		}
+
 		return;
 	}
 	while (Left != 0)
@@ -86,32 +135,58 @@ void Player::Update()
 		RenderRun->ChangeAnimation("TurnLeft");
 		Left  = Left - 1;
 		MoveDir = float4::RIGHT;
-		SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+		{
+			float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+			float4 CheckPos = NextPos - float4(0.0f, 130.0f);
+			CheckPos = CheckPos + MoveDir * float4(40.0f, 80.0f, 1.0f, 1.0f);
+			int Color = WhiteMap_->GetImagePixel(CheckPos);
+
+			if (RGB(255, 255, 255) == Color)
+			{
+				SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+			}
+		}
+		{
+			int Color = WhiteMap_->GetImagePixel(GetPosition() - float4(0.0f, 120.0f));
+			AccGravity_ += GameEngineTime::GetDeltaTime() * Gravity_;
+			if (RGB(0, 0, 0) == Color)
+			{
+				AccGravity_ = 0.0f;
+			}
+			SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * AccGravity_);
+		}
+
 		return;
 	}
 
 		if (RenderRun->CurrentAnimation("RunRight"))
 		{
-			if (true == (GameEngineInput::GetInst()->IsDown("MoveLeft") || GameEngineInput::GetInst()->IsPress("MoveLeft")))
+			if (false == GameEngineInput::GetInst()->IsPress("MoveRight"))
 			{
+				if (true == (GameEngineInput::GetInst()->IsDown("MoveLeft") || GameEngineInput::GetInst()->IsPress("MoveLeft")))
+				{
 
-				RenderRun->ChangeAnimation("TurnLeft");
-				MoveDir = float4::RIGHT ;
-				Left = 120;
-				return;
+					RenderRun->ChangeAnimation("TurnLeft");
+					MoveDir = float4::RIGHT;
+					Left = 120;
+					return;
+				}
 			}
 		}
 	
 		if (RenderRun->CurrentAnimation("RunLeft"))
 		{
-			if (true == (GameEngineInput::GetInst()->IsDown("MoveRight") || GameEngineInput::GetInst()->IsPress("MoveRight")))
-			{
+			
 
-				RenderRun->ChangeAnimation("TurnRight");
-				MoveDir = float4::LEFT;
-				Right = 120;
-				return;
-			}
+				if (true == (GameEngineInput::GetInst()->IsDown("MoveRight") || GameEngineInput::GetInst()->IsPress("MoveRight")))
+				{
+
+					RenderRun->ChangeAnimation("TurnRight");
+					MoveDir = float4::LEFT;
+					Right = 120;
+					return;
+				}
+			
 		}
 
 	
@@ -153,12 +228,21 @@ void Player::Update()
 		{
 			RenderRun->ChangeAnimation("JumpRight");
 		}
-		else
+		else if (RenderRun->CurrentAnimation("RunLeft") || RenderRun->CurrentAnimation("MarioLeft"))
 		{
 			RenderRun->ChangeAnimation("JumpLeft");
 		}
 		MoveDir = float4::UP;
 		
+	}
+
+	if (true == (GameEngineInput::GetInst()->IsPress("Jump") && GameEngineInput::GetInst()->IsPress("MoveLeft")))
+	{
+		MoveDir = float4(-1.0f, -1.0f, 0.0f, 1.0f);
+	}
+	if (true == (GameEngineInput::GetInst()->IsPress("Jump") && GameEngineInput::GetInst()->IsPress("MoveRight")))
+	{
+		MoveDir = float4(1.0f, -1.0f, 0.0f, 1.0f);
 	}
 
 	// 내가 키를 눌렀다면 움직여라.
@@ -171,6 +255,7 @@ void Player::Update()
 	{
 		float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 		float4 CheckPos = NextPos- float4(0.0f, 130.0f);
+		CheckPos = CheckPos + MoveDir * float4(40.0f, 80.0f, 1.0f, 1.0f);
 		int Color = WhiteMap_->GetImagePixel(CheckPos );
 		
 		if (RGB(255, 255, 255) == Color)
@@ -181,17 +266,83 @@ void Player::Update()
 	{
 		int Color = WhiteMap_->GetImagePixel(GetPosition() - float4(0.0f, 120.0f));
 		AccGravity_ += GameEngineTime::GetDeltaTime() * Gravity_;
-		if (RGB(0, 0, 255) == Color)
+		if (RGB(0, 0, 0) == Color)
 		{
+			if (RenderRun->CurrentAnimation("JumpLeft"))
+			{
+				RenderRun->ChangeAnimation("MarioLeft");
+			}
+			else
+				if (RenderRun->CurrentAnimation("JumpRight"))
+				{
+					RenderRun->ChangeAnimation("MarioRight");
+				}
 			AccGravity_ = 0.0f;
 		}
 		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * AccGravity_);
 	}
 
+	if (0 > GetLevel()->GetCameraPos().x)
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.x = 0;
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
+	if (0 > GetLevel()->GetCameraPos().y)
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.y = 0;
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
+	if (MapSizeX <= GetLevel()->GetCameraPos().x)
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.x = GetLevel()->GetCameraPos().x - (GetLevel()->GetCameraPos().x + CameraRectX - MapSizeX);
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
+	if (MapSizeY <=( GetLevel()->GetCameraPos().y  + 640))
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.y = GetLevel()->GetCameraPos().y - (GetLevel()->GetCameraPos().y );
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
+	if (true == PlayerCollision->CollisionCheck(""))
+	{
+		
+	}
 }
 
 // 랜더러가 다 돌아가고 랜더링
 void Player::Render()
 {
+	//float MapSizeX = 14602;
+	//float MapSizeY = 1038;
+	//float CameraRectX = 1280;
+	//float CameraRectY = 1200;
 
+	//GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
+	//if (0 > GetLevel()->GetCameraPos().x)
+	//{
+	//	float4 CurCameraPos = GetLevel()->GetCameraPos();
+	//	CurCameraPos.x = 0;
+	//	GetLevel()->SetCameraPos(CurCameraPos);
+	//}
+	//if (0 > GetLevel()->GetCameraPos().y)
+	//{
+	//	float4 CurCameraPos = GetLevel()->GetCameraPos();
+	//	CurCameraPos.y = 0;
+	//	GetLevel()->SetCameraPos(CurCameraPos);
+	//}
+	//if (MapSizeX <= GetLevel()->GetCameraPos().x)
+	//{
+	//	float4 CurCameraPos = GetLevel()->GetCameraPos();
+	//	CurCameraPos.x = GetLevel()->GetCameraPos().x - (GetLevel()->GetCameraPos().x + CameraRectX - MapSizeX);
+	//	GetLevel()->SetCameraPos(CurCameraPos);
+	//}
+	//if (MapSizeY <= (GetLevel()->GetCameraPos().y + 640))
+	//{
+	//	float4 CurCameraPos = GetLevel()->GetCameraPos();
+	//	CurCameraPos.y = GetLevel()->GetCameraPos().y - (GetLevel()->GetCameraPos().y);
+	//	GetLevel()->SetCameraPos(CurCameraPos);
+	//}
 }

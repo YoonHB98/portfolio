@@ -5,7 +5,8 @@
 #include <GameEngineBase/GameEngineDebug.h>
 #include <GameEngineBase/GameEngineTime.h>
 
-
+// 
+// 11111111 00000000 11111111
 
 #pragma comment(lib, "msimg32.lib")
 
@@ -82,6 +83,13 @@ void GameEngineRenderer::Render()
 		GameEngine::BackBufferImage()->TransCopy(Image_, RenderPos - Scale, RenderScale_, RenderImagePivot_, RenderImageScale_, TransColor_);
 		break;
 	}
+	case RenderPivot::TOP:
+	{
+		float4 Scale = RenderScale_.Half();
+		Scale.y *= 2.0f;
+		GameEngine::BackBufferImage()->TransCopy(Image_, RenderPos + Scale, RenderScale_, RenderImagePivot_, RenderImageScale_, TransColor_);
+		break;
+	}
 	default:
 		break;
 	}
@@ -122,18 +130,7 @@ void GameEngineRenderer::ChangeAnimation(const std::string& _Name)
 
 	CurrentAnimation_ = &FindIter->second;
 }
-bool GameEngineRenderer::CurrentAnimation(const std::string& _Name)
-{
 
-	std::map<std::string, FrameAnimation>::iterator FindIter = Animations_.find(_Name);
-
-	if (CurrentAnimation_ == &FindIter->second)
-	{
-		return true;
-	}
-	return false;
-
-}
 void GameEngineRenderer::CreateAnimation(
 	const std::string& _Image,
 	const std::string& _Name,
@@ -168,6 +165,19 @@ void GameEngineRenderer::CreateAnimation(
 	NewAnimation.InterTime_ = _InterTime;
 	NewAnimation.Loop_ = _Loop;
 
+
+}
+
+bool GameEngineRenderer::CurrentAnimation(const std::string& _Name)
+{
+
+	std::map<std::string, FrameAnimation>::iterator FindIter = Animations_.find(_Name);
+
+	if (CurrentAnimation_ == &FindIter->second)
+	{
+		return true;
+	}
+	return false;
 
 }
 

@@ -26,6 +26,7 @@ private:
 	float Gravity_;
 	float AccGravity_;
 	GameEngineImage* WhiteMap_;
+	GameEngineCollision* PlayerCollision;
 	void Start() override;
 	void Update() override;
 	void Render() override;
