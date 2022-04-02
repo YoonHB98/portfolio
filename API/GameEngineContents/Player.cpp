@@ -57,7 +57,7 @@ void Player::Start()
 
 void Player::Update()
 {
-	GameEngineImage* WhiteMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	WhiteMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
 
 	if (nullptr == WhiteMap_)
 	{
@@ -71,7 +71,7 @@ void Player::Update()
 	float4 CheckPos;
 	float4 MoveDir = float4::ZERO;
 	float MapSizeX = 14602;
-	float MapSizeY = 1038;
+	float MapSizeY = 1200;
 	float CameraRectX = 1280;
 	float CameraRectY = 1200;
 
@@ -306,9 +306,11 @@ void Player::Update()
 		CurCameraPos.y = GetLevel()->GetCameraPos().y - (GetLevel()->GetCameraPos().y );
 		GetLevel()->SetCameraPos(CurCameraPos);
 	}
-	if (true == PlayerCollision->CollisionCheck(""))
+	PlayerCollision->DebugRender();
+	
+	if (true == PlayerCollision->CollisionCheck("Door", CollisionType::Rect, CollisionType::Rect))
 	{
-		
+		int a = 0;
 	}
 }
 
