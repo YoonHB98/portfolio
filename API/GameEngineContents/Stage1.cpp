@@ -27,7 +27,7 @@ void Stage1::Loading()
 	}
 	{
 		Map1* Actor = CreateActor<Map1>(0);
-		Actor->GetRenderer()->SetImage("11map.bmp");
+		Actor->GetRenderer()->SetImage("11mapwhite.bmp");
 
 		float4 BackActor = {};
 		BackActor.x = (Actor->GetRenderer()->GetImage()->GetScale().Half().x) - (GameEngineWindow::GetScale().Half().x);

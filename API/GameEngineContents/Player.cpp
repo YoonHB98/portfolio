@@ -27,10 +27,11 @@ Player::~Player()
 
 void Player::Start()
 {
+	PlayerCollision = CreateCollision("PlayerHitBox", { 100, 100 });
 	Right = 0;
 	Left = 0;
 	//SetPosition(float4{ 0, 1078 });
-	PlayerCollision = CreateCollision("PlayerHitBox", { 100, 100 });
+
 	RenderRun = CreateRenderer("Mario.bmp");
 	RenderRun->SetTransColor(RGB(146, 144, 255));
 	RenderRun->SetIndex(0);
@@ -51,6 +52,7 @@ void Player::Start()
 		GameEngineInput::GetInst()->CreateKey("MoveLeft", 'A');
 		GameEngineInput::GetInst()->CreateKey("MoveRight", 'D');
 		GameEngineInput::GetInst()->CreateKey("Jump", VK_LSHIFT);
+		GameEngineInput::GetInst()->CreateKey("Down", 'S');
 		// VK_LBUTTON; ¸¶¿ì½º
 	}
 }
@@ -100,7 +102,7 @@ void Player::Update()
 		CurCameraPos.y = GetLevel()->GetCameraPos().y - (GetLevel()->GetCameraPos().y);
 		GetLevel()->SetCameraPos(CurCameraPos);
 	}
-
+	
 	while (Right != 0)
 	{
 		RenderRun->ChangeAnimation("TurnRight");
@@ -108,8 +110,8 @@ void Player::Update()
 		MoveDir = float4::LEFT;
 		{
 			float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
-			float4 CheckPos = NextPos - float4(0.0f, 130.0f);
-			CheckPos = CheckPos + MoveDir * float4(40.0f, 80.0f, 1.0f, 1.0f);
+			float4 CheckPos = NextPos - float4(0.0f, 40.0f);
+			CheckPos = CheckPos + MoveDir * float4(40.0f, 1.0f, 1.0f, 1.0f);
 			int Color = WhiteMap_->GetImagePixel(CheckPos);
 
 			if (RGB(255, 255, 255) == Color)
@@ -118,7 +120,7 @@ void Player::Update()
 			}
 		}
 		{
-			int Color = WhiteMap_->GetImagePixel(GetPosition() - float4(0.0f, 120.0f));
+			int Color = WhiteMap_->GetImagePixel(GetPosition() + float4(0.0f, 40.0f));
 			AccGravity_ += GameEngineTime::GetDeltaTime() * Gravity_;
 			if (RGB(0, 0, 0) == Color)
 			{
@@ -137,8 +139,8 @@ void Player::Update()
 		MoveDir = float4::RIGHT;
 		{
 			float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
-			float4 CheckPos = NextPos - float4(0.0f, 130.0f);
-			CheckPos = CheckPos + MoveDir * float4(40.0f, 80.0f, 1.0f, 1.0f);
+			float4 CheckPos = NextPos - float4(0.0f, 40.0f);
+			CheckPos = CheckPos + MoveDir * float4(40.0f, 1.0f, 1.0f, 1.0f);
 			int Color = WhiteMap_->GetImagePixel(CheckPos);
 
 			if (RGB(255, 255, 255) == Color)
@@ -147,7 +149,7 @@ void Player::Update()
 			}
 		}
 		{
-			int Color = WhiteMap_->GetImagePixel(GetPosition() - float4(0.0f, 120.0f));
+			int Color = WhiteMap_->GetImagePixel(GetPosition() + float4(0.0f, 40.0f));
 			AccGravity_ += GameEngineTime::GetDeltaTime() * Gravity_;
 			if (RGB(0, 0, 0) == Color)
 			{
@@ -200,6 +202,15 @@ void Player::Update()
 		
 	}
 	
+	if (true == GameEngineInput::GetInst()->IsPress("Down"))
+	{
+
+	
+
+		MoveDir = float4::DOWN;
+
+	}
+
 	if (true == GameEngineInput::GetInst()->IsUp("MoveLeft"))
 	{
 		RenderRun->ChangeAnimation("MarioLeft");
@@ -254,32 +265,47 @@ void Player::Update()
 
 	{
 		float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
-		float4 CheckPos = NextPos- float4(0.0f, 130.0f);
-		CheckPos = CheckPos + MoveDir * float4(40.0f, 80.0f, 1.0f, 1.0f);
-		int Color = WhiteMap_->GetImagePixel(CheckPos );
+		float4 CheckPos = NextPos;
+		int Color_UpLeft = WhiteMap_->GetImagePixel(CheckPos + float4(-40.0f, -40.0f));
+		int Color_UpRight = WhiteMap_->GetImagePixel(CheckPos+ float4(40.0f, -40.0f));
+		int Color_DownRight = WhiteMap_->GetImagePixel(CheckPos + float4(-40.0f, 40.0f));
+		int Color_DownLeft = WhiteMap_->GetImagePixel(CheckPos + float4(+40.0f, 40.0f));
 		
-		if (RGB(255, 255, 255) == Color)
+
+		
+		if (RGB(0, 0, 0)!= (Color_UpLeft))
 		{
-			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+			if (RGB(0, 0, 0) != (Color_UpRight))
+			{
+				if (RGB(0, 0, 0) != (Color_DownRight))
+				{
+					if (RGB(0, 0, 0) != (Color_DownLeft))
+					{
+						SetMove(MoveDir* GameEngineTime::GetDeltaTime()* Speed_);
+					}
+				}
+			}
 		}
+		
 	}
 	{
-		int Color = WhiteMap_->GetImagePixel(GetPosition() - float4(0.0f, 120.0f));
-		AccGravity_ += GameEngineTime::GetDeltaTime() * Gravity_;
-		if (RGB(0, 0, 0) == Color)
-		{
-			if (RenderRun->CurrentAnimation("JumpLeft"))
-			{
-				RenderRun->ChangeAnimation("MarioLeft");
-			}
-			else
-				if (RenderRun->CurrentAnimation("JumpRight"))
-				{
-					RenderRun->ChangeAnimation("MarioRight");
-				}
-			AccGravity_ = 0.0f;
-		}
-		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * AccGravity_);
+
+		//int Color = WhiteMap_->GetImagePixel(GetPosition() + float4(0.0f, 40.0f));
+		//AccGravity_ += GameEngineTime::GetDeltaTime() * Gravity_;
+		//if (RGB(0, 0, 0) == Color)
+		//{
+		//	if (RenderRun->CurrentAnimation("JumpLeft"))
+		//	{
+		//		RenderRun->ChangeAnimation("MarioLeft");
+		//	}
+		//	else
+		//		if (RenderRun->CurrentAnimation("JumpRight"))
+		//		{
+		//			RenderRun->ChangeAnimation("MarioRight");
+		//		}
+		//	AccGravity_ = 0.0f;
+		//}
+		//SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * AccGravity_);
 	}
 
 	if (0 > GetLevel()->GetCameraPos().x)
