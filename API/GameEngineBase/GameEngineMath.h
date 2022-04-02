@@ -42,10 +42,8 @@ public:
 	}
 
 public:
-	//const 하면 this 도 const -> 자신의 멤버변수가 변경되는 함수를 못씀
 	int ix() const
 	{
-		//float 을 int로 형변환
 		return static_cast<int>(x);
 	}
 
@@ -63,7 +61,7 @@ public:
 	{
 		return static_cast<int>(w);
 	}
-	//절반크기 친구들
+
 	int hix() const
 	{
 		return static_cast<int>(x * 0.5f);
@@ -79,7 +77,6 @@ public:
 		return static_cast<int>(z * 0.5f);
 	}
 
-	//반으로 반환
 	float4 Half() const
 	{
 		return { x * 0.5f, y * 0.5f , z * 0.5f, 1.0f };
@@ -211,4 +208,3 @@ public:
 
 	}
 };
-

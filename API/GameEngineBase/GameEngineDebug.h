@@ -1,20 +1,21 @@
 #pragma once
 #include <crtdbg.h>
-#include<string>
-#include<assert.h>
+#include <string>
+#include <assert.h>
 #include <Windows.h>
-// 설명 :
+
 class GameEngineDebug
 {
 public:
 	static void LeakCheckOn();
-	//메모리 아낄 겸 수정하지 않을거라고 명시할려고 const & 로 했음
-	//static void MsgBoxAssert(const std::string&);
+
+	// 보기 좋은 안전한 함수.
+	// static void MsgBoxAssert(const std::string& _Text);
+
 protected:
 
 private:
 	// constrcuter destructer
-	//내부를 그냥 객체 없이 쓸거라 private
 	GameEngineDebug();
 	~GameEngineDebug();
 
@@ -28,7 +29,7 @@ private:
 
 #define MsgBoxAssert(Text) 	MessageBeep(0); \
 MessageBoxA(nullptr, Text, "Error", MB_OK); \
-assert(false); \
+assert(false); 
 
 #define MsgBoxAssertString(Text) 	MessageBeep(0); \
 MessageBoxA(nullptr, (Text).c_str(), "Error", MB_OK); \

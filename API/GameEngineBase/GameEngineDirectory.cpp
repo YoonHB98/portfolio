@@ -65,9 +65,8 @@ std::vector<GameEngineFile> GameEngineDirectory::GetAllFile(const std::string& _
 		}
 	}
 
-
 	std::vector<GameEngineFile> Return;
-	// 디렉토리까지 다나오고 파일까지
+	// 디렉토리까지 다나오니까 File
 	for (const std::filesystem::directory_entry& Entry : DirIter)
 	{
 		if (true == Entry.is_directory())

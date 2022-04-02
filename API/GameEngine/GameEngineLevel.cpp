@@ -100,8 +100,6 @@ void GameEngineLevel::ActorRender()
 
 		for (; StartActor != EndActor; ++StartActor)
 		{
-			//이 그룹에 랜더링 싹 호출
-//랜더러들이 다 랜러 한 후
 			if (false == (*StartActor)->IsUpdate())
 			{
 				continue;
@@ -112,7 +110,7 @@ void GameEngineLevel::ActorRender()
 	}
 }
 
-void GameEngineLevel::CollisionDebugRender()
+void GameEngineLevel::CollisionDebugRender() 
 {
 	std::map<std::string, std::list<GameEngineCollision*>>::iterator GroupStart = AllCollision_.begin();
 	std::map<std::string, std::list<GameEngineCollision*>>::iterator GroupEnd = AllCollision_.end();
@@ -207,7 +205,7 @@ void GameEngineLevel::ActorRelease()
 
 
 void GameEngineLevel::AddCollision(const std::string& _GroupName
-	, GameEngineCollision* _Collision)
+	, GameEngineCollision* _Collision) 
 {
 	// 찾아서 없으면 만드는 것까지.
 	AllCollision_[_GroupName].push_back(_Collision);

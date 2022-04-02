@@ -32,20 +32,32 @@ public:
 	{
 		ActorType* NewActor = new ActorType();
 		GameEngineActor* StartActor = NewActor;
-		//이름 세팅
 		NewActor->SetName(_Name);
-		//레벨 세팅
 		NewActor->SetLevel(this);
-		//세팅 다 하고 시작
 		StartActor->Start();
 		std::list<GameEngineActor*>& Group = AllActor_[_Order];
 		Group.push_back(NewActor);
 
+		//// _Order 액터들이 돌아가는 순서를 의미하게 된다.
+		//// insert와 find를 동시에
+		//std::map<int, std::list<GameEngineActor*>>::iterator FindGroup
+		//	= AllActor_.find(_Order);
+
+		//if (FindGroup == AllActor_.end())
+		//{
+
+		//	// AllActor_.insert(std::make_pair(_Order, std::list<GameEngineActor*>()));
+		//	// 이게더 빠름
+		//	AllActor_.insert(
+		//		std::map<int, std::list<GameEngineActor*>>::value_type(_Order, std::list<GameEngineActor*>())
+		//	);
+		//	FindGroup = AllActor_.find(_Order);
+		//}
 
 		return NewActor;
 	}
 
-	inline float4 GetCameraPos()
+	inline float4 GetCameraPos() 
 	{
 		return CameraPos_;
 	}
@@ -55,9 +67,9 @@ public:
 		CameraPos_ += _Value;
 	}
 
-	inline void SetCameraPos(const float4& _Value)
+	inline void SetCameraPos(const float4& _Value )
 	{
-		CameraPos_ = _Value;
+		CameraPos_  = _Value;
 	}
 
 
@@ -73,6 +85,7 @@ protected:
 	virtual void LevelChangeEnd() {}
 
 private:
+	// std::vector로 관리하는게 더 좋다고 생각..
 	std::map<int, std::list<GameEngineActor*>> AllActor_;
 
 	float4 CameraPos_;

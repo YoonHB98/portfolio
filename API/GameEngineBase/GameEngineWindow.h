@@ -4,7 +4,6 @@
 #include "GameEngineMath.h"
 #include "GameEngineDebug.h"
 
-// Ό³Έν :
 class GameEngineWindow
 {
 private:
@@ -24,6 +23,7 @@ public:
 			Inst_ = nullptr;
 		}
 	}
+
 
 public:
 	void RegClass(HINSTANCE _hInst);
@@ -45,7 +45,6 @@ public:
 		return Inst_->Scale_;
 	}
 
-
 protected:
 
 private:
@@ -56,7 +55,6 @@ private:
 	HDC HDC_;
 	float4 Scale_;
 
-	// constrcuter destructer
 	GameEngineWindow();
 	~GameEngineWindow();
 
@@ -65,6 +63,5 @@ private:
 	GameEngineWindow(GameEngineWindow&& _Other) noexcept = delete;
 	GameEngineWindow& operator=(const GameEngineWindow& _Other) = delete;
 	GameEngineWindow& operator=(GameEngineWindow&& _Other) noexcept = delete;
-
 };
 

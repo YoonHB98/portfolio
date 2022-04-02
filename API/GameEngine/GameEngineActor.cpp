@@ -3,7 +3,6 @@
 #include <GameEngineBase/GameEngineWindow.h>
 #include "GameEngineRenderer.h"
 #include "GameEngineCollision.h"
-#include "GameEngineLevel.h"
 
 
 GameEngineActor::GameEngineActor()
@@ -138,7 +137,7 @@ GameEngineCollision* GameEngineActor::CreateCollision(const std::string& _GroupN
 	return NewCollision;
 }
 
-void GameEngineActor::Release()
+void GameEngineActor::Release() 
 {
 	{
 		std::list<GameEngineRenderer*>::iterator StartIter = RenderList_.begin();

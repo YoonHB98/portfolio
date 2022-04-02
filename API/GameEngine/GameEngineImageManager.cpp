@@ -3,7 +3,6 @@
 #include <GameEngineBase/GameEngineString.h>
 #include <GameEngineBase/GameEnginePath.h>
 
-
 GameEngineImageManager* GameEngineImageManager::Inst_ = new GameEngineImageManager();
 
 GameEngineImageManager::GameEngineImageManager()
@@ -31,19 +30,17 @@ GameEngineImage* GameEngineImageManager::Find(const std::string& _Name)
 
 	std::map<std::string, GameEngineImage*>::iterator FindIter = AllRes.find(EngineName);
 
-
 	if (AllRes.end() == FindIter)
 	{
+		// MsgBoxAssert("이미 존재하는 이름의 이미지를 또 만들려고 했습니다.");
 		return nullptr;
 	}
 
 	return FindIter->second;
 }
 
-
 GameEngineImage* GameEngineImageManager::Create(const std::string& _Name, HDC _DC)
 {
-	//실수 방지용 문자열 그냥 다 대문자로
 	std::string EngineName = GameEngineString::ToUpperReturn(_Name);
 
 	if (AllRes.end() != AllRes.find(EngineName))

@@ -3,11 +3,12 @@
 
 GameEngineTime* GameEngineTime::Inst_ = new GameEngineTime();
 
-GameEngineTime::GameEngineTime() 
+
+GameEngineTime::GameEngineTime()
 {
 }
 
-GameEngineTime::~GameEngineTime() 
+GameEngineTime::~GameEngineTime()
 {
 }
 

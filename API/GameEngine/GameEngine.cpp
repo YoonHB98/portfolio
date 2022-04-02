@@ -5,16 +5,12 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include <GameEngineBase/GameEngineTime.h>
 
-
 std::map<std::string, GameEngineLevel*> GameEngine::AllLevel_;
-//현재레벨
 GameEngineLevel* GameEngine::CurrentLevel_ = nullptr;
 GameEngineLevel* GameEngine::NextLevel_ = nullptr;
-//무슨 게임
 GameEngine* GameEngine::UserContents_ = nullptr;
 GameEngineImage* GameEngine::BackBufferImage_ = nullptr;
-// 그려지면 화면에 진짜 나오게 되는 이미지
-GameEngineImage* GameEngine::WindowMainImage_ = nullptr;
+GameEngineImage* GameEngine::WindowMainImage_ = nullptr; // 그려지면 화면에 진짜 나오게 되는 이미지
 
 HDC GameEngine::BackBufferDC()
 {
@@ -88,25 +84,25 @@ void GameEngine::EngineLoop()
         //로딩동안 델타타임 안재도록 리셋
         GameEngineTime::GetInst()->Reset();
 
-
         Rectangle(WindowMainImage_->ImageDC(), 0, 0, WindowMainImage_->GetScale().ix(), WindowMainImage_->GetScale().iy());
         Rectangle(BackBufferImage_->ImageDC(), 0, 0, BackBufferImage_->GetScale().ix(), BackBufferImage_->GetScale().iy());
     }
-    
 
     if (nullptr == CurrentLevel_)
     {
         MsgBoxAssert("Level is nullptr => GameEngine Loop Error");
     }
-    GameEngineInput::GetInst()->Update();
 
+    GameEngineInput::GetInst()->Update(GameEngineTime::GetInst()->GetDeltaTime());
 
     // 레벨수준 시간제한이 있는 게임이라면
-    // 매 프레임마다 시간을 체크해야하는데 그런일을 게임 그 자체의 루프
+    // 매 프레임마다 시간을 체크해야하는데 그런일을 
     CurrentLevel_->Update();
     CurrentLevel_->ActorUpdate();
     CurrentLevel_->ActorRender();
+    CurrentLevel_->CollisionDebugRender();
     WindowMainImage_->BitCopy(BackBufferImage_);
+
     CurrentLevel_->ActorRelease();
 
 }
@@ -131,7 +127,6 @@ void GameEngine::EngineEnd()
     GameEngineImageManager::Destroy();
     GameEngineInput::Destroy();
     GameEngineTime::Destroy();
-
     GameEngineWindow::Destroy();
 }
 
@@ -141,7 +136,6 @@ void GameEngine::ChangeLevel(const std::string& _Name)
 
     if (AllLevel_.end() == FindIter)
     {
-        //end인대 레벨을 바꿀려고 하면
         MsgBoxAssert("Level Find Error");
         return;
     }

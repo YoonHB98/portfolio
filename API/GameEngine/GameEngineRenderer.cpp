@@ -1,4 +1,4 @@
-ï»¿#include "GameEngineRenderer.h"
+#include "GameEngineRenderer.h"
 #include "GameEngineImageManager.h"
 #include "GameEngine.h"
 #include "GameEngineLevel.h"
@@ -28,7 +28,7 @@ void GameEngineRenderer::SetImageScale()
 {
 	if (nullptr == Image_)
 	{
-		MsgBoxAssert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì´ë¯¸ì§€ë¡œ í¬ê¸°ë¥¼ ì¡°ì ˆí•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ÀÌ¹ÌÁö·Î Å©±â¸¦ Á¶ÀıÇÏ·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 
@@ -43,7 +43,7 @@ void GameEngineRenderer::SetImage(const std::string& _Name)
 	GameEngineImage* FindImage = GameEngineImageManager::GetInst()->Find(_Name);
 	if (nullptr == FindImage)
 	{
-		MsgBoxAssertString(_Name + "ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì´ë¯¸ì§€ë¥¼ ëœë”ëŸ¬ì— ì„¸íŒ…í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssertString(_Name + "Á¸ÀçÇÏÁö ¾Ê´Â ÀÌ¹ÌÁö¸¦ ·£´õ·¯¿¡ ¼¼ÆÃÇÏ·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 
@@ -60,7 +60,7 @@ void GameEngineRenderer::Render()
 
 	if (nullptr == Image_)
 	{
-		MsgBoxAssert("ëœë”ëŸ¬ì— ì´ë¯¸ì§€ê°€ ì„¸íŒ…ë˜ì–´ ìˆì§€ ì•Šìœ¼ë©´ ëœë”ë§ì´ ì•ˆë©ë‹ˆë‹¤.");
+		MsgBoxAssert("·£´õ·¯¿¡ ÀÌ¹ÌÁö°¡ ¼¼ÆÃµÇ¾î ÀÖÁö ¾ÊÀ¸¸é ·£´õ¸µÀÌ ¾ÈµË´Ï´Ù.");
 		return;
 	}
 
@@ -83,13 +83,6 @@ void GameEngineRenderer::Render()
 		GameEngine::BackBufferImage()->TransCopy(Image_, RenderPos - Scale, RenderScale_, RenderImagePivot_, RenderImageScale_, TransColor_);
 		break;
 	}
-	case RenderPivot::TOP:
-	{
-		float4 Scale = RenderScale_.Half();
-		Scale.y *= 2.0f;
-		GameEngine::BackBufferImage()->TransCopy(Image_, RenderPos + Scale, RenderScale_, RenderImagePivot_, RenderImageScale_, TransColor_);
-		break;
-	}
 	default:
 		break;
 	}
@@ -99,14 +92,14 @@ void GameEngineRenderer::SetIndex(size_t _Index, const float4& _Scale /*= {-1, -
 {
 	if (false == Image_->IsCut())
 	{
-		MsgBoxAssert("ì´ë¯¸ì§€ë¥¼ ë¶€ë¶„ì ìœ¼ë¡œ ì‚¬ìš©í• ìˆ˜ ìˆê²Œ ì˜ë ¤ì§€ìˆì§€ ì•Šì€ ì´ë¯¸ì§€ ì…ë‹ˆë‹¤.");
+		MsgBoxAssert("ÀÌ¹ÌÁö¸¦ ºÎºĞÀûÀ¸·Î »ç¿ëÇÒ¼ö ÀÖ°Ô Àß·ÁÁöÀÖÁö ¾ÊÀº ÀÌ¹ÌÁö ÀÔ´Ï´Ù.");
 		return;
 	}
 	if (_Scale.x <= 0 || _Scale.y <= 0)
 	{
 		RenderScale_ = Image_->GetCutScale(_Index);
 	}
-	else
+	else 
 	{
 		RenderScale_ = _Scale;
 	}
@@ -115,7 +108,7 @@ void GameEngineRenderer::SetIndex(size_t _Index, const float4& _Scale /*= {-1, -
 	RenderImageScale_ = Image_->GetCutScale(_Index);
 }
 
-/////////////////////////////////////// ì• ë‹ˆë©”ì´ì…˜
+/////////////////////////////////////// ¾Ö´Ï¸ŞÀÌ¼Ç
 
 
 void GameEngineRenderer::ChangeAnimation(const std::string& _Name)
@@ -124,7 +117,7 @@ void GameEngineRenderer::ChangeAnimation(const std::string& _Name)
 
 	if (Animations_.end() == FindIter)
 	{
-		MsgBoxAssert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì• ë‹ˆë©”ì´ì…˜ìœ¼ë¡œ ì²´ì¸ì§€ í•˜ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ¾Ö´Ï¸ŞÀÌ¼ÇÀ¸·Î Ã¼ÀÎÁö ÇÏ·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 
@@ -137,19 +130,19 @@ void GameEngineRenderer::CreateAnimation(
 	int _StartIndex,
 	int _EndIndex,
 	float _InterTime,
-	bool _Loop /*= true*/)
+	bool _Loop /*= true*/) 
 {
 	GameEngineImage* FindImage = GameEngineImageManager::GetInst()->Find(_Image);
 
 	if (nullptr == FindImage)
 	{
-		MsgBoxAssert("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì´ë¯¸ì§€ë¡œ ì• ë‹ˆë©”ì´ì…˜ì„ ë§Œë“¤ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.");
+		MsgBoxAssert("Á¸ÀçÇÏÁö ¾Ê´Â ÀÌ¹ÌÁö·Î ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¸¸µé·Á°í Çß½À´Ï´Ù.");
 		return;
 	}
 
 	if (Animations_.end() != Animations_.find(_Name))
 	{
-		MsgBoxAssert("ì´ë¯¸ ì¡´ì¬í•˜ëŠ” ì• ë‹ˆë©”ì´ì…˜ì„ ë˜ ë§Œë“¤ë ¤ê³  í–ˆìŠµë‹ˆë‹¤..");
+		MsgBoxAssert("ÀÌ¹Ì Á¸ÀçÇÏ´Â ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¶Ç ¸¸µé·Á°í Çß½À´Ï´Ù..");
 		return;
 	}
 
@@ -164,8 +157,6 @@ void GameEngineRenderer::CreateAnimation(
 	NewAnimation.CurrentInterTime_ = _InterTime;
 	NewAnimation.InterTime_ = _InterTime;
 	NewAnimation.Loop_ = _Loop;
-
-
 }
 
 bool GameEngineRenderer::CurrentAnimation(const std::string& _Name)
@@ -181,7 +172,7 @@ bool GameEngineRenderer::CurrentAnimation(const std::string& _Name)
 
 }
 
-void GameEngineRenderer::FrameAnimation::Update()
+void GameEngineRenderer::FrameAnimation::Update() 
 {
 	CurrentInterTime_ -= GameEngineTime::GetInst()->GetDeltaTime();
 	if (0 >= CurrentInterTime_)
@@ -195,7 +186,7 @@ void GameEngineRenderer::FrameAnimation::Update()
 			{
 				CurrentFrame_ = StartFrame_;
 			}
-			else
+			else 
 			{
 				CurrentFrame_ = EndFrame_;
 			}

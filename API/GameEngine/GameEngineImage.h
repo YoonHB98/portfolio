@@ -1,10 +1,10 @@
-Ôªø#pragma once
+#pragma once
 #include <GameEngineBase/GameEngineNameObject.h>
 #include <GameEngineBase/GameEngineMath.h>
 #include <Windows.h>
 #include <vector>
 
-// ÏÑ§Î™Ö : 
+// º≥∏Ì : 
 class GameEngineImage : public GameEngineNameObject
 {
 public:
@@ -27,7 +27,7 @@ public:
 	// Bitmap Scale
 	inline float4 GetScale()
 	{
-		return float4(static_cast<float>(Info_.bmWidth), static_cast<float>(Info_.bmHeight));
+  		return float4(static_cast<float>(Info_.bmWidth), static_cast<float>(Info_.bmHeight));
 	}
 
 	inline HDC ImageDC()
@@ -35,7 +35,7 @@ public:
 		return ImageDC_;
 	}
 
-	// Í∞ÄÏû• Í∑ºÎ≥∏
+	// ∞°¿Â ±Ÿ∫ª
 	void BitCopy(GameEngineImage* _Other, const float4& _CopyPos,
 		const float4& _CopyScale,
 		const float4& _OtherPivot);
@@ -48,7 +48,7 @@ public:
 
 
 
-	// Trans Ïù¥Í±∏Î°ú ÌÜµÏùº
+	// Trans ¿Ã∞…∑Œ ≈Î¿œ
 	void TransCopy(GameEngineImage* _Other, const float4& _CopyPos,
 		const float4& _CopyScale,
 		const float4& _OtherPivot, const float4& _OtherScale, unsigned int _TransColor);
@@ -57,7 +57,7 @@ public:
 
 	void CutCount(int _x, int _y);
 
-	bool IsCut()
+	inline bool IsCut()
 	{
 		return 0 != CutPivot_.size();
 	}
@@ -67,12 +67,12 @@ public:
 		return CutPivot_.size();
 	}
 
-	float4 GetCutPivot(size_t _Index)
+	inline float4 GetCutPivot(size_t _Index)
 	{
 		return CutPivot_[_Index];
 	}
 
-	float4 GetCutScale(size_t _Index)
+	inline float4 GetCutScale(size_t _Index)
 	{
 		return CutScale_[_Index];
 	}
@@ -83,7 +83,7 @@ public:
 		CutScale_.push_back(_CutScale);
 	}
 
-	inline int GetImagePixel(const float4& _Pos)
+	inline int GetImagePixel(const float4& _Pos) 
 	{
 		return GetImagePixel(_Pos.ix(), _Pos.iy());
 	}

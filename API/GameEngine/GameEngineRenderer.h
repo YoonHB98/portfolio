@@ -1,10 +1,10 @@
-ï»¿#pragma once
+#pragma once
 #include "GameEngineActorSubObject.h"
 #include "GameEngineEnum.h"
 #include <map>
 
 
-// ì„¤ëª… : ê·¸ë¦¬ëŠ”ê±¸ ë„ì™€ì£¼ëŠ” í´ë˜ìŠ¤
+// ¼³¸í : ±×¸®´Â°É µµ¿ÍÁÖ´Â Å¬·¡½º
 class GameEngineImage;
 class GameEngineRenderer : public GameEngineActorSubObject
 {
@@ -41,7 +41,7 @@ public:
 		ScaleMode_ = _Mode;
 	}
 
-	// ë Œë”ëŸ¬ ìŠ¤ì¼€ì¼ ë¿ ì•„ë‹ˆë¼ ì´ë¯¸ì§€ ìŠ¤ì¼€ì¼ë„ ê°™ì´ ë§ì¶°ì¤Œ
+	// ·»´õ·¯ ½ºÄÉÀÏ »Ó ¾Æ´Ï¶ó ÀÌ¹ÌÁö ½ºÄÉÀÏµµ °°ÀÌ ¸ÂÃçÁÜ
 	void SetImageScale();
 
 	inline void SetScale(const float4& _Scale)
@@ -56,11 +56,11 @@ public:
 	}
 
 	void SetImage(const std::string& _Name);
-
+	
 	// 
-	void SetIndex(size_t _Index, const float4& _Scale = { -1, -1 });
+	void SetIndex(size_t _Index, const float4& _Scale = {-1, -1});
 
-	void CameraEffectOff()
+	void CameraEffectOff() 
 	{
 		IsCameraEffect_ = false;
 	}
@@ -79,7 +79,7 @@ private:
 
 	bool IsCameraEffect_;
 	GameEngineImage* Image_;
-	RenderPivot PivotType_; // ì„¼í„° / bot
+	RenderPivot PivotType_; // ¼¾ÅÍ / bot
 	RenderScaleMode ScaleMode_;
 	float4 RenderPivot_;
 	float4 RenderScale_;
@@ -87,11 +87,11 @@ private:
 	float4 RenderImagePivot_;
 	unsigned int TransColor_;
 
+	
 
 
 
-
-	///////////////////////////////////////////////////////////////// ì• ë‹ˆë©”ì´ì…˜
+///////////////////////////////////////////////////////////////// ¾Ö´Ï¸ŞÀÌ¼Ç
 
 private:
 	class FrameAnimation
@@ -107,14 +107,14 @@ private:
 		bool Loop_;
 
 	public:
-		FrameAnimation()
+		FrameAnimation() 
 			: Image_(nullptr),
-			CurrentFrame_(-1),
-			StartFrame_(-1),
-			EndFrame_(-1),
-			CurrentInterTime_(0.1f),
-			InterTime_(0.1f),
-			Loop_(true)
+		CurrentFrame_(-1),
+		StartFrame_(-1),
+		EndFrame_(-1),
+		CurrentInterTime_(0.1f),
+		InterTime_(0.1f),
+		Loop_(true)
 
 		{
 
@@ -123,7 +123,7 @@ private:
 	public:
 		void Update();
 
-		void Reset()
+		void Reset() 
 		{
 			CurrentFrame_ = StartFrame_;
 			CurrentInterTime_ = InterTime_;
@@ -133,7 +133,7 @@ private:
 public:
 	void CreateAnimation(const std::string& _Image, const std::string& _Name, int _StartIndex, int _EndIndex, float _InterTime, bool _Loop = true);
 
-	// ì˜µì…˜ì„ 
+	// ¿É¼ÇÀ» 
 	void ChangeAnimation(const std::string& _Name);
 	bool CurrentAnimation(const std::string& _Name);
 
@@ -141,7 +141,7 @@ public:
 private:
 	std::map<std::string, FrameAnimation> Animations_;
 	FrameAnimation* CurrentAnimation_;
-
+	
 
 
 };
