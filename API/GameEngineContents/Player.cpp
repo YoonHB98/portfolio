@@ -14,7 +14,7 @@
 #include <GameEngine/GameEngineLevel.h> // 레벨을 통해서
 // #include "이걸 " 만들때 
 Player::Player()
-	: Speed_(650.0f)
+	: Speed_(2500.0f)
 	, Gravity_(500.0f)
 {
 }
@@ -27,7 +27,7 @@ Player::~Player()
 
 void Player::Start()
 {
-	PlayerCollision = CreateCollision("PlayerHitBox", { 100, 100 });
+	//PlayerCollision = CreateCollision("PlayerHitBox", { 100, 100 });
 	Right = 0;
 	Left = 0;
 	//SetPosition(float4{ 0, 1078 });
@@ -44,7 +44,7 @@ void Player::Start()
 	RenderRun->CreateAnimation("Mario.bmp", "JumpRight", 10, 10, 0.1f, false);
 	RenderRun->CreateAnimation("Mario.bmp", "JumpLeft", 11, 11, 0.1f, false);
 
-	
+
 
 	if (false == GameEngineInput::GetInst()->IsKey("MoveLeft"))
 	{
@@ -72,7 +72,7 @@ void Player::Update()
 	//RenderRun->ChangeAnimation("MarioRight");
 	float4 CheckPos;
 	float4 MoveDir = float4::ZERO;
-	float MapSizeX = 14602;
+	float MapSizeX = 16881;
 	float MapSizeY = 1200;
 	float CameraRectX = 1280;
 	float CameraRectY = 1200;
@@ -332,12 +332,13 @@ void Player::Update()
 		CurCameraPos.y = GetLevel()->GetCameraPos().y - (GetLevel()->GetCameraPos().y );
 		GetLevel()->SetCameraPos(CurCameraPos);
 	}
-	PlayerCollision->DebugRender();
-	
-	if (true == PlayerCollision->CollisionCheck("Door", CollisionType::Rect, CollisionType::Rect))
-	{
-		int a = 0;
-	}
+	//PlayerCollision->DebugRender();
+	//
+	//if (true == PlayerCollision->CollisionCheck("Door", CollisionType::Rect, CollisionType::Rect))
+	//{
+	//	int a = 0;
+	//}
+
 }
 
 // 랜더러가 다 돌아가고 랜더링

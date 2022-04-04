@@ -15,10 +15,7 @@ TitleLevel::~TitleLevel()
 void TitleLevel::Loading()
 {
 
-	{
-		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("MARIO.bmp");
-		Image->Cut({ 80, 80 });
-	}
+
 
 	CreateActor<TitleBackGround>(0);
 	CreateActor<TitleCharacter>(1);

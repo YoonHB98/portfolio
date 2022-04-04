@@ -17,7 +17,16 @@ public:
 protected:
 
 private:
+	float Time_ = 400;
+	int SecondTime_ = 100;
+	int FirstTime_ = 10;
+	bool Start_ = true;
+	GameEngineRenderer* RenderRun;
+	GameEngineRenderer* Three_;
+	GameEngineRenderer* Two_;
+	GameEngineRenderer* One_;
 	void Start() override;
+	void Update() override;
 	void Render() override;
 };
 

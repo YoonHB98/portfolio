@@ -27,21 +27,20 @@ void Stage1::Loading()
 	}
 	{
 		Map1* Actor = CreateActor<Map1>(0);
-		Actor->GetRenderer()->SetImage("11mapwhite.bmp");
+		Actor->GetRenderer()->SetImage("11map.bmp");
 
 		float4 BackActor = {};
 		BackActor.x = (Actor->GetRenderer()->GetImage()->GetScale().Half().x) - (GameEngineWindow::GetScale().Half().x);
 		BackActor.y = (Actor->GetRenderer()->GetImage()->GetScale().Half().y) - (GameEngineWindow::GetScale().Half().y);
 
 		Actor->GetRenderer()->SetPivot(BackActor);
-
-		Actor->CreateCollision("Door", { 100, 100 }, { 0, 0 });
-
-		Actor->CreateCollision("Wall", { 100, 100 }, { 0, -200 });
+		//15800 245 640 600
+		Actor->CreateCollision("Flag", { 100,1000 }, { 15160, 0 });
+		Actor->CreateCollision("Wall", { 200, 200 }, { 0, 200 });
+		Actor->CreateCollision("Wall", { 200, 200 }, { 0, -200 });
 		// 가로길이의 반만큼
 
 	}
-
 
 }
 

@@ -28,6 +28,9 @@
     <Filter Include="Map">
       <UniqueIdentifier>{5c4203cd-9de7-4dca-a6c2-fe80f14b8526}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Play\Global\UI\TimerNum">
+      <UniqueIdentifier>{7e43a45f-be88-4472-9dce-d98ceebcd540}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TitleLevel.h">
@@ -87,6 +90,9 @@
       <Filter>Map</Filter>
     </ClInclude>
     <ClInclude Include="PlayerAnimation.h" />
+    <ClInclude Include="Three.h">
+      <Filter>Play\Global\UI\TimerNum</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -146,5 +152,8 @@
       <Filter>Map</Filter>
     </ClCompile>
     <ClCompile Include="PlayerAnimation.cpp" />
+    <ClCompile Include="Three.cpp">
+      <Filter>Play\Global\UI\TimerNum</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

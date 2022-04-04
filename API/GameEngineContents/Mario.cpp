@@ -42,8 +42,22 @@ void Mario::GameInit()
 	}
 
 
-
-
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("MARIO.bmp");
+		Image->Cut({ 80, 80 });
+	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("number.bmp");
+		Image->Cut({ 40,40 });
+	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("numberreverse.bmp");
+		Image->Cut({ 40,40 });
+	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("blank.bmp");
+		Image->Cut({ 40,40 });
+	}
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<PlayLevel>("Play");
 	CreateLevel<Stage1>("Stage1");
