@@ -27,7 +27,7 @@ Player::~Player()
 
 void Player::Start()
 {
-	//PlayerCollision = CreateCollision("PlayerHitBox", { 100, 100 });
+	PlayerCollision = CreateCollision("PlayerHitBox", { 80, 20 }, {0, -40});
 	Right = 0;
 	Left = 0;
 	//SetPosition(float4{ 0, 1078 });

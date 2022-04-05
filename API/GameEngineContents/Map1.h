@@ -5,7 +5,7 @@
 class GameEngineRenderer;
 class Map1 : public GameEngineActor
 {
-	static Map1* CuBackGround;
+	//static Map1* CuBackGround;
 public:
 	// constrcuter destructer
 	Map1();

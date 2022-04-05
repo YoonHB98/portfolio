@@ -18,7 +18,8 @@ void TitleCharacter::Start()
 	SetPosition(float4{0, 1078});
 
 
-	GameEngineRenderer* TitleChar = CreateRenderer("Mario.bmp");
+	TitleChar = CreateRenderer("Mario.bmp");
+	TitleChar->SetPivot({ 100, 100 });
 	TitleChar->SetTransColor(RGB(146, 144, 255));
 	TitleChar->SetIndex(0);
 

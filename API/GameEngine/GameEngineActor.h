@@ -109,6 +109,7 @@ private:
 
 public:
 	GameEngineCollision* CreateCollision(const std::string& _GroupName, float4 _Scale, float4 _Pivot = {0, 0});
+	GameEngineCollision* ChangePivot(float4 _Pivot);
 
 	// 
 

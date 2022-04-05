@@ -34,11 +34,14 @@ void Stage1::Loading()
 		BackActor.y = (Actor->GetRenderer()->GetImage()->GetScale().Half().y) - (GameEngineWindow::GetScale().Half().y);
 
 		Actor->GetRenderer()->SetPivot(BackActor);
+
 		//15800 245 640 600
 		Actor->CreateCollision("Flag", { 100,1000 }, { 15160, 0 });
-		Actor->CreateCollision("Wall", { 200, 200 }, { 0, 200 });
+		Actor->CreateCollision("Block", { 200, 200 }, { 0, 200 });
 		Actor->CreateCollision("Wall", { 200, 200 }, { 0, -200 });
-		// 가로길이의 반만큼
+		Actor->CreateCollision("Wall", { 200, 200 }, { 100, -200 });
+
+
 
 	}
 

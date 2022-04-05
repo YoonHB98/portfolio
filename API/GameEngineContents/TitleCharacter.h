@@ -18,6 +18,7 @@ public:
 protected:
 
 private:
+	GameEngineRenderer* TitleChar;
 	void Start() override;
 	void Update() override;
 };
