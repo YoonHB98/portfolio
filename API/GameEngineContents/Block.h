@@ -31,6 +31,9 @@ public:
 protected:
 
 private:
+	int up = 0;
+	int down = 0;
+	float Time_ = 0;
 	void Start() override;
 	void Update() override;
 

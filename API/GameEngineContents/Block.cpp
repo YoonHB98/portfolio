@@ -18,7 +18,6 @@ void Block::CreateBlock(const float4& _Pivot)
 		CoPivot.y = Pivot.y + 36;
 		
 		SetPosition(Pivot);
-		CreateCollision("Block", { 80, 10 }, CoPivot);
 	}
 }
 
@@ -26,7 +25,7 @@ void Block::Start()
 {
 	//Actor->SetPosition(Pivot);
 	//Actor->CreateCollision("Block", { 80, 10 }, CoPivot);
-	BlockCollision = CreateCollision("Block", { 80, 20 }, { 0, 40 });
+	BlockCollision = CreateCollision("Block", { 80, 1 }, { 0, 40 });
 
 	CreateRenderer("Block.bmp");
 	//
@@ -35,9 +34,35 @@ void Block::Start()
 
 void Block::Update()
 {
+	
+
+	if (up == 1)
+	{
+		Time_ = Time_ + GameEngineTime::GetDeltaTime();
+		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 200.0f);
+		if (Time_ > 0.2f)
+		{
+			Time_ = 0.0f;
+			up = 0;
+			down = 1;
+		}
+	}
+	if (down == 1)
+	{
+		Time_ = Time_ + GameEngineTime::GetDeltaTime();
+		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * 200.0f);
+		if (Time_ > 0.2f)
+		{
+			Time_ = 0.0f;
+			down = 0;
+		}
+	}
+
+
 	if (true == BlockCollision->CollisionCheck("PlayerHitBox", CollisionType::Rect, CollisionType::Rect))
 {
-		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 200.0f);
+		
+		up = 1;
 }
 }
 

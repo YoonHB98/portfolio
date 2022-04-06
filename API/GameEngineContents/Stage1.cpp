@@ -39,30 +39,30 @@ void Stage1::Loading()
 	// ºí·Ï
 	{
 		Block* Actor = CreateActor<Block>(1);
-		Actor->CreateBlock(float4{ 1320, 755 });
+		Actor->CreateBlock(float4{ 1320, 760 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(1);
-		Actor->CreateBlock(float4{ 1640, 755 });
+		Actor->CreateBlock(float4{ 1640, 760 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(1);
-		Actor->CreateBlock(float4{  1720, 755 } );
+		Actor->CreateBlock(float4{  1720, 760 } );
 	}
 	{
 		Block* Actor = CreateActor<Block>(1);
-		Actor->CreateBlock(float4{ 1800, 755 });
+		Actor->CreateBlock(float4{ 1800, 760 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(1);
-		Actor->CreateBlock(float4{ 1880, 755 });
+		Actor->CreateBlock(float4{ 1880, 760 });
 		{
 			Block* Actor = CreateActor<Block>(1);
-			Actor->CreateBlock(float4{ 1960, 755 });
+			Actor->CreateBlock(float4{ 1960, 760 });
 		}
 		{
 			Block* Actor = CreateActor<Block>(1);
-			Actor->CreateBlock(float4{ 1800, 435 });
+			Actor->CreateBlock(float4{ 1800, 440 });
 		}
 	}
 
