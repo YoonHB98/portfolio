@@ -46,6 +46,7 @@ void Block::Update()
 			up = 0;
 			down = 1;
 		}
+		return;
 	}
 	if (down == 1)
 	{
@@ -56,6 +57,7 @@ void Block::Update()
 			Time_ = 0.0f;
 			down = 0;
 		}
+		return;
 	}
 
 
