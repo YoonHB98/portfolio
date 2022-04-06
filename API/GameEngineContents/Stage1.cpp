@@ -28,84 +28,44 @@ void Stage1::Loading()
 	}
 	{
 		Map1* Actor = CreateActor<Map1>(0);
-		Actor->GetRenderer()->SetImage("11map.bmp");
+		Actor->GetRenderer()->SetImage("11mapwhite.bmp");
 
 		float4 BackActor = {};
 		BackActor.x = (Actor->GetRenderer()->GetImage()->GetScale().Half().x) - (GameEngineWindow::GetScale().Half().x);
 		BackActor.y = (Actor->GetRenderer()->GetImage()->GetScale().Half().y) - (GameEngineWindow::GetScale().Half().y);
 
 		Actor->GetRenderer()->SetPivot(BackActor);
-
-		//15800 245 640 600
-		Actor->CreateCollision("Flag", { 100,1000 }, { 15160, 0 });
-		Actor->CreateCollision("Block", { 200, 200 }, { 0, 200 });
-		Actor->CreateCollision("Wall", { 200, 200 }, { 0, -200 });
-		Actor->CreateCollision("Wall", { 200, 200 }, { 100, -200 });
 	}
 	// ºí·Ï
 	{
-		float4 Pivot = { 1317, 757 };
-		float4 CoPivot = Pivot;
-		CoPivot.y = Pivot.y + 36;
 		Block* Actor = CreateActor<Block>(1);
-		Actor->GetRenderer()->SetImage("block.bmp");
-		Actor->GetRenderer()->SetPivot(Pivot);
-		Actor->CreateCollision("Block", { 80, 10 }, CoPivot);
+		Actor->CreateBlock(float4{ 1320, 755 });
 	}
 	{
-		float4 Pivot = { 1637, 757 };
-		float4 CoPivot = Pivot;
-		CoPivot.y = Pivot.y + 36;
 		Block* Actor = CreateActor<Block>(1);
-		Actor->GetRenderer()->SetImage("block.bmp");
-		Actor->GetRenderer()->SetPivot(Pivot);
-		Actor->CreateCollision("Block", { 80, 10 }, CoPivot);
+		Actor->CreateBlock(float4{ 1640, 755 });
 	}
 	{
-		float4 Pivot = { 1717, 757 };
-		float4 CoPivot = Pivot;
-		CoPivot.y = Pivot.y + 36;
 		Block* Actor = CreateActor<Block>(1);
-		Actor->GetRenderer()->SetImage("block.bmp");
-		Actor->GetRenderer()->SetPivot(Pivot);
-		Actor->CreateCollision("Block", { 80, 10 }, CoPivot);
+		Actor->CreateBlock(float4{  1720, 755 } );
 	}
 	{
-		float4 Pivot = { 1797, 757 };
-		float4 CoPivot = Pivot;
-		CoPivot.y = Pivot.y + 36;
 		Block* Actor = CreateActor<Block>(1);
-		Actor->GetRenderer()->SetImage("block.bmp");
-		Actor->GetRenderer()->SetPivot(Pivot);
-		Actor->CreateCollision("Block", { 80, 10 }, CoPivot);
+		Actor->CreateBlock(float4{ 1800, 755 });
 	}
 	{
-		float4 Pivot = { 1877, 757 };
-		float4 CoPivot = Pivot;
-		CoPivot.y = Pivot.y + 36;
 		Block* Actor = CreateActor<Block>(1);
-		Actor->GetRenderer()->SetImage("block.bmp");
-		Actor->GetRenderer()->SetPivot(Pivot);
-		Actor->CreateCollision("Block", { 80, 10 }, CoPivot);
+		Actor->CreateBlock(float4{ 1880, 755 });
+		{
+			Block* Actor = CreateActor<Block>(1);
+			Actor->CreateBlock(float4{ 1960, 755 });
+		}
+		{
+			Block* Actor = CreateActor<Block>(1);
+			Actor->CreateBlock(float4{ 1800, 435 });
+		}
 	}
-	{
-		float4 Pivot = { 1957, 757 };
-		float4 CoPivot = Pivot;
-		CoPivot.y = Pivot.y + 36;
-		Block* Actor = CreateActor<Block>(1);
-		Actor->GetRenderer()->SetImage("block.bmp");
-		Actor->GetRenderer()->SetPivot(Pivot);
-		Actor->CreateCollision("Block", { 80, 10 }, CoPivot);
-	}
-	{
-		float4 Pivot = { 1797, 437 };
-		float4 CoPivot = Pivot;
-		CoPivot.y = Pivot.y + 36;
-		Block* Actor = CreateActor<Block>(1);
-		Actor->GetRenderer()->SetImage("block.bmp");
-		Actor->GetRenderer()->SetPivot(Pivot);
-		Actor->CreateCollision("Block", { 80, 10 }, CoPivot);
-	}
+
 
 }
 

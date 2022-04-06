@@ -339,39 +339,17 @@ void Player::Update()
 	//	int a = 0;
 	//}
 
+	HitBlock();
+
 }
 
+void Player::HitBlock()
+{
+
+
+}
 // 랜더러가 다 돌아가고 랜더링
 void Player::Render()
 {
-	//float MapSizeX = 14602;
-	//float MapSizeY = 1038;
-	//float CameraRectX = 1280;
-	//float CameraRectY = 1200;
 
-	//GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
-	//if (0 > GetLevel()->GetCameraPos().x)
-	//{
-	//	float4 CurCameraPos = GetLevel()->GetCameraPos();
-	//	CurCameraPos.x = 0;
-	//	GetLevel()->SetCameraPos(CurCameraPos);
-	//}
-	//if (0 > GetLevel()->GetCameraPos().y)
-	//{
-	//	float4 CurCameraPos = GetLevel()->GetCameraPos();
-	//	CurCameraPos.y = 0;
-	//	GetLevel()->SetCameraPos(CurCameraPos);
-	//}
-	//if (MapSizeX <= GetLevel()->GetCameraPos().x)
-	//{
-	//	float4 CurCameraPos = GetLevel()->GetCameraPos();
-	//	CurCameraPos.x = GetLevel()->GetCameraPos().x - (GetLevel()->GetCameraPos().x + CameraRectX - MapSizeX);
-	//	GetLevel()->SetCameraPos(CurCameraPos);
-	//}
-	//if (MapSizeY <= (GetLevel()->GetCameraPos().y + 640))
-	//{
-	//	float4 CurCameraPos = GetLevel()->GetCameraPos();
-	//	CurCameraPos.y = GetLevel()->GetCameraPos().y - (GetLevel()->GetCameraPos().y);
-	//	GetLevel()->SetCameraPos(CurCameraPos);
-	//}
 }

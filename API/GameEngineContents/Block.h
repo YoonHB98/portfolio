@@ -3,6 +3,9 @@
 #include <GameEngineBase/GameEngineTime.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngine/GameEngineImageManager.h>
+#include <GameEngine/GameEngineCollision.h>
+#include <GameEngine/GameEngineLevel.h>
+#include <GameEngine/GameEngineActor.h>
 
 // Ό³Έν :
 
@@ -19,10 +22,12 @@ public:
 	Block(Block&& _Other) noexcept = delete;
 	Block& operator=(const Block& _Other) = delete;
 	Block& operator=(Block&& _Other) noexcept = delete;
-	GameEngineRenderer* GetRenderer()
-	{
-		return Image_;
-	}
+	GameEngineCollision* BlockCollision;
+	//inline GameEngineRenderer* GetRenderer()
+	//{
+	//	return Image_;
+	//}
+	void CreateBlock(const float4& _Pivot);
 protected:
 
 private:

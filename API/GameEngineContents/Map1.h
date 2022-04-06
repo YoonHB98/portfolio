@@ -16,7 +16,6 @@ public:
 	Map1(Map1&& _Other) noexcept = delete;
 	Map1& operator=(const Map1& _Other) = delete;
 	Map1& operator=(Map1&& _Other) noexcept = delete;
-
 	GameEngineRenderer* GetRenderer()
 	{
 		return Image_;
