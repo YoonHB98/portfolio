@@ -96,6 +96,24 @@ void Mario::GameInit()
 			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
 		}
 	}
+	{
+		//GameEngineImageManager::GetInst()->/*Load("경로", "이름");*/
+			// 현재 디렉토리
+		GameEngineDirectory ResourcesUIDir;
+		//API까지 올라가고
+		ResourcesUIDir.MoveParent("API");
+		ResourcesUIDir.Move("Resources");
+		ResourcesUIDir.Move("Item");
+
+
+		// 폴더안에 모든 이미지 파일을 찾는다.
+		std::vector<GameEngineFile> AllImageFileList = ResourcesUIDir.GetAllFile("Bmp");
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+		}
+	}
 
 	{
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("MARIO.bmp");
@@ -124,6 +142,14 @@ void Mario::GameInit()
 	{
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Goomba.bmp");
 		Image->Cut({ 80,80 });
+	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Coin.bmp");
+		Image->Cut({ 40,40 });
+	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("BoxCoin.bmp");
+		Image->Cut({ 40,40 });
 	}
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<PlayLevel>("Play");

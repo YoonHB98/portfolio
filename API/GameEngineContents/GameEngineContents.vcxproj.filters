@@ -34,6 +34,9 @@
     <Filter Include="Map\Block">
       <UniqueIdentifier>{bdcd58ad-d251-479e-a7d0-c23d289c4d13}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Map\Item">
+      <UniqueIdentifier>{302ffeea-3f9f-4abf-ac87-636e41f5892b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TitleLevel.h">
@@ -102,6 +105,12 @@
     <ClInclude Include="QuestionBlock.h">
       <Filter>Map\Block</Filter>
     </ClInclude>
+    <ClInclude Include="Coin.h">
+      <Filter>Map\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCoin.h">
+      <Filter>Map\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -169,6 +178,12 @@
     </ClCompile>
     <ClCompile Include="QuestionBlock.cpp">
       <Filter>Map\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Coin.cpp">
+      <Filter>Map\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCoin.cpp">
+      <Filter>Map\Item</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
