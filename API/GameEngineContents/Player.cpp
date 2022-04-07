@@ -1,13 +1,5 @@
 #include "Player.h"
-#include <GameEngine/GameEngine.h>
-#include <GameEngineBase/GameEngineWindow.h>
-#include <GameEngine/GameEngineImageManager.h>
-#include <GameEngine/GameEngineImage.h>
-#include <GameEngineBase/GameEngineInput.h>
-#include <GameEngineBase/GameEngineTime.h>
-#include <GameEngine/GameEngineRenderer.h>
-#include <GameEngine/GameEngineCollision.h>
-#include <Windows.h>
+
 
 
 
@@ -28,6 +20,7 @@ Player::~Player()
 void Player::Start()
 {
 	PlayerCollision = CreateCollision("PlayerHitBox", { 80, 20 }, {0, -40});
+	PlayerCollision = CreateCollision("PlayerBot", { 80, 20 }, { 0, 40 });
 	Right = 0;
 	Left = 0;
 	//SetPosition(float4{ 0, 1078 });
@@ -129,7 +122,7 @@ void Player::Update()
 			}
 			SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * AccGravity_);
 		}
-
+		
 		return;
 	}
 	while (Left != 0)
@@ -341,6 +334,12 @@ void Player::Update()
 
 	HitBlock();
 
+}
+
+float Player::GetCurrentPosition()
+{
+	float x = GetPosition().x;
+	return  x;
 }
 
 void Player::HitBlock()

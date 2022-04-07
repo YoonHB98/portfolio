@@ -1,5 +1,14 @@
 #pragma once
 #include <GameEngine/GameEngineActor.h>
+#include <GameEngine/GameEngine.h>
+#include <GameEngineBase/GameEngineWindow.h>
+#include <GameEngine/GameEngineImageManager.h>
+#include <GameEngine/GameEngineImage.h>
+#include <GameEngineBase/GameEngineInput.h>
+#include <GameEngineBase/GameEngineTime.h>
+#include <GameEngine/GameEngineRenderer.h>
+#include <GameEngine/GameEngineCollision.h>
+#include <Windows.h>
 
 
 enum PlayerState
@@ -23,7 +32,7 @@ public:
 	Player(Player&& _Other) noexcept = delete;
 	Player& operator=(const Player& _Other) = delete;
 	Player& operator=(Player&& _Other) noexcept = delete;
-
+	float GetCurrentPosition();
 protected:
 
 private:
@@ -38,7 +47,7 @@ private:
 	void Start() override;
 	void Update() override;
 	void Render() override;
-
+	
 	void HitBlock();
 };
 

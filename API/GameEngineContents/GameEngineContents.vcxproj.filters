@@ -99,6 +99,9 @@
     <ClInclude Include="Block.h">
       <Filter>Map\Block</Filter>
     </ClInclude>
+    <ClInclude Include="QuestionBlock.h">
+      <Filter>Map\Block</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -162,6 +165,9 @@
       <Filter>Play\Global\UI\TimerNum</Filter>
     </ClCompile>
     <ClCompile Include="Block.cpp">
+      <Filter>Map\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="QuestionBlock.cpp">
       <Filter>Map\Block</Filter>
     </ClCompile>
   </ItemGroup>

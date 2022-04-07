@@ -1,6 +1,6 @@
 #include "Block.h"
-#include <GameEngine/GameEngineLevel.h>
-#include <GameEngine/GameEngineActor.h>
+
+
 
 Block::Block() 
 {
@@ -28,6 +28,7 @@ void Block::Start()
 	BlockCollision = CreateCollision("Block", { 80, 1 }, { 0, 40 });
 
 	CreateRenderer("Block.bmp");
+	
 	//
 	/*Image_ = CreateRenderer();*/
 }
@@ -63,7 +64,6 @@ void Block::Update()
 
 	if (true == BlockCollision->CollisionCheck("PlayerHitBox", CollisionType::Rect, CollisionType::Rect))
 {
-		
 		up = 1;
 }
 }
