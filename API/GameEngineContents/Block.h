@@ -30,6 +30,7 @@ private:
 	float Time_ = 0;
 	void Start() override;
 	void Update() override;
+	void Render() override;
 
 };
 

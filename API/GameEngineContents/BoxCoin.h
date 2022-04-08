@@ -5,6 +5,7 @@
 #include <GameEngine/GameEngineLevel.h>
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngine/GameEngineRenderer.h>
+#include <GameEngineBase/GameEngineSound.h>
 
 // Ό³Έν :
 class BoxCoin : public GameEngineActor
@@ -22,13 +23,15 @@ public:
 
 	GameEngineCollision* BoxCoinCollision;
 	void CreateBoxCoin(const float4& _Pivot);
+	GameEngineSoundPlayer Hit;
 protected:
 
 private:
 	GameEngineRenderer* Actor;
-	int up = 0;
+	bool up ;
 	int down = 0;
-	float Time_ = 0;
+	float Time_;
+	void HitBlock();
 	void Start() override;
 	void Update() override;
 };

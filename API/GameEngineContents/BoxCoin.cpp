@@ -1,4 +1,5 @@
 #include "BoxCoin.h"
+#include "Point100.h"
 
 BoxCoin::BoxCoin()
 {
@@ -29,7 +30,7 @@ void BoxCoin::Start()
 	Actor->SetIndex(0);
 	Actor->CreateAnimation("BoxCoin.bmp", "BoxCoin", 0, 2, 0.1f, true);
 	Actor->ChangeAnimation("BoxCoin");
-
+	
 
 	//
 	/*Image_ = CreateRenderer();*/
@@ -68,5 +69,7 @@ void BoxCoin::Update()
 	{
 		up = 1;
 		Death(0.25f);
+		Point100* Ptr = GetLevel()->CreateActor<Point100>(2);
+		Ptr->SetPosition(GetPosition());
 	}
 }

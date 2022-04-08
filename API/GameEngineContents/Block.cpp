@@ -68,3 +68,7 @@ void Block::Update()
 }
 }
 
+void Block::Render()
+{
+}
+

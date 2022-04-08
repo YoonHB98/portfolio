@@ -42,9 +42,6 @@
     <ClInclude Include="TitleLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
-    <ClInclude Include="PlayLevel.h">
-      <Filter>Level</Filter>
-    </ClInclude>
     <ClInclude Include="EndingLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
@@ -95,7 +92,6 @@
     <ClInclude Include="Map1.h">
       <Filter>Map</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerAnimation.h" />
     <ClInclude Include="Three.h">
       <Filter>Play\Global\UI\TimerNum</Filter>
     </ClInclude>
@@ -111,12 +107,18 @@
     <ClInclude Include="BoxCoin.h">
       <Filter>Map\Item</Filter>
     </ClInclude>
+    <ClInclude Include="Name.h">
+      <Filter>Play\Global\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Point100.h">
+      <Filter>Play\Global\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Play\Global\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
-      <Filter>Level</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="EndingLevel.cpp">
@@ -169,7 +171,6 @@
     <ClCompile Include="Map1.cpp">
       <Filter>Map</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerAnimation.cpp" />
     <ClCompile Include="Three.cpp">
       <Filter>Play\Global\UI\TimerNum</Filter>
     </ClCompile>
@@ -184,6 +185,15 @@
     </ClCompile>
     <ClCompile Include="BoxCoin.cpp">
       <Filter>Map\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Name.cpp">
+      <Filter>Play\Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Point100.cpp">
+      <Filter>Play\Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Point.cpp">
+      <Filter>Play\Global\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

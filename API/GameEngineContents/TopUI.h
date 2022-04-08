@@ -13,14 +13,15 @@ public:
 	TopUI(TopUI&& _Other) noexcept = delete;
 	TopUI& operator=(const TopUI& _Other) = delete;
 	TopUI& operator=(TopUI&& _Other) noexcept = delete;
+	void TimerReset();
 
 protected:
 
 private:
-	float Time_ = 400;
-	int SecondTime_ = 100;
-	int FirstTime_ = 10;
-	bool Start_ = true;
+	float Time_;
+	int SecondTime_;
+	int FirstTime_ ;
+	bool Start_;
 	GameEngineRenderer* RenderRun;
 	GameEngineRenderer* Three_;
 	GameEngineRenderer* Two_;

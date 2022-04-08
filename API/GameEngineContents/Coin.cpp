@@ -64,5 +64,6 @@ void Coin::Update()
 	{
 		up = 1;
 		Death(0.25f);
+		Sound = GameEngineSound::SoundPlayControl("coin.wav");
 	}
 }

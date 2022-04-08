@@ -71,15 +71,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Name.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Player.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="PlayerAnimation.h">
+    <ClInclude Include="Point.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="PlayLevel.h">
+    <ClInclude Include="Point100.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -174,15 +178,19 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Name.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Player.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="PlayerAnimation.cpp">
+    <ClCompile Include="Point.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="PlayLevel.cpp">
+    <ClCompile Include="Point100.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -288,21 +296,25 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)Bin$(Configuration)\$(PlatformTarget)\</OutDir>
     <IntDir>$(SolutionDir)Bin$(Configuration)\$(PlatformTarget)\$(ProjectName)\</IntDir>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)$(SolutionDir)Bin\$(Configuration)\$(PlatformTarget)\;$(SolutionDir)Bin$(Configuration)\$(PlatformTarget)\</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)Bin$(Configuration)\$(PlatformTarget)\</OutDir>
     <IntDir>$(SolutionDir)Bin$(Configuration)\$(PlatformTarget)\$(ProjectName)\</IntDir>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)$(SolutionDir)Bin\$(Configuration)\$(PlatformTarget)\;$(SolutionDir)Bin$(Configuration)\$(PlatformTarget)\</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)Bin$(Configuration)\$(PlatformTarget)\</OutDir>
     <IntDir>$(SolutionDir)Bin$(Configuration)\$(PlatformTarget)\$(ProjectName)\</IntDir>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)$(SolutionDir)Bin\$(Configuration)\$(PlatformTarget)\;$(SolutionDir)Bin$(Configuration)\$(PlatformTarget)\</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)Bin$(Configuration)\$(PlatformTarget)\</OutDir>
     <IntDir>$(SolutionDir)Bin$(Configuration)\$(PlatformTarget)\$(ProjectName)\</IntDir>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)$(SolutionDir)Bin\$(Configuration)\$(PlatformTarget)\;$(SolutionDir)Bin$(Configuration)\$(PlatformTarget)\</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

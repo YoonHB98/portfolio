@@ -38,6 +38,9 @@ Two_ = CreateRenderer("number.bmp");;
 One_ = CreateRenderer("number.bmp");;
 	GameEngineRenderer * Top = CreateRenderer("TOP.bmp");
 	float4 TopUIPivot = GameEngineWindow::GetScale().Half();
+	GameEngineRenderer* Name= CreateRenderer("Name.bmp");
+	Name->SetPivot(float4(220, 100));
+	Name->SetTransColor(RGB(148, 148, 255));
 	Top->SetPivot(float4(640, 81));
 	Top->SetTransColor(RGB(92, 148, 252));
 	Top->CameraEffectOff();
@@ -61,12 +64,12 @@ One_ = CreateRenderer("number.bmp");;
 	One_->CreateAnimation("numberreverse.bmp", "1", 0, 9, 1.0f, true);
 	One_->CreateAnimation("numberreverse.bmp", "Start", 9, 9, 1.0f, false);
 	One_->CreateAnimation("blank.bmp", "End", 0, 0, 100.0f, false);
-
 	One_->ChangeAnimation("Start");
 	Two_->ChangeAnimation("Start");
 	Three_->ChangeAnimation("Start");
 
-
+	Start_ = true;
+	Time_ = 400;
 	
 
 	
@@ -79,9 +82,9 @@ void TopUI::Update()
 {
 	
 	Time_ = Time_ - GameEngineTime::GetDeltaTime();
-	if (Start_ = true)
+	if (Start_ == true)
 	{
-		
+
 		One_->ChangeAnimation("1");
 		Two_->ChangeAnimation("10");
 		Three_->ChangeAnimation("100");
@@ -105,7 +108,14 @@ void TopUI::Update()
 
 	
 }
+void TopUI::TimerReset()
+{
+	Time_ = 400;
+	One_->ChangeAnimation("Start");
+	Two_->ChangeAnimation("Start");
+	Three_->ChangeAnimation("Start");
 
+}
 //랜더러가 다 돌아가고 랜더링
 void TopUI::Render()
 {

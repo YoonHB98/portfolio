@@ -3,6 +3,7 @@
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngine/GameEngineCollision.h>
 #include <GameEngine/GameEngineLevel.h>
+#include <GameEngineBase/GameEngineSound.h>
 // Ό³Έν :
 class Coin : public GameEngineActor
 {
@@ -19,6 +20,7 @@ public:
 
 	GameEngineCollision* CoinCollision;
 	void CreateCoin(const float4& _Pivot);
+	GameEngineSoundPlayer Sound;
 protected:
 
 private:

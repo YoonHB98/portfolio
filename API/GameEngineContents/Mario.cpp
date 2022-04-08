@@ -1,5 +1,4 @@
 #include "Mario.h"
-#include "PlayLevel.h"
 #include "Stage1.h"
 #include "EndingLevel.h"
 #include "TitleLevel.h"
@@ -58,6 +57,24 @@ void Mario::GameInit()
 		for (size_t i = 0; i < AllImageFileList.size(); i++)
 		{
 			GameEngineImageManager::GetInst()->Load(AllImageFileList[i].GetFullPath());
+		}
+	}
+	{
+		//GameEngineImageManager::GetInst()->/*Load("경로", "이름");*/
+			// 현재 디렉토리
+		GameEngineDirectory ResourcesMapDir;
+		//API까지 올라가고
+		ResourcesMapDir.MoveParent("API");
+		ResourcesMapDir.Move("Resources");
+		ResourcesMapDir.Move("Sound");
+
+
+		// 폴더안에 모든 이미지 파일을 찾는다.
+		std::vector<GameEngineFile> AllImageFileList = ResourcesMapDir.GetAllFile();
+
+		for (size_t i = 0; i < AllImageFileList.size(); i++)
+		{
+			GameEngineSound::LoadRes(AllImageFileList[i].GetFullPath());
 		}
 	}
 	{
@@ -152,7 +169,6 @@ void Mario::GameInit()
 		Image->Cut({ 40,40 });
 	}
 	CreateLevel<TitleLevel>("Title");
-	CreateLevel<PlayLevel>("Play");
 	CreateLevel<Stage1>("Stage1");
 	CreateLevel<EndingLevel>("Ending");
 	ChangeLevel("Title");
