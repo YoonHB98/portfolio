@@ -34,24 +34,26 @@ void BoxCoin::Start()
 	Actor->CreateAnimation("BoxCoin.bmp", "BoxCoin", 0, 2, 0.1f, true);
 	Actor->ChangeAnimation("BoxCoin");
 	
-
+	Time_ = 400;
 	//
 	/*Image_ = CreateRenderer();*/
 }
 
 void BoxCoin::Update()
 {
-	
+	Time_ = Time_ - GameEngineTime::GetDeltaTime();
 
 	if (up == 1)
 	{
-		Time_ = Time_ + GameEngineTime::GetDeltaTime();
+		
 		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 1200.0f);
 		if (Time_ > 0.15f)
 		{
-			Time_ = 0.0f;
+			
 			up = 0;
 			down = 1;
+			Point::PointUI = Point::PointUI + 100;
+			Coin::CoinUI = Coin::CoinUI + 1;
 		}
 		return;
 	}
@@ -63,6 +65,7 @@ void BoxCoin::Update()
 		{
 			Time_ = 0.0f;
 			down = 0;
+			
 		}
 		return;
 	}
@@ -74,8 +77,7 @@ void BoxCoin::Update()
 		Death(0.25f);
 		Point100* Ptr = GetLevel()->CreateActor<Point100>(2);
 		Ptr->SetPosition(GetPosition());
-		Point::PointUI  = Point::PointUI + 100;
-		Coin::CoinUI = Coin::CoinUI + 1;
-		
+
 	}
+
 }
