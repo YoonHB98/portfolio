@@ -101,9 +101,6 @@
     <ClInclude Include="QuestionBlock.h">
       <Filter>Map\Block</Filter>
     </ClInclude>
-    <ClInclude Include="Coin.h">
-      <Filter>Map\Item</Filter>
-    </ClInclude>
     <ClInclude Include="BoxCoin.h">
       <Filter>Map\Item</Filter>
     </ClInclude>
@@ -114,6 +111,9 @@
       <Filter>Play\Global\UI</Filter>
     </ClInclude>
     <ClInclude Include="Point.h">
+      <Filter>Play\Global\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin.h">
       <Filter>Play\Global\UI</Filter>
     </ClInclude>
   </ItemGroup>
@@ -180,9 +180,6 @@
     <ClCompile Include="QuestionBlock.cpp">
       <Filter>Map\Block</Filter>
     </ClCompile>
-    <ClCompile Include="Coin.cpp">
-      <Filter>Map\Item</Filter>
-    </ClCompile>
     <ClCompile Include="BoxCoin.cpp">
       <Filter>Map\Item</Filter>
     </ClCompile>
@@ -193,6 +190,9 @@
       <Filter>Play\Global\UI</Filter>
     </ClCompile>
     <ClCompile Include="Point.cpp">
+      <Filter>Play\Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Coin.cpp">
       <Filter>Play\Global\UI</Filter>
     </ClCompile>
   </ItemGroup>

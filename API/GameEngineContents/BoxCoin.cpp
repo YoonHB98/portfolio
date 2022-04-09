@@ -1,5 +1,8 @@
 #include "BoxCoin.h"
 #include "Point100.h"
+#include "Point.h"
+#include "Coin.h"
+
 
 BoxCoin::BoxCoin()
 {
@@ -38,7 +41,7 @@ void BoxCoin::Start()
 
 void BoxCoin::Update()
 {
-
+	
 
 	if (up == 1)
 	{
@@ -71,5 +74,8 @@ void BoxCoin::Update()
 		Death(0.25f);
 		Point100* Ptr = GetLevel()->CreateActor<Point100>(2);
 		Ptr->SetPosition(GetPosition());
+		Point::PointUI  = Point::PointUI + 100;
+		Coin::CoinUI = Coin::CoinUI + 1;
+		
 	}
 }

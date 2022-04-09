@@ -168,6 +168,14 @@ void Mario::GameInit()
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("BoxCoin.bmp");
 		Image->Cut({ 40,40 });
 	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("UICOIN.bmp");
+		Image->Cut({ 25,40 });
+	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("0.bmp");
+		Image->Cut({ 40,40 });
+	}
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<Stage1>("Stage1");
 	CreateLevel<EndingLevel>("Ending");

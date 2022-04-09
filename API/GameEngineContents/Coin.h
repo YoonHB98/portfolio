@@ -1,9 +1,12 @@
 #pragma once
+
 #include <GameEngineBase/GameEngineTime.h>
 #include <GameEngine/GameEngineImageManager.h>
-#include <GameEngine/GameEngineCollision.h>
+#include <GameEngine/GameEngineActor.h>
 #include <GameEngine/GameEngineLevel.h>
-#include <GameEngineBase/GameEngineSound.h>
+#include <GameEngine/GameEngineRenderer.h>
+
+
 // Ό³Έν :
 class Coin : public GameEngineActor
 {
@@ -17,17 +20,21 @@ public:
 	Coin(Coin&& _Other) noexcept = delete;
 	Coin& operator=(const Coin& _Other) = delete;
 	Coin& operator=(Coin&& _Other) noexcept = delete;
+	static int CoinUI;
+	inline void Point(const int& _Other)
+	{
+		CoinUI = CoinUI + _Other;
+	}
 
-	GameEngineCollision* CoinCollision;
-	void CreateCoin(const float4& _Pivot);
-	GameEngineSoundPlayer Sound;
+
 protected:
 
 private:
-	int up = 0;
-	int down = 0;
-	float Time_ = 0;
+	GameEngineRenderer* Actor;
+	GameEngineRenderer* Two;
+	GameEngineRenderer* One;
 	void Start() override;
 	void Update() override;
+	void Render() override;
 };
 

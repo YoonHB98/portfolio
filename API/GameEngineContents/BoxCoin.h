@@ -6,8 +6,9 @@
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngineBase/GameEngineSound.h>
+#include <GameEngineContents/Point.h>
 
-// Ό³Έν :
+
 class BoxCoin : public GameEngineActor
 {
 public:

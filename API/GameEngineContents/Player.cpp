@@ -53,7 +53,6 @@ void Player::Start()
 void Player::Update()
 {
 	WhiteMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
-
 	if (nullptr == WhiteMap_)
 	{
 		MsgBoxAssert("맵 충돌용 이미지를 찾지 못했습니다.")

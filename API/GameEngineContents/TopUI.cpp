@@ -41,6 +41,7 @@ One_ = CreateRenderer("number.bmp");;
 	GameEngineRenderer* Name= CreateRenderer("Name.bmp");
 	Name->SetPivot(float4(220, 100));
 	Name->SetTransColor(RGB(148, 148, 255));
+	Name->CameraEffectOff();
 	Top->SetPivot(float4(640, 81));
 	Top->SetTransColor(RGB(92, 148, 252));
 	Top->CameraEffectOff();

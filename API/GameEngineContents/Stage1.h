@@ -13,8 +13,10 @@
 #include<GameEngine/GameEngineActor.h>
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineSound.h>
+#include "Point.h"
 
 // Ό³Έν :
+
 class Stage1 : public GameEngineLevel
 {
 public:
@@ -35,6 +37,7 @@ protected:
 
 private:
 	TopUI* UI;
+	Coin* UICOIN;
 
 
 };
