@@ -7,8 +7,8 @@
 // #include "이걸 " 만들때 
 Player::Player()
 	: Speed_(50.0f)
-	, Gravity_(100.0f)
-	, AccSpeed_(100.0f)
+	, Gravity_(50.0f)
+	, AccSpeed_(50.0f)
 	, MoveDir(float4::ZERO)
 	, AccGravity_(0)
 {
@@ -263,8 +263,6 @@ void Player::Update()
 			AccGravity_ += GameEngineTime::GetDeltaTime() * Gravity_;
 
 			if ((RGB(255, 255, 255) != Color)
-				&& (RGB(255, 255, 255) != Down1)
-				&& (RGB(255, 255, 255) != Down2)
 				)
 
 			{
@@ -288,14 +286,13 @@ void Player::Update()
 			int Down = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, 38.0f));
 			int Up = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, -38.0f));
 
-			int Up1 = WhiteMap_->GetImagePixel(NextPos + float4(38.0f, -38.0f));
-			int Up2 = WhiteMap_->GetImagePixel(NextPos + float4(-38.0f, -38.0f));
 			LeftRight.x = MoveDir.x;
 			UpUp.y = MoveDir.y;
 			DownDown.y = MoveDir.y;
 			bool DownCheck = false;
 			bool UpCheck = false;
-
+			bool RightCheck = false;
+			bool LeftCheck = false;
 
 			MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * AccGravity_;
 			if (0 < MoveDir.y)
@@ -306,17 +303,29 @@ void Player::Update()
 			{
 				UpCheck = true;
 			}
+			if (0 < MoveDir.x)
+			{
+				RightCheck = true;
+			}
+			if (0 > MoveDir.x)
+			{
+				LeftCheck = true;
+			}
 		if ((RGB(0, 0, 0) != (Left))
-			&& (RGB(0, 0, 0) != (Right))
+			&& LeftCheck
 			)
 
 		{
 			SetMove(LeftRight* GameEngineTime::GetDeltaTime()* Speed_);
-			
+		}
+		if ((RGB(0, 0, 0) != (Right))
+			&& RightCheck
+			)
+
+		{
+			SetMove(LeftRight * GameEngineTime::GetDeltaTime() * Speed_);
 		}
 		if ((RGB(0, 0, 0) == (Up))
-			&& (RGB(0, 0, 0) == (Up1))
-			&&(RGB(0, 0, 0) == (Up2))
 			&& UpCheck
 			)
 
@@ -338,8 +347,6 @@ void Player::Update()
 			int a = 0;
 		}
 		if ((RGB(0, 0, 0) != (Down))
-			&& (RGB(0, 0, 0) != (Down1))
-			&& (RGB(0, 0, 0) != (Down2))
 			&& DownCheck
 			)
 
