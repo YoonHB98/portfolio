@@ -24,13 +24,14 @@ public:
 
 	GameEngineCollision* BoxCoinCollision;
 	void CreateBoxCoin(const float4& _Pivot);
-	GameEngineSoundPlayer Hit;
+	GameEngineSoundPlayer BgmPlayer;
 protected:
 
 private:
 	GameEngineRenderer* Actor;
 	bool up ;
 	int down = 0;
+	float Time = 400;
 	float Time_;
 	void HitBlock();
 	void Start() override;

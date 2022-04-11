@@ -36,6 +36,7 @@ protected:
 	void LevelChangeStart() override;
 
 private:
+	float Time;
 	TopUI* UI;
 	Coin* UICOIN;
 

@@ -1,7 +1,8 @@
 #include "BoxCoin.h"
-#include "Point100.h"
+#include "Point200.h"
 #include "Point.h"
 #include "Coin.h"
+#include "Sound.h"
 
 
 BoxCoin::BoxCoin()
@@ -37,10 +38,18 @@ void BoxCoin::Start()
 	Time_ = 400;
 	//
 	/*Image_ = CreateRenderer();*/
+	
+
+
 }
 
 void BoxCoin::Update()
 {
+	Time -= GameEngineTime::GetDeltaTime();
+	if (4.9 >= Time)
+	{
+
+	}
 	Time_ = Time_ - GameEngineTime::GetDeltaTime();
 
 	if (up == 1)
@@ -52,7 +61,7 @@ void BoxCoin::Update()
 			
 			up = 0;
 			down = 1;
-			Point::PointUI = Point::PointUI + 100;
+			Point::PointUI = Point::PointUI + 200;
 			Coin::CoinUI = Coin::CoinUI + 1;
 		}
 		return;
@@ -75,9 +84,10 @@ void BoxCoin::Update()
 	{
 		up = 1;
 		Death(0.25f);
-		Point100* Ptr = GetLevel()->CreateActor<Point100>(2);
+		Point200* Ptr = GetLevel()->CreateActor<Point200>(2);
 		Ptr->SetPosition(GetPosition());
-
+		Time = 5.0f;
+		Sound::SoundPlay = "Coin";
 	}
-
+	
 }

@@ -36,10 +36,12 @@ public:
 protected:
 
 private:
+	float4 MoveDir;
 	GameEngineRenderer* RenderRun;
 	int Right;
 	int Left;
 	float Speed_;
+	float AccSpeed_;
 	float Gravity_;
 	float AccGravity_;
 	GameEngineImage* WhiteMap_;

@@ -32,19 +32,11 @@ void Goomba::CreateGoomba(const float4& _Pivot)
 
 void Goomba::Start()
 {
-	//Actor->SetPosition(Pivot);
-	//Actor->CreateCollision("Goomba", { 80, 10 }, CoPivot);
 	GoombaCollision = CreateCollision("Goomba", { 80, 5 }, { 0, -40 });
 	RightCollision = CreateCollision("MonsterRight", { 5,80 }, { 40, 0 });
 	LeftCollision = CreateCollision("MonsterLeft", { 5, 80 }, { -40, 0 });
 	CheckCollision = CreateCollision("CheckPos", { 80, 1200 }, { -1280, 40 });
 	MoveDir = float4::LEFT;
-	//Actor = CreateRenderer("Goomba.bmp");
-	//Actor->SetIndex(0);
-
-	
-	//
-	/*Image_ = CreateRenderer();*/
 }
 
 void Goomba::Update()

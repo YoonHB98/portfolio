@@ -116,6 +116,12 @@
     <ClInclude Include="Coin.h">
       <Filter>Play\Global\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Play\Global\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Point200.h">
+      <Filter>Play\Global\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -193,6 +199,12 @@
       <Filter>Play\Global\UI</Filter>
     </ClCompile>
     <ClCompile Include="Coin.cpp">
+      <Filter>Play\Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Play\Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Point200.cpp">
       <Filter>Play\Global\UI</Filter>
     </ClCompile>
   </ItemGroup>

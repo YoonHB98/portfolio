@@ -87,7 +87,12 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Point200.h" />
     <ClInclude Include="QuestionBlock.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -194,7 +199,12 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Point200.cpp" />
     <ClCompile Include="QuestionBlock.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
       <SubType>
       </SubType>
     </ClCompile>

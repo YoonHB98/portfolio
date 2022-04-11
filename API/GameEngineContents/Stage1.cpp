@@ -1,5 +1,6 @@
 #include "Stage1.h"
 #include "Point.h"
+#include "Sound.h"
 
 
 
@@ -14,9 +15,7 @@ Stage1::~Stage1()
 void Stage1::Loading()
 {
 
-	{
-		GameEngineInput::GetInst()->CreateKey("cha",'G');
-	}
+
 	{
 		UI = CreateActor<TopUI>(1);
 	}
@@ -27,9 +26,12 @@ void Stage1::Loading()
 		Point* Pointer = CreateActor<Point>(2);
 	}
 	{
+		Sound* SoundR = CreateActor<Sound>(0);
+	}
+	{
 	Player* Mario;
 	Mario = CreateActor<Player>(3);
-	Mario->SetPosition(float4{ 200, 500 });
+	Mario->SetPosition(float4{ 200, 980 });
 	}
 	{
 		Map1* Actor = CreateActor<Map1>(0);
@@ -262,15 +264,12 @@ void Stage1::Loading()
 		Goomba* Actor = CreateActor<Goomba>(1);
 		Actor->CreateGoomba(float4{ 4240,1000 });
 	}
+
 }
 
 void Stage1::Update()
 {
-	if (true == GameEngineInput::GetInst()->IsPress("cha"))
-	{
-		GameEngine* Level = nullptr;
-		Level->ChangeLevel("Title");
-	}
+
 }
 void Stage1::LevelChangeStart()
 {
@@ -279,6 +278,5 @@ void Stage1::LevelChangeStart()
 		UI = CreateActor<TopUI>(1);
 	}
 	BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");
-	
 
 }
