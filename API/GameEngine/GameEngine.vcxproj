@@ -36,6 +36,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="GameEngineEnum.h" />
+    <ClInclude Include="GameEngineFolderImage.h" />
     <ClInclude Include="GameEngineImage.h">
       <SubType>
       </SubType>
@@ -49,10 +50,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="GameEngineRenderer.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="GameEngineSound.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -74,6 +71,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineFolderImage.cpp" />
     <ClCompile Include="GameEngineImage.cpp">
       <SubType>
       </SubType>
@@ -87,10 +85,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="GameEngineRenderer.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="GameEngineSound.cpp">
       <SubType>
       </SubType>
     </ClCompile>

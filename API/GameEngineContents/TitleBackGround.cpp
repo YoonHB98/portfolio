@@ -32,8 +32,7 @@ void TitleBackGround::Update()
 {
 	if (true == GameEngineInput::GetInst()->IsPress("Play"))
 	{
-		GameEngine* Level = nullptr;
-		Level->ChangeLevel("Stage1");
+		GameEngine::GetInst().ChangeLevel("Stage1");
 	}
 }
 

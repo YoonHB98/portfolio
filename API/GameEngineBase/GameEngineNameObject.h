@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 
+// Ό³Έν :
 class GameEngineNameObject
 {
 public:
@@ -36,6 +37,7 @@ public:
 	{
 		return Name_.c_str();
 	}
+
 
 protected:
 

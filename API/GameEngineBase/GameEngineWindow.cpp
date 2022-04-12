@@ -1,6 +1,10 @@
 #include "GameEngineWindow.h"
 
-GameEngineWindow* GameEngineWindow::Inst_ = new GameEngineWindow();
+
+// HWND hWnd 어떤 윈도우에 무슨일이 생겼는지 그 윈도우의 핸들
+// UINT message 그 메세지의 중료가 뭔지.
+// WPARAM wParam
+// LPARAM lParam
 
 LRESULT CALLBACK MessageProcess(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -31,6 +35,7 @@ LRESULT CALLBACK MessageProcess(HWND hWnd, UINT message, WPARAM wParam, LPARAM l
     return 0;
 }
 
+GameEngineWindow* GameEngineWindow::Inst_ = new GameEngineWindow();
 
 GameEngineWindow::GameEngineWindow()
     : hInst_(nullptr)
@@ -146,7 +151,6 @@ void GameEngineWindow::MessageLoop(void(*_InitFunction)(), void(*_LoopFunction)(
             DispatchMessage(&msg);
         }
 
-        // 윈도우가 일하지 않는 데드 타임.
 
         if (nullptr == _LoopFunction)
         {
@@ -154,6 +158,8 @@ void GameEngineWindow::MessageLoop(void(*_InitFunction)(), void(*_LoopFunction)(
         }
 
         _LoopFunction();
+
+
     }
 }
 

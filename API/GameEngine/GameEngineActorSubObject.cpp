@@ -7,3 +7,4 @@ GameEngineActorSubObject::GameEngineActorSubObject()
 GameEngineActorSubObject::~GameEngineActorSubObject()
 {
 }
+

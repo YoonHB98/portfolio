@@ -29,8 +29,8 @@ void Stage1::Loading()
 		Sound* SoundR = CreateActor<Sound>(0);
 	}
 	{
-	Player* Mario;
-	Mario = CreateActor<Player>(3);
+	Player* Mario = CreateActor<Player>(3);
+	/*Mario = CreateActor<Player>(3);*/
 	Mario->SetPosition(float4{ 200, 980 });
 	}
 	{
@@ -273,10 +273,9 @@ void Stage1::Update()
 }
 void Stage1::LevelChangeStart()
 {
-	{
-		UI->Death();
-		UI = CreateActor<TopUI>(1);
-	}
+ 
+	CreateActor<TopUI>(1);
+
 	BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");
 
 }
