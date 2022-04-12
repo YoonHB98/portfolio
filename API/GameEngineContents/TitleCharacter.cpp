@@ -3,6 +3,7 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include<GameEngine/GameEngine.h>
 #include <GameEngine/GameEngineRenderer.h>
+#include <GameEngine/GameEngineActor.h>
 #pragma comment(lib, "msimg32.lib")
 
 TitleCharacter::TitleCharacter()
