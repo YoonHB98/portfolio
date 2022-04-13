@@ -63,6 +63,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="LevelIntro.h" />
     <ClInclude Include="Map1.h">
       <SubType>
       </SubType>
@@ -92,6 +93,8 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Secret10CoinBlock.h" />
+    <ClInclude Include="SecretBlock.h" />
     <ClInclude Include="Sound.h">
       <SubType>
       </SubType>
@@ -109,6 +112,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Stage4.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="StageIntro.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -137,6 +144,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="WorldCount.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp">
@@ -175,6 +183,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="LevelIntro.cpp" />
     <ClCompile Include="Map1.cpp">
       <SubType>
       </SubType>
@@ -204,6 +213,8 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Secret10CoinBlock.cpp" />
+    <ClCompile Include="SecretBlock.cpp" />
     <ClCompile Include="Sound.cpp">
       <SubType>
       </SubType>
@@ -221,6 +232,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Stage4.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="StageIntro.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -249,6 +264,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="WorldCount.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -3,6 +3,7 @@
 #include <GameEngineBase/GameEngineInput.h>
 #include<GameEngine/GameEngine.h>
 #include <GameEngine/GameEngineLevel.h>
+#include <GameEngine/GameEngineRenderer.h>
 
 TitleBackGround::TitleBackGround() 
 {
@@ -18,7 +19,10 @@ void TitleBackGround::Start()
 
 
 
-
+	GameEngineRenderer* Name = CreateRenderer("Name.bmp");
+	Name->SetPivot(float4(220, 100));
+	Name->SetTransColor(RGB(148, 148, 255));
+	Name->CameraEffectOff();
 
 
 	CreateRenderer("TITLE.BMP");
@@ -32,7 +36,7 @@ void TitleBackGround::Update()
 {
 	if (true == GameEngineInput::GetInst()->IsPress("Play"))
 	{
-		GameEngine::GetInst().ChangeLevel("Stage1");
+		GameEngine::GetInst().ChangeLevel("StageIntro");
 	}
 }
 

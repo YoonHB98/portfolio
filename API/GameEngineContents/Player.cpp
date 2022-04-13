@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <GameEngineBase/GameEngineSound.h>
 
 
 
@@ -6,8 +7,8 @@
 #include <GameEngine/GameEngineLevel.h> // 레벨을 통해서
 // #include "이걸 " 만들때 
 Player::Player()
-	: Speed_(60.0f)
-	, Gravity_(200.0f)
+	: Speed_(100.0f)
+	, Gravity_(300.0f)
 	, AccSpeed_(30.0f)
 	, MoveDir(float4::ZERO)
 	, AccGravity_(0)
@@ -71,14 +72,28 @@ void Player::Update()
 	float MapSizeY = 1200;
 	float CameraRectX = 1280;
 	float CameraRectY = 1200;
-
+	float Camera = GetLevel()->GetCameraPos().x;
 	GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
+
+	if ((GetPosition().x  - 200)> GetLevel()->GetCameraPos().x)
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.x = (GetPosition().x - 200);
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
+	if (Camera > (GetPosition().x -200))
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.x = Camera;
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
 	if (0 > GetLevel()->GetCameraPos().x)
 	{
 		float4 CurCameraPos = GetLevel()->GetCameraPos();
 		CurCameraPos.x = 0;
 		GetLevel()->SetCameraPos(CurCameraPos);
 	}
+
 	if (0 > GetLevel()->GetCameraPos().y)
 	{
 		float4 CurCameraPos = GetLevel()->GetCameraPos();
@@ -101,32 +116,21 @@ void Player::Update()
 	if (true == GameEngineInput::GetInst()->IsDown("Jump"))
 	{
 		MoveDir = float4::UP;
+		GameEngineSound::SoundPlayOneShot("jumpsmall.wav", 0);
 	}
-	if (true == GameEngineInput::GetInst()->IsPress("Jump"))
-	{
-		if (RenderRun->IsAnimationName("RunRight") || RenderRun->IsAnimationName("MarioRight"))
-		{
-			RenderRun->ChangeAnimation("JumpRight");
-		}
-		else if (RenderRun->IsAnimationName("RunLeft") || RenderRun->IsAnimationName("MarioLeft"))
-		{
-			RenderRun->ChangeAnimation("JumpLeft");
-		}
-		MoveDir = MoveDir + float4::UP * GameEngineTime::GetDeltaTime() * Speed_ ;
 
-	}
 	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
 	{
 
 		RenderRun->ChangeAnimation("RunLeft");
 
-		MoveDir += float4::LEFT * GameEngineTime::GetDeltaTime() * AccSpeed_;
+		MoveDir += float4::LEFT;
 
 	}
 
 	if (true == GameEngineInput::GetInst()->IsPress("Down"))
 	{
-		MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * AccSpeed_;
+		MoveDir += float4::DOWN;
 	}
 	if (true == GameEngineInput::GetInst()->IsFree("Jump"))
 	{
@@ -138,7 +142,20 @@ void Player::Update()
 		RenderRun->ChangeAnimation("RunRight");
 
 
-		MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * AccSpeed_;
+		MoveDir += float4::RIGHT;
+
+	}
+	if (true == GameEngineInput::GetInst()->IsPress("Jump"))
+	{
+		if (RenderRun->IsAnimationName("RunRight") || RenderRun->IsAnimationName("MarioRight"))
+		{
+			RenderRun->ChangeAnimation("JumpRight");
+		}
+		else if (RenderRun->IsAnimationName("RunLeft") || RenderRun->IsAnimationName("MarioLeft"))
+		{
+			RenderRun->ChangeAnimation("JumpLeft");
+		}
+		MoveDir = MoveDir + float4::UP;
 
 	}
 
@@ -178,149 +195,152 @@ void Player::Update()
 		CurCameraPos.y = GetLevel()->GetCameraPos().y - (GetLevel()->GetCameraPos().y);
 		GetLevel()->SetCameraPos(CurCameraPos);
 	}
+	MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * AccGravity_;
 	{
-
-
-
-		if (15.0f <= MoveDir.ix())
+		float y = MoveDir.y;
+		if (0.0f <= MoveDir.y
+			&& -0.2f >= MoveDir.y)
 		{
-			if (1.5f >= MoveDir.ix())
-			{
-				MoveDir.x = 0.0f;
-			}
-			else
-			{
-				MoveDir.x = 15.0f;
-			}
-
+			MoveDir.y = -0.5f;
 		}
-		if (-15.0f >= MoveDir.ix())
+	}
+	{
+		if (-6.0f >= MoveDir.y)
 		{
-
-			if (-1.5f <= MoveDir.ix())
-			{
-				MoveDir.x = 0.0f;
-			}
-			else
-			{
-				MoveDir.x = -15.0f;
-			}
+			MoveDir.y = -6.0f;
 		}
-		if (15.0f <= MoveDir.iy()
-			&& 0.0f >= MoveDir.iy())
+		if (-8.0f >= MoveDir.x)
 		{
-			if (1.5 >= MoveDir.iy())
-			{
-				MoveDir.y = 0.0f;
-			}
-			else
-			{
-				MoveDir.y =15.0f;
-			}
-
+			MoveDir.x = -8.0f;
 		}
-		if (-15.0f >= MoveDir.iy()
-			&& 0.0f <= MoveDir.iy())
+		if (8.0f <= MoveDir.x)
 		{
-			if (-1.5 <= MoveDir.iy())
-			{
-				MoveDir.y = 0.0f;
-			}
-			else
-			{
-				MoveDir.y = -15.0f;
-			}
-			/*		if (2500.3f <= MoveDir.Len2D())
-					{
-						MoveDir.Range2D(25000.0f);
-					}*/
+			MoveDir.x = 8.0f;
 		}
-
-		if (false == GameEngineInput::GetInst()->IsPress("MoveLeft") &&
-			false == GameEngineInput::GetInst()->IsPress("MoveRight") &&
-			false == GameEngineInput::GetInst()->IsPress("Down")
-			)
+	}
+	{
+	/*	if (8.0f <= MoveDir.Len2D())
 		{
-			MoveDir.x += -(MoveDir.x * GameEngineTime::GetDeltaTime() * 4);
-
-
-			if (RenderRun->IsAnimationName("RunRight"))
-			{
-				RenderRun->ChangeAnimation("MarioRight");
-			}
-			if (RenderRun->IsAnimationName("RunLeft"))
-			{
-				RenderRun->ChangeAnimation("MarioLeft");
-			}
-
-
-
+			MoveDir.Range2D(8.0f);
+		}*/
+	}
+	{
+		float y = MoveDir.y;
+		if (0.0f <= MoveDir.y
+			&& -0.2f >= MoveDir.y)
+		{
+			MoveDir.y = -0.5f;
 		}
+	}
+	if (0 < MoveDir.x)
+	{
+		if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
+		{
+			RenderRun->ChangeAnimation("TurnLeft");
+		}
+	}
+
+	if (false == GameEngineInput::GetInst()->IsPress("MoveLeft") &&
+		false == GameEngineInput::GetInst()->IsPress("MoveRight") &&
+		false == GameEngineInput::GetInst()->IsPress("Down")
+		)
+	{
+		MoveDir += -MoveDir * GameEngineTime::GetDeltaTime() * 4;
+
+		if (0.05f >= MoveDir.Len2D())
+		{
+			MoveDir = float4::ZERO;
+			return;
+		}
+
+
+		if (RenderRun->IsAnimationName("RunRight"))
+		{
+			RenderRun->ChangeAnimation("MarioRight");
+		}
+		if (RenderRun->IsAnimationName("RunLeft"))
+		{
+			RenderRun->ChangeAnimation("MarioLeft");
+		}
+
+
+
+	}
+
+	{
 		float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime());
 		float4 CheckPos = NextPos;
 		float4 PlayerLeft = float4{ -40, 0 };
 		float4 PlayerRight = float4{ 40, 0 };
 		float4 PlayerDown = float4{ 0, 40 };
 
-			int Color = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, 38.0f));
-			int Down1 = WhiteMap_->GetImagePixel(GetPosition() + float4(38.0f, 38.0f));
-			int Down2 = WhiteMap_->GetImagePixel(GetPosition() + float4(-38.0f, 38.0f));
-			int ColorUp = WhiteMap_->GetImagePixel(GetPosition() + float4(0.0f, -38.0f));
-			AccGravity_ += GameEngineTime::GetDeltaTime() * Gravity_;
+		int Color = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, 38.0f));
+		int Down1 = WhiteMap_->GetImagePixel(GetPosition() + float4(38.0f, 38.0f));
+		int Down2 = WhiteMap_->GetImagePixel(GetPosition() + float4(-38.0f, 38.0f));
+		int ColorUp = WhiteMap_->GetImagePixel(GetPosition() + float4(0.0f, -38.0f));
+
 
 		if ((RGB(255, 255, 255) != Color)
 			)
 
+		{
+			if (RenderRun->IsAnimationName("JumpLeft"))
 			{
-				if (RenderRun->CurrentAnimation("JumpLeft"))
+				RenderRun->ChangeAnimation("MarioLeft");
+			}
+			else
+				if (RenderRun->IsAnimationName("JumpRight"))
 				{
-					RenderRun->ChangeAnimation("MarioLeft");
+					RenderRun->ChangeAnimation("MarioRight");
 				}
-				else
-					if (RenderRun->CurrentAnimation("JumpRight"))
-					{
-						RenderRun->ChangeAnimation("MarioRight");
-					}
-				/*MoveDir.y =0;*/
-				AccGravity_ = 0;
-			}
-			float4 LeftRight = {0, 0};
-			float4 UpUp = { 0, 0 };
-			float4 DownDown = { 0, 0 };
-			int Left = WhiteMap_->GetImagePixel(NextPos + float4(-38.0f, 0.0f));
-			int Right = WhiteMap_->GetImagePixel(NextPos + float4(38.0f, 0.0f));
-			int Down = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, 38.0f));
-			int Up = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, -38.0f));
+			/*MoveDir.y =0;*/
+			AccGravity_ = 0;
+		}
+		float4 LeftRight = { 0, 0 };
+		float4 UpUp = { 0, 0 };
+		float4 DownDown = { 0, 0 };
+		int Left = WhiteMap_->GetImagePixel(NextPos + float4(-38.0f, 0.0f));
+		int Right = WhiteMap_->GetImagePixel(NextPos + float4(38.0f, 0.0f));
+		int Down = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, 38.0f));
+		int Up = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, -38.0f));
 
-			LeftRight.x = MoveDir.x;
-			UpUp.y = MoveDir.y;
-			DownDown.y = MoveDir.y;
-			bool DownCheck = false;
-			bool UpCheck = false;
-			bool RightCheck = false;
-			bool LeftCheck = false;
-		
-			MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * AccGravity_;
-			if (0 < MoveDir.y)
-			{
-				DownCheck = true;
-			}
-			if (0 > MoveDir.y)
-			{
-				UpCheck = true;
-			}
-			//if (0 == (int)MoveDir.y)
-			//{
-			//	AccGravity_ = 0;
-			//}
-			if (0 < MoveDir.x)
-			{
-				RightCheck = true;
-			}
-			if (0 > MoveDir.x)
-			{
-				LeftCheck = true;
-			}
+		LeftRight.x = MoveDir.x;
+		UpUp.y = MoveDir.y;
+		DownDown.y = MoveDir.y;
+		bool DownCheck = false;
+		bool UpCheck = false;
+		bool RightCheck = false;
+		bool LeftCheck = false;
+
+		if ((GetPosition().x - 35 < GetLevel()->GetCameraPos().x))
+		{
+			SetMove(float4::RIGHT * 0.1f);
+			return;
+		}
+
+		if (0 <= MoveDir.y)
+		{
+			AccGravity_ += GameEngineTime::GetDeltaTime() * Gravity_;
+			DownCheck = true;
+		}
+		if (0 > MoveDir.y)
+		{
+			AccGravity_ += GameEngineTime::GetDeltaTime() * Gravity_;
+			UpCheck = true;
+		}
+		//if (0 == (int)MoveDir.y)
+		//{
+		//	AccGravity_ = 0;
+		//}
+		if (0 < MoveDir.x)
+		{
+			RightCheck = true;
+		}
+		if (0 > MoveDir.x)
+		{
+			LeftCheck = true;
+		}
+		MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * AccGravity_;
 		if ((RGB(0, 0, 0) != (Left))
 			&& LeftCheck
 			)
@@ -334,6 +354,10 @@ void Player::Update()
 
 		{
 			SetMove(LeftRight * GameEngineTime::GetDeltaTime() * Speed_);
+		}
+		if ((RGB(0, 0, 0) != (Up)))
+		{
+
 		}
 		if ((RGB(0, 0, 0) != (Up))
 			&& UpCheck

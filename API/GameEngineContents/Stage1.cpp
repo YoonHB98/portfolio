@@ -1,7 +1,9 @@
 #include "Stage1.h"
 #include "Point.h"
 #include "Sound.h"
-
+#include "WorldCount.h"
+#include "SecretBlock.h"
+#include "Secret10CoinBlock.h"
 
 
 Stage1::Stage1() 
@@ -14,7 +16,10 @@ Stage1::~Stage1()
 
 void Stage1::Loading()
 {
+	{
+		WorldCount* UI = CreateActor<WorldCount>(2);
 
+	}
 
 	{
 		UI = CreateActor<TopUI>(1);
@@ -30,8 +35,8 @@ void Stage1::Loading()
 	}
 	{
 	Player* Mario = CreateActor<Player>(3);
-	/*Mario = CreateActor<Player>(3);*/
-	Mario->SetPosition(float4{ 200, 980 });
+
+	Mario->SetPosition(float4{ 200, 1000 });
 	}
 	{
 		Map1* Actor = CreateActor<Map1>(0);
@@ -44,6 +49,10 @@ void Stage1::Loading()
 		Actor->GetRenderer()->SetPivot(BackActor);
 	}
 	// ºí·Ï
+	{
+		SecretBlock* Actor = CreateActor<SecretBlock>(2);
+		Actor->CreateSecretBlock(float4{ 5160, 680 });
+	}
 
 	{
 		Block* Actor = CreateActor<Block>(2);
@@ -150,8 +159,9 @@ void Stage1::Loading()
 		CoinActor->CreateBoxCoin(float4{ 7560, 440 });
 	}
 	{
-		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 7560, 760 });
+	
+		Secret10CoinBlock* Actor = CreateActor<Secret10CoinBlock>(2);
+		Actor->CreateSecret10CoinBlock(float4{ 7560, 760 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);

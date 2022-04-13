@@ -46,10 +46,6 @@ void BoxCoin::Start()
 void BoxCoin::Update()
 {
 	Time -= GameEngineTime::GetDeltaTime();
-	if (4.9 >= Time)
-	{
-
-	}
 	Time_ = Time_ - GameEngineTime::GetDeltaTime();
 
 	if (up == 1)
@@ -87,7 +83,7 @@ void BoxCoin::Update()
 		Point200* Ptr = GetLevel()->CreateActor<Point200>(2);
 		Ptr->SetPosition(GetPosition());
 		Time = 5.0f;
-		Sound::SoundPlay = "Coin";
+		GameEngineSound::SoundPlayOneShot("coin.wav", 0);
 	}
 	
 }
