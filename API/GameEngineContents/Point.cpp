@@ -11,6 +11,16 @@ Point::~Point()
 
 void Point::Start()
 {
+	GameEngineRenderer* PP = CreateRenderer("number.bmp");
+	PP->CameraEffectOff();
+	PP->SetTransColor(RGB(146, 144, 255));
+	PP->SetPivot(float4(140, 145));
+	PP->SetIndex(9);
+	GameEngineRenderer* PPP = CreateRenderer("number.bmp");
+	PPP->CameraEffectOff();
+	PPP->SetTransColor(RGB(146, 144, 255));
+	PPP->SetPivot(float4(100, 145));
+	PPP->SetIndex(9);
 	One = CreateRenderer("0.bmp");
 	One->CameraEffectOff();
 	One->SetTransColor(RGB(146, 144, 255));

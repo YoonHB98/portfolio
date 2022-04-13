@@ -1,4 +1,6 @@
 #include "Goomba.h"
+#include <GameEngineBase/GameEngineSound.h>
+#include "Point100.h"
 
 
 
@@ -69,6 +71,13 @@ void Goomba::Update()
 	{
 		Actor->ChangeAnimation("Death");
 		MoveDir = float4::ZERO;
+		GameEngineSound::SoundPlayOneShot("stomp.wav");
+		if (DeathCount == false)
+		{
+			Point100* Ptr = GetLevel()->CreateActor<Point100>(2);
+			Ptr->SetPosition(GetPosition());
+			DeathCount = true;
+		}
 		Death(0.5f);
 	}
 	if (true == RightCollision->CollisionCheck("MonsterLeft", CollisionType::Rect, CollisionType::Rect))

@@ -44,6 +44,7 @@ public:
 protected:
 
 private:
+	bool DeathCount = false;
 	float Speed_;
 	float4 ReturnPosition();
 

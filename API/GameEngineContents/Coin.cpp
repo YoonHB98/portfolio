@@ -18,7 +18,7 @@ void Coin::Start()
 
 	Actor->CreateAnimation("UICOIN.bmp", "100", 0, 2, 0.2f, true);
 	Actor->ChangeAnimation("100");
-	Actor->SetPivot(float4{ 460, 145 });
+	Actor->SetPivot(float4{ 460, 140 });
 	Actor->CameraEffectOff();
 	Actor->SetIndex(0);
 
