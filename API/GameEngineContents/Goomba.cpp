@@ -44,7 +44,9 @@ void Goomba::Start()
 
 void Goomba::Update()
 {
-	if (Pause::pause)
+	if (Pause::pause
+		||Pause::end
+		||Pause::death)
 	{
 		Actor->PauseOn();
 		return;

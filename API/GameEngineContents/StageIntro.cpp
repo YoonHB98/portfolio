@@ -4,6 +4,7 @@
 #include "WorldCount.h"
 #include "Pause.h"
 #include "TopUI.h"
+#include "Sound.h"
 
 StageIntro::StageIntro() 
 {
@@ -24,6 +25,9 @@ void StageIntro::Loading()
 
 void StageIntro::Update()
 {
+	Pause::first = false;
 	Pause::pause = false;
+	Pause::death = false;
+	Pause::end = false;
 }
 

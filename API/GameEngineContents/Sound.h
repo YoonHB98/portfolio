@@ -30,9 +30,8 @@ protected:
 private:
 	float Time;
 	GameEngineRenderer* One;
-	SoundState CurState_;
 	void Start() override;
 	void Update() override;
-	GameEngineSoundPlayer Coin;
+	GameEngineSoundPlayer BgmPlayer;
 };
 

@@ -34,7 +34,9 @@ void QuestionBlock::Start()
 
 void QuestionBlock::Update()
 {
-	if (Pause::pause)
+	if (Pause::pause
+		|| Pause::death
+		|| Pause::end)
 	{
 		return;
 	}

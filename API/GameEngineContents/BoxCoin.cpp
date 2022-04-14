@@ -46,7 +46,9 @@ void BoxCoin::Start()
 
 void BoxCoin::Update()
 {
-	if (Pause::pause)
+	if (Pause::pause
+		||Pause::death
+		||Pause::end)
 	{
 		return;
 	}
