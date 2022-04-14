@@ -25,7 +25,7 @@ void StageIntro::Loading()
 
 void StageIntro::Update()
 {
-	Pause::first = false;
+	Pause::first = true;
 	Pause::pause = false;
 	Pause::death = false;
 	Pause::end = false;

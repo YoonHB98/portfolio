@@ -45,11 +45,11 @@ void WorldCount::Update()
 	{
 		Two->ChangeAnimation("2");
 	}
-	if (1 == WorldCountUI)
+	if (3 == WorldCountUI)
 	{
 		Two->ChangeAnimation("3");
 	}
-	if (1 == WorldCountUI)
+	if (4 == WorldCountUI)
 	{
 		Two->ChangeAnimation("4");
 	}

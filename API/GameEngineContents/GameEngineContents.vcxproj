@@ -52,6 +52,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="flag.h" />
     <ClInclude Include="Flower.h">
       <SubType>
       </SubType>
@@ -177,6 +178,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="flag.cpp" />
     <ClCompile Include="Flower.cpp">
       <SubType>
       </SubType>

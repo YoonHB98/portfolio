@@ -45,6 +45,7 @@ void Player::Start()
 	RenderRun->CreateAnimation("Mario.bmp", "JumpLeft", 11, 11, 0.1f, false);
 	RenderRun->CreateAnimation("Mario.bmp", "Death", 15, 15, 0.1f, false);
 	RenderRun->CreateAnimation("Mario.bmp", "Flag", 16, 17, 0.15f, true);
+	RenderRun->CreateAnimation("Mario.bmp", "End", 18, 18, 0.15f, false);
 	RenderRun->ChangeAnimation("MarioRight");
 
 
@@ -65,6 +66,68 @@ void Player::Update()
 	if (nullptr == WhiteMap_)
 	{
 		MsgBoxAssert("맵 충돌용 이미지를 찾지 못했습니다.")
+	}
+	if (Pause::end)
+	{
+		if (FirstEnd_)
+		{
+			RenderRun->ChangeAnimation("Flag");
+			FirstEnd_ = false;
+		}
+		Time_ = Time_ + GameEngineTime::GetDeltaTime();
+		MoveDir = float4::DOWN;
+		float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+		int Down = WhiteMap_->GetImagePixel(NextPos + float4(38.0f, 38.0f));
+		if ((RGB(0, 0, 0) != (Down)))
+		{
+			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+		}
+		if (1.2f  <= Time_
+			&& 1.3f > Time_)
+		{
+			SetPosition(float4{15920, 960});
+			RenderRun->ChangeAnimation("End");
+			return;
+		}
+		if (1.3f <= Time_)
+		{
+			RenderRun->ChangeAnimation("RunRight");
+			if ((RGB(0, 0, 0) != (Down)))
+			{
+				MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * 200;
+			}
+			else
+			{
+				MoveDir = float4::ZERO;
+			}
+			  MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * 600;
+			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+		}
+		return;
+	}
+	if (Pause::death)
+	{
+		Time_ = Time_ + GameEngineTime::GetDeltaTime();
+		if (3.0f <= Time_)
+		{
+			Time_ = 0;
+			GameEngine::GetInst().ChangeLevel("StageIntro");
+			float4 CurCameraPos = GetLevel()->GetCameraPos();
+			CurCameraPos.x = 0;
+			GetLevel()->SetCameraPos(CurCameraPos);
+			RenderRun->ChangeAnimation("MarioRight");
+		}
+		if (0.8f >= Time_)
+		{
+			SetMove(float4::UP * 2);
+			return;
+		}
+		if (1.2f >= Time_)
+		{
+			SetMove(float4::DOWN * 2);
+			return;
+		}
+		return;
 	}
 	//bool Down_; // 최초 키를 눌렀을때
 	//bool Press_; // 그 이후로 지속적으로 누르고 있을때.
@@ -117,6 +180,7 @@ void Player::Update()
 		CurCameraPos.y = GetLevel()->GetCameraPos().y - (GetLevel()->GetCameraPos().y);
 		GetLevel()->SetCameraPos(CurCameraPos);
 	}
+
 	//아무것도 안 누를때
 	if (true == GameEngineInput::GetInst()->IsDown("Jump"))
 	{
@@ -174,34 +238,7 @@ void Player::Update()
 	//}
 
 
-	if (Pause::end)
-	{
-		RenderRun->ChangeAnimation("Flag");
-	}
-	if (Pause::death)
-	{
-		Time_ = Time_ + GameEngineTime::GetDeltaTime();
-		if (3.0f <= Time_)
-		{
-			Time_ = 0;
-			GameEngine::GetInst().ChangeLevel("StageIntro");
-			float4 CurCameraPos = GetLevel()->GetCameraPos();
-			CurCameraPos.x = 0;
-			GetLevel()->SetCameraPos(CurCameraPos);
-			RenderRun->ChangeAnimation("MarioRight");
-		}
-		if (0.8f >= Time_)
-		{
-			SetMove(float4::UP * 2);
-			return;
-		}
-		if (1.2f >= Time_)
-		{
-			SetMove(float4::DOWN * 2);
-			return;
-		}
-		return;
-	}
+
 
 
 	MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * AccGravity_;

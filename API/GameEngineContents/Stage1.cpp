@@ -6,6 +6,7 @@
 #include "Secret10CoinBlock.h"
 #include "Pause.h"
 #include "Castle.h"
+#include "flag.h"
 
 Stage1::Stage1() 
 {
@@ -279,6 +280,10 @@ void Stage1::Loading()
 		Castle* Actor = CreateActor<Castle>(1);
 		Actor->CreateCastle(float4{ 16360,800 });
 	}
+	{
+		flag* Actor = CreateActor<flag>(1);
+		Actor->Createflag(float4{ 15840,280 });
+	}
 	BgmPlayer = GameEngineSound::SoundPlayControl("blank.wav");
 }
 
@@ -295,7 +300,8 @@ void Stage1::Update()
 void Stage1::LevelChangeStart()
 { 
 	//200, 1000
-	Mario->SetPosition(float4{ 14000, 1000 });
+	//üũ 14000, 1000
+	Mario->SetPosition(float4{ 200, 1000 });
 		UI->TimerReset();
 		BgmPlayer.Stop();
 	    BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");
