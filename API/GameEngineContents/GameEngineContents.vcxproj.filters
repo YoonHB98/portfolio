@@ -140,6 +140,12 @@
     <ClInclude Include="Secret10CoinBlock.h">
       <Filter>Map\Block</Filter>
     </ClInclude>
+    <ClInclude Include="Pause.h">
+      <Filter>Play\Global\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Castle.h">
+      <Filter>Map\Block</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -238,6 +244,12 @@
       <Filter>Map\Block</Filter>
     </ClCompile>
     <ClCompile Include="Secret10CoinBlock.cpp">
+      <Filter>Map\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Pause.cpp">
+      <Filter>Play\Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Castle.cpp">
       <Filter>Map\Block</Filter>
     </ClCompile>
   </ItemGroup>

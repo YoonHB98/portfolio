@@ -1,5 +1,5 @@
 #include "Block.h"
-
+#include "Pause.h"
 
 
 Block::Block() 
@@ -36,7 +36,10 @@ void Block::Start()
 void Block::Update()
 {
 	
-
+	if (Pause::pause)
+	{
+		return;
+	}
 	if (up == 1)
 	{
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();

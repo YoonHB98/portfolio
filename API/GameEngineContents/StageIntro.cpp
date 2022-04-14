@@ -2,6 +2,8 @@
 #include "LevelIntro.h"
 #include "Point.h"
 #include "WorldCount.h"
+#include "Pause.h"
+#include "TopUI.h"
 
 StageIntro::StageIntro() 
 {
@@ -22,5 +24,6 @@ void StageIntro::Loading()
 
 void StageIntro::Update()
 {
+	Pause::pause = false;
 }
 

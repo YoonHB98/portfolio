@@ -4,7 +4,8 @@
 #include "WorldCount.h"
 #include "SecretBlock.h"
 #include "Secret10CoinBlock.h"
-
+#include "Pause.h"
+#include "Castle.h"
 
 Stage1::Stage1() 
 {
@@ -34,7 +35,7 @@ void Stage1::Loading()
 		Sound* SoundR = CreateActor<Sound>(0);
 	}
 	{
-	Player* Mario = CreateActor<Player>(3);
+	Mario = CreateActor<Player>(3);
 
 	Mario->SetPosition(float4{ 200, 1000 });
 	}
@@ -274,18 +275,27 @@ void Stage1::Loading()
 		Goomba* Actor = CreateActor<Goomba>(1);
 		Actor->CreateGoomba(float4{ 4240,1000 });
 	}
-
+	{
+		Castle* Actor = CreateActor<Castle>(1);
+		Actor->CreateCastle(float4{ 16360,800 });
+	}
+	BgmPlayer = GameEngineSound::SoundPlayControl("blank.wav");
 }
 
 void Stage1::Update()
 {
+	if (Pause::pause)
+	{
+		BgmPlayer.Stop();
+	}
 
 }
 void Stage1::LevelChangeStart()
-{
- 
-	CreateActor<TopUI>(1);
-
-	BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");
+{ 
+	//200, 1000
+	Mario->SetPosition(float4{ 15500, 1000 });
+		UI->TimerReset();
+		BgmPlayer.Stop();
+	    BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");
 
 }
