@@ -41,7 +41,18 @@ void WorldCount::Update()
 	{
 		Two->ChangeAnimation("1");
 	}
-	
+	if (2 == WorldCountUI)
+	{
+		Two->ChangeAnimation("2");
+	}
+	if (1 == WorldCountUI)
+	{
+		Two->ChangeAnimation("3");
+	}
+	if (1 == WorldCountUI)
+	{
+		Two->ChangeAnimation("4");
+	}
 }
 
 int WorldCount::WorldCountUI = 1;

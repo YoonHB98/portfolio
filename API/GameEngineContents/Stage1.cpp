@@ -284,7 +284,9 @@ void Stage1::Loading()
 
 void Stage1::Update()
 {
-	if (Pause::pause)
+	if (Pause::pause
+		|| Pause::death
+		|| Pause::end)
 	{
 		BgmPlayer.Stop();
 	}
@@ -293,7 +295,7 @@ void Stage1::Update()
 void Stage1::LevelChangeStart()
 { 
 	//200, 1000
-	Mario->SetPosition(float4{ 15500, 1000 });
+	Mario->SetPosition(float4{ 14000, 1000 });
 		UI->TimerReset();
 		BgmPlayer.Stop();
 	    BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");
