@@ -146,6 +146,9 @@
     <ClInclude Include="Castle.h">
       <Filter>Map\Block</Filter>
     </ClInclude>
+    <ClInclude Include="flag.h">
+      <Filter>Map\Block</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -250,6 +253,9 @@
       <Filter>Play\Global\UI</Filter>
     </ClCompile>
     <ClCompile Include="Castle.cpp">
+      <Filter>Map\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="flag.cpp">
       <Filter>Map\Block</Filter>
     </ClCompile>
   </ItemGroup>

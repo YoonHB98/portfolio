@@ -27,7 +27,7 @@ void Castle::Start()
 {
 	//Actor->SetPosition(Pivot);
 	//Actor->CreateCollision("Castle", { 80, 10 }, CoPivot);
-	EndCollision = CreateCollision("Castle", {20, 1200 }, { -520, 0 });
+	EndCollision = CreateCollision("Castle", {20, 1200 }, { -480, 0 });
 
 	CreateRenderer("Castle.bmp");
 
@@ -41,7 +41,7 @@ void Castle::Update()
 		Pause::first = false;
 		Pause::end = true;
 		WorldCount::WorldCountUI = WorldCount::WorldCountUI + 1;
-		GameEngineSound::SoundPlayOneShot("castleend.wav");
+		GameEngineSound::SoundPlayOneShot("levelend.wav");
 	}
 }
 

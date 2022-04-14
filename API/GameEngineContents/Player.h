@@ -44,6 +44,7 @@ private:
 	float AccSpeed_;
 	float Gravity_;
 	float AccGravity_;
+	bool FirstEnd_ = true;
 	GameEngineImage* WhiteMap_;
 	GameEngineCollision* PlayerCollision;
 	GameEngineCollision* PlayerRight_;
