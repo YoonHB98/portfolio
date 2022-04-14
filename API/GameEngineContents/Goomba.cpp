@@ -1,6 +1,7 @@
 #include "Goomba.h"
 #include <GameEngineBase/GameEngineSound.h>
 #include "Point100.h"
+#include "Pause.h"
 
 
 
@@ -35,14 +36,19 @@ void Goomba::CreateGoomba(const float4& _Pivot)
 void Goomba::Start()
 {
 	GoombaCollision = CreateCollision("Goomba", { 80, 5 }, { 0, -40 });
-	RightCollision = CreateCollision("MonsterRight", { 5,80 }, { 40, 0 });
-	LeftCollision = CreateCollision("MonsterLeft", { 5, 80 }, { -40, 0 });
+	RightCollision = CreateCollision("Monster", { 5,80 }, { 40, 0 });
+	LeftCollision = CreateCollision("Monster", { 5, 80 }, { -40, 0 });
 	CheckCollision = CreateCollision("CheckPos", { 80, 1200 }, { -1280, 40 });
 	MoveDir = float4::LEFT;
 }
 
 void Goomba::Update()
 {
+	if (Pause::pause)
+	{
+		Actor->PauseOn();
+		return;
+	}
 	ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
 	float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 	float4 CheckPos = NextPos - float4(0.0f, 40.0f);
@@ -67,8 +73,10 @@ void Goomba::Update()
 	{
 		up = 1;
 	}
-	if (true == GoombaCollision->CollisionCheck("PlayerBot", CollisionType::Rect, CollisionType::Rect))
+	if (true == GoombaCollision->CollisionCheck("PlayerBot", CollisionType::Rect, CollisionType::Rect)
+	&& DeathFirst)
 	{
+		DeathFirst = false;
 		Actor->ChangeAnimation("Death");
 		MoveDir = float4::ZERO;
 		GameEngineSound::SoundPlayOneShot("stomp.wav");
@@ -76,15 +84,16 @@ void Goomba::Update()
 		{
 			Point100* Ptr = GetLevel()->CreateActor<Point100>(2);
 			Ptr->SetPosition(GetPosition());
+			Point::PointUI = Point::PointUI + 100;
 			DeathCount = true;
 		}
-		Death(0.5f);
+		Death(0.25f);
 	}
-	if (true == RightCollision->CollisionCheck("MonsterLeft", CollisionType::Rect, CollisionType::Rect))
+	if (true == RightCollision->CollisionCheck("Monster", CollisionType::Rect, CollisionType::Rect))
 	{
 		MoveDir = MoveDir * float4{ -1 , -1 };
 	}
-	if (true == LeftCollision->CollisionCheck("MonsterRight", CollisionType::Rect, CollisionType::Rect))
+	if (true == LeftCollision->CollisionCheck("Monster", CollisionType::Rect, CollisionType::Rect))
 	{
 		MoveDir = MoveDir * float4{ -1 , -1 };
 	}

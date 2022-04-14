@@ -3,6 +3,7 @@
 #include "Point.h"
 #include "Coin.h"
 #include "Sound.h"
+#include "Pause.h"
 
 
 BoxCoin::BoxCoin()
@@ -45,6 +46,10 @@ void BoxCoin::Start()
 
 void BoxCoin::Update()
 {
+	if (Pause::pause)
+	{
+		return;
+	}
 	Time -= GameEngineTime::GetDeltaTime();
 	Time_ = Time_ - GameEngineTime::GetDeltaTime();
 

@@ -1,5 +1,7 @@
 #include "Player.h"
+#include "Pause.h"
 #include <GameEngineBase/GameEngineSound.h>
+#include "LevelIntro.h"
 
 
 
@@ -25,8 +27,8 @@ void Player::Start()
 {
 	PlayerCollision = CreateCollision("PlayerHitBox", { 80, 20 }, { 0, -40 });
 	PlayerCollision = CreateCollision("PlayerBot", { 80, 20 }, { 0, 40 });
-	PlayerCollision = CreateCollision("PlayerItem", { 5,80 }, { 40, 0 });
-	PlayerCollision = CreateCollision("PlayerItem", { 5, 80 }, { -40, 0 });
+	PlayerRight_ = CreateCollision("PlayerItem", { 5,80 }, { 40, 0 });
+	PlayerLeft_ = CreateCollision("PlayerItem", { 5, 80 }, { -40, 0 });
 	Right = 0;
 	Left = 0;
 
@@ -35,12 +37,14 @@ void Player::Start()
 	RenderRun->SetIndex(0);
 	RenderRun->CreateAnimation("Mario.bmp", "MarioRight", 0, 0, 0.1f, false);
 	RenderRun->CreateAnimation("Mario.bmp", "MarioLeft", 1, 1, 0.1f, false);
-	RenderRun->CreateAnimation("Mario.bmp", "RunRight", 2, 4, 0.1f, true);
-	RenderRun->CreateAnimation("Mario.bmp", "RunLeft", 5, 7, 0.1f, true);
+	RenderRun->CreateAnimation("Mario.bmp", "RunRight", 2, 4, 0.07f, true);
+	RenderRun->CreateAnimation("Mario.bmp", "RunLeft", 5, 7, 0.07f, true);
 	RenderRun->CreateAnimation("Mario.bmp", "TurnRight", 8, 8, 100.0f, false);
 	RenderRun->CreateAnimation("Mario.bmp", "TurnLeft", 9, 9, 20.0f, false);
 	RenderRun->CreateAnimation("Mario.bmp", "JumpRight", 10, 10, 0.1f, false);
 	RenderRun->CreateAnimation("Mario.bmp", "JumpLeft", 11, 11, 0.1f, false);
+	RenderRun->CreateAnimation("Mario.bmp", "Death", 15, 15, 0.1f, false);
+	RenderRun->CreateAnimation("Mario.bmp", "Flag", 16, 17, 0.07f, true);
 	RenderRun->ChangeAnimation("MarioRight");
 
 
@@ -56,6 +60,30 @@ void Player::Start()
 
 void Player::Update()
 {
+	if (Pause::pause)
+	{
+		Time_ = Time_ + GameEngineTime::GetDeltaTime();
+		if (3.0f <= Time_)
+		 {
+			Time_ = 0;
+			GameEngine::GetInst().ChangeLevel("StageIntro");
+			float4 CurCameraPos = GetLevel()->GetCameraPos();
+			CurCameraPos.x = 0;
+			GetLevel()->SetCameraPos(CurCameraPos);
+			RenderRun->ChangeAnimation("MarioRight");
+		 }
+		if (0.8f >= Time_)
+		{
+			SetMove(float4::UP * 2);
+			return;
+		}
+		if (1.2f >= Time_)
+		{
+			SetMove(float4::DOWN * 2);
+			return;
+		}
+	return;
+	}
 	WhiteMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
 	if (nullptr == WhiteMap_)
 	{
@@ -224,6 +252,26 @@ void Player::Update()
 			MoveDir.Range2D(8.0f);
 		}*/
 	}
+	if (true == PlayerCollision->CollisionCheck("Goomba", CollisionType::Rect, CollisionType::Rect))
+	{
+		MoveDir = float4::UP *40;
+		AccGravity_ = 0;
+		SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_ );
+	}
+	if (true == PlayerLeft_->CollisionCheck("Monster", CollisionType::Rect, CollisionType::Rect)
+		|| true == PlayerRight_->CollisionCheck("Monster", CollisionType::Rect, CollisionType::Rect))
+	{
+
+		Pause::pause = true;
+		RenderRun->ChangeAnimation("Death");
+		SetMove(float4::UP);
+		GameEngineSound::SoundPlayOneShot("Death.wav", 0);
+		LevelIntro::DeathCount = LevelIntro::DeathCount - 1;
+
+		return;
+	}
+
+
 	{
 		float y = MoveDir.y;
 		if (0.0f <= MoveDir.y

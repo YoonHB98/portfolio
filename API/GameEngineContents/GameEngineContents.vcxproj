@@ -39,6 +39,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Castle.h" />
     <ClInclude Include="Coin.h">
       <SubType>
       </SubType>
@@ -73,6 +74,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Name.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Pause.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -159,6 +164,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Castle.cpp" />
     <ClCompile Include="Coin.cpp">
       <SubType>
       </SubType>
@@ -193,6 +199,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Name.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Pause.cpp">
       <SubType>
       </SubType>
     </ClCompile>
