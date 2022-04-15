@@ -16,7 +16,7 @@ void Secret10CoinBlock::CreateSecret10CoinBlock(const float4& _Pivot)
 	{
 		float4 Pivot = _Pivot;
 		float4 CoPivot = Pivot;
-		CoPivot.y = Pivot.y + 36;
+		CoPivot.y = Pivot.y + 18;
 		
 		SetPosition(Pivot);
 	}
@@ -26,7 +26,7 @@ void Secret10CoinBlock::Start()
 {
 	//Actor->SetPosition(Pivot);
 	//Actor->CreateCollision("Secret10CoinBlock", { 80, 10 }, CoPivot);
-	BlockCollision = CreateCollision("Block", { 80, 1 }, { 0, 40 });
+	BlockCollision = CreateCollision("Block", { 40, 1 }, { 0, 20 });
 
 	Actor = CreateRenderer("Block.bmp");
 	Actor->CreateAnimation("SecretCoinBlock.bmp", "Block", 0, 0, 0.1f, false);
@@ -48,7 +48,7 @@ void Secret10CoinBlock::Update()
 	if (up == 1)
 	{
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
-		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 200.0f);
+		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 100.0f);
 		if (Time_ > 0.2f)
 		{
 			Time_ = 0.0f;
@@ -60,7 +60,7 @@ void Secret10CoinBlock::Update()
 	if (down == 1)
 	{
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
-		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * 200.0f);
+		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * 100.0f);
 		if (Time_ > 0.2f)
 		{
 			Time_ = 0.0f;
@@ -73,7 +73,7 @@ void Secret10CoinBlock::Update()
 	if (true == BlockCollision->CollisionCheck("PlayerHitBox", CollisionType::Rect, CollisionType::Rect))
 {
 		BoxCoin* Ptr = GetLevel()->CreateActor<BoxCoin>(1);
-		Ptr->CreateBoxCoin(float4{ 7560, 760 });
+		Ptr->CreateBoxCoin(float4{ 3780, 380 });
 		up = 1;
 		Count = Count - 1;
 }
