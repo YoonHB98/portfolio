@@ -16,12 +16,11 @@ TitleCharacter::~TitleCharacter()
 
 void TitleCharacter::Start()
 {
-	SetPosition(float4{0, 1078});
+	SetPosition(float4{0, 539});
 
 
 	TitleChar = CreateRenderer("Mario.bmp");
-	TitleChar->SetPivot({ 100, -80 });
-	TitleChar->SetTransColor(RGB(146, 144, 255));
+	TitleChar->SetPivot({ 50, -40 });
 	TitleChar->SetIndex(0);
 
 	

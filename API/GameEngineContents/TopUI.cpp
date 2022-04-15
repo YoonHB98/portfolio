@@ -33,28 +33,24 @@ void TopUI::Start()
 	//SetPosition({ 680, 100 });
 
 	
-Three_ = CreateRenderer("number.bmp");
-Two_ = CreateRenderer("number.bmp");;
-One_ = CreateRenderer("number.bmp");;
+
 	GameEngineRenderer * Top = CreateRenderer("TOP.bmp");
+	Three_ = CreateRenderer("number.bmp");
+	Two_ = CreateRenderer("number.bmp");;
+	One_ = CreateRenderer("number.bmp");;
 	float4 TopUIPivot = GameEngineWindow::GetScale().Half();
 	GameEngineRenderer* Name= CreateRenderer("Name.bmp");
-	Name->SetPivot(float4(220, 100));
-	Name->SetTransColor(RGB(148, 148, 255));
+	Name->SetPivot(float4(100, 50));
 	Name->CameraEffectOff();
-	Top->SetPivot(float4(640, 81));
-	Top->SetTransColor(RGB(92, 148, 252));
+	Top->SetPivot(float4(310, 41));
 	Top->CameraEffectOff();
 	Three_->CameraEffectOff();
-	Three_->SetTransColor(RGB(146, 144, 255));
 	Three_->SetIndex(0);
-	Three_->SetPivot(float4(1065, 145));
+	Three_->SetPivot(float4(520, 70));
 	Two_->CameraEffectOff();
-	Two_->SetTransColor(RGB(146, 144, 255));
-	Two_->SetPivot(float4(1105, 145));
+	Two_->SetPivot(float4(540, 70));
 	One_->CameraEffectOff();
-	One_->SetTransColor(RGB(146, 144, 255));
-	One_->SetPivot(float4(1145, 145));
+	One_->SetPivot(float4(560, 70));
 
 	Three_->CreateAnimation("numberreverse.bmp", "100", 6,9, 100.0f, true);
 	Three_->CreateAnimation("numberreverse.bmp", "Start", 5, 5, 100.0f, false);

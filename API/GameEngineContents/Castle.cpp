@@ -27,7 +27,7 @@ void Castle::Start()
 {
 	//Actor->SetPosition(Pivot);
 	//Actor->CreateCollision("Castle", { 80, 10 }, CoPivot);
-	EndCollision = CreateCollision("Castle", {20, 1200 }, { -480, 0 });
+	EndCollision = CreateCollision("Castle", {10, 600 }, { -240, 0 });
 
 	CreateRenderer("Castle.bmp");
 

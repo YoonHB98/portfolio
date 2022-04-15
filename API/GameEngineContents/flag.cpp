@@ -18,7 +18,7 @@ void flag::Createflag(const float4& _Pivot)
 	{
 		float4 Pivot = _Pivot;
 		float4 CoPivot = Pivot;
-		CoPivot.y = Pivot.y + 36;
+		CoPivot.y = Pivot.y + 18;
 		
 		SetPosition(Pivot);
 	}
@@ -41,7 +41,7 @@ void flag::Update()
 		{
 			return;
 		}
-		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * 500);
+		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * 250);
 	}
 
 }

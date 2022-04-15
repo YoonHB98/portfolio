@@ -13,7 +13,7 @@ void SecretBlock::CreateSecretBlock(const float4& _Pivot)
 	{
 		float4 Pivot = _Pivot;
 		float4 CoPivot = Pivot;
-		CoPivot.y = Pivot.y + 36;
+		CoPivot.y = Pivot.y + 18;
 
 		SetPosition(Pivot);
 	}
@@ -21,7 +21,7 @@ void SecretBlock::CreateSecretBlock(const float4& _Pivot)
 
 void SecretBlock::Start()
 {
-	BlockCollision = CreateCollision("Block", { 80, 1 }, { 0, 40 });
+	BlockCollision = CreateCollision("Block", { 40, 1 }, { 0, 20 });
 }
 
 void SecretBlock::Update()
@@ -40,7 +40,7 @@ void SecretBlock::Update()
 	if (up)
 	{
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
-		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 200.0f);
+		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 100.0f);
 		if (Time_ > 0.2f)
 		{
 			Time_ = 0.0f;
@@ -52,7 +52,7 @@ void SecretBlock::Update()
 	if (down == 1)
 	{
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
-		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * 200.0f);
+		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * 100.0f);
 		if (Time_ > 0.2f)
 		{
 			Time_ = 0.0f;

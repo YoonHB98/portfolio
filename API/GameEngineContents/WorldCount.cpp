@@ -15,12 +15,10 @@ void WorldCount::Start()
 	One = CreateRenderer("number.bmp");
 	Two = CreateRenderer("number.bmp");
 	One->CameraEffectOff();
-	One->SetTransColor(RGB(146, 144, 255));
 	One->SetIndex(0);
-	One->SetPivot(float4(780, 145));
+	One->SetPivot(float4(380, 72));
 	Two->CameraEffectOff();
-	Two->SetTransColor(RGB(146, 144, 255));
-	Two->SetPivot(float4(860, 145));
+	Two->SetPivot(float4(420, 72));
 	Two->SetIndex(0);
 	Two->CreateAnimation("number.bmp", "1", 0, 0, 1.0f, false);
 	Two->CreateAnimation("number.bmp", "2", 1, 1, 1.0f, false);
