@@ -44,8 +44,12 @@ private:
 	float AccSpeed_;
 	float Gravity_;
 	float AccGravity_;
+	bool FirstEnd_ = true;
 	GameEngineImage* WhiteMap_;
 	GameEngineCollision* PlayerCollision;
+	GameEngineCollision* PlayerRight_;
+	GameEngineCollision* PlayerLeft_;
+	float Time_ = 0;
 	void Start() override;
 	void Update() override;
 	void Render() override;

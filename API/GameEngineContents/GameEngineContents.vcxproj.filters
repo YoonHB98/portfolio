@@ -37,6 +37,9 @@
     <Filter Include="Map\Item">
       <UniqueIdentifier>{302ffeea-3f9f-4abf-ac87-636e41f5892b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Play\TopUI">
+      <UniqueIdentifier>{c084fb84-4381-4590-88d2-88a531f3e931}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TitleLevel.h">
@@ -54,9 +57,6 @@
     <ClInclude Include="Mario.h" />
     <ClInclude Include="TitleBackGround.h">
       <Filter>Title</Filter>
-    </ClInclude>
-    <ClInclude Include="TopUI.h">
-      <Filter>Play\Global\UI</Filter>
     </ClInclude>
     <ClInclude Include="Stage1.h">
       <Filter>Level\Stage1</Filter>
@@ -104,16 +104,7 @@
     <ClInclude Include="BoxCoin.h">
       <Filter>Map\Item</Filter>
     </ClInclude>
-    <ClInclude Include="Name.h">
-      <Filter>Play\Global\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Point100.h">
-      <Filter>Play\Global\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Point.h">
-      <Filter>Play\Global\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Coin.h">
       <Filter>Play\Global\UI</Filter>
     </ClInclude>
     <ClInclude Include="Sound.h">
@@ -121,6 +112,42 @@
     </ClInclude>
     <ClInclude Include="Point200.h">
       <Filter>Play\Global\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="StageIntro.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelIntro.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin.h">
+      <Filter>Play\TopUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Name.h">
+      <Filter>Play\TopUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Play\TopUI</Filter>
+    </ClInclude>
+    <ClInclude Include="TopUI.h">
+      <Filter>Play\TopUI</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldCount.h">
+      <Filter>Play\TopUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SecretBlock.h">
+      <Filter>Map\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Secret10CoinBlock.h">
+      <Filter>Map\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Pause.h">
+      <Filter>Play\Global\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Castle.h">
+      <Filter>Map\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="flag.h">
+      <Filter>Map\Block</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -139,9 +166,6 @@
     <ClCompile Include="Mario.cpp" />
     <ClCompile Include="TitleBackGround.cpp">
       <Filter>Title</Filter>
-    </ClCompile>
-    <ClCompile Include="TopUI.cpp">
-      <Filter>Play\Global\UI</Filter>
     </ClCompile>
     <ClCompile Include="Stage1.cpp">
       <Filter>Level\Stage1</Filter>
@@ -189,16 +213,7 @@
     <ClCompile Include="BoxCoin.cpp">
       <Filter>Map\Item</Filter>
     </ClCompile>
-    <ClCompile Include="Name.cpp">
-      <Filter>Play\Global\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Point100.cpp">
-      <Filter>Play\Global\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Point.cpp">
-      <Filter>Play\Global\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Coin.cpp">
       <Filter>Play\Global\UI</Filter>
     </ClCompile>
     <ClCompile Include="Sound.cpp">
@@ -206,6 +221,42 @@
     </ClCompile>
     <ClCompile Include="Point200.cpp">
       <Filter>Play\Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="StageIntro.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelIntro.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Coin.cpp">
+      <Filter>Play\TopUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Name.cpp">
+      <Filter>Play\TopUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Point.cpp">
+      <Filter>Play\TopUI</Filter>
+    </ClCompile>
+    <ClCompile Include="TopUI.cpp">
+      <Filter>Play\TopUI</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldCount.cpp">
+      <Filter>Play\TopUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SecretBlock.cpp">
+      <Filter>Map\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Secret10CoinBlock.cpp">
+      <Filter>Map\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Pause.cpp">
+      <Filter>Play\Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Castle.cpp">
+      <Filter>Map\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="flag.cpp">
+      <Filter>Map\Block</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

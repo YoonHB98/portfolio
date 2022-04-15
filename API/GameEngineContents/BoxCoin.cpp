@@ -3,6 +3,7 @@
 #include "Point.h"
 #include "Coin.h"
 #include "Sound.h"
+#include "Pause.h"
 
 
 BoxCoin::BoxCoin()
@@ -45,11 +46,13 @@ void BoxCoin::Start()
 
 void BoxCoin::Update()
 {
-	Time -= GameEngineTime::GetDeltaTime();
-	if (4.9 >= Time)
+	if (Pause::pause
+		||Pause::death
+		||Pause::end)
 	{
-
+		return;
 	}
+	Time -= GameEngineTime::GetDeltaTime();
 	Time_ = Time_ - GameEngineTime::GetDeltaTime();
 
 	if (up == 1)
@@ -87,7 +90,7 @@ void BoxCoin::Update()
 		Point200* Ptr = GetLevel()->CreateActor<Point200>(2);
 		Ptr->SetPosition(GetPosition());
 		Time = 5.0f;
-		Sound::SoundPlay = "Coin";
+		GameEngineSound::SoundPlayOneShot("coin.wav", 0);
 	}
 	
 }

@@ -1,4 +1,5 @@
 #include "Sound.h"
+#include "GameEngineBase/GameEngineSound.h"
 
 Sound::Sound() 
 {
@@ -20,19 +21,22 @@ void Sound::Start()
 
 void Sound::Update()
 {
-	Time -= GameEngineTime::GetDeltaTime();
-	if (SoundPlay == "Coin")
+	if (SoundPlay == "bgmplay")
 	{
-		Coin = GameEngineSound::SoundPlayControl("Coin.WAV");
+		BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");
 		SoundPlay = "";
-		Time = 0.8f;
-		Coin.Stop();
 	}
-	if (Time <= 0.0f)
+	if (SoundPlay =="end")
 	{
-		Coin.Stop();
-		Time = 400.0f;
+		GameEngineSound::SoundPlayOneShot("castleend.wav", 0);
+		SoundPlay = "";
 	}
+	if (SoundPlay == "stop")
+	{
+		BgmPlayer.Stop();
+		SoundPlay = "";
+	}
+	
 }
 
 std::string Sound::SoundPlay = "";

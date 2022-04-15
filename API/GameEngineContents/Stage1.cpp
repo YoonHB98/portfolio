@@ -1,8 +1,12 @@
 #include "Stage1.h"
 #include "Point.h"
 #include "Sound.h"
-
-
+#include "WorldCount.h"
+#include "SecretBlock.h"
+#include "Secret10CoinBlock.h"
+#include "Pause.h"
+#include "Castle.h"
+#include "flag.h"
 
 Stage1::Stage1() 
 {
@@ -14,7 +18,10 @@ Stage1::~Stage1()
 
 void Stage1::Loading()
 {
+	{
+		WorldCount* UI = CreateActor<WorldCount>(2);
 
+	}
 
 	{
 		UI = CreateActor<TopUI>(1);
@@ -29,9 +36,9 @@ void Stage1::Loading()
 		Sound* SoundR = CreateActor<Sound>(0);
 	}
 	{
-	Player* Mario = CreateActor<Player>(3);
-	/*Mario = CreateActor<Player>(3);*/
-	Mario->SetPosition(float4{ 200, 980 });
+	Mario = CreateActor<Player>(3);
+
+	Mario->SetPosition(float4{ 200, 1000 });
 	}
 	{
 		Map1* Actor = CreateActor<Map1>(0);
@@ -44,6 +51,10 @@ void Stage1::Loading()
 		Actor->GetRenderer()->SetPivot(BackActor);
 	}
 	// 블록
+	{
+		SecretBlock* Actor = CreateActor<SecretBlock>(2);
+		Actor->CreateSecretBlock(float4{ 5160, 680 });
+	}
 
 	{
 		Block* Actor = CreateActor<Block>(2);
@@ -150,8 +161,9 @@ void Stage1::Loading()
 		CoinActor->CreateBoxCoin(float4{ 7560, 440 });
 	}
 	{
-		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 7560, 760 });
+	
+		Secret10CoinBlock* Actor = CreateActor<Secret10CoinBlock>(2);
+		Actor->CreateSecret10CoinBlock(float4{ 7560, 760 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
@@ -264,18 +276,34 @@ void Stage1::Loading()
 		Goomba* Actor = CreateActor<Goomba>(1);
 		Actor->CreateGoomba(float4{ 4240,1000 });
 	}
-
+	{
+		Castle* Actor = CreateActor<Castle>(1);
+		Actor->CreateCastle(float4{ 16360,800 });
+	}
+	{
+		flag* Actor = CreateActor<flag>(1);
+		Actor->Createflag(float4{ 15840,280 });
+	}
+	BgmPlayer = GameEngineSound::SoundPlayControl("blank.wav");
 }
 
 void Stage1::Update()
 {
+	if (Pause::pause
+		|| Pause::death
+		|| Pause::end)
+	{
+		BgmPlayer.Stop();
+	}
 
 }
 void Stage1::LevelChangeStart()
-{
- 
-	CreateActor<TopUI>(1);
-
-	BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");
+{ 
+	//200, 1000
+	//체크 14000, 1000
+	Mario->SetPosition(float4{ 200, 1000 });
+		UI->TimerReset();
+		BgmPlayer.Stop();
+	    BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");
 
 }

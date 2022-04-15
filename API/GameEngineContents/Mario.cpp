@@ -2,6 +2,7 @@
 #include "Stage1.h"
 #include "EndingLevel.h"
 #include "TitleLevel.h"
+#include "StageIntro.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineBase/GameEngineFile.h>
@@ -176,10 +177,15 @@ void Mario::GameInit()
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("0.bmp");
 		Image->Cut({ 40,40 });
 	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("SecretCoinBlock.bmp");
+		Image->Cut({ 80,80 });
+	}
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<Stage1>("Stage1");
 	CreateLevel<EndingLevel>("Ending");
-	ChangeLevel("Stage1");
+	CreateLevel<StageIntro>("StageIntro");
+	ChangeLevel("Title");
 }
 
 void Mario::GameLoop()

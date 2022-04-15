@@ -115,7 +115,7 @@ void TopUI::TimerReset()
 	One_->ChangeAnimation("Start");
 	Two_->ChangeAnimation("Start");
 	Three_->ChangeAnimation("Start");
-
+	Start_ = true;
 }
 //랜더러가 다 돌아가고 랜더링
 void TopUI::Render()

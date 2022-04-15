@@ -36,6 +36,7 @@ protected:
 	void LevelChangeStart() override;
 
 private:
+	Player* Mario;
 	float Time;
 	TopUI* UI;
 	Coin* UICOIN;

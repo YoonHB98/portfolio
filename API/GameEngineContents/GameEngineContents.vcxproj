@@ -39,6 +39,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Castle.h" />
     <ClInclude Include="Coin.h">
       <SubType>
       </SubType>
@@ -51,6 +52,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="flag.h" />
     <ClInclude Include="Flower.h">
       <SubType>
       </SubType>
@@ -63,6 +65,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="LevelIntro.h" />
     <ClInclude Include="Map1.h">
       <SubType>
       </SubType>
@@ -72,6 +75,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Name.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Pause.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -92,6 +99,8 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Secret10CoinBlock.h" />
+    <ClInclude Include="SecretBlock.h" />
     <ClInclude Include="Sound.h">
       <SubType>
       </SubType>
@@ -109,6 +118,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Stage4.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="StageIntro.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -137,6 +150,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="WorldCount.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp">
@@ -151,6 +165,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Castle.cpp" />
     <ClCompile Include="Coin.cpp">
       <SubType>
       </SubType>
@@ -163,6 +178,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="flag.cpp" />
     <ClCompile Include="Flower.cpp">
       <SubType>
       </SubType>
@@ -175,6 +191,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="LevelIntro.cpp" />
     <ClCompile Include="Map1.cpp">
       <SubType>
       </SubType>
@@ -184,6 +201,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Name.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Pause.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -204,6 +225,8 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Secret10CoinBlock.cpp" />
+    <ClCompile Include="SecretBlock.cpp" />
     <ClCompile Include="Sound.cpp">
       <SubType>
       </SubType>
@@ -221,6 +244,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Stage4.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="StageIntro.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -249,6 +276,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="WorldCount.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -334,6 +362,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -350,6 +379,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -366,6 +396,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -382,6 +413,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

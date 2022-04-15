@@ -1,4 +1,5 @@
 #include "QuestionBlock.h"
+#include "Pause.h"
 
 QuestionBlock::QuestionBlock() 
 {
@@ -33,6 +34,12 @@ void QuestionBlock::Start()
 
 void QuestionBlock::Update()
 {
+	if (Pause::pause
+		|| Pause::death
+		|| Pause::end)
+	{
+		return;
+	}
 	if (up == 1)
 	{
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
