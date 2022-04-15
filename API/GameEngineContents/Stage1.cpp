@@ -102,17 +102,17 @@ void Stage1::Loading()
 	}
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-		Actor->CreateQuestionBlock(float4{ 4140, 380 });
+		Actor->CreateQuestionBlock(float4{ 3140, 380 });
 		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
 		CoinActor->CreateBoxCoin(float4{ 3140, 380 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 3090, 380 });
+		Actor->CreateBlock(float4{ 3180, 380 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 3110, 220 });
+		Actor->CreateBlock(float4{ 3220, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
@@ -124,11 +124,11 @@ void Stage1::Loading()
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 3170, 220 });
+		Actor->CreateBlock(float4{ 3340, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 3190, 220 });
+		Actor->CreateBlock(float4{ 3380, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
@@ -181,9 +181,9 @@ void Stage1::Loading()
 	}
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-		Actor->CreateQuestionBlock(float4{ 4190, 380 });
+		Actor->CreateQuestionBlock(float4{ 4380, 380 });
 		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-		CoinActor->CreateBoxCoin(float4{ 4190, 380 });
+		CoinActor->CreateBoxCoin(float4{ 4380, 380 });
 	}
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
@@ -193,9 +193,9 @@ void Stage1::Loading()
 	}
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-		Actor->CreateQuestionBlock(float4{ 4190, 220 });
+		Actor->CreateQuestionBlock(float4{ 4380, 220 });
 		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-		CoinActor->CreateBoxCoin(float4{ 4190, 220 });
+		CoinActor->CreateBoxCoin(float4{ 4380, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
@@ -225,9 +225,9 @@ void Stage1::Loading()
 	}
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-		Actor->CreateQuestionBlock(float4{ 5110, 220 });
+		Actor->CreateQuestionBlock(float4{ 5220, 220 });
 		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-		CoinActor->CreateBoxCoin(float4{ 5110, 220 });
+		CoinActor->CreateBoxCoin(float4{ 5220, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
@@ -239,7 +239,7 @@ void Stage1::Loading()
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 5110, 380 });
+		Actor->CreateBlock(float4{ 5220, 380 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
@@ -282,7 +282,7 @@ void Stage1::Loading()
 	}
 	{
 		flag* Actor = CreateActor<flag>(1);
-		Actor->Createflag(float4{ 7920,280 });
+		Actor->Createflag(float4{ 7920,140 });
 	}
 	BgmPlayer = GameEngineSound::SoundPlayControl("blank.wav");
 }

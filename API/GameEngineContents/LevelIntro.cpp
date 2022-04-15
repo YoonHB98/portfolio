@@ -155,6 +155,24 @@ void LevelIntro::Update()
 		Time_ = 3.0f;
 		GameEngine::GetInst().ChangeLevel("Stage1");
 	}
+	if (Time_ <= 0.0f
+		&& 2 == WorldCount::WorldCountUI)
+	{
+		Time_ = 3.0f;
+		GameEngine::GetInst().ChangeLevel("Stage2");
+	}
+	if (Time_ <= 0.0f
+		&& 3== WorldCount::WorldCountUI)
+	{
+		Time_ = 3.0f;
+		GameEngine::GetInst().ChangeLevel("Stage3");
+	}
+	if (Time_ <= 0.0f
+		&& 4 == WorldCount::WorldCountUI)
+	{
+		Time_ = 3.0f;
+		GameEngine::GetInst().ChangeLevel("Stage4");
+	}
 }
 
 void LevelIntro::Render()

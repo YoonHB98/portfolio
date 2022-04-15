@@ -2,6 +2,7 @@
 #include "Pause.h"
 #include <GameEngineBase/GameEngineSound.h>
 #include "LevelIntro.h"
+#include "Point100.h"
 
 
 
@@ -9,7 +10,7 @@
 #include <GameEngine/GameEngineLevel.h> // 레벨을 통해서
 // #include "이걸 " 만들때 
 Player::Player()
-	: Speed_(50.0f)
+	: Speed_(100.0f)
 	, Gravity_(150.0f)
 	, AccSpeed_(15.0f)
 	, MoveDir(float4::ZERO)
@@ -45,6 +46,7 @@ void Player::Start()
 	RenderRun->CreateAnimation("Mario.bmp", "Death", 15, 15, 0.1f, false);
 	RenderRun->CreateAnimation("Mario.bmp", "Flag", 16, 17, 0.15f, true);
 	RenderRun->CreateAnimation("Mario.bmp", "End", 18, 18, 0.15f, false);
+	RenderRun->CreateAnimation("Blank.bmp", "Blank", 0, 0, 0.15f, false);
 	RenderRun->ChangeAnimation("MarioRight");
 
 
@@ -77,6 +79,7 @@ void Player::Update()
 		MoveDir = float4::DOWN;
 		float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 		int Down = WhiteMap_->GetImagePixel(NextPos + float4(19.0f, 19.0f));
+		int Right = WhiteMap_->GetImagePixel(NextPos + float4(20.0f, 0.0f));
 		if ((RGB(0, 0, 0) != (Down)))
 		{
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
@@ -84,7 +87,7 @@ void Player::Update()
 		if (1.2f  <= Time_
 			&& 1.3f > Time_)
 		{
-			SetPosition(float4{15910, 960});
+			SetPosition(float4{7955, 480});
 			RenderRun->ChangeAnimation("End");
 			return;
 		}
@@ -98,6 +101,14 @@ void Player::Update()
 			else
 			{
 				MoveDir = float4::ZERO;
+			}
+			if ((RGB(255, 0, 0) == (Right)))
+			{
+				blank = true;
+			}
+			if (blank)
+			{
+				RenderRun->ChangeAnimation("Blank");
 			}
 			  MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * 300;
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
@@ -275,10 +286,12 @@ void Player::Update()
 		AccGravity_ = 0;
 		SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_ );
 	}
-	if (true == PlayerLeft_->CollisionCheck("Monster", CollisionType::Rect, CollisionType::Rect)
-		|| true == PlayerRight_->CollisionCheck("Monster", CollisionType::Rect, CollisionType::Rect))
+	if (true == PlayerLeft_->CollisionCheck("MonsterRight", CollisionType::Rect, CollisionType::Rect)
+		|| true == PlayerRight_->CollisionCheck("MonsterLeft", CollisionType::Rect, CollisionType::Rect))
 	{
-
+		//Point100* Ptr = GetLevel()->CreateActor<Point100>(2);
+		//Ptr->SetPosition(GetPosition());
+		//Death();
 		Pause::death = true;
 		RenderRun->ChangeAnimation("Death");
 		SetMove(float4::UP);
