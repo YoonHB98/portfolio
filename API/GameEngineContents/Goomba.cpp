@@ -36,8 +36,8 @@ void Goomba::CreateGoomba(const float4& _Pivot)
 void Goomba::Start()
 {
 	GoombaCollision = CreateCollision("Goomba", { 40, 5 }, { 0, -20 });
-	RightCollision = CreateCollision("Monster", { 5,40 }, { 20, 0 });
-	LeftCollision = CreateCollision("Monster", { 5, 40 }, { -20, 0 });
+	RightCollision = CreateCollision("MonsterRight", { 5,40 }, { 20, 0 });
+	LeftCollision = CreateCollision("MonsterLeft", { 5, 40 }, { -20, 0 });
 	CheckCollision = CreateCollision("CheckPos", { 40, 1200 }, { -620, 20 });
 	MoveDir = float4::LEFT;
 }
@@ -92,11 +92,11 @@ void Goomba::Update()
 		}
 		Death(0.25f);
 	}
-	if (true == RightCollision->CollisionCheck("Monster", CollisionType::Rect, CollisionType::Rect))
+	if (true == RightCollision->CollisionCheck("MonsterLeft", CollisionType::Rect, CollisionType::Rect))
 	{
 		MoveDir = MoveDir * float4{ -1 , -1 };
 	}
-	if (true == LeftCollision->CollisionCheck("Monster", CollisionType::Rect, CollisionType::Rect))
+	if (true == LeftCollision->CollisionCheck("MonsterRight", CollisionType::Rect, CollisionType::Rect))
 	{
 		MoveDir = MoveDir * float4{ -1 , -1 };
 	}

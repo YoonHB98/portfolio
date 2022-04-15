@@ -45,6 +45,7 @@ private:
 	float Gravity_;
 	float AccGravity_;
 	bool FirstEnd_ = true;
+	bool blank = false;
 	GameEngineImage* WhiteMap_;
 	GameEngineCollision* PlayerCollision;
 	GameEngineCollision* PlayerRight_;
