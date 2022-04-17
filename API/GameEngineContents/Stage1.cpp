@@ -7,6 +7,7 @@
 #include "Pause.h"
 #include "Castle.h"
 #include "flag.h"
+#include "UpMushroom.h"
 
 Stage1::Stage1() 
 {
@@ -59,6 +60,8 @@ void Stage1::Loading()
 	{
 		Block* Actor = CreateActor<Block>(2);
 		Actor->CreateBlock(float4{ 820, 380 });
+		UpMushroom* CoinActor = CreateActor<UpMushroom>(5);
+		CoinActor->CreateUpMushroom(float4{ 860, 380 });
 	}
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
