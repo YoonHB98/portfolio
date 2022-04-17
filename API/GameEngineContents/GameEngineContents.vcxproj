@@ -150,6 +150,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="UpMushroom.h" />
     <ClInclude Include="WorldCount.h" />
   </ItemGroup>
   <ItemGroup>
@@ -276,6 +277,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="UpMushroom.cpp" />
     <ClCompile Include="WorldCount.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
