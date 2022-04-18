@@ -27,6 +27,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BigPlayer.h" />
     <ClInclude Include="Block.h">
       <SubType>
       </SubType>
@@ -150,9 +151,13 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="UP1.h" />
+    <ClInclude Include="UpMushroom.h" />
+    <ClInclude Include="UpMushroom2.h" />
     <ClInclude Include="WorldCount.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BigPlayer.cpp" />
     <ClCompile Include="Block.cpp">
       <SubType>
       </SubType>
@@ -276,6 +281,9 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="UP1.cpp" />
+    <ClCompile Include="UpMushroom.cpp" />
+    <ClCompile Include="UpMushroom2.cpp" />
     <ClCompile Include="WorldCount.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

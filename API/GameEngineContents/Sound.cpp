@@ -15,7 +15,7 @@ void Sound::Start()
 	One->CameraEffectOff();
 	One->SetTransColor(RGB(146, 144, 255));
 	One->SetIndex(0);
-	One->SetPivot(float4(300, 145));
+	One->SetPivot(float4(150, 77));
 	Time = 400.0f;
 }
 

@@ -20,8 +20,8 @@ Mario::~Mario()
 
 void Mario::GameInit()
 {
-	//원본 256 240
-	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 0, 0}, { 1280, 1200 });
+	//원본 256 220
+	GameEngineWindow::GetInst().SetWindowScaleAndPosition({ 0, 0}, { 620, 600 });
 
 	
 	{
@@ -135,57 +135,57 @@ void Mario::GameInit()
 
 	{
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("MARIO.bmp");
-		Image->Cut({ 80, 80 });
+		Image->Cut({ 40, 40 });
 	}
 	{
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("number.bmp");
-		Image->Cut({ 40,40 });
+		Image->Cut({ 20,20 });
 	}
 	{
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("numberreverse.bmp");
-		Image->Cut({ 40,40 });
+		Image->Cut({ 20,20 });
 	}
 	{
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("blank.bmp");
-		Image->Cut({ 40,40 });
+		Image->Cut({ 20,20 });
 	}
 	{
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Block.bmp");
-		Image->Cut({ 80,80 });
+		Image->Cut({ 40,40 });
 	}
 	{
 		GameEngineImage * Image = GameEngineImageManager::GetInst()->Find("QuestionBlock.bmp");
-		Image->Cut({ 80,80 });
+		Image->Cut({ 40,40 });
 	}
 	{
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Goomba.bmp");
-		Image->Cut({ 80,80 });
+		Image->Cut({ 40,40 });
 	}
 	{
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Coin.bmp");
-		Image->Cut({ 40,40 });
+		Image->Cut({ 20,20 });
 	}
 	{
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("BoxCoin.bmp");
-		Image->Cut({ 40,40 });
+		Image->Cut({ 20,20 });
 	}
 	{
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("UICOIN.bmp");
-		Image->Cut({ 25,40 });
+		Image->Cut({ 15,20 });
 	}
 	{
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("0.bmp");
-		Image->Cut({ 40,40 });
+		Image->Cut({ 20,20 });
 	}
 	{
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("SecretCoinBlock.bmp");
-		Image->Cut({ 80,80 });
+		Image->Cut({ 40,40 });
 	}
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<Stage1>("Stage1");
 	CreateLevel<EndingLevel>("Ending");
 	CreateLevel<StageIntro>("StageIntro");
-	ChangeLevel("Title");
+	ChangeLevel("Stage1");
 }
 
 void Mario::GameLoop()

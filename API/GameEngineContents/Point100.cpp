@@ -17,6 +17,6 @@ void Point100::Start()
 
 void Point100::Update()
 {
-	SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 200.0f);
+	SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 100.0f);
 }
 

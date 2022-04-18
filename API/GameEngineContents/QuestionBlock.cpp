@@ -14,7 +14,7 @@ void QuestionBlock::CreateQuestionBlock(const float4& _Pivot)
 	{
 		float4 Pivot = _Pivot;
 		float4 CoPivot = Pivot;
-		CoPivot.y = Pivot.y + 36;
+		CoPivot.y = Pivot.y +18;
 
 		SetPosition(Pivot);
 	}
@@ -22,7 +22,7 @@ void QuestionBlock::CreateQuestionBlock(const float4& _Pivot)
 
 void QuestionBlock::Start()
 {
-	BlockCollision = CreateCollision("Block", { 80, 1 }, { 0, 40 });
+	BlockCollision = CreateCollision("Block", { 40, 1 }, { 0, 20 });
 	Actor = CreateRenderer("QuestionBlock.bmp");
 	Actor->SetIndex(0);
 	Actor->CreateAnimation("QuestionBlock.bmp", "Block", 0, 2, 0.15f, true);
@@ -43,7 +43,7 @@ void QuestionBlock::Update()
 	if (up == 1)
 	{
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
-		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 200.0f);
+		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 100.0f);
 		if (Time_ > 0.2f)
 		{
 			Time_ = 0.0f;
@@ -55,7 +55,7 @@ void QuestionBlock::Update()
 	if (down == 1)
 	{
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
-		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * 200.0f);
+		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * 100.0f);
 		if (Time_ > 0.2f)
 		{
 			Time_ = 0.0f;

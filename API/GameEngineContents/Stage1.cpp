@@ -7,7 +7,8 @@
 #include "Pause.h"
 #include "Castle.h"
 #include "flag.h"
-
+#include "UpMushroom.h"
+#include "UpMushroom2.h"
 Stage1::Stage1() 
 {
 }
@@ -38,251 +39,251 @@ void Stage1::Loading()
 	{
 	Mario = CreateActor<Player>(3);
 
-	Mario->SetPosition(float4{ 200, 1000 });
+	Mario->SetPosition(float4{ 100, 500 });
 	}
 	{
 		Map1* Actor = CreateActor<Map1>(0);
 		Actor->GetRenderer()->SetImage("11map.bmp");
 
 		float4 BackActor = {};
-		BackActor.x = (Actor->GetRenderer()->GetImage()->GetScale().Half().x) - (GameEngineWindow::GetScale().Half().x);
-		BackActor.y = (Actor->GetRenderer()->GetImage()->GetScale().Half().y) - (GameEngineWindow::GetScale().Half().y);
+		BackActor.x = (Actor->GetRenderer()->GetImage()->GetScale().Half().x);
+		BackActor.y = (Actor->GetRenderer()->GetImage()->GetScale().Half().y);
 
 		Actor->GetRenderer()->SetPivot(BackActor);
 	}
 	// 블록
 	{
 		SecretBlock* Actor = CreateActor<SecretBlock>(2);
-		Actor->CreateSecretBlock(float4{ 5160, 680 });
+		Actor->CreateSecretBlock(float4{ 2580, 340 });
 	}
 
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 1640, 760 });
+		Actor->CreateBlock(float4{ 820, 380 });
 	}
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-		Actor->CreateQuestionBlock(float4{  1720, 760 } );
+		Actor->CreateQuestionBlock(float4{  860, 380 } );
 		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-		CoinActor->CreateBoxCoin(float4{ 1720, 760 });
+		CoinActor->CreateBoxCoin(float4{ 860, 380 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 1800, 760 });
+		Actor->CreateBlock(float4{ 900, 380 });
 	}
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-		Actor->CreateQuestionBlock(float4{ 1880, 760 });
+		Actor->CreateQuestionBlock(float4{ 940, 380 });
 		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-		CoinActor->CreateBoxCoin(float4{ 1880, 760 });
+		CoinActor->CreateBoxCoin(float4{ 940, 380 });
 
 	}
 		{
 			Block* Actor = CreateActor<Block>(2);
-			Actor->CreateBlock(float4{ 1960, 760 });
+			Actor->CreateBlock(float4{ 980, 380 });
 		}
 		{
 			QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-			Actor->CreateQuestionBlock(float4{ 1800, 440 });
+			Actor->CreateQuestionBlock(float4{ 900, 220 });
 			BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-			CoinActor->CreateBoxCoin(float4{ 1800, 440 });
+			CoinActor->CreateBoxCoin(float4{ 900, 220 });
 
 		}
 	
 
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-		Actor->CreateQuestionBlock(float4{ 1320, 760 });
+		Actor->CreateQuestionBlock(float4{ 660, 380 });
 		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-		CoinActor->CreateBoxCoin(float4{ 1320, 760 });
+		CoinActor->CreateBoxCoin(float4{ 660, 380 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 6200, 760 });
+		Actor->CreateBlock(float4{ 3100, 380 });
 	}
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-		Actor->CreateQuestionBlock(float4{ 6280, 760 });
+		Actor->CreateQuestionBlock(float4{ 3140, 380 });
 		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-		CoinActor->CreateBoxCoin(float4{ 6280, 760 });
+		CoinActor->CreateBoxCoin(float4{ 3140, 380 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 6360, 760 });
+		Actor->CreateBlock(float4{ 3180, 380 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 6440, 440 });
+		Actor->CreateBlock(float4{ 3220, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 6520, 440 });
+		Actor->CreateBlock(float4{ 3260, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 6600, 440 });
+		Actor->CreateBlock(float4{ 3300, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 6680, 440 });
+		Actor->CreateBlock(float4{ 3340, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 6760, 440 });
+		Actor->CreateBlock(float4{ 3380, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 6840, 440 });
+		Actor->CreateBlock(float4{ 3420, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 6920, 440 });
+		Actor->CreateBlock(float4{ 3460, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 7000, 440 });
+		Actor->CreateBlock(float4{ 3500, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 7320, 440 });
+		Actor->CreateBlock(float4{ 3660, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 7400, 440 });
+		Actor->CreateBlock(float4{ 3700, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 7480, 440 });
+		Actor->CreateBlock(float4{ 3740, 220 });
 	}
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-		Actor->CreateQuestionBlock(float4{ 7560, 440 });
+		Actor->CreateQuestionBlock(float4{3780, 220 });
 		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-		CoinActor->CreateBoxCoin(float4{ 7560, 440 });
+		CoinActor->CreateBoxCoin(float4{ 3780, 220 });
 	}
 	{
 	
 		Secret10CoinBlock* Actor = CreateActor<Secret10CoinBlock>(2);
-		Actor->CreateSecret10CoinBlock(float4{ 7560, 760 });
+		Actor->CreateSecret10CoinBlock(float4{ 3780, 380 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 8040, 760 });
+		Actor->CreateBlock(float4{ 4020, 380 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 8120, 760 });
+		Actor->CreateBlock(float4{ 4060, 380 });
 	}
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-		Actor->CreateQuestionBlock(float4{ 8520, 760 });
+		Actor->CreateQuestionBlock(float4{ 4260, 380 });
 		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-		CoinActor->CreateBoxCoin(float4{ 8520, 760 });
+		CoinActor->CreateBoxCoin(float4{ 4260, 380 });
 	}
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-		Actor->CreateQuestionBlock(float4{ 8760, 760 });
+		Actor->CreateQuestionBlock(float4{ 4380, 380 });
 		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-		CoinActor->CreateBoxCoin(float4{ 8760, 760 });
+		CoinActor->CreateBoxCoin(float4{ 4380, 380 });
 	}
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-		Actor->CreateQuestionBlock(float4{ 9000, 760 });
+		Actor->CreateQuestionBlock(float4{ 4500, 380 });
 		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-		CoinActor->CreateBoxCoin(float4{ 9000, 760 });
+		CoinActor->CreateBoxCoin(float4{ 4500, 380 });
 	}
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-		Actor->CreateQuestionBlock(float4{ 8760, 440 });
+		Actor->CreateQuestionBlock(float4{ 4380, 220 });
 		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-		CoinActor->CreateBoxCoin(float4{ 8760, 440 });
+		CoinActor->CreateBoxCoin(float4{ 4380, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 9480, 760 });
+		Actor->CreateBlock(float4{ 4740, 380 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 9720, 440 });
+		Actor->CreateBlock(float4{4860, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 9800, 440 });
+		Actor->CreateBlock(float4{ 4900, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 9880, 440 });
+		Actor->CreateBlock(float4{ 4940, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 10280, 440 });
+		Actor->CreateBlock(float4{ 5140, 220 });
 	}
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-		Actor->CreateQuestionBlock(float4{ 10360, 440 });
+		Actor->CreateQuestionBlock(float4{ 5180, 220 });
 		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-		CoinActor->CreateBoxCoin(float4{ 10360, 440 });
+		CoinActor->CreateBoxCoin(float4{ 5180, 220 });
 	}
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-		Actor->CreateQuestionBlock(float4{ 10440, 440 });
+		Actor->CreateQuestionBlock(float4{ 5220, 220 });
 		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-		CoinActor->CreateBoxCoin(float4{ 10440, 440 });
+		CoinActor->CreateBoxCoin(float4{ 5220, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 10520, 440 });
+		Actor->CreateBlock(float4{ 5260, 220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 10360, 760 });
+		Actor->CreateBlock(float4{ 5180, 380 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 10440, 760 });
+		Actor->CreateBlock(float4{ 5220, 380 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 13480, 760 });
+		Actor->CreateBlock(float4{ 6740, 380 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 13560, 760 });
+		Actor->CreateBlock(float4{ 6780, 380 });
 	}
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-		Actor->CreateQuestionBlock(float4{ 13640, 760 });
+		Actor->CreateQuestionBlock(float4{ 6820, 380 });
 		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-		CoinActor->CreateBoxCoin(float4{ 13640, 760 });
+		CoinActor->CreateBoxCoin(float4{ 6820, 380 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 13720, 760 });
+		Actor->CreateBlock(float4{ 6860, 380 });
 	}
 	//몬스터
 	{
 		Goomba* Actor = CreateActor<Goomba>(1);
-		Actor->CreateGoomba(float4{ 1800,1000 });
+		Actor->CreateGoomba(float4{ 900,500 });
 	}
 	{
 		Goomba* Actor = CreateActor<Goomba>(1);
-		Actor->CreateGoomba(float4{ 3240,1000 });
+		Actor->CreateGoomba(float4{ 1620,500 });
 	}
 	{
 		Goomba* Actor = CreateActor<Goomba>(1);
-		Actor->CreateGoomba(float4{ 4120,1000 });
+		Actor->CreateGoomba(float4{ 2060,500 });
 	}
 	{
 		Goomba* Actor = CreateActor<Goomba>(1);
-		Actor->CreateGoomba(float4{ 4240,1000 });
+		Actor->CreateGoomba(float4{ 2120,500 });
 	}
 	{
 		Castle* Actor = CreateActor<Castle>(1);
-		Actor->CreateCastle(float4{ 16360,800 });
+		Actor->CreateCastle(float4{ 8180,800 });
 	}
 	{
 		flag* Actor = CreateActor<flag>(1);
-		Actor->Createflag(float4{ 15840,280 });
+		Actor->Createflag(float4{ 7920,140 });
 	}
 	BgmPlayer = GameEngineSound::SoundPlayControl("blank.wav");
 }
@@ -296,12 +297,16 @@ void Stage1::Update()
 		BgmPlayer.Stop();
 	}
 
+	if (Pause::PlayerStatus == "BigMario")
+	{
+
+	}
 }
 void Stage1::LevelChangeStart()
 { 
-	//200, 1000
-	//체크 14000, 1000
-	Mario->SetPosition(float4{ 200, 1000 });
+	//200, 500
+	//체크 14000, 500
+	Mario->SetPosition(float4{ 100, 500 });
 		UI->TimerReset();
 		BgmPlayer.Stop();
 	    BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");
