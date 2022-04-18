@@ -88,6 +88,7 @@ void Goomba::Update()
 		MoveDir = MoveDir * float4{ -1 , -1 };
 		if (RGB(255, 255, 255) == Color)
 		{
+			int a = 0;
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 		}
 	}
