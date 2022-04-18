@@ -1,6 +1,5 @@
 #pragma once
-#include <string>
-#include "GameEngineBase/GameEngineMath.h"
+
 // Ό³Έν :
 class Pause
 {
@@ -18,8 +17,6 @@ public:
 	static bool death;
 	static bool end;
 	static bool first;
-	static std::string PlayerStatus;
-	static float4 PlayerPosition;
 protected:
 
 private:

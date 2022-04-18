@@ -19,7 +19,7 @@ void BoxCoin::CreateBoxCoin(const float4& _Pivot)
 	{
 		float4 Pivot = _Pivot;
 		float4 CoPivot = Pivot;
-		CoPivot.y = Pivot.y + 18;
+		CoPivot.y = Pivot.y + 36;
 
 		SetPosition(Pivot);
 	}
@@ -29,7 +29,7 @@ void BoxCoin::Start()
 {
 	//Actor->SetPosition(Pivot);
 	//Actor->CreateCollision("BoxCoin", { 80, 10 }, CoPivot);
-	BoxCoinCollision = CreateCollision("BoxCoin", { 40, 1 }, { 0, 20 });
+	BoxCoinCollision = CreateCollision("BoxCoin", { 80, 1 }, { 0, 40 });
 
 	Actor = CreateRenderer("BoxCoin.bmp");
 	Actor->SetIndex(0);
@@ -58,7 +58,7 @@ void BoxCoin::Update()
 	if (up == 1)
 	{
 		
-		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 600.0f);
+		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 1200.0f);
 		if (Time_ > 0.15f)
 		{
 			
@@ -72,7 +72,7 @@ void BoxCoin::Update()
 	if (down == 1)
 	{
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
-		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * 600.0f);
+		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * 1200.0f);
 		if (Time_ > 0.1f)
 		{
 			Time_ = 0.0f;

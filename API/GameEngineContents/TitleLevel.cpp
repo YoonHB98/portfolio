@@ -25,7 +25,7 @@ void TitleLevel::Loading()
 	}
 	{
 		Point* Actor = CreateActor<Point>(1);
-		Actor->SetPosition(float4{281, 400});
+		Actor->SetPosition(float4{562, 800});
 	}
 	CreateActor<TitleBackGround>(0);
 	CreateActor<TitleCharacter>(1);
