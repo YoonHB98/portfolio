@@ -18,17 +18,19 @@ void Coin::Start()
 
 	Actor->CreateAnimation("UICOIN.bmp", "100", 0, 2, 0.2f, true);
 	Actor->ChangeAnimation("100");
-	Actor->SetPivot(float4{ 220, 70 });
+	Actor->SetPivot(float4{ 460, 140 });
 	Actor->CameraEffectOff();
 	Actor->SetIndex(0);
 
 	One = CreateRenderer("number.bmp");
 	Two = CreateRenderer("number.bmp");;
 	One->CameraEffectOff();
+	One->SetTransColor(RGB(146, 144, 255));
 	One->SetIndex(0);
-	One->SetPivot(float4(280, 72));
+	One->SetPivot(float4(580, 145));
 	Two->CameraEffectOff();
-	Two->SetPivot(float4(260,72));
+	Two->SetTransColor(RGB(146, 144, 255));
+	Two->SetPivot(float4(540, 145));
 	Two->SetIndex(0);
 	One->CreateAnimation("number.bmp", "1", 0, 0, 1.0f, false);
 	One->CreateAnimation("number.bmp", "2", 1, 1, 1.0f, false);

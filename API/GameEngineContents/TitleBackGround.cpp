@@ -20,7 +20,7 @@ void TitleBackGround::Start()
 
 
 	GameEngineRenderer* Name = CreateRenderer("Name.bmp");
-	Name->SetPivot(float4(110, 50));
+	Name->SetPivot(float4(220, 100));
 	Name->SetTransColor(RGB(148, 148, 255));
 	Name->CameraEffectOff();
 

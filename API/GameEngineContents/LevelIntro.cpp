@@ -23,12 +23,14 @@ void LevelIntro::Start()
 	CreateRenderer("StageIntro.BMP");
 
 	GameEngineRenderer* Name = CreateRenderer("Name.bmp");
-	Name->SetPivot(float4(-210, -250));
+	Name->SetPivot(float4(-420, -500));
+	Name->SetTransColor(RGB(146, 144, 255));
 	Name->CameraEffectOff();
 
 	Count = CreateRenderer("number.bmp");
 	Count->SetIndex(0);
-	Count->SetPivot(float4(50,-10 ));
+	Count->SetPivot(float4(100,-20 ));
+	Count->SetTransColor(RGB(146, 144, 255));
 	Count->CreateAnimation("number.bmp", "1",0, 0, 1.0f, false);
 	Count->CreateAnimation("number.bmp", "2", 1, 1, 1.0f, false);
 	Count->CreateAnimation("number.bmp", "3", 2, 2, 1.0f, false);
@@ -42,12 +44,14 @@ void LevelIntro::Start()
 	Count->ChangeAnimation("0");
 
 	GameEngineRenderer* Stage = CreateRenderer("number.BMP");
-	Stage->SetPivot(float4(30, -90));
+	Stage->SetPivot(float4(60, -180));
+	Stage->SetTransColor(RGB(146, 144, 255));
 	Stage->CameraEffectOff();
 	Stage->SetIndex(0);
 	StageCount = CreateRenderer("number.bmp");
+	StageCount->SetTransColor(RGB(146, 144, 255));
 	StageCount->SetIndex(0);
-	StageCount->SetPivot(float4(70, -90));
+	StageCount->SetPivot(float4(140, -180));
 	StageCount->CreateAnimation("number.bmp", "1", 0, 0, 1.0f, false);
 	StageCount->CreateAnimation("number.bmp", "2", 1, 1, 1.0f, false);
 	StageCount->CreateAnimation("number.bmp", "3", 2, 2, 1.0f, false);
@@ -154,24 +158,6 @@ void LevelIntro::Update()
 	{
 		Time_ = 3.0f;
 		GameEngine::GetInst().ChangeLevel("Stage1");
-	}
-	if (Time_ <= 0.0f
-		&& 2 == WorldCount::WorldCountUI)
-	{
-		Time_ = 3.0f;
-		GameEngine::GetInst().ChangeLevel("Stage2");
-	}
-	if (Time_ <= 0.0f
-		&& 3== WorldCount::WorldCountUI)
-	{
-		Time_ = 3.0f;
-		GameEngine::GetInst().ChangeLevel("Stage3");
-	}
-	if (Time_ <= 0.0f
-		&& 4 == WorldCount::WorldCountUI)
-	{
-		Time_ = 3.0f;
-		GameEngine::GetInst().ChangeLevel("Stage4");
 	}
 }
 

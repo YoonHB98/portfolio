@@ -25,7 +25,7 @@ void Block::Start()
 {
 	//Actor->SetPosition(Pivot);
 	//Actor->CreateCollision("Block", { 80, 10 }, CoPivot);
-	BlockCollision = CreateCollision("Block", { 40, 1 }, { 0, 20 });
+	BlockCollision = CreateCollision("Block", { 80, 1 }, { 0, 40 });
 
 	CreateRenderer("Block.bmp");
 	
@@ -43,7 +43,7 @@ void Block::Update()
 	if (up == 1)
 	{
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
-		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 100.0f);
+		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 200.0f);
 		if (Time_ > 0.2f)
 		{
 			Time_ = 0.0f;
@@ -55,7 +55,7 @@ void Block::Update()
 	if (down == 1)
 	{
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
-		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * 100.0f);
+		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * 200.0f);
 		if (Time_ > 0.2f)
 		{
 			Time_ = 0.0f;

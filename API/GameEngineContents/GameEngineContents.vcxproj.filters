@@ -40,9 +40,6 @@
     <Filter Include="Play\TopUI">
       <UniqueIdentifier>{c084fb84-4381-4590-88d2-88a531f3e931}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Player">
-      <UniqueIdentifier>{9b5fa49c-02c4-411c-a3a8-c4e003cd7eb0}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TitleLevel.h">
@@ -50,6 +47,9 @@
     </ClInclude>
     <ClInclude Include="EndingLevel.h">
       <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Play</Filter>
     </ClInclude>
     <ClInclude Include="EndingCredit.h">
       <Filter>Ending</Filter>
@@ -149,21 +149,6 @@
     <ClInclude Include="flag.h">
       <Filter>Map\Block</Filter>
     </ClInclude>
-    <ClInclude Include="UpMushroom.h">
-      <Filter>Map\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="UP1.h">
-      <Filter>Play\Global\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UpMushroom2.h">
-      <Filter>Map\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="BigPlayer.h">
-      <Filter>Player</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -171,6 +156,9 @@
     </ClCompile>
     <ClCompile Include="EndingLevel.cpp">
       <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Play</Filter>
     </ClCompile>
     <ClCompile Include="EndingCredit.cpp">
       <Filter>Ending</Filter>
@@ -269,21 +257,6 @@
     </ClCompile>
     <ClCompile Include="flag.cpp">
       <Filter>Map\Block</Filter>
-    </ClCompile>
-    <ClCompile Include="UpMushroom.cpp">
-      <Filter>Map\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="UP1.cpp">
-      <Filter>Play\Global\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="UpMushroom2.cpp">
-      <Filter>Map\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="BigPlayer.cpp">
-      <Filter>Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
