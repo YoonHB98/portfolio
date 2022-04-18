@@ -8,7 +8,7 @@
 #include "Castle.h"
 #include "flag.h"
 #include "UpMushroom.h"
-
+#include "UpMushroom2.h"
 Stage1::Stage1() 
 {
 }
@@ -46,8 +46,8 @@ void Stage1::Loading()
 		Actor->GetRenderer()->SetImage("11map.bmp");
 
 		float4 BackActor = {};
-		BackActor.x = (Actor->GetRenderer()->GetImage()->GetScale().Half().x) - (GameEngineWindow::GetScale().Half().x);
-		BackActor.y = (Actor->GetRenderer()->GetImage()->GetScale().Half().y) - (GameEngineWindow::GetScale().Half().y);
+		BackActor.x = (Actor->GetRenderer()->GetImage()->GetScale().Half().x);
+		BackActor.y = (Actor->GetRenderer()->GetImage()->GetScale().Half().y);
 
 		Actor->GetRenderer()->SetPivot(BackActor);
 	}
@@ -60,8 +60,6 @@ void Stage1::Loading()
 	{
 		Block* Actor = CreateActor<Block>(2);
 		Actor->CreateBlock(float4{ 820, 380 });
-		UpMushroom* CoinActor = CreateActor<UpMushroom>(5);
-		CoinActor->CreateUpMushroom(float4{ 860, 380 });
 	}
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
@@ -299,6 +297,10 @@ void Stage1::Update()
 		BgmPlayer.Stop();
 	}
 
+	if (Pause::PlayerStatus == "BigMario")
+	{
+
+	}
 }
 void Stage1::LevelChangeStart()
 { 
