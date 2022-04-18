@@ -1,4 +1,5 @@
 #include "SecretBlock.h"
+#include "UpMushroom.h"
 
 SecretBlock::SecretBlock() 
 {
@@ -34,6 +35,8 @@ void SecretBlock::Update()
 		Actor->SetIndex(0);
 		Actor->CreateAnimation("QuestionBlock.bmp", "HitBlock", 4, 4, 0.15f, false);
 		Actor->ChangeAnimation("HitBlock");
+		UpMushroom* CoinActor = GetLevel()->CreateActor<UpMushroom>(1);
+		CoinActor->CreateUpMushroom(GetPosition());
 		up = false;
 		first = false;
 	}

@@ -58,11 +58,7 @@ void Goomba::Update()
 	CheckPos = CheckPos + MoveDir * float4(20.0f, 1.0f, 1.0f, 1.0f);
 	int Color = ColMap_->GetImagePixel(CheckPos);
 
-	if (RGB(255, 255, 255) != Color)
-	{
 
-		MoveDir = MoveDir * float4{ -1 , -1 };
-	}
 	if (RGB(255, 255, 255) == Color)
 	{
 		if (up == 1)
@@ -70,6 +66,30 @@ void Goomba::Update()
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 		}
 		
+	}
+	if (RGB(255, 255, 255) != Color)
+	{
+		MoveDir = MoveDir * float4{ -1 , -1 };
+		if (RGB(255, 255, 255) == Color)
+		{
+				SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+		}
+	}
+	if (true == RightCollision->CollisionCheck("MonsterLeft", CollisionType::Rect, CollisionType::Rect))
+	{
+		MoveDir = MoveDir * float4{ -1 , -1 };
+		if (RGB(255, 255, 255) == Color)
+		{
+			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+		}
+	}
+	if (true == LeftCollision->CollisionCheck("MonsterRight", CollisionType::Rect, CollisionType::Rect))
+	{
+		MoveDir = MoveDir * float4{ -1 , -1 };
+		if (RGB(255, 255, 255) == Color)
+		{
+			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+		}
 	}
 
 	if (true == CheckCollision->CollisionCheck("PlayerHitBox", CollisionType::Rect, CollisionType::Rect))
@@ -92,14 +112,7 @@ void Goomba::Update()
 		}
 		Death(0.25f);
 	}
-	if (true == RightCollision->CollisionCheck("MonsterLeft", CollisionType::Rect, CollisionType::Rect))
-	{
-		MoveDir = MoveDir * float4{ -1 , -1 };
-	}
-	if (true == LeftCollision->CollisionCheck("MonsterRight", CollisionType::Rect, CollisionType::Rect))
-	{
-		MoveDir = MoveDir * float4{ -1 , -1 };
-	}
+
 
 }
 

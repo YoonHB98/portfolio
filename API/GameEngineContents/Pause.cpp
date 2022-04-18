@@ -1,5 +1,6 @@
 #include "Pause.h"
 
+
 Pause::Pause() 
 {
 }
@@ -11,3 +12,5 @@ bool Pause::first = true;
 bool Pause::pause = false;
 bool Pause::death = false;
 bool Pause::end = false;
+std::string Pause::PlayerStatus = "";
+float4 Pause::PlayerPosition = float4(0, 0 , 0);
