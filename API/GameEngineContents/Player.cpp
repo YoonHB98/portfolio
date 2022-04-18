@@ -3,6 +3,7 @@
 #include <GameEngineBase/GameEngineSound.h>
 #include "LevelIntro.h"
 #include "Point100.h"
+#include "BlockBreak.h"
 
 
 
@@ -202,6 +203,8 @@ void Player::Update()
 	{
 		MoveDir += float4::UP *10;
 		GameEngineSound::SoundPlayOneShot("jumpsmall.wav", 0);
+		BlockBreak* Actor = GetLevel()->CreateActor<BlockBreak>();
+		Actor->SetPosition(GetPosition());
 	}
 	if (true == GameEngineInput::GetInst()->IsPress("Jump"))
 	{

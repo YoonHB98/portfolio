@@ -170,6 +170,9 @@
     <ClInclude Include="Mushroom2.h">
       <Filter>Map\Item</Filter>
     </ClInclude>
+    <ClInclude Include="BlockBreak.h">
+      <Filter>Map\Block</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -296,6 +299,9 @@
     </ClCompile>
     <ClCompile Include="Mushroom2.cpp">
       <Filter>Map\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockBreak.cpp">
+      <Filter>Map\Block</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
