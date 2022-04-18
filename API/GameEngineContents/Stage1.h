@@ -14,6 +14,7 @@
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineSound.h>
 #include "Point.h"
+#include "BigPlayer.h"
 
 // Ό³Έν :
 
@@ -36,6 +37,7 @@ protected:
 	void LevelChangeStart() override;
 
 private:
+	BigPlayer* BigMario;
 	Player* Mario;
 	float Time;
 	TopUI* UI;

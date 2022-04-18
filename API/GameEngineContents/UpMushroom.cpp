@@ -87,7 +87,7 @@ void UpMushroom::Update()
 		if (true == UpMushroomHitBox->CollisionCheck("PlayerItem", CollisionType::Rect, CollisionType::Rect))
 		{
 			GameEngineSound::SoundPlayOneShot("mushroomeat.wav", 0);
-			LevelIntro::DeathCount + 1;
+			LevelIntro::DeathCount  +=  1;
 			UP1* Actor = GetLevel()->CreateActor<UP1>(2);
 			Actor->SetPosition(GetPosition());
 			Death();

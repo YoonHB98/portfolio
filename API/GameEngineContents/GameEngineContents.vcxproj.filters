@@ -164,6 +164,12 @@
     <ClInclude Include="BigPlayer.h">
       <Filter>Player</Filter>
     </ClInclude>
+    <ClInclude Include="Mushroom.h">
+      <Filter>Map\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Mushroom2.h">
+      <Filter>Map\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -284,6 +290,12 @@
     </ClCompile>
     <ClCompile Include="BigPlayer.cpp">
       <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Mushroom.cpp">
+      <Filter>Map\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Mushroom2.cpp">
+      <Filter>Map\Item</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -62,7 +62,10 @@ void Player::Start()
 
 void Player::Update()
 {
-
+	if (Pause::PlayerStatus != "small")
+	{
+		return;
+	}
 	WhiteMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
 	if (nullptr == WhiteMap_)
 	{
@@ -83,6 +86,7 @@ void Player::Update()
 		if ((RGB(0, 0, 0) != (Down)))
 		{
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+			Pause::PlayerPosition = GetPosition();
 		}
 		if (1.2f  <= Time_
 			&& 1.3f > Time_)
@@ -112,6 +116,7 @@ void Player::Update()
 			}
 			  MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * 300;
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+			Pause::PlayerPosition = GetPosition();
 		}
 		return;
 	}
@@ -392,6 +397,7 @@ void Player::Update()
 		if ((GetPosition().x - 17 < GetLevel()->GetCameraPos().x))
 		{
 			SetMove(float4::RIGHT * 0.1f);
+			Pause::PlayerPosition = GetPosition();
 			return;
 		}
 
@@ -466,7 +472,7 @@ void Player::Update()
 			SetMove(DownDown * GameEngineTime::GetDeltaTime() * Speed_);
 		}
 
-
+		Pause::PlayerPosition = GetPosition();
 	}
 }
 

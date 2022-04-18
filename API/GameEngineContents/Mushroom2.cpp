@@ -1,4 +1,4 @@
-#include "UpMushroom2.h"
+#include "Mushroom2.h"
 #include "UP1.h"
 #include "Point.h"
 #include "Coin.h"
@@ -7,15 +7,15 @@
 #include "Point100.h"
 #include "LevelIntro.h"
 
-UpMushroom2::UpMushroom2()
+Mushroom2::Mushroom2()
 {
 }
 
-UpMushroom2::~UpMushroom2()
+Mushroom2::~Mushroom2()
 {
 }
 
-void UpMushroom2::CreateUpMushroom2(const float4& _Pivot)
+void Mushroom2::CreateMushroom(const float4& _Pivot)
 {
 	{
 		float4 Pivot = _Pivot;
@@ -26,14 +26,14 @@ void UpMushroom2::CreateUpMushroom2(const float4& _Pivot)
 	}
 }
 
-void UpMushroom2::Start()
+void Mushroom2::Start()
 {
 	//Actor->SetPosition(Pivot);
-	//Actor->CreateCollision("UpMushroom2", { 80, 10 }, CoPivot);
-	UpMushroom2Collision = CreateCollision("UpMushroom", { 40, 5 }, { 0, 20 });
-	UpMushroom2HitBox = CreateCollision("UpMushroom", { 40, 40 }, { 0, 0 });
+	//Actor->CreateCollision("Mushroom", { 80, 10 }, CoPivot);
+	MushroomCollision = CreateCollision("UpMushroom", { 40, 5 }, { 0, 20 });
+	MushroomHitBox = CreateCollision("UpMushroom", { 40, 40 }, { 0, 0 });
 
-	Actor = CreateRenderer("UpMushroom.bmp");
+	Actor = CreateRenderer("Mushroom.bmp");
 
 	
 	Time_ = 400;
@@ -45,7 +45,7 @@ void UpMushroom2::Start()
 
 }
 
-void UpMushroom2::Update()
+void Mushroom2::Update()
 {
 	if (Pause::pause
 		||Pause::death
@@ -84,12 +84,18 @@ void UpMushroom2::Update()
 		{
 			Death();
 		}
-		if (true == UpMushroom2HitBox->CollisionCheck("PlayerItem", CollisionType::Rect, CollisionType::Rect))
+		if (true == MushroomHitBox->CollisionCheck("PlayerItem", CollisionType::Rect, CollisionType::Rect))
 		{
 			GameEngineSound::SoundPlayOneShot("mushroomeat.wav", 0);
-			LevelIntro::DeathCount += 1;
-			UP1* Actor = GetLevel()->CreateActor<UP1>(2);
-			Actor->SetPosition(GetPosition());
+			if (Pause::PlayerStatus == "small")
+			{
+				Pause::PlayerStatus = "big";
+			}
+			else
+				if (Pause::PlayerStatus == "big")
+				{
+					Pause::PlayerStatus = "fire";
+				}
 			Death();
 		}
 		if (RGB(255, 255, 255) == ColorDown
@@ -106,6 +112,8 @@ void UpMushroom2::Update()
 		if (RGB(255, 255, 255) != Color)
 		{
 			MoveDir = MoveDir * float4{ -1, 1 };
+			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+			return;
 		}
 		if (RGB(255, 255, 255) == Color)
 		{
@@ -115,7 +123,7 @@ void UpMushroom2::Update()
 	}
 
 
-	if (true == UpMushroom2Collision->CollisionCheck("PlayerHitBox", CollisionType::Rect, CollisionType::Rect))
+	if (true == MushroomCollision->CollisionCheck("PlayerHitBox", CollisionType::Rect, CollisionType::Rect))
 	{
 		up = 1;
 		Time_ = 5.0f;

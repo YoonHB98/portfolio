@@ -33,36 +33,38 @@ void BigPlayer::Start()
 	Right = 0;
 	Left = 0;
 
-	RenderRun = CreateRenderer("Mario.bmp");
+	RenderRun = CreateRenderer("BigMario.bmp");
 	RenderRun->SetIndex(0);
-	RenderRun->CreateAnimation("Mario.bmp", "MarioRight", 0, 0, 0.1f, false);
-	RenderRun->CreateAnimation("Mario.bmp", "MarioLeft", 1, 1, 0.1f, false);
-	RenderRun->CreateAnimation("Mario.bmp", "RunRight", 2, 4, 0.07f, true);
-	RenderRun->CreateAnimation("Mario.bmp", "RunLeft", 5, 7, 0.07f, true);
-	RenderRun->CreateAnimation("Mario.bmp", "TurnRight", 8, 8, 100.0f, false);
-	RenderRun->CreateAnimation("Mario.bmp", "TurnLeft", 9, 9, 10.0f, false);
-	RenderRun->CreateAnimation("Mario.bmp", "JumpRight", 10, 10, 0.1f, false);
-	RenderRun->CreateAnimation("Mario.bmp", "JumpLeft", 11, 11, 0.1f, false);
-	RenderRun->CreateAnimation("Mario.bmp", "Death", 15, 15, 0.1f, false);
-	RenderRun->CreateAnimation("Mario.bmp", "Flag", 16, 17, 0.15f, true);
-	RenderRun->CreateAnimation("Mario.bmp", "End", 18, 18, 0.15f, false);
+	RenderRun->CreateAnimation("BigMario.bmp", "BigMarioRight", 0, 0, 0.1f, false);
+	RenderRun->CreateAnimation("BigMario.bmp", "BigMarioLeft", 1, 1, 0.1f, false);
+	RenderRun->CreateAnimation("BigMario.bmp", "RunRight", 2, 4, 0.07f, true);
+	RenderRun->CreateAnimation("BigMario.bmp", "RunLeft", 5, 7, 0.07f, true);
+	RenderRun->CreateAnimation("BigMario.bmp", "TurnRight", 8, 8, 100.0f, false);
+	RenderRun->CreateAnimation("BigMario.bmp", "TurnLeft", 9, 9, 10.0f, false);
+	RenderRun->CreateAnimation("BigMario.bmp", "BigMarioJumpRight", 10, 10, 0.1f, false);
+	RenderRun->CreateAnimation("BigMario.bmp", "BigMarioJumpLeft", 11, 11, 0.1f, false);
+	RenderRun->CreateAnimation("BigMario.bmp", "Death", 15, 15, 0.1f, false);
+	RenderRun->CreateAnimation("BigMario.bmp", "Flag", 16, 17, 0.15f, true);
+	RenderRun->CreateAnimation("BigMario.bmp", "End", 18, 18, 0.15f, false);
 	RenderRun->CreateAnimation("Blank.bmp", "Blank", 0, 0, 0.15f, false);
-	RenderRun->ChangeAnimation("MarioRight");
+	RenderRun->ChangeAnimation("BigMarioRight");
 
 
 
 	{
-		GameEngineInput::GetInst()->CreateKey("MoveLeft", 'A');
-		GameEngineInput::GetInst()->CreateKey("MoveRight", 'D');
-		GameEngineInput::GetInst()->CreateKey("Jump", VK_LSHIFT);
-		GameEngineInput::GetInst()->CreateKey("Down", 'S');
+		GameEngineInput::GetInst()->CreateKey("BigMarioMoveLeft", 'A');
+		GameEngineInput::GetInst()->CreateKey("BigMarioMoveRight", 'D');
+		GameEngineInput::GetInst()->CreateKey("BigMarioJump", VK_LSHIFT);
 		// VK_LBUTTON; 마우스
 	}
 }
 
 void BigPlayer::Update()
 {
-
+	if (Pause::PlayerStatus != "big")
+	{
+		return;
+	}
 	WhiteMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
 	if (nullptr == WhiteMap_)
 	{
@@ -125,7 +127,7 @@ void BigPlayer::Update()
 			float4 CurCameraPos = GetLevel()->GetCameraPos();
 			CurCameraPos.x = 0;
 			GetLevel()->SetCameraPos(CurCameraPos);
-			RenderRun->ChangeAnimation("MarioRight");
+			RenderRun->ChangeAnimation("BigMarioRight");
 		}
 		if (0.8f >= Time_)
 		{
@@ -143,7 +145,7 @@ void BigPlayer::Update()
 	//bool Press_; // 그 이후로 지속적으로 누르고 있을때.
 	//bool Up_; // 누르다가 땠을때 
 	//bool Free_; // 안누르고 있을때.
-	//RenderRun->ChangeAnimation("MarioRight");
+	//RenderRun->ChangeAnimation("BigMarioRight");
 	float4 CheckPos;
 
 	float MapSizeX = 8441;
@@ -193,26 +195,26 @@ void BigPlayer::Update()
 
 	//아무것도 안 누를때
 	MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * 100;
-	if (true == GameEngineInput::GetInst()->IsDown("Jump"))
+	if (true == GameEngineInput::GetInst()->IsDown("BigMarioJump"))
 	{
 		MoveDir += float4::UP *10;
-		GameEngineSound::SoundPlayOneShot("jumpsmall.wav", 0);
+		GameEngineSound::SoundPlayOneShot("jumpbig.wav", 0);
 	}
-	if (true == GameEngineInput::GetInst()->IsPress("Jump"))
+	if (true == GameEngineInput::GetInst()->IsPress("BigMarioJump"))
 	{
-		if (RenderRun->IsAnimationName("RunRight") || RenderRun->IsAnimationName("MarioRight"))
+		if (RenderRun->IsAnimationName("RunRight") || RenderRun->IsAnimationName("BigMarioRight"))
 		{
-			RenderRun->ChangeAnimation("JumpRight");
+			RenderRun->ChangeAnimation("BigMarioJumpRight");
 		}
-		else if (RenderRun->IsAnimationName("RunLeft") || RenderRun->IsAnimationName("MarioLeft"))
+		else if (RenderRun->IsAnimationName("RunLeft") || RenderRun->IsAnimationName("BigMarioLeft"))
 		{
-			RenderRun->ChangeAnimation("JumpLeft");
+			RenderRun->ChangeAnimation("BigMarioJumpLeft");
 		}
 		MoveDir = MoveDir + float4::UP * GameEngineTime::GetDeltaTime() * 80;
 
 	}
 
-	if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
+	if (true == GameEngineInput::GetInst()->IsPress("BigMarioMoveLeft"))
 	{
 
 		RenderRun->ChangeAnimation("RunLeft");
@@ -225,12 +227,12 @@ void BigPlayer::Update()
 	{
 		MoveDir += float4::DOWN;
 	}
-	if (true == GameEngineInput::GetInst()->IsFree("Jump"))
+	if (true == GameEngineInput::GetInst()->IsFree("BigMarioJump"))
 	{
 		/*MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * AccSpeed_;*/
 	}
 
-	if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
+	if (true == GameEngineInput::GetInst()->IsPress("BigMarioMoveRight"))
 	{
 		RenderRun->ChangeAnimation("RunRight");
 
@@ -303,21 +305,21 @@ void BigPlayer::Update()
 	}
 	if (0 < MoveDir.x)
 	{
-		if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
+		if (true == GameEngineInput::GetInst()->IsPress("BigMarioMoveLeft"))
 		{
 			RenderRun->ChangeAnimation("TurnLeft");
 		}
 	}
 	if (0 > MoveDir.x)
 	{
-		if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
+		if (true == GameEngineInput::GetInst()->IsPress("BigMarioMoveRight"))
 		{
 			RenderRun->ChangeAnimation("TurnRight");
 		}
 	}
 
-	if (false == GameEngineInput::GetInst()->IsPress("MoveLeft") &&
-		false == GameEngineInput::GetInst()->IsPress("MoveRight") &&
+	if (false == GameEngineInput::GetInst()->IsPress("BigMarioMoveLeft") &&
+		false == GameEngineInput::GetInst()->IsPress("BigMarioMoveRight") &&
 		false == GameEngineInput::GetInst()->IsPress("Down")
 		)
 	{
@@ -332,11 +334,11 @@ void BigPlayer::Update()
 
 		if (RenderRun->IsAnimationName("RunRight"))
 		{
-			RenderRun->ChangeAnimation("MarioRight");
+			RenderRun->ChangeAnimation("BigMarioRight");
 		}
 		if (RenderRun->IsAnimationName("RunLeft"))
 		{
-			RenderRun->ChangeAnimation("MarioLeft");
+			RenderRun->ChangeAnimation("BigMarioLeft");
 		}
 
 
@@ -357,18 +359,18 @@ void BigPlayer::Update()
 
 
 		if ((RGB(255, 255, 255) != Color)
-			&& GameEngineInput::GetInst()->IsFree("Jump")
+			&& GameEngineInput::GetInst()->IsFree("BigMarioJump")
 			)
 
 		{
-			if (RenderRun->IsAnimationName("JumpLeft"))
+			if (RenderRun->IsAnimationName("BigMarioJumpLeft"))
 			{
-				RenderRun->ChangeAnimation("MarioLeft");
+				RenderRun->ChangeAnimation("BigMarioLeft");
 			}
 			else
-				if (RenderRun->IsAnimationName("JumpRight"))
+				if (RenderRun->IsAnimationName("BigMarioJumpRight"))
 				{
-					RenderRun->ChangeAnimation("MarioRight");
+					RenderRun->ChangeAnimation("BigMarioRight");
 				}
 			MoveDir.y =0;
 			AccGravity_ = 0;
@@ -466,7 +468,7 @@ void BigPlayer::Update()
 			SetMove(DownDown * GameEngineTime::GetDeltaTime() * Speed_);
 		}
 
-
+		Pause::PlayerPosition = GetPosition();
 	}
 }
 

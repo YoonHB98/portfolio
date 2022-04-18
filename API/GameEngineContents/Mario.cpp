@@ -181,6 +181,10 @@ void Mario::GameInit()
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("SecretCoinBlock.bmp");
 		Image->Cut({ 40,40 });
 	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("BigMario.bmp");
+		Image->Cut({ 40,80 });
+	}
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<Stage1>("Stage1");
 	CreateLevel<EndingLevel>("Ending");

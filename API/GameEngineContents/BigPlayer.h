@@ -11,14 +11,6 @@
 #include <Windows.h>
 
 
-enum BigPlayerState
-{
-	Idle,
-	Attck,
-	Move,
-	Max,
-};
-
 class GameEngineImage;
 class BigPlayer : public GameEngineActor
 {

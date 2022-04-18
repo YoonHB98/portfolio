@@ -75,6 +75,8 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Mushroom.h" />
+    <ClInclude Include="Mushroom2.h" />
     <ClInclude Include="Name.h">
       <SubType>
       </SubType>
@@ -205,6 +207,8 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Mushroom.cpp" />
+    <ClCompile Include="Mushroom2.cpp" />
     <ClCompile Include="Name.cpp">
       <SubType>
       </SubType>

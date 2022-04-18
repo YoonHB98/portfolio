@@ -9,6 +9,9 @@
 #include "flag.h"
 #include "UpMushroom.h"
 #include "UpMushroom2.h"
+#include "Mushroom.h"
+#include "Mushroom2.h"
+
 Stage1::Stage1() 
 {
 }
@@ -42,6 +45,11 @@ void Stage1::Loading()
 	Mario->SetPosition(float4{ 100, 500 });
 	}
 	{
+		BigMario = CreateActor<BigPlayer>(3);
+
+		BigMario->SetPosition(float4{ 150, -3000 });
+	}
+	{
 		Map1* Actor = CreateActor<Map1>(0);
 		Actor->GetRenderer()->SetImage("11map.bmp");
 
@@ -64,8 +72,8 @@ void Stage1::Loading()
 	{
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
 		Actor->CreateQuestionBlock(float4{  860, 380 } );
-		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-		CoinActor->CreateBoxCoin(float4{ 860, 380 });
+		Mushroom2* MushroomActor = CreateActor<	Mushroom2>(1);
+		MushroomActor->CreateMushroom(float4{ 860, 380 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
@@ -297,9 +305,15 @@ void Stage1::Update()
 		BgmPlayer.Stop();
 	}
 
-	if (Pause::PlayerStatus == "BigMario")
+	if (Pause::PlayerStatus == "big")
 	{
-
+		Mario->SetPosition(float4{ 100, 3000 });
+		BigMario->SetPosition(Pause::PlayerPosition);
+	}
+	if (Pause::PlayerStatus == "small")
+	{
+		BigMario->SetPosition(float4{ 100, 3000 });
+		Mario->SetPosition(Pause::PlayerPosition);
 	}
 }
 void Stage1::LevelChangeStart()
