@@ -16,6 +16,8 @@ public:
 	Pause& operator=(Pause&& _Other) noexcept = delete;
 	static bool pause;
 	static bool death;
+	static bool bigfirst;
+	static bool smallfirst;
 	static bool end;
 	static bool first;
 	static std::string PlayerStatus;

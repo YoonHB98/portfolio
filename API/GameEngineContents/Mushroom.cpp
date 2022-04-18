@@ -90,6 +90,7 @@ void Mushroom::Update()
 			if (Pause::PlayerStatus == "small")
 			{
 				Pause::PlayerStatus = "big";
+				Pause::bigfirst = true;
 			}
 			else		
 				if (Pause::PlayerStatus == "big")

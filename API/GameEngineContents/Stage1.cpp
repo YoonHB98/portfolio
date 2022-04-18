@@ -73,7 +73,7 @@ void Stage1::Loading()
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
 		Actor->CreateQuestionBlock(float4{  860, 380 } );
 		Mushroom2* MushroomActor = CreateActor<	Mushroom2>(1);
-		MushroomActor->CreateMushroom(float4{ 860, 380 });
+		MushroomActor->CreateMushroom(float4{ 7700, 380 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
@@ -305,10 +305,12 @@ void Stage1::Update()
 		BgmPlayer.Stop();
 	}
 
-	if (Pause::PlayerStatus == "big")
+	if (Pause::PlayerStatus == "big"
+		&&Pause::bigfirst)
 	{
 		Mario->SetPosition(float4{ 100, 3000 });
 		BigMario->SetPosition(Pause::PlayerPosition);
+		Pause::bigfirst = false;
 	}
 	if (Pause::PlayerStatus == "small")
 	{
@@ -320,6 +322,7 @@ void Stage1::LevelChangeStart()
 { 
 	//200, 500
 	//üũ 14000, 500
+	(Pause::PlayerPosition == (float4{ 100, 500 }));
 	Mario->SetPosition(float4{ 100, 500 });
 		UI->TimerReset();
 		BgmPlayer.Stop();

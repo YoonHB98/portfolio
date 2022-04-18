@@ -26,10 +26,10 @@ BigPlayer::~BigPlayer()
 
 void BigPlayer::Start()
 {
-	BigPlayerCollision = CreateCollision("BigPlayerHitBox", { 80, 10 }, { 0, -40 });
-	BigPlayerCollision = CreateCollision("PlayerBot", { 80, 10 }, { 0, 40 });
-	BigPlayerRight_ = CreateCollision("PlayerItem", { 2,80 }, { 40, 0 });
-	BigPlayerLeft_ = CreateCollision("PlayerItem", { 2, 80 }, { -40, 0 });
+	BigPlayerCollision = CreateCollision("BigPlayerHitBox", { 40, 10 }, { 0, -40 });
+	BigPlayerCollision = CreateCollision("PlayerBot", { 40, 10 }, { 0, 40 });
+	BigPlayerRight_ = CreateCollision("PlayerItem", { 2,80 }, { 20, 0 });
+	BigPlayerLeft_ = CreateCollision("PlayerItem", { 2, 80 }, { -20, 0 });
 	Right = 0;
 	Left = 0;
 
@@ -80,20 +80,22 @@ void BigPlayer::Update()
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
 		MoveDir = float4::DOWN;
 		float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
-		int Down = WhiteMap_->GetImagePixel(NextPos + float4(19.0f, 19.0f));
+		int Down = WhiteMap_->GetImagePixel(NextPos + float4(19.0f, 40.0f));
 		int Right = WhiteMap_->GetImagePixel(NextPos + float4(20.0f, 0.0f));
 		if ((RGB(0, 0, 0) != (Down)))
 		{
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+			Pause::PlayerPosition == GetPosition();
 		}
 		if (1.2f  <= Time_
-			&& 1.3f > Time_)
+			&& 1.5f > Time_)
 		{
-			SetPosition(float4{7955, 480});
+			SetPosition(float4{7975, 430});
 			RenderRun->ChangeAnimation("End");
+			Pause::PlayerPosition == GetPosition();
 			return;
 		}
-		if (1.3f <= Time_)
+		if (1.5f <= Time_)
 		{
 			RenderRun->ChangeAnimation("RunRight");
 			if ((RGB(0, 0, 0) != (Down)))
@@ -114,6 +116,8 @@ void BigPlayer::Update()
 			}
 			  MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * 300;
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+			Pause::PlayerPosition == GetPosition();
+
 		}
 		return;
 	}
@@ -352,10 +356,10 @@ void BigPlayer::Update()
 		float4 BigPlayerRight = float4{ 20, 0 };
 		float4 BigPlayerDown = float4{ 0, 20 };
 
-		int Color = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, 19.0f));
-		int Down1 = WhiteMap_->GetImagePixel(GetPosition() + float4(10.0f, 19.0f));
-		int Down2 = WhiteMap_->GetImagePixel(GetPosition() + float4(-10.0f, 19.0f));
-		int ColorUp = WhiteMap_->GetImagePixel(GetPosition() + float4(0.0f, -19.0f));
+		int Color = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, 39.0f));
+		int Down1 = WhiteMap_->GetImagePixel(GetPosition() + float4(10.0f, 39.0f));
+		int Down2 = WhiteMap_->GetImagePixel(GetPosition() + float4(-10.0f, 39.0f));
+		int ColorUp = WhiteMap_->GetImagePixel(GetPosition() + float4(0.0f, -39.0f));
 
 
 		if ((RGB(255, 255, 255) != Color)
@@ -380,8 +384,8 @@ void BigPlayer::Update()
 		float4 DownDown = { 0, 0 };
 		int Left = WhiteMap_->GetImagePixel(NextPos + float4(-19.0f, 0.0f));
 		int Right = WhiteMap_->GetImagePixel(NextPos + float4(19.0f, 0.0f));
-		int Down = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, 19.0f));
-		int Up = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, -19.0f));
+		int Down = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, 39.0f));
+		int Up = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, -39.0f));
 
 		LeftRight.x = MoveDir.x;
 		UpUp.y = MoveDir.y;

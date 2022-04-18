@@ -13,4 +13,6 @@ bool Pause::pause = false;
 bool Pause::death = false;
 bool Pause::end = false;
 std::string Pause::PlayerStatus = "small";
-float4 Pause::PlayerPosition = float4(0, 0 , 0);
+float4 Pause::PlayerPosition = (float4{ 7650, 480 });
+bool Pause:: bigfirst = true;
+bool Pause::smallfirst = true;
