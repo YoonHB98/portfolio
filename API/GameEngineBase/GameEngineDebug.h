@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <Windows.h>
 
+// Ό³Έν :
 class GameEngineDebug
 {
 public:
@@ -34,5 +35,3 @@ assert(false);
 #define MsgBoxAssertString(Text) 	MessageBeep(0); \
 MessageBoxA(nullptr, (Text).c_str(), "Error", MB_OK); \
 assert(false); 
-
-

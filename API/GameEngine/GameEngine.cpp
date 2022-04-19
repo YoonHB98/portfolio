@@ -9,6 +9,8 @@
 std::map<std::string, GameEngineLevel*> GameEngine::AllLevel_;
 GameEngineLevel* GameEngine::CurrentLevel_ = nullptr;
 GameEngineLevel* GameEngine::NextLevel_ = nullptr;
+GameEngineLevel* GameEngine::PrevLevel_ = nullptr;
+
 GameEngine* GameEngine::UserContents_ = nullptr;
 GameEngineImage* GameEngine::BackBufferImage_ = nullptr;
 GameEngineImage* GameEngine::WindowMainImage_ = nullptr; // 그려지면 화면에 진짜 나오게 되는 이미지
@@ -67,11 +69,14 @@ void GameEngine::EngineLoop()
     UserContents_->GameLoop();
 
     // 시점함수라고 하는데
-    // 실행하는 도중 현재레벨이 바뀌지 않게 시점함수
+    // 어느 시점
     if (nullptr != NextLevel_)
     {
+        PrevLevel_ = CurrentLevel_;
+
         if (nullptr != CurrentLevel_)
         {
+            CurrentLevel_->ActorLevelChangeEnd();
             CurrentLevel_->LevelChangeEnd();
         }
 
@@ -80,10 +85,10 @@ void GameEngine::EngineLoop()
         if (nullptr != CurrentLevel_)
         {
             CurrentLevel_->LevelChangeStart();
+            CurrentLevel_->ActorLevelChangeStart();
         }
 
         NextLevel_ = nullptr;
-        //로딩동안 델타타임 안재도록 리셋
         GameEngineTime::GetInst()->Reset();
 
         Rectangle(WindowMainImage_->ImageDC(), 0, 0, WindowMainImage_->GetScale().ix(), WindowMainImage_->GetScale().iy());
