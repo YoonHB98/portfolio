@@ -70,18 +70,13 @@ void BigPlayer::Update()
 	WhiteMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
 	float4 CheckPos;
 
-	float MapSizeX = 8441;
-	float MapSizeY = 550;
-	float CameraRectX = 620;
-	float CameraRectY = 550;
-	float Camera = GetLevel()->GetCameraPos().x;
-	GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
 	if (nullptr == WhiteMap_)
 	{
 		MsgBoxAssert("맵 충돌용 이미지를 찾지 못했습니다.")
 	}
 	if (Pause::end)
 	{
+
 		if (FirstEnd_)
 		{
 			RenderRun->ChangeAnimation("Flag");
@@ -101,6 +96,13 @@ void BigPlayer::Update()
 		if (1.2f  <= Time_
 			&& 1.5f > Time_)
 		{
+
+			float MapSizeX = 8441;
+			float MapSizeY = 550;
+			float CameraRectX = 620;
+			float CameraRectY = 550;
+			float Camera = GetLevel()->GetCameraPos().x;
+			GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
 			SetPosition(float4{ MapSizeX - 466, 430});
 			RenderRun->ChangeAnimation("End");
 			Pause::PlayerPosition == GetPosition();
@@ -137,43 +139,6 @@ void BigPlayer::Update()
 	}
 
 
-	if ((GetPosition().x  - 50)> GetLevel()->GetCameraPos().x)
-	{
-		float4 CurCameraPos = GetLevel()->GetCameraPos();
-		CurCameraPos.x = (GetPosition().x - 50);
-		GetLevel()->SetCameraPos(CurCameraPos);
-	}
-	if (Camera > (GetPosition().x -50))
-	{
-		float4 CurCameraPos = GetLevel()->GetCameraPos();
-		CurCameraPos.x = Camera;
-		GetLevel()->SetCameraPos(CurCameraPos);
-	}
-	if (0 > GetLevel()->GetCameraPos().x)
-	{
-		float4 CurCameraPos = GetLevel()->GetCameraPos();
-		CurCameraPos.x = 0;
-		GetLevel()->SetCameraPos(CurCameraPos);
-	}
-
-	if (0 > GetLevel()->GetCameraPos().y)
-	{
-		float4 CurCameraPos = GetLevel()->GetCameraPos();
-		CurCameraPos.y = GetLevel()->GetCameraPos().y - (GetLevel()->GetCameraPos().y);
-		GetLevel()->SetCameraPos(CurCameraPos);
-	}
-	if (MapSizeX <= GetLevel()->GetCameraPos().x +625)
-	{
-		float4 CurCameraPos = GetLevel()->GetCameraPos();
-		CurCameraPos.x  = GetLevel()->GetCameraPos().x - (GetLevel()->GetCameraPos().x + CameraRectX - MapSizeX   );
-		GetLevel()->SetCameraPos(CurCameraPos);
-	}
-	if (MapSizeY <= (GetLevel()->GetCameraPos().y + CameraRectY))
-	{
-		float4 CurCameraPos = GetLevel()->GetCameraPos();
-		CurCameraPos.y = GetLevel()->GetCameraPos().y - (GetLevel()->GetCameraPos().y);
-		GetLevel()->SetCameraPos(CurCameraPos);
-	}
 
 	//아무것도 안 누를때
 	MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * 100;
@@ -264,12 +229,9 @@ void BigPlayer::Update()
 		|| true == BigPlayerRight_->CollisionCheck("MonsterLeft", CollisionType::Rect, CollisionType::Rect)
 		|| (RGB(0, 0, 255)== WhiteMap_->GetImagePixel(NextPos)))
 	{
-		//Point100* Ptr = GetLevel()->CreateActor<Point100>(2);
-		//Ptr->SetPosition(GetPosition());
-		//Death();
 		Pause::PlayerStatus = "small";
-		GameEngineSound::SoundPlayOneShot("Death.wav", 0);
-
+		Pause::smallfirst = true;
+		GameEngineSound::SoundPlayOneShot("shrink.wav", 0);
 		return;
 	}
 
@@ -404,6 +366,7 @@ void BigPlayer::Update()
 
 		{
 			SetMove(LeftRight * GameEngineTime::GetDeltaTime() * Speed_);
+			CameraPos();
 		}
 		if ((RGB(0, 0, 0) != (Right))
 			&& RightCheck
@@ -411,6 +374,7 @@ void BigPlayer::Update()
 
 		{
 			SetMove(LeftRight * GameEngineTime::GetDeltaTime() * Speed_);
+			CameraPos();
 		}
 		if ((RGB(0, 0, 0) != (Up)))
 		{
@@ -422,6 +386,7 @@ void BigPlayer::Update()
 
 		{
 			SetMove(UpUp * GameEngineTime::GetDeltaTime() * Speed_);
+			CameraPos();
 		}
 
 		//BigPlayerCollision = CreateCollision("BigPlayerHitBox", { 40,40 }, CheckPos + float4(-160.0f, -1000.0f));
@@ -445,6 +410,7 @@ void BigPlayer::Update()
 
 		{
 			SetMove(DownDown * GameEngineTime::GetDeltaTime() * Speed_);
+			CameraPos();
 		}
 
 		Pause::PlayerPosition = GetPosition();
@@ -478,13 +444,13 @@ void BigPlayer::CameraPos()
 	}
 	float Camera = GetLevel()->GetCameraPos().x;
 	{
-		if ((GetPosition().x - 50) > GetLevel()->GetCameraPos().x)
+		if ((GetPosition().x - 300) > GetLevel()->GetCameraPos().x)
 		{
 			float4 CurCameraPos = GetLevel()->GetCameraPos();
-			CurCameraPos.x = (GetPosition().x - 50);
+			CurCameraPos.x = (GetPosition().x - 300);
 			GetLevel()->SetCameraPos(CurCameraPos);
 		}
-		if (Camera > (GetPosition().x - 50))
+		if (Camera > (GetPosition().x - 300))
 		{
 			float4 CurCameraPos = GetLevel()->GetCameraPos();
 			CurCameraPos.x = Camera;

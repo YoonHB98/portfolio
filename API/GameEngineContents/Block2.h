@@ -8,20 +8,20 @@
 // Ό³Έν :
 
 
-class Block : public GameEngineActor
+class Block2 : public GameEngineActor
 {
 public:
 	// constrcuter destructer
-	Block();
-	~Block();
+	Block2();
+	~Block2();
 
 	// delete Function
-	Block(const Block& _Other) = delete;
-	Block(Block&& _Other) noexcept = delete;
-	Block& operator=(const Block& _Other) = delete;
-	Block& operator=(Block&& _Other) noexcept = delete;
-	GameEngineCollision* BlockCollision;
-	void CreateBlock(const float4& _Pivot);
+	Block2(const Block2& _Other) = delete;
+	Block2(Block2&& _Other) noexcept = delete;
+	Block2& operator=(const Block2& _Other) = delete;
+	Block2& operator=(Block2&& _Other) noexcept = delete;
+	GameEngineCollision* Block2Collision;
+	void CreateBlock2(const float4& _Pivot);
 protected:
 
 private:

@@ -11,6 +11,7 @@
 #include "UpMushroom2.h"
 #include "Mushroom.h"
 #include "Mushroom2.h"
+#include "Block2.h"
 
 Stage1::Stage1() 
 {
@@ -61,8 +62,8 @@ void Stage1::Loading()
 	}
 	// ºí·Ï
 	{
-		Block* Actor = CreateActor<Block>(2);
-		Actor->CreateBlock(float4{ 200, 380 });
+		Block2* Actor = CreateActor<Block2>(2);
+		Actor->CreateBlock2(float4{ 200, 380 });
 	}
 	{
 		SecretBlock* Actor = CreateActor<SecretBlock>(2);
@@ -77,7 +78,7 @@ void Stage1::Loading()
 		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
 		Actor->CreateQuestionBlock(float4{  860, 380 } );
 		Mushroom2* MushroomActor = CreateActor<	Mushroom2>(1);
-		MushroomActor->CreateMushroom(float4{ 7700, 380 });
+		MushroomActor->CreateMushroom(float4{ 860, 380 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);

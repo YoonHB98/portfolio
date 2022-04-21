@@ -69,6 +69,29 @@ void Player::Update()
 	{
 		return;
 	}
+
+	if (Pause::smallfirst)
+	{
+		nodiecount;  nodie;
+		nodie = nodie + GameEngineTime::GetDeltaTime();
+		if (nodie < 0.1f)
+		{
+			RenderRun->SetAlpha(200);
+		}
+		if (nodie > 0.1f)
+		{
+			RenderRun->SetAlpha(255);
+			if (nodie > 0.2f)
+			{
+				nodie = 0.0f;
+				nodiecount += 1;
+			}
+		}
+		if ( nodiecount == 10)
+		{
+			Pause::smallfirst = false;
+		}
+	}
 	WhiteMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
 	if (nullptr == WhiteMap_)
 	{
@@ -295,20 +318,24 @@ void Player::Update()
 		SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_ );
 	}
 	float4 NextPos = GetPosition() +float4 {0, 20};
-	if (true == PlayerLeft_->CollisionCheck("MonsterRight", CollisionType::Rect, CollisionType::Rect)
-		|| true == PlayerRight_->CollisionCheck("MonsterLeft", CollisionType::Rect, CollisionType::Rect)
-		|| (RGB(0, 0, 255)== WhiteMap_->GetImagePixel(NextPos)))
+	if (Pause::smallfirst == false)
 	{
-		//Point100* Ptr = GetLevel()->CreateActor<Point100>(2);
-		//Ptr->SetPosition(GetPosition());
-		//Death();
-		Pause::death = true;
-		RenderRun->ChangeAnimation("Death");
-		SetMove(float4::UP);
-		GameEngineSound::SoundPlayOneShot("Death.wav", 0);
-		LevelIntro::DeathCount = LevelIntro::DeathCount - 1;
+		if (true == PlayerLeft_->CollisionCheck("MonsterRight", CollisionType::Rect, CollisionType::Rect)
+			|| true == PlayerRight_->CollisionCheck("MonsterLeft", CollisionType::Rect, CollisionType::Rect)
+			|| (RGB(0, 0, 255) == WhiteMap_->GetImagePixel(NextPos))
+			)
+		{
+			//Point100* Ptr = GetLevel()->CreateActor<Point100>(2);
+			//Ptr->SetPosition(GetPosition());
+			//Death();
+			Pause::death = true;
+			RenderRun->ChangeAnimation("Death");
+			SetMove(float4::UP);
+			GameEngineSound::SoundPlayOneShot("Death.wav", 0);
+			LevelIntro::DeathCount = LevelIntro::DeathCount - 1;
 
-		return;
+			return;
+		}
 	}
 
 

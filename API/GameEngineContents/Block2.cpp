@@ -1,17 +1,17 @@
-#include "Block.h"
+#include "Block2.h"
 #include "Pause.h"
 #include "BlockBreak.h"
 
 
-Block::Block() 
+Block2::Block2() 
 {
 }
 
-Block::~Block() 
+Block2::~Block2() 
 {
 }
 
-void Block::CreateBlock(const float4& _Pivot)
+void Block2::CreateBlock2(const float4& _Pivot)
 {
 	{
 		float4 Pivot = _Pivot;
@@ -22,11 +22,11 @@ void Block::CreateBlock(const float4& _Pivot)
 	}
 }
 
-void Block::Start()
+void Block2::Start()
 {
 	//Actor->SetPosition(Pivot);
-	//Actor->CreateCollision("Block", { 80, 10 }, CoPivot);
-	BlockCollision = CreateCollision("Block", { 40, 1 }, { 0, 20 });
+	//Actor->CreateCollision("Block2", { 80, 10 }, CoPivot);
+	Block2Collision = CreateCollision("Block", { 40, 1 }, { 0, 20 });
 
 	CreateRenderer("Block.bmp");
 	
@@ -34,10 +34,10 @@ void Block::Start()
 	/*Image_ = CreateRenderer();*/
 }
 
-void Block::Update()
+void Block2::Update()
 {
 
-	if (true == BlockCollision->CollisionCheck("PlayerHitBox", CollisionType::Rect, CollisionType::Rect))
+	if (true == Block2Collision->CollisionCheck("PlayerHitBox", CollisionType::Rect, CollisionType::Rect))
 {
 		BlockBreak* RightTop = GetLevel()->CreateActor<BlockBreak>();
 		RightTop->SetPosition(GetPosition() + float4 { 20 , - 20});
@@ -52,7 +52,7 @@ void Block::Update()
 }
 }
 
-void Block::Render()
+void Block2::Render()
 {
 }
 

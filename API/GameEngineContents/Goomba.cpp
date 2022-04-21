@@ -6,7 +6,7 @@
 
 
 Goomba::Goomba() 
-	:Speed_(100.0f)
+	:Speed_(50.0f)
 {
 }
 
@@ -38,7 +38,7 @@ void Goomba::Start()
 	GoombaCollision = CreateCollision("Goomba", { 40, 5 }, { 0, -20 });
 	RightCollision = CreateCollision("MonsterRight", { 5,40 }, { 20, 0 });
 	LeftCollision = CreateCollision("MonsterLeft", { 5, 40 }, { -20, 0 });
-	CheckCollision = CreateCollision("CheckPos", { 40, 1200 }, { -620, 20 });
+	CheckCollision = CreateCollision("CheckPos", { 40, 2400 }, { -620, 20 });
 	MoveDir = float4::LEFT;
 }
 
@@ -56,7 +56,9 @@ void Goomba::Update()
 	float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 	float4 CheckPos = NextPos - float4(0.0f, 20.0f);
 	CheckPos = CheckPos + MoveDir * float4(20.0f, 1.0f, 1.0f, 1.0f);
+	float4 LeftBot = GetPosition() - float4{-20, -20}; 
 	int Color = ColMap_->GetImagePixel(CheckPos);
+	int ColorLeftBot = ColMap_->GetImagePixel(LeftBot);
 
 
 	if (RGB(255, 255, 255) == Color)
@@ -66,6 +68,31 @@ void Goomba::Update()
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 		}
 		
+	}
+	if (RGB(255, 255, 255) == ColorLeftBot)
+	{
+		if (up == 1)
+		{
+			MoveDir += float4{0, 1.0f};
+			if (MoveDir.y > 1.0f)
+			{
+				MoveDir.y = 1.0f;
+			}
+			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+		}
+
+	}
+	if (RGB(255, 255, 255) != ColorLeftBot)
+	{
+		MoveDir.y = 0.0f;
+	}
+	if (RGB(255, 255, 255) == Color)
+	{
+		if (up == 1)
+		{
+			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+		}
+
 	}
 	if (RGB(255, 255, 255) != Color)
 	{

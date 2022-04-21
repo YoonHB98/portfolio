@@ -56,7 +56,7 @@ void Mushroom::Update()
 	ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
 	float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 	float4 CheckPos = NextPos;
-	float4 CheckDown = NextPos + float4{ 0 , 21};
+	float4 CheckDown = NextPos + float4{ 20 , 21};
 	CheckPos = CheckPos + MoveDir * float4(20.0f, 1.0f, 1.0f, 1.0f);
 	CheckDown = CheckDown + MoveDir * float4(20.0f, 1.0f, 1.0f, 1.0f);
 	int Color = ColMap_->GetImagePixel(CheckPos);
