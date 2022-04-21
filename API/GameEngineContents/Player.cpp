@@ -281,20 +281,14 @@ void Player::Update()
 
 	}
 
-
-	//{
-	//	float y = MoveDir.y;
-	//	if (0.0f <= MoveDir.y
-	//		&& -0.2f >= MoveDir.y)
-	//	{
-	//		MoveDir.y = -0.5f;
-	//	}
-	//}
-	//{
-	//	if (-3.0f >= MoveDir.y)
-	//	{
-	//		MoveDir.y = -3.0f;
-	//	}
+		if (-30.0f >= MoveDir.y)
+		{
+			MoveDir.y = -30.0f;
+		}
+		if (30.0f <= MoveDir.y)
+		{
+			MoveDir.y = 30.0f;
+		}
 		if (-2.0f >= MoveDir.x)
 		{
 			MoveDir.x = -2.0f;
@@ -303,12 +297,15 @@ void Player::Update()
 		{
 			MoveDir.x = 2.0f;
 		}
-	//}
 	{
-	/*	if (8.0f <= MoveDir.Len2D())
+		if (8.0f <= MoveDir.Len2D())
 		{
 			MoveDir.Range2D(8.0f);
-		}*/
+		}
+		if (-8.0f >= MoveDir.Len2D())
+		{
+			MoveDir.Range2D(-8.0f);
+		}
 	}
 
 	if (true == PlayerCollision->CollisionCheck("Goomba", CollisionType::Rect, CollisionType::Rect))
@@ -325,9 +322,6 @@ void Player::Update()
 			|| (RGB(0, 0, 255) == WhiteMap_->GetImagePixel(NextPos))
 			)
 		{
-			//Point100* Ptr = GetLevel()->CreateActor<Point100>(2);
-			//Ptr->SetPosition(GetPosition());
-			//Death();
 			Pause::death = true;
 			RenderRun->ChangeAnimation("Death");
 			SetMove(float4::UP);
@@ -487,6 +481,7 @@ void Player::Update()
 			)
 
 		{
+			int a = UpUp.x;
 			SetMove(UpUp * GameEngineTime::GetDeltaTime() * Speed_);
 		}
 
