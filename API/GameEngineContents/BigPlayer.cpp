@@ -66,6 +66,14 @@ void BigPlayer::Update()
 		return;
 	}
 	WhiteMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	float4 CheckPos;
+
+	float MapSizeX = 8441;
+	float MapSizeY = 550;
+	float CameraRectX = 620;
+	float CameraRectY = 550;
+	float Camera = GetLevel()->GetCameraPos().x;
+	GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
 	if (nullptr == WhiteMap_)
 	{
 		MsgBoxAssert("맵 충돌용 이미지를 찾지 못했습니다.")
@@ -84,13 +92,13 @@ void BigPlayer::Update()
 		int Right = WhiteMap_->GetImagePixel(NextPos + float4(20.0f, 0.0f));
 		if ((RGB(0, 0, 0) != (Down)))
 		{
-			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * 150);
 			Pause::PlayerPosition == GetPosition();
 		}
 		if (1.2f  <= Time_
 			&& 1.5f > Time_)
 		{
-			SetPosition(float4{7975, 430});
+			SetPosition(float4{ MapSizeX - 466, 430});
 			RenderRun->ChangeAnimation("End");
 			Pause::PlayerPosition == GetPosition();
 			return;
@@ -115,7 +123,7 @@ void BigPlayer::Update()
 				RenderRun->ChangeAnimation("Blank");
 			}
 			  MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * 300;
-			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * 150);
 			Pause::PlayerPosition == GetPosition();
 
 		}
@@ -150,14 +158,7 @@ void BigPlayer::Update()
 	//bool Up_; // 누르다가 땠을때 
 	//bool Free_; // 안누르고 있을때.
 	//RenderRun->ChangeAnimation("BigMarioRight");
-	float4 CheckPos;
 
-	float MapSizeX = 8441;
-	float MapSizeY = 550;
-	float CameraRectX = 620;
-	float CameraRectY = 550;
-	float Camera = GetLevel()->GetCameraPos().x;
-	GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
 
 	if ((GetPosition().x  - 50)> GetLevel()->GetCameraPos().x)
 	{
@@ -289,11 +290,8 @@ void BigPlayer::Update()
 		//Point100* Ptr = GetLevel()->CreateActor<Point100>(2);
 		//Ptr->SetPosition(GetPosition());
 		//Death();
-		Pause::death = true;
-		RenderRun->ChangeAnimation("Death");
-		SetMove(float4::UP);
+		Pause::PlayerStatus = "small";
 		GameEngineSound::SoundPlayOneShot("Death.wav", 0);
-		LevelIntro::DeathCount = LevelIntro::DeathCount - 1;
 
 		return;
 	}

@@ -11,7 +11,7 @@ private:
 	static GameEngineWindow* Inst_;
 
 public:
-	inline static GameEngineWindow& GetInst()
+	inline static GameEngineWindow& GetInst() 
 	{
 		return *Inst_;
 	}
@@ -65,6 +65,9 @@ private:
 	GameEngineWindow(GameEngineWindow&& _Other) noexcept = delete;
 	GameEngineWindow& operator=(const GameEngineWindow& _Other) = delete;
 	GameEngineWindow& operator=(GameEngineWindow&& _Other) noexcept = delete;
+
+
+	static LRESULT CALLBACK MessageProcess(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 };
 

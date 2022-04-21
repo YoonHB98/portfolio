@@ -318,7 +318,7 @@ void Stage1::Update()
 		Mario->SetPosition(Pause::PlayerPosition);
 	}
 }
-void Stage1::LevelChangeStart()
+void Stage1::LevelChangeStart(GameEngineLevel* _PrevLevel)
 { 
 	//200, 500
 	//üũ 14000, 500

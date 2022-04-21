@@ -8,16 +8,10 @@
 #include <GameEngineBase/GameEngineTime.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngine/GameEngineCollision.h>
+#include <GameEngineBase/GameEngineMath.h>
 #include <Windows.h>
 
 
-enum PlayerState
-{
-	Idle,
-	Attck,
-	Move,
-	Max,
-};
 
 class GameEngineImage;
 class Player : public GameEngineActor
@@ -33,6 +27,8 @@ public:
 	Player& operator=(const Player& _Other) = delete;
 	Player& operator=(Player&& _Other) noexcept = delete;
 	float GetCurrentPosition();
+
+	float Angle;
 protected:
 
 private:

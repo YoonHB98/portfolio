@@ -63,6 +63,8 @@ void Player::Start()
 
 void Player::Update()
 {
+	RenderRun->SetAlpha(255);
+
 	if (Pause::PlayerStatus != "small")
 	{
 		return;

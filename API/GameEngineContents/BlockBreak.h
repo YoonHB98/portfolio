@@ -21,6 +21,7 @@ public:
 protected:
 
 private:
+	float Angle;
 	GameEngineRenderer* Actor;
 	void Start() override;
 	void Update() override;
