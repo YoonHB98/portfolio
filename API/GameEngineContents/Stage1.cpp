@@ -61,6 +61,10 @@ void Stage1::Loading()
 	}
 	// 블록
 	{
+		Block* Actor = CreateActor<Block>(2);
+		Actor->CreateBlock(float4{ 200, 380 });
+	}
+	{
 		SecretBlock* Actor = CreateActor<SecretBlock>(2);
 		Actor->CreateSecretBlock(float4{ 2580, 340 });
 	}
@@ -322,7 +326,7 @@ void Stage1::LevelChangeStart(GameEngineLevel* _PrevLevel)
 { 
 	//200, 500
 	//체크 14000, 500
-	(Pause::PlayerPosition == (float4{ 100, 500 }));
+	(Pause::PlayerPosition = (float4{ 100, 500 }));
 	Mario->SetPosition(float4{ 100, 500 });
 		UI->TimerReset();
 		BgmPlayer.Stop();

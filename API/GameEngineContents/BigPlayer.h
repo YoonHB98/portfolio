@@ -28,6 +28,9 @@ public:
 protected:
 
 private:
+	void CameraPos();
+
+
 	float4 MoveDir;
 	GameEngineRenderer* RenderRun;
 	int Right;

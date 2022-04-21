@@ -32,6 +32,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Block2.h" />
     <ClInclude Include="BlockBreak.h" />
     <ClInclude Include="Boss.h">
       <SubType>
@@ -165,6 +166,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Block2.cpp" />
     <ClCompile Include="BlockBreak.cpp" />
     <ClCompile Include="Boss.cpp">
       <SubType>

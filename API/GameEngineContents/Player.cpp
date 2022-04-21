@@ -125,6 +125,9 @@ void Player::Update()
 	}
 	if (Pause::death)
 	{
+		float4 MoveDir2;
+		MoveDir2 += float4::DOWN * GameEngineTime::GetDeltaTime() * 3600;
+
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
 		if (3.0f <= Time_)
 		{
@@ -135,14 +138,22 @@ void Player::Update()
 			GetLevel()->SetCameraPos(CurCameraPos);
 			RenderRun->ChangeAnimation("MarioRight");
 		}
-		if (0.8f >= Time_)
+		if (0.4f >= Time_)
 		{
-			SetMove(float4::UP );
+			MoveDir2 += float4::UP * 7000*GameEngineTime::GetDeltaTime();
+			SetMove(MoveDir2 * GameEngineTime::GetDeltaTime() * Speed_);
+			Pause::PlayerPosition = GetPosition();
+			return;
+		}
+		if (0.5f > Time_)
+		{
+			MoveDir2 = float4::ZERO;
 			return;
 		}
 		if (1.2f >= Time_)
 		{
-			SetMove(float4::DOWN );
+			SetMove(MoveDir2 * GameEngineTime::GetDeltaTime() * Speed_);
+			Pause::PlayerPosition = GetPosition();
 			return;
 		}
 		return;
@@ -161,13 +172,13 @@ void Player::Update()
 	float Camera = GetLevel()->GetCameraPos().x;
 	GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
 
-	if ((GetPosition().x  - 50)> GetLevel()->GetCameraPos().x)
+	if ((GetPosition().x  - 300)> GetLevel()->GetCameraPos().x)
 	{
 		float4 CurCameraPos = GetLevel()->GetCameraPos();
-		CurCameraPos.x = (GetPosition().x - 50);
+		CurCameraPos.x = (GetPosition().x - 300);
 		GetLevel()->SetCameraPos(CurCameraPos);
 	}
-	if (Camera > (GetPosition().x -50))
+	if (Camera > (GetPosition().x -300))
 	{
 		float4 CurCameraPos = GetLevel()->GetCameraPos();
 		CurCameraPos.x = Camera;
@@ -205,8 +216,6 @@ void Player::Update()
 	{
 		MoveDir += float4::UP *10;
 		GameEngineSound::SoundPlayOneShot("jumpsmall.wav", 0);
-		BlockBreak* Actor = GetLevel()->CreateActor<BlockBreak>();
-		Actor->SetPosition(GetPosition());
 	}
 	if (true == GameEngineInput::GetInst()->IsPress("Jump"))
 	{

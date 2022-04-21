@@ -4,6 +4,7 @@
 #include "LevelIntro.h"
 #include "Point100.h"
 #include <GameEngine/GameEngineCollision.h>
+#include "WorldCount.h"
 
 
 
@@ -61,6 +62,7 @@ void BigPlayer::Start()
 
 void BigPlayer::Update()
 {
+
 	if (Pause::PlayerStatus != "big")
 	{
 		return;
@@ -93,6 +95,7 @@ void BigPlayer::Update()
 		if ((RGB(0, 0, 0) != (Down)))
 		{
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * 150);
+			BigPlayer::CameraPos();
 			Pause::PlayerPosition == GetPosition();
 		}
 		if (1.2f  <= Time_
@@ -101,6 +104,7 @@ void BigPlayer::Update()
 			SetPosition(float4{ MapSizeX - 466, 430});
 			RenderRun->ChangeAnimation("End");
 			Pause::PlayerPosition == GetPosition();
+			BigPlayer::CameraPos();
 			return;
 		}
 		if (1.5f <= Time_)
@@ -124,40 +128,13 @@ void BigPlayer::Update()
 			}
 			  MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * 300;
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * 150);
+	
 			Pause::PlayerPosition == GetPosition();
 
 		}
+		BigPlayer::CameraPos();
 		return;
 	}
-	if (Pause::death)
-	{
-		Time_ = Time_ + GameEngineTime::GetDeltaTime();
-		if (3.0f <= Time_)
-		{
-			Time_ = 0;
-			GameEngine::GetInst().ChangeLevel("StageIntro");
-			float4 CurCameraPos = GetLevel()->GetCameraPos();
-			CurCameraPos.x = 0;
-			GetLevel()->SetCameraPos(CurCameraPos);
-			RenderRun->ChangeAnimation("BigMarioRight");
-		}
-		if (0.8f >= Time_)
-		{
-			SetMove(float4::UP );
-			return;
-		}
-		if (1.2f >= Time_)
-		{
-			SetMove(float4::DOWN );
-			return;
-		}
-		return;
-	}
-	//bool Down_; // 최초 키를 눌렀을때
-	//bool Press_; // 그 이후로 지속적으로 누르고 있을때.
-	//bool Up_; // 누르다가 땠을때 
-	//bool Free_; // 안누르고 있을때.
-	//RenderRun->ChangeAnimation("BigMarioRight");
 
 
 	if ((GetPosition().x  - 50)> GetLevel()->GetCameraPos().x)
@@ -478,6 +455,59 @@ float BigPlayer::GetCurrentPosition()
 {
 	float x = GetPosition().x;
 	return  x;
+}
+
+void BigPlayer::CameraPos()
+{
+	float MapSizeX = 0; 
+	float MapSizeY = 0;
+	float CameraRectX= 0;
+	float CameraRectY = 0;
+	if (WorldCount::WorldCountUI == 1)
+	{
+		MapSizeX = 8441;
+		MapSizeY = 550;
+		CameraRectX = 620;
+		CameraRectY = 550;
+	}
+	if (Pause::end)
+	{
+		float4 CurCameraPos = {7830, 0};
+		GetLevel()->SetCameraPos(CurCameraPos);
+		return;
+	}
+	float Camera = GetLevel()->GetCameraPos().x;
+	{
+		if ((GetPosition().x - 50) > GetLevel()->GetCameraPos().x)
+		{
+			float4 CurCameraPos = GetLevel()->GetCameraPos();
+			CurCameraPos.x = (GetPosition().x - 50);
+			GetLevel()->SetCameraPos(CurCameraPos);
+		}
+		if (Camera > (GetPosition().x - 50))
+		{
+			float4 CurCameraPos = GetLevel()->GetCameraPos();
+			CurCameraPos.x = Camera;
+			GetLevel()->SetCameraPos(CurCameraPos);
+		}
+		if (0 > GetLevel()->GetCameraPos().x)
+		{
+			float4 CurCameraPos = GetLevel()->GetCameraPos();
+			CurCameraPos.x = 0;
+			GetLevel()->SetCameraPos(CurCameraPos);
+		}
+
+
+		if (MapSizeX <= GetLevel()->GetCameraPos().x + 625)
+		{
+			float4 CurCameraPos = GetLevel()->GetCameraPos();
+			CurCameraPos.x = GetLevel()->GetCameraPos().x - (GetLevel()->GetCameraPos().x + CameraRectX - MapSizeX);
+			GetLevel()->SetCameraPos(CurCameraPos);
+		}
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.y = 0;
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
 }
 
 void BigPlayer::HitBlock()

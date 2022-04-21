@@ -173,6 +173,9 @@
     <ClInclude Include="BlockBreak.h">
       <Filter>Map\Block</Filter>
     </ClInclude>
+    <ClInclude Include="Block2.h">
+      <Filter>Map\Block</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -301,6 +304,9 @@
       <Filter>Map\Item</Filter>
     </ClCompile>
     <ClCompile Include="BlockBreak.cpp">
+      <Filter>Map\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Block2.cpp">
       <Filter>Map\Block</Filter>
     </ClCompile>
   </ItemGroup>
