@@ -258,13 +258,13 @@ void BigPlayer::Update()
 			RenderRun->ChangeAnimation("TurnRight");
 		}
 	}
-
+	float x = MoveDir.x;
 	if (false == GameEngineInput::GetInst()->IsPress("BigMarioMoveLeft") &&
 		false == GameEngineInput::GetInst()->IsPress("BigMarioMoveRight") &&
 		false == GameEngineInput::GetInst()->IsPress("Down")
 		)
 	{
-		MoveDir += -MoveDir * GameEngineTime::GetDeltaTime() * 4;
+		MoveDir += -float4{x, 0}*GameEngineTime::GetDeltaTime() * 4;
 
 		if (0.05f >= MoveDir.Len2D())
 		{

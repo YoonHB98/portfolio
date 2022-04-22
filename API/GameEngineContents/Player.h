@@ -40,6 +40,7 @@ private:
 	float AccSpeed_;
 	float Gravity_;
 	float AccGravity_;
+	float JumpTime_ = 3.0f;
 	bool FirstEnd_ = true;
 	bool blank = false;
 	GameEngineImage* WhiteMap_;

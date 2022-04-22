@@ -124,6 +124,7 @@ void Player::Update()
 		{
 			SetPosition(float4{7955, 480});
 			RenderRun->ChangeAnimation("End");
+			Pause::PlayerPosition = GetPosition();
 			return;
 		}
 		if (1.3f <= Time_)
@@ -360,13 +361,13 @@ void Player::Update()
 			RenderRun->ChangeAnimation("TurnRight");
 		}
 	}
-
+	float x = MoveDir.x;
 	if (false == GameEngineInput::GetInst()->IsPress("MoveLeft") &&
 		false == GameEngineInput::GetInst()->IsPress("MoveRight") &&
 		false == GameEngineInput::GetInst()->IsPress("Down")
 		)
 	{
-		MoveDir += -MoveDir * GameEngineTime::GetDeltaTime() * 4;
+		MoveDir += -float4{ x, 0 }*GameEngineTime::GetDeltaTime() * 4;
 
 		if (0.05f >= MoveDir.Len2D())
 		{
