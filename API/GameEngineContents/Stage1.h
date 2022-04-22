@@ -37,6 +37,7 @@ protected:
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 
 private:
+	bool bgm = false;
 	BigPlayer* BigMario;
 	Player* Mario;
 	float Time;

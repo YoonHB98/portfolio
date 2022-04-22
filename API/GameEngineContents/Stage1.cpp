@@ -310,7 +310,7 @@ void Stage1::Update()
 	}
 
 	if (Pause::PlayerStatus == "big"
-		&&Pause::bigfirst)
+		&& Pause::bigfirst)
 	{
 		Mario->SetPosition(float4{ 100, 3000 });
 		BigMario->SetPosition(Pause::PlayerPosition);
@@ -321,6 +321,7 @@ void Stage1::Update()
 		BigMario->SetPosition(float4{ 100, 3000 });
 		Mario->SetPosition(Pause::PlayerPosition);
 	}
+
 }
 void Stage1::LevelChangeStart(GameEngineLevel* _PrevLevel)
 { 

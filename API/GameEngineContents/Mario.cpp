@@ -189,6 +189,10 @@ void Mario::GameInit()
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("BlockBreak.bmp");
 		Image->Cut({ 20,20 });
 	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("MarioChange.bmp");
+		Image->Cut({ 40,80 });
+	}
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<Stage1>("Stage1");
 	CreateLevel<EndingLevel>("Ending");

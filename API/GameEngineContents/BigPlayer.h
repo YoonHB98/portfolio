@@ -29,7 +29,7 @@ protected:
 
 private:
 	void CameraPos();
-
+	bool Change = true;
 
 	float4 MoveDir;
 	GameEngineRenderer* RenderRun;
@@ -41,15 +41,19 @@ private:
 	float AccGravity_;
 	bool FirstEnd_ = true;
 	bool blank = false;
+	bool Changefirst = true;
 	GameEngineImage* WhiteMap_;
 	GameEngineCollision* BigPlayerCollision;
 	GameEngineCollision* BigPlayerRight_;
 	GameEngineCollision* BigPlayerLeft_;
+	float ChangeTime = 0;
 	float Time_ = 0;
 	void Start() override;
 	void Update() override;
 	void Render() override;
 	
 	void HitBlock();
+	bool RightBotCheck();
+	bool LeftBotCheck();
 };
 

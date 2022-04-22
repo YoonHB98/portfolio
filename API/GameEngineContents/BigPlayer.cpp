@@ -48,6 +48,7 @@ void BigPlayer::Start()
 	RenderRun->CreateAnimation("BigMario.bmp", "Flag", 16, 17, 0.15f, true);
 	RenderRun->CreateAnimation("BigMario.bmp", "End", 18, 18, 0.15f, false);
 	RenderRun->CreateAnimation("Blank.bmp", "Blank", 0, 0, 0.15f, false);
+	RenderRun->CreateAnimation("MarioChange.bmp", "Change", 0, 8, 0.1f, false);
 	RenderRun->ChangeAnimation("BigMarioRight");
 
 
@@ -66,6 +67,25 @@ void BigPlayer::Update()
 	if (Pause::PlayerStatus != "big")
 	{
 		return;
+	}
+	if (Change)
+	{
+		if (Changefirst)
+		{
+			Pause::PlayerPosition = Pause::PlayerPosition + float4{ 0, -20 };
+			Changefirst = false;
+		}
+		ChangeTime = ChangeTime + GameEngineTime::GetDeltaTime();
+		if (ChangeTime < 1.0f)
+		{
+			RenderRun->ChangeAnimation("Change");
+		}
+		else
+		{
+			Change = false;
+			Changefirst = true;
+			RenderRun->ChangeAnimation("BigMarioRight");
+		}
 	}
 	WhiteMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
 	float4 CheckPos;
@@ -144,11 +164,6 @@ void BigPlayer::Update()
 	MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * 100;
 	if (true == GameEngineInput::GetInst()->IsDown("BigMarioJump"))
 	{
-		MoveDir += float4::UP *10;
-		GameEngineSound::SoundPlayOneShot("jumpbig.wav", 0);
-	}
-	if (true == GameEngineInput::GetInst()->IsPress("BigMarioJump"))
-	{
 		if (RenderRun->IsAnimationName("RunRight") || RenderRun->IsAnimationName("BigMarioRight"))
 		{
 			RenderRun->ChangeAnimation("BigMarioJumpRight");
@@ -157,14 +172,24 @@ void BigPlayer::Update()
 		{
 			RenderRun->ChangeAnimation("BigMarioJumpLeft");
 		}
+		MoveDir += float4::UP *10;
+		GameEngineSound::SoundPlayOneShot("jumpbig.wav", 0);
+	}
+	if (true == GameEngineInput::GetInst()->IsPress("BigMarioJump"))
+	{
+
 		MoveDir = MoveDir + float4::UP * GameEngineTime::GetDeltaTime() * 80;
 
 	}
 
 	if (true == GameEngineInput::GetInst()->IsPress("BigMarioMoveLeft"))
 	{
+		if (abs(MoveDir.y) < 0.1f
+			&&LeftBotCheck())
+		{
+			RenderRun->ChangeAnimation("RunLeft");
+		}
 
-		RenderRun->ChangeAnimation("RunLeft");
 
 		MoveDir += float4::LEFT * GameEngineTime::GetDeltaTime() * 10;
 
@@ -181,27 +206,18 @@ void BigPlayer::Update()
 
 	if (true == GameEngineInput::GetInst()->IsPress("BigMarioMoveRight"))
 	{
-		RenderRun->ChangeAnimation("RunRight");
 
-
+		if (abs(MoveDir.y) < 0.1f
+			&&RightBotCheck())
+		{
+			RenderRun->ChangeAnimation("RunRight");
+		}
 		MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * 10;
 
 	}
 
 
-	//{
-	//	float y = MoveDir.y;
-	//	if (0.0f <= MoveDir.y
-	//		&& -0.2f >= MoveDir.y)
-	//	{
-	//		MoveDir.y = -0.5f;
-	//	}
-	//}
-	//{
-	//	if (-3.0f >= MoveDir.y)
-	//	{
-	//		MoveDir.y = -3.0f;
-	//	}
+
 		if (-2.0f >= MoveDir.x)
 		{
 			MoveDir.x = -2.0f;
@@ -244,20 +260,24 @@ void BigPlayer::Update()
 			MoveDir.y = -0.5f;
 		}
 	}
-	if (0 < MoveDir.x)
+	if (abs(MoveDir.y) < 0.05f)
 	{
-		if (true == GameEngineInput::GetInst()->IsPress("BigMarioMoveLeft"))
+		if (0 < MoveDir.x)
 		{
-			RenderRun->ChangeAnimation("TurnLeft");
+			if (true == GameEngineInput::GetInst()->IsPress("BigMarioMoveLeft"))
+			{
+				RenderRun->ChangeAnimation("TurnLeft");
+			}
+		}
+		if (0 > MoveDir.x)
+		{
+			if (true == GameEngineInput::GetInst()->IsPress("BigMarioMoveRight"))
+			{
+				RenderRun->ChangeAnimation("TurnRight");
+			}
 		}
 	}
-	if (0 > MoveDir.x)
-	{
-		if (true == GameEngineInput::GetInst()->IsPress("BigMarioMoveRight"))
-		{
-			RenderRun->ChangeAnimation("TurnRight");
-		}
-	}
+	
 	float x = MoveDir.x;
 	if (false == GameEngineInput::GetInst()->IsPress("BigMarioMoveLeft") &&
 		false == GameEngineInput::GetInst()->IsPress("BigMarioMoveRight") &&
@@ -479,6 +499,34 @@ void BigPlayer::CameraPos()
 void BigPlayer::HitBlock()
 {
 
+
+}
+bool BigPlayer::RightBotCheck()
+{
+	float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+	float4 CheckPos = NextPos+ float4 {18, 40};
+	int Color = WhiteMap_->GetImagePixel(CheckPos);
+	if (RGB(0, 0, 0) == (Color))
+	{
+		return true;
+	}
+	else 
+	{
+		return false;
+	}
+
+}
+bool BigPlayer::LeftBotCheck()
+{
+	float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+	float4 CheckPos = NextPos + float4{ -18, 40 };
+	int Color = WhiteMap_->GetImagePixel(CheckPos);
+	if (RGB(0, 0, 0)== (Color))
+	{
+		return true;
+	}
+
+		return false;
 
 }
 // 랜더러가 다 돌아가고 랜더링
