@@ -176,6 +176,9 @@
     <ClInclude Include="Block2.h">
       <Filter>Map\Block</Filter>
     </ClInclude>
+    <ClInclude Include="SecretBlockmushroom.h">
+      <Filter>Map\Block</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -307,6 +310,9 @@
       <Filter>Map\Block</Filter>
     </ClCompile>
     <ClCompile Include="Block2.cpp">
+      <Filter>Map\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="SecretBlockmushroom.cpp">
       <Filter>Map\Block</Filter>
     </ClCompile>
   </ItemGroup>

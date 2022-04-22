@@ -64,7 +64,12 @@ void Player::Start()
 void Player::Update()
 {
 	RenderRun->SetAlpha(255);
+	if (true == GameEngineInput::GetInst()->IsDown("Down"))
+	{
+		GameEngineLevel* A = 0;
+		A->IsDebugModeSwitch();
 
+	}
 	if (Pause::PlayerStatus != "small")
 	{
 		return;
@@ -391,8 +396,8 @@ void Player::Update()
 		float4 PlayerDown = float4{ 0, 20 };
 
 		int Color = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, 19.0f));
-		int Down1 = WhiteMap_->GetImagePixel(GetPosition() + float4(10.0f, 19.0f));
-		int Down2 = WhiteMap_->GetImagePixel(GetPosition() + float4(-10.0f, 19.0f));
+		int Down1 = WhiteMap_->GetImagePixel(GetPosition() + float4(8.0f, 19.0f));
+		int Down2 = WhiteMap_->GetImagePixel(GetPosition() + float4(-8.0f, 19.0f));
 		int ColorUp = WhiteMap_->GetImagePixel(GetPosition() + float4(0.0f, -19.0f));
 
 
@@ -481,15 +486,8 @@ void Player::Update()
 			)
 
 		{
-			int a = UpUp.x;
 			SetMove(UpUp * GameEngineTime::GetDeltaTime() * Speed_);
 		}
-
-		//PlayerCollision = CreateCollision("PlayerHitBox", { 40,40 }, CheckPos + float4(-160.0f, -1000.0f));
-		//if ((RGB(0, 0, 0) == (Down)))
-		//{
-		//	AccGravity_ = 0;
-		//}
 		if ((RGB(0, 0, 0) != (Down1)))
 		{
 			int a = 0;

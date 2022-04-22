@@ -66,8 +66,16 @@ void Mushroom2::Update()
 
 	if (up == 1)
 	{
-		
-		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 27.0f);
+		if (Time_ < 0.2f)
+		{
+			SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 100.0f);
+		}
+		else
+		{
+			SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 27.0f);
+		}
+	
+	
 		if (Time_< 3.5f)
 		{
 			MoveDir = float4::RIGHT;
@@ -90,6 +98,7 @@ void Mushroom2::Update()
 			if (Pause::PlayerStatus == "small")
 			{
 				Pause::PlayerStatus = "big";
+				Pause::bigfirst = true;
 			}
 			else
 				if (Pause::PlayerStatus == "big")

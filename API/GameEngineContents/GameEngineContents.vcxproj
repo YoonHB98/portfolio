@@ -106,6 +106,7 @@
     </ClInclude>
     <ClInclude Include="Secret10CoinBlock.h" />
     <ClInclude Include="SecretBlock.h" />
+    <ClInclude Include="SecretBlockmushroom.h" />
     <ClInclude Include="Sound.h">
       <SubType>
       </SubType>
@@ -240,6 +241,7 @@
     </ClCompile>
     <ClCompile Include="Secret10CoinBlock.cpp" />
     <ClCompile Include="SecretBlock.cpp" />
+    <ClCompile Include="SecretBlockmushroom.cpp" />
     <ClCompile Include="Sound.cpp">
       <SubType>
       </SubType>
