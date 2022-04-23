@@ -314,7 +314,7 @@ void Player::Update()
 		}
 	}
 
-	if (true == PlayerCollision->CollisionCheck("Goomba", CollisionType::Rect, CollisionType::Rect))
+	if (true == PlayerCollision->CollisionCheck("MonsterTop", CollisionType::Rect, CollisionType::Rect))
 	{
 		MoveDir = float4::UP *10;
 		AccGravity_ = 0;

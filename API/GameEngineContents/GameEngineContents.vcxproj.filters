@@ -73,9 +73,6 @@
     <ClInclude Include="UnderStage.h">
       <Filter>Level\Stage1</Filter>
     </ClInclude>
-    <ClInclude Include="Trutle.h">
-      <Filter>Play\Monster</Filter>
-    </ClInclude>
     <ClInclude Include="Goomba.h">
       <Filter>Play\Monster</Filter>
     </ClInclude>
@@ -179,6 +176,12 @@
     <ClInclude Include="SecretBlockmushroom.h">
       <Filter>Map\Block</Filter>
     </ClInclude>
+    <ClInclude Include="Turtle.h">
+      <Filter>Play\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="TurtleDead.h">
+      <Filter>Play\Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -208,9 +211,6 @@
     </ClCompile>
     <ClCompile Include="UnderStage.cpp">
       <Filter>Level\Stage1</Filter>
-    </ClCompile>
-    <ClCompile Include="Trutle.cpp">
-      <Filter>Play\Monster</Filter>
     </ClCompile>
     <ClCompile Include="Goomba.cpp">
       <Filter>Play\Monster</Filter>
@@ -314,6 +314,12 @@
     </ClCompile>
     <ClCompile Include="SecretBlockmushroom.cpp">
       <Filter>Map\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Turtle.cpp">
+      <Filter>Play\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="TurtleDead.cpp">
+      <Filter>Play\Monster</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

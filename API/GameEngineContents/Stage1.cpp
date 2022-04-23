@@ -13,6 +13,7 @@
 #include "Mushroom2.h"
 #include "Block2.h"
 #include "SecretBlockmushroom.h"
+#include "Turtle.h"
 
 Stage1::Stage1() 
 {
@@ -276,6 +277,10 @@ void Stage1::Loading()
 	{
 		Goomba* Actor = CreateActor<Goomba>(1);
 		Actor->CreateGoomba(float4{ 900,500 });
+	}
+	{
+		Turtle* Actor = CreateActor<Turtle>(1);
+		Actor->CreateTurtle(float4{ 200,490 });
 	}
 	{
 		Goomba* Actor = CreateActor<Goomba>(1);

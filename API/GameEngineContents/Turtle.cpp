@@ -1,20 +1,21 @@
-#include "Goomba.h"
+#include "Turtle.h"
 #include <GameEngineBase/GameEngineSound.h>
 #include "Point100.h"
 #include "Pause.h"
+#include "TurtleDead.h"
 
 
 
-Goomba::Goomba() 
+Turtle::Turtle() 
 	:Speed_(50.0f)
 {
 }
 
-Goomba::~Goomba() 
+Turtle::~Turtle() 
 {
 }
 
-void Goomba::CreateGoomba(const float4& _Pivot)
+void Turtle::CreateTurtle(const float4& _Pivot)
 {
 	{
 		float4 Pivot = _Pivot;
@@ -22,27 +23,28 @@ void Goomba::CreateGoomba(const float4& _Pivot)
 		CoPivot.y = Pivot.y + 36;
 		SetPosition(Pivot);
 		
-		Actor = CreateRenderer("Goomba.bmp");
+		Actor = CreateRenderer("Turtle.bmp");
 		Actor->SetIndex(0);
-		Actor->CreateAnimation("Goomba.bmp", "Goomba", 0,1, 0.2f, true);
-		Actor->CreateAnimation("Goomba.bmp", "Death", 2, 2, 0.2f, true);
-		Actor->ChangeAnimation("Goomba");
+		Actor->CreateAnimation("Turtle.bmp", "TurtleR", 3,4, 0.2f, true);
+		Actor->CreateAnimation("Turtle.bmp", "TurtleL", 1, 2, 0.2f, true);
+		Actor->CreateAnimation("Turtle.bmp", "Death", 0, 0, 0.2f, true);
+		Actor->ChangeAnimation("TurtleL");
 
 
 	}
 }
 
 
-void Goomba::Start()
+void Turtle::Start()
 {
-	GoombaCollision = CreateCollision("MonsterTop", { 40, 5 }, { 0, -20 });
+	TurtleCollision = CreateCollision("MonsterTop", { 40, 5 }, { 0, -30 });
 	RightCollision = CreateCollision("MonsterRight", { 5,40 }, { 20, 0 });
 	LeftCollision = CreateCollision("MonsterLeft", { 5, 40 }, { -20, 0 });
-	CheckCollision = CreateCollision("CheckPos", { 40, 2400 }, { -620, 20 });
+	CheckCollision = CreateCollision("CheckPos", { 40, 2400 }, { -620, 30 });
 	MoveDir = float4::LEFT;
 }
 
-void Goomba::Update()
+void Turtle::Update()
 {
 	if (Pause::pause
 		||Pause::end
@@ -54,9 +56,9 @@ void Goomba::Update()
 	Actor->PauseOff();
 	ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
 	float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
-	float4 CheckPos = NextPos - float4(0.0f, 20.0f);
+	float4 CheckPos = NextPos - float4(0.0f, 30.0f);
 	CheckPos = CheckPos + MoveDir * float4(20.0f, 1.0f, 1.0f, 1.0f);
-	float4 LeftBot = GetPosition() - float4{-20, -20}; 
+	float4 LeftBot = GetPosition() - float4{-20, -30}; 
 	int Color = ColMap_->GetImagePixel(CheckPos);
 	int ColorLeftBot = ColMap_->GetImagePixel(LeftBot);
 
@@ -100,11 +102,27 @@ void Goomba::Update()
 		if (RGB(255, 255, 255) == Color)
 		{
 				SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+				if (MoveDir.x > 0.0f)
+				{
+					Actor->ChangeAnimation("TurtleR");
+				}
+				else
+				{
+					Actor->ChangeAnimation("TurtleL");
+				}
 		}
 	}
 	if (true == RightCollision->CollisionCheck("MonsterLeft", CollisionType::Rect, CollisionType::Rect))
 	{
 		MoveDir = MoveDir * float4{ -1 , -1 };
+		if (MoveDir.x > 0.0f)
+		{
+			Actor->ChangeAnimation("TurtleR");
+		}
+		else
+		{
+			Actor->ChangeAnimation("TurtleL");
+		}
 		if (RGB(255, 255, 255) == Color)
 		{
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
@@ -113,6 +131,14 @@ void Goomba::Update()
 	if (true == LeftCollision->CollisionCheck("MonsterRight", CollisionType::Rect, CollisionType::Rect))
 	{
 		MoveDir = MoveDir * float4{ -1 , -1 };
+		if (MoveDir.x > 0.0f)
+		{
+			Actor->ChangeAnimation("TurtleR");
+		}
+		else
+		{
+			Actor->ChangeAnimation("TurtleL");
+		}
 		if (RGB(255, 255, 255) == Color)
 		{
 			int a = 0;
@@ -124,22 +150,7 @@ void Goomba::Update()
 	{
 		up = 1;
 	}
-	if (true == GoombaCollision->CollisionCheck("Turtle", CollisionType::Rect, CollisionType::Rect)
-		&& DeathFirst)
-	{
-		DeathFirst = false;
-		Actor->ChangeAnimation("Death");
-		MoveDir = float4::ZERO;
-		if (DeathCount == false)
-		{
-			Point100* Ptr = GetLevel()->CreateActor<Point100>(2);
-			Ptr->SetPosition(GetPosition());
-			Point::PointUI = Point::PointUI + 100;
-			DeathCount = true;
-		}
-		Death(0.25f);
-	}
-	if (true == GoombaCollision->CollisionCheck("PlayerBot", CollisionType::Rect, CollisionType::Rect)
+	if (true == TurtleCollision->CollisionCheck("PlayerBot", CollisionType::Rect, CollisionType::Rect)
 	&& DeathFirst)
 	{
 		DeathFirst = false;
@@ -148,12 +159,12 @@ void Goomba::Update()
 		GameEngineSound::SoundPlayOneShot("stomp.wav");
 		if (DeathCount == false)
 		{
-			Point100* Ptr = GetLevel()->CreateActor<Point100>(2);
+			TurtleDead* Ptr = GetLevel()->CreateActor<TurtleDead>(2);
 			Ptr->SetPosition(GetPosition());
 			Point::PointUI = Point::PointUI + 100;
 			DeathCount = true;
 		}
-		Death(0.25f);
+		Death();
 	}
 
 

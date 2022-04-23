@@ -86,6 +86,7 @@ void BigPlayer::Update()
 			Changefirst = true;
 			RenderRun->ChangeAnimation("BigMarioRight");
 		}
+		return;
 	}
 	WhiteMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
 	float4 CheckPos;
@@ -234,7 +235,7 @@ void BigPlayer::Update()
 		}*/
 	}
 
-	if (true == BigPlayerCollision->CollisionCheck("Goomba", CollisionType::Rect, CollisionType::Rect))
+	if (true == BigPlayerCollision->CollisionCheck("MonsterTop", CollisionType::Rect, CollisionType::Rect))
 	{
 		MoveDir = float4::UP *10;
 		AccGravity_ = 0;
