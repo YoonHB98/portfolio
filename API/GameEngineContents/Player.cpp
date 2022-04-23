@@ -57,27 +57,46 @@ void Player::Start()
 		GameEngineInput::GetInst()->CreateKey("MoveRight", 'D');
 		GameEngineInput::GetInst()->CreateKey("Jump", VK_LSHIFT);
 		GameEngineInput::GetInst()->CreateKey("Down", 'S');
+		GameEngineInput::GetInst()->CreateKey("in", 'E');
 		// VK_LBUTTON; ¸¶¿ì½º
 	}
 }
 
 void Player::Update()
 {
+	if (Pause::PlayerStatus != "small")
+	{
+		return;
+	}
 	RenderRun->SetAlpha(255);
+	if (true == GameEngineInput::GetInst()->IsDown("in"))
+	{
+		if (true == Pause::smallfirst)
+		{
+			Pause::smallfirst = !Pause::smallfirst;
+			nodiecount =0;
+			return;
+		}
+		if (false == Pause::smallfirst)
+		{
+			Pause::smallfirst = !Pause::smallfirst;
+			nodiecount = 20;
+			return;
+		}
+
+
+	}
+
+
 	if (true == GameEngineInput::GetInst()->IsDown("Down"))
 	{
 		GameEngineLevel* A = 0;
 		A->IsDebugModeSwitch();
 
 	}
-	if (Pause::PlayerStatus != "small")
-	{
-		return;
-	}
 
 	if (Pause::smallfirst)
 	{
-		nodiecount;  nodie;
 		nodie = nodie + GameEngineTime::GetDeltaTime();
 		if (nodie < 0.1f)
 		{
@@ -95,6 +114,7 @@ void Player::Update()
 		if ( nodiecount == 10)
 		{
 			Pause::smallfirst = false;
+			nodiecount = 0;
 		}
 	}
 	WhiteMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
