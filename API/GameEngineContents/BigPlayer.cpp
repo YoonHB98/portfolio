@@ -165,14 +165,6 @@ void BigPlayer::Update()
 	MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * 100;
 	if (true == GameEngineInput::GetInst()->IsDown("BigMarioJump"))
 	{
-		if (RenderRun->IsAnimationName("RunRight") || RenderRun->IsAnimationName("BigMarioRight"))
-		{
-			RenderRun->ChangeAnimation("BigMarioJumpRight");
-		}
-		else if (RenderRun->IsAnimationName("RunLeft") || RenderRun->IsAnimationName("BigMarioLeft"))
-		{
-			RenderRun->ChangeAnimation("BigMarioJumpLeft");
-		}
 		MoveDir += float4::UP *10;
 		GameEngineSound::SoundPlayOneShot("jumpbig.wav", 0);
 	}
@@ -185,13 +177,7 @@ void BigPlayer::Update()
 
 	if (true == GameEngineInput::GetInst()->IsPress("BigMarioMoveLeft"))
 	{
-		if (abs(MoveDir.y) < 0.1f
-			&&LeftBotCheck())
-		{
 			RenderRun->ChangeAnimation("RunLeft");
-		}
-
-
 		MoveDir += float4::LEFT * GameEngineTime::GetDeltaTime() * 10;
 
 	}
@@ -207,12 +193,7 @@ void BigPlayer::Update()
 
 	if (true == GameEngineInput::GetInst()->IsPress("BigMarioMoveRight"))
 	{
-
-		if (abs(MoveDir.y) < 0.1f
-			&&RightBotCheck())
-		{
 			RenderRun->ChangeAnimation("RunRight");
-		}
 		MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * 10;
 
 	}
@@ -406,6 +387,14 @@ void BigPlayer::Update()
 			)
 
 		{
+			if (RenderRun->IsAnimationName("RunRight") || RenderRun->IsAnimationName("BigMarioRight") || RenderRun->IsAnimationName("BigMarioJumpRight"))
+			{
+				RenderRun->ChangeAnimation("BigMarioJumpRight");
+			}
+			else if (RenderRun->IsAnimationName("RunLeft") || RenderRun->IsAnimationName("BigMarioLeft") || RenderRun->IsAnimationName("BigMarioJumpLeft"))
+			{
+				RenderRun->ChangeAnimation("BigMarioJumpLeft");
+			}
 			SetMove(UpUp * GameEngineTime::GetDeltaTime() * Speed_);
 			CameraPos();
 		}
@@ -430,6 +419,14 @@ void BigPlayer::Update()
 			)
 
 		{
+			if (RenderRun->IsAnimationName("RunRight") || RenderRun->IsAnimationName("BigMarioRight") || RenderRun->IsAnimationName("BigMarioJumpRight"))
+			{
+				RenderRun->ChangeAnimation("BigMarioJumpRight");
+			}
+			else if (RenderRun->IsAnimationName("RunLeft") || RenderRun->IsAnimationName("BigMarioLeft") || RenderRun->IsAnimationName("BigMarioJumpLeft"))
+			{
+				RenderRun->ChangeAnimation("BigMarioJumpLeft");
+			}
 			SetMove(DownDown * GameEngineTime::GetDeltaTime() * Speed_);
 			CameraPos();
 		}

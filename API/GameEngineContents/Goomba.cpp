@@ -36,8 +36,8 @@ void Goomba::CreateGoomba(const float4& _Pivot)
 void Goomba::Start()
 {
 	GoombaCollision = CreateCollision("MonsterTop", { 40, 5 }, { 0, -20 });
-	RightCollision = CreateCollision("MonsterRight", { 5,40 }, { 20, 0 });
-	LeftCollision = CreateCollision("MonsterLeft", { 5, 40 }, { -20, 0 });
+	RightCollision = CreateCollision("MonsterRight", { 5,30 }, { 20, 5 });
+	LeftCollision = CreateCollision("MonsterLeft", { 5, 30 }, { -20, 5 });
 	CheckCollision = CreateCollision("CheckPos", { 40, 2400 }, { -310, 20 });
 	MoveDir = float4::LEFT;
 }
