@@ -43,7 +43,23 @@ private:
 	float Time;
 	TopUI* UI;
 	Coin* UICOIN;
-
+	//∏ÛΩ∫≈Õ
+	Goomba* Goomba1;
+	Goomba* Goomba2;
+	Goomba* Goomba3;
+	Goomba* Goomba4;
+	Goomba* Goomba5;
+	Goomba* Goomba6;
+	Goomba* Goomba7;
+	Goomba* Goomba8;
+	Goomba* Goomba9;
+	Goomba* Goomba10;
+	Goomba* Goomba11;
+	Goomba* Goomba12;
+	Goomba* Goomba13;
+	Goomba* Goomba14;
+	Goomba* Goomba15;
+	Goomba* Goomba16;
 
 };
 

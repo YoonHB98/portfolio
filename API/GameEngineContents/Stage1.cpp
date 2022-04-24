@@ -27,7 +27,6 @@ void Stage1::Loading()
 {
 	{
 		WorldCount* UI = CreateActor<WorldCount>(2);
-
 	}
 
 	{
@@ -275,24 +274,72 @@ void Stage1::Loading()
 	}
 	//몬스터
 	{
-		Goomba* Actor = CreateActor<Goomba>(1);
-		Actor->CreateGoomba(float4{ 900,500 });
+		Goomba1 = CreateActor<Goomba>(1);
+		Goomba1->CreateGoomba(float4{ 900,500 });
 	}
 	{
 		Turtle* Actor = CreateActor<Turtle>(1);
-		Actor->CreateTurtle(float4{ 200,490 });
+		Actor->CreateTurtle(float4{ 4300,490 });
 	}
 	{
-		Goomba* Actor = CreateActor<Goomba>(1);
-		Actor->CreateGoomba(float4{ 1620,500 });
+		Goomba2 = CreateActor<Goomba>(1);
+		Goomba2->CreateGoomba(float4{ 2060,500 });
 	}
 	{
-		Goomba* Actor = CreateActor<Goomba>(1);
-		Actor->CreateGoomba(float4{ 2060,500 });
+		Goomba3 = CreateActor<Goomba>(1);
+		Goomba3->CreateGoomba(float4{ 2120,500 });
 	}
 	{
-		Goomba* Actor = CreateActor<Goomba>(1);
-		Actor->CreateGoomba(float4{ 2120,500 });
+		Goomba4 = CreateActor<Goomba>(1);
+		Goomba4->CreateGoomba(float4{ 1620,500 });
+	}
+	{
+		Goomba5 = CreateActor<Goomba>(1);
+		Goomba5->CreateGoomba(float4{ 3220,185 });
+	}
+	{
+		Goomba6 = CreateActor<Goomba>(1);
+		Goomba6->CreateGoomba(float4{ 3300,185 });
+	}
+	{
+		Goomba7 = CreateActor<Goomba>(1);
+		Goomba7->CreateGoomba(float4{ 3900,500 });
+	}
+	{
+		Goomba8 = CreateActor<Goomba>(1);
+		Goomba8->CreateGoomba(float4{ 3960,500 });
+	}
+	{
+		Goomba9 = CreateActor<Goomba>(1);
+		Goomba9->CreateGoomba(float4{ 4580,500 });
+	}
+	{
+		Goomba10 = CreateActor<Goomba>(1);
+		Goomba10->CreateGoomba(float4{ 4640,500 });
+	}
+	{
+		Goomba11 = CreateActor<Goomba>(1);
+		Goomba11->CreateGoomba(float4{ 4980,500 });
+	}
+	{
+		Goomba12 = CreateActor<Goomba>(1);
+		Goomba12->CreateGoomba(float4{ 5040,500 });
+	}
+	{
+		Goomba13 = CreateActor<Goomba>(1);
+		Goomba13->CreateGoomba(float4{ 5140,500 });
+	}
+	{
+		Goomba14 = CreateActor<Goomba>(1);
+		Goomba14->CreateGoomba(float4{ 5200,500 });
+	}
+	{
+		Goomba15 = CreateActor<Goomba>(1);
+		Goomba15->CreateGoomba(float4{ 6980,500 });
+	}
+	{
+		Goomba16 = CreateActor<Goomba>(1);
+		Goomba16->CreateGoomba(float4{ 7040,500 });
 	}
 	{
 		Castle* Actor = CreateActor<Castle>(1);
@@ -332,6 +379,94 @@ void Stage1::LevelChangeStart(GameEngineLevel* _PrevLevel)
 { 
 	//200, 500
 	//체크 14000, 500
+	if (true != Goomba1->IsDeath())
+	{
+		Goomba1->SetPosition(float4{900, 500});
+		Goomba1->up = 0;
+	}
+	if (true != Goomba2->IsDeath())
+	{
+		Goomba2->SetPosition(float4{ 2060, 500 });
+		Goomba2->up = 0;
+	}
+	if (true != Goomba3->IsDeath())
+	{
+		Goomba3->SetPosition(float4{ 2120, 500 });
+		Goomba3->up = 0;
+	}
+	if (true != Goomba4->IsDeath())
+	{
+		Goomba4->SetPosition(float4{ 1620, 500 });
+		Goomba4->up = 0;
+	}
+	if (true != Goomba5->IsDeath())
+	{
+		Goomba5->SetPosition(float4{ 3220, 185 });
+		Goomba5->up = 0;
+	}
+	if (true != Goomba6->IsDeath())
+	{
+		Goomba6->SetPosition(float4{ 3330, 185 });
+		Goomba6->up = 0;
+	}
+	if (true != Goomba7->IsDeath())
+	{
+		Goomba7->SetPosition(float4{ 3900, 500 });
+		Goomba7->up = 0;
+	}
+	if (true != Goomba8->IsDeath())
+	{
+		Goomba8->SetPosition(float4{ 3960, 500 });
+		Goomba8->up = 0;
+	}
+	if (true != Goomba9->IsDeath())
+	{
+		Goomba9->SetPosition(float4{ 4580, 500 });
+		Goomba9->up = 0;
+	}
+	if (true != Goomba10->IsDeath())
+	{
+		Goomba10->SetPosition(float4{ 4640, 500 });
+		Goomba10->up = 0;
+	}
+	if (true != Goomba11->IsDeath())
+	{
+		Goomba11->SetPosition(float4{ 4980, 500 });
+		Goomba11->up = 0;
+	}
+	if (true != Goomba12->IsDeath())
+	{
+		Goomba12->SetPosition(float4{ 5040, 500 });
+		Goomba12->up = 0;
+	}
+	if (true != Goomba13->IsDeath())
+	{
+		Goomba13->SetPosition(float4{ 5140, 500 });
+		Goomba13->up = 0;
+	}
+	if (true != Goomba14->IsDeath())
+	{
+		Goomba14->SetPosition(float4{ 5200, 500 });
+		Goomba14->up = 0;
+	}
+	if (true != Goomba15->IsDeath())
+	{
+		Goomba15->SetPosition(float4{ 6980, 500 });
+		Goomba15->up = 0;
+	}
+	if (true != Goomba16->IsDeath())
+	{
+		Goomba16->SetPosition(float4{ 7040, 500 });
+		Goomba16->up = 0;
+	}
+	{
+		Castle* Actor = CreateActor<Castle>(1);
+		Actor->CreateCastle(float4{ 8180,800 });
+	}
+	{
+		flag* Actor = CreateActor<flag>(1);
+		Actor->Createflag(float4{ 7920,140 });
+	}
 	(Pause::PlayerPosition = (float4{ 100, 500 }));
 	Mario->SetPosition(float4{ 100, 500 });
 		UI->TimerReset();
