@@ -38,7 +38,7 @@ void Goomba::Start()
 	GoombaCollision = CreateCollision("MonsterTop", { 40, 5 }, { 0, -20 });
 	RightCollision = CreateCollision("MonsterRight", { 5,40 }, { 20, 0 });
 	LeftCollision = CreateCollision("MonsterLeft", { 5, 40 }, { -20, 0 });
-	CheckCollision = CreateCollision("CheckPos", { 40, 2400 }, { -620, 20 });
+	CheckCollision = CreateCollision("CheckPos", { 40, 2400 }, { -310, 20 });
 	MoveDir = float4::LEFT;
 }
 
@@ -73,10 +73,10 @@ void Goomba::Update()
 	{
 		if (up == 1)
 		{
-			MoveDir += float4{0, 1.0f};
-			if (MoveDir.y > 1.0f)
+			MoveDir += float4{0, 4.0f};
+			if (MoveDir.y > 4.0f)
 			{
-				MoveDir.y = 1.0f;
+				MoveDir.y = 4.0f;
 			}
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 		}
@@ -125,6 +125,21 @@ void Goomba::Update()
 		up = 1;
 	}
 	if (true == GoombaCollision->CollisionCheck("Turtle", CollisionType::Rect, CollisionType::Rect)
+		&& DeathFirst)
+	{
+		DeathFirst = false;
+		Actor->ChangeAnimation("Death");
+		MoveDir = float4::ZERO;
+		if (DeathCount == false)
+		{
+			Point100* Ptr = GetLevel()->CreateActor<Point100>(2);
+			Ptr->SetPosition(GetPosition());
+			Point::PointUI = Point::PointUI + 100;
+			DeathCount = true;
+		}
+		Death(0.25f);
+	}
+	if (RGB(0, 0, 255) != ColorLeftBot
 		&& DeathFirst)
 	{
 		DeathFirst = false;

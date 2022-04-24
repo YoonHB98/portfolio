@@ -99,6 +99,21 @@ void TurtleDead::Update()
 		}
 
 	}
+	if (RGB(0, 0, 255) != ColorLeftBot
+		&& DeathFirst)
+	{
+		DeathFirst = false;
+		Actor->ChangeAnimation("Death");
+		MoveDir = float4::ZERO;
+		if (DeathCount == false)
+		{
+			Point100* Ptr = GetLevel()->CreateActor<Point100>(2);
+			Ptr->SetPosition(GetPosition());
+			Point::PointUI = Point::PointUI + 100;
+			DeathCount = true;
+		}
+		Death(0.25f);
+	}
 
 
 
