@@ -166,7 +166,7 @@ void Turtle::Update()
 		}
 		Death();
 	}
-	if (RGB(0, 0, 255) != ColorLeftBot
+	if (RGB(0, 0, 255)== ColorLeftBot
 		&& DeathFirst)
 	{
 		DeathFirst = false;

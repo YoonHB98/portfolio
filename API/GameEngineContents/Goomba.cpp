@@ -139,7 +139,7 @@ void Goomba::Update()
 		}
 		Death(0.25f);
 	}
-	if (RGB(0, 0, 255) != ColorLeftBot
+	if (RGB(0, 0, 255) == ColorLeftBot
 		&& DeathFirst)
 	{
 		DeathFirst = false;
