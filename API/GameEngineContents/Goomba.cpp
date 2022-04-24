@@ -6,7 +6,7 @@
 
 
 Goomba::Goomba() 
-	:Speed_(50.0f)
+	:Speed_(60.0f)
 {
 }
 
