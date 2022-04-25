@@ -37,7 +37,7 @@ void UpMushroom::Start()
 
 	
 	Time_ = 400;
-	Speed_ = 60;
+	Speed_ = 120;
 	//
 	/*Image_ = CreateRenderer();*/
 	
@@ -53,12 +53,11 @@ void UpMushroom::Update()
 	{
 		return;
 	}
+
 	ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
-	float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+	float4 NextPos = GetPosition() + float4{ 20, 0 } + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 	float4 CheckPos = NextPos;
-	float4 CheckDown = NextPos + float4{ 0 , 21};
-	CheckPos = CheckPos + MoveDir * float4(20.0f, 1.0f, 1.0f, 1.0f);
-	CheckDown = CheckDown + MoveDir * float4(20.0f, 1.0f, 1.0f, 1.0f);
+	float4 CheckDown = NextPos + float4{ -20 , 19 };
 	int Color = ColMap_->GetImagePixel(CheckPos);
 	int ColorDown = ColMap_->GetImagePixel(CheckDown);
 
@@ -66,15 +65,21 @@ void UpMushroom::Update()
 
 	if (up == 1)
 	{
-		
-		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 27.0f);
-		if (Time_< 3.5f)
+		if (Time_ > 4.8f)
+		{
+			SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 100.0f);
+		}
+		else
+		{
+			SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 27.0f);
+		}
+
+		if (Time_ < 4.1f)
 		{
 			MoveDir = float4::RIGHT;
 			up = 0;
 			down = 1;
 			Point::PointUI = Point::PointUI + 200;
-			Coin::CoinUI = Coin::CoinUI + 1;
 		}
 		return;
 	}
@@ -82,7 +87,7 @@ void UpMushroom::Update()
 	{
 		if (RGB(0, 0, 255) == ColorDown)
 		{
-			Death();
+			Death(0.2f);
 		}
 		if (true == UpMushroomHitBox->CollisionCheck("PlayerItem", CollisionType::Rect, CollisionType::Rect))
 		{
@@ -95,7 +100,7 @@ void UpMushroom::Update()
 		if (RGB(255, 255, 255) == ColorDown
 			&& DownFirst_)
 		{
-			MoveDir = float4::RIGHT + float4::DOWN;
+			MoveDir = float4::RIGHT + float4::DOWN * 1.2f;
 			DownFirst_ = false;
 		}
 

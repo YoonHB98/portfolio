@@ -54,11 +54,11 @@ void Mushroom2::Update()
 		return;
 	}
 	ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
-	float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+	float4 NextPos = GetPosition()+ float4{20, 0} + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 	float4 CheckPos = NextPos;
-	float4 CheckDown = NextPos + float4{ -20 , 21};
-	CheckPos = CheckPos + MoveDir * float4(20.0f, 1.0f, 1.0f, 1.0f);
-	CheckDown = CheckDown + MoveDir * float4(20.0f, 1.0f, 1.0f, 1.0f);
+	float4 CheckDown = NextPos + float4{ -20 , 19};
+	CheckPos = CheckPos ;
+	CheckDown = CheckDown;
 	int Color = ColMap_->GetImagePixel(CheckPos);
 	int ColorDown = ColMap_->GetImagePixel(CheckDown);
 
@@ -66,7 +66,7 @@ void Mushroom2::Update()
 
 	if (up == 1)
 	{
-		if (Time_ < 0.2f)
+		if (Time_ > 4.8f)
 		{
 			SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 100.0f);
 		}
@@ -74,9 +74,7 @@ void Mushroom2::Update()
 		{
 			SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 27.0f);
 		}
-	
-	
-		if (Time_< 3.5f)
+		if (Time_< 4.1f)
 		{
 			MoveDir = float4::RIGHT;
 			up = 0;
@@ -103,14 +101,14 @@ void Mushroom2::Update()
 			else
 				if (Pause::PlayerStatus == "big")
 				{
-					Pause::PlayerStatus = "fire";
+					Pause::flower = true;
 				}
 			Death();
 		}
 		if (RGB(255, 255, 255) == ColorDown
 			&& DownFirst_)
 		{
-			MoveDir = float4::RIGHT + float4::DOWN;
+			MoveDir = float4::RIGHT * 2.5 + float4::DOWN *3.5;
 			DownFirst_ = false;
 		}
 

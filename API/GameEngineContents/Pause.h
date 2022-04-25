@@ -18,6 +18,7 @@ public:
 	static bool death;
 	static bool bigfirst;
 	static bool smallfirst;
+	static bool flower;
 	static bool end;
 	static bool first;
 	static std::string PlayerStatus;

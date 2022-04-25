@@ -243,21 +243,18 @@ void BigPlayer::Update()
 			MoveDir.y = -0.5f;
 		}
 	}
-	if (abs(MoveDir.y) < 0.05f)
+	if (0 < MoveDir.x)
 	{
-		if (0 < MoveDir.x)
+		if (true == GameEngineInput::GetInst()->IsPress("MoveLeft"))
 		{
-			if (true == GameEngineInput::GetInst()->IsPress("BigMarioMoveLeft"))
-			{
-				RenderRun->ChangeAnimation("TurnLeft");
-			}
+			RenderRun->ChangeAnimation("TurnLeft");
 		}
-		if (0 > MoveDir.x)
+	}
+	if (0 > MoveDir.x)
+	{
+		if (true == GameEngineInput::GetInst()->IsPress("MoveRight"))
 		{
-			if (true == GameEngineInput::GetInst()->IsPress("BigMarioMoveRight"))
-			{
-				RenderRun->ChangeAnimation("TurnRight");
-			}
+			RenderRun->ChangeAnimation("TurnRight");
 		}
 	}
 	

@@ -16,3 +16,4 @@ std::string Pause::PlayerStatus = "small";
 float4 Pause::PlayerPosition = (float4{ 100, 480 });
 bool Pause:: bigfirst = true;
 bool Pause::smallfirst =false;
+bool Pause::flower = false;
