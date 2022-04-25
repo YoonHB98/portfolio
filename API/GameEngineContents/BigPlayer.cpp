@@ -27,8 +27,8 @@ BigPlayer::~BigPlayer()
 
 void BigPlayer::Start()
 {
-	BigPlayerCollision = CreateCollision("PlayerHitBox", { 40, 10 }, { 0, -40 });
-	BigPlayerCollision = CreateCollision("BigPlayerHitBox", { 40, 10 }, { 0, -40 });
+	BigPlayerCollision = CreateCollision("PlayerHitBox", { 10, 10 }, { 0, -40 });
+	BigPlayerCollision = CreateCollision("BigPlayerHitBox", { 10, 10 }, { 0, -40 });
 	BigPlayerCollision = CreateCollision("PlayerBot", { 40, 10 }, { 0, 40 });
 	BigPlayerRight_ = CreateCollision("PlayerItem", { 2,80 }, { 20, 0 });
 	BigPlayerLeft_ = CreateCollision("PlayerItem", { 2, 80 }, { -20, 0 });

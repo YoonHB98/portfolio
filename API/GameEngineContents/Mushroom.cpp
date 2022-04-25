@@ -55,11 +55,11 @@ void Mushroom::Update()
 		return;
 	}
 	ColMap();
-	float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+	float4 NextPos = GetPosition() + float4{ 20, 0 } + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 	float4 CheckPos = NextPos;
-	float4 CheckDown = NextPos + float4{ 20 , 21};
-	CheckPos = CheckPos + MoveDir * float4(20.0f, 1.0f, 1.0f, 1.0f);
-	CheckDown = CheckDown + MoveDir * float4(20.0f, 1.0f, 1.0f, 1.0f);
+	float4 CheckDown = NextPos + float4{ -20 , 19 };
+	CheckPos = CheckPos;
+	CheckDown = CheckDown;
 	int Color = ColMap_->GetImagePixel(CheckPos);
 	int ColorDown = ColMap_->GetImagePixel(CheckDown);
 
@@ -67,15 +67,20 @@ void Mushroom::Update()
 
 	if (up == 1)
 	{
-		
-		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 27.0f);
-		if (Time_< 3.5f)
+		if (Time_ > 4.8f)
+		{
+			SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 100.0f);
+		}
+		else
+		{
+			SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 27.0f);
+		}
+		if (Time_ < 4.1f)
 		{
 			MoveDir = float4::RIGHT;
 			up = 0;
 			down = 1;
 			Point::PointUI = Point::PointUI + 200;
-			Coin::CoinUI = Coin::CoinUI + 1;
 		}
 		return;
 	}

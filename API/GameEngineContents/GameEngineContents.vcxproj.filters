@@ -79,9 +79,6 @@
     <ClInclude Include="FlyingTurtle.h">
       <Filter>Play\Monster</Filter>
     </ClInclude>
-    <ClInclude Include="Flower.h">
-      <Filter>Play\Monster</Filter>
-    </ClInclude>
     <ClInclude Include="Boss.h" />
     <ClInclude Include="TitleCharacter.h">
       <Filter>Title</Filter>
@@ -182,6 +179,9 @@
     <ClInclude Include="TurtleDead.h">
       <Filter>Play\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="Flower.h">
+      <Filter>Map\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -216,9 +216,6 @@
       <Filter>Play\Monster</Filter>
     </ClCompile>
     <ClCompile Include="FlyingTurtle.cpp">
-      <Filter>Play\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Flower.cpp">
       <Filter>Play\Monster</Filter>
     </ClCompile>
     <ClCompile Include="Boss.cpp" />
@@ -320,6 +317,9 @@
     </ClCompile>
     <ClCompile Include="TurtleDead.cpp">
       <Filter>Play\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Flower.cpp">
+      <Filter>Map\Item</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

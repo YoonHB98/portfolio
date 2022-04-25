@@ -105,7 +105,6 @@ void Mushroom2::Update()
 			up = 0;
 			down = 1;
 			Point::PointUI = Point::PointUI + 200;
-			Coin::CoinUI = Coin::CoinUI + 1;
 		}
 		return;
 	}
