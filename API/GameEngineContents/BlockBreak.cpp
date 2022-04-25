@@ -12,13 +12,14 @@ void BlockBreak::Start()
 {
 	Actor = CreateRenderer("BlockBreak.bmp");
 	Actor->CreateAnimation("BlockBreak.bmp","Break" , 0, 3, 0.5f, true);
-
-	Time = 0;
 }
 
 void BlockBreak::Update()
 {
 	Actor->ChangeAnimation("Break");
 
+	Dir += float4::DOWN * GameEngineTime::GetDeltaTime() * 2000.0f;
+
+	SetMove(Dir * GameEngineTime::GetDeltaTime());
 }
 

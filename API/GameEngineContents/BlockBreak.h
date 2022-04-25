@@ -16,12 +16,11 @@ public:
 	BlockBreak(BlockBreak&& _Other) noexcept = delete;
 	BlockBreak& operator=(const BlockBreak& _Other) = delete;
 	BlockBreak& operator=(BlockBreak&& _Other) noexcept = delete;
+	float4 Dir;
 
-	float Time;
 protected:
 
 private:
-	float Angle;
 	GameEngineRenderer* Actor;
 	void Start() override;
 	void Update() override;

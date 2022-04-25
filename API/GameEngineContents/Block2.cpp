@@ -1,6 +1,7 @@
 #include "Block2.h"
 #include "Pause.h"
 #include "BlockBreak.h"
+#include <GameEngineBase/GameEngineSound.h>
 
 
 Block2::Block2() 
@@ -39,14 +40,19 @@ void Block2::Update()
 
 	if (true == Block2Collision->CollisionCheck("PlayerHitBox", CollisionType::Rect, CollisionType::Rect))
 {
+		GameEngineSound::SoundPlayOneShot("blockbreak.wav");
 		BlockBreak* RightTop = GetLevel()->CreateActor<BlockBreak>();
 		RightTop->SetPosition(GetPosition() + float4 { 20 , - 20});
+		RightTop->Dir = (float4{ 150 , -200 });
 		BlockBreak* LeftTop = GetLevel()->CreateActor<BlockBreak>();
 		LeftTop->SetPosition(GetPosition() + float4{ -20 , -20 });
+		LeftTop->Dir = (float4{ -150 , -200 });
 		BlockBreak* RightBot = GetLevel()->CreateActor<BlockBreak>();
 		RightBot->SetPosition(GetPosition() + float4{ 20 , 20 });
+		RightBot->Dir  = (float4{ 150 , -40 });
 		BlockBreak* LeftBot = GetLevel()->CreateActor<BlockBreak>();
 		LeftBot->SetPosition(GetPosition() + float4{ -20 , 20 });
+		LeftBot->Dir = float4{ -150 , -40 };
 		Death();
 
 }
