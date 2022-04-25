@@ -6,6 +6,7 @@
 #include "Pause.h"
 #include "Point100.h"
 #include "LevelIntro.h"
+#include "WorldCount.h"
 
 UpMushroom2::UpMushroom2()
 {
@@ -53,7 +54,7 @@ void UpMushroom2::Update()
 	{
 		return;
 	}
-	ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	ColMap();
 	float4 NextPos = GetPosition() + float4{ -20.0f, 0.0f } + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 	float4 CheckPos = NextPos;
 	float4 CheckDown = NextPos + float4{ -20 , 19 };
@@ -128,4 +129,24 @@ void UpMushroom2::Update()
 	}
 
 	
+}
+void UpMushroom2::ColMap()
+{
+	if (WorldCount::WorldCountUI == 1)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	}
+	else if (WorldCount::WorldCountUI == 2)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("12mapWhite.bmp");
+	}
+	else if (WorldCount::WorldCountUI == 3)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("13mapWhite.bmp");
+	}
+	else if (WorldCount::WorldCountUI == 4)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("14mapWhite.bmp");
+	}
+
 }

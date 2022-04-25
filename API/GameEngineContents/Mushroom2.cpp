@@ -6,6 +6,7 @@
 #include "Pause.h"
 #include "Point100.h"
 #include "LevelIntro.h"
+#include "WorldCount.h"
 
 Mushroom2::Mushroom2()
 {
@@ -24,6 +25,30 @@ void Mushroom2::CreateMushroom(const float4& _Pivot)
 
 		SetPosition(Pivot);
 	}
+}
+
+void Mushroom2::ColMap()
+{
+	
+		if (WorldCount::WorldCountUI == 1)
+		{
+			ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+		}
+		else if (WorldCount::WorldCountUI == 2)
+		{
+			ColMap_ = GameEngineImageManager::GetInst()->Find("12mapWhite.bmp");
+		}
+		else if (WorldCount::WorldCountUI == 3)
+		{
+			ColMap_ = GameEngineImageManager::GetInst()->Find("13mapWhite.bmp");
+		}
+		else if (WorldCount::WorldCountUI == 4)
+		{
+			ColMap_ = GameEngineImageManager::GetInst()->Find("14mapWhite.bmp");
+		}
+
+
+
 }
 
 void Mushroom2::Start()
@@ -53,7 +78,7 @@ void Mushroom2::Update()
 	{
 		return;
 	}
-	ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	ColMap();
 	float4 NextPos = GetPosition()+ float4{20, 0} + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 	float4 CheckPos = NextPos;
 	float4 CheckDown = NextPos + float4{ -20 , 19};

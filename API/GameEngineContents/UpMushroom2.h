@@ -32,6 +32,7 @@ public:
 protected:
 
 private:
+	void ColMap();
 	float Speed_;
 	GameEngineRenderer* Actor;
 	bool up ;
