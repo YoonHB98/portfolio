@@ -29,12 +29,13 @@ void UpMushroom2::CreateUpMushroom2(const float4& _Pivot)
 
 void UpMushroom2::Start()
 {
-	//Actor->SetPosition(Pivot);
-	//Actor->CreateCollision("UpMushroom2", { 80, 10 }, CoPivot);
+
 	UpMushroom2Collision = CreateCollision("UpMushroom", { 40, 5 }, { 0, 20 });
 	UpMushroom2HitBox = CreateCollision("UpMushroom", { 40, 40 }, { 0, 0 });
 
 	Actor = CreateRenderer("UpMushroom.bmp");
+	MushroomColor = CreateCollision("NNN", { 5, 5 }, { 20, 0 });
+	MushroomDownColor = CreateCollision("NNN", { 5, 5 }, { -20, 19 });
 
 	
 	Time_ = 400;
@@ -98,27 +99,27 @@ void UpMushroom2::Update()
 			Actor->SetPosition(GetPosition());
 			Death();
 		}
-		if (RGB(255, 255, 255) == ColorDown
-			&& DownFirst_)
+		if (RGB(255, 255, 255) == ColorDown && true != MushroomDownColor->CollisionCheck("Move", CollisionType::Rect, CollisionType::Rect))
 		{
-			MoveDir = float4::RIGHT + float4::DOWN;
-			DownFirst_ = false;
+			MoveDir = float4::RIGHT + float4::DOWN * 1.5;
 		}
-
-		if (RGB(255, 255, 255) != ColorDown)
+		if (RGB(255, 255, 255) != ColorDown || true == MushroomDownColor->CollisionCheck("Move", CollisionType::Rect, CollisionType::Rect))
 		{
-			MoveDir = MoveDir * float4{ 1, 0 };
+			MoveDir.y = 0.0f;
 		}
 		if (RGB(255, 255, 255) != Color)
 		{
 			MoveDir = MoveDir * float4{ -1, 1 };
+			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+			return;
 		}
-		if (RGB(255, 255, 255) == Color)
+		if (RGB(255, 255, 255) == Color || true != MushroomDownColor->CollisionCheck("Move", CollisionType::Rect, CollisionType::Rect))
 		{
-				SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 		}
 		return;
 	}
+
 
 
 	if (true == UpMushroom2Collision->CollisionCheck("PlayerHitBox", CollisionType::Rect, CollisionType::Rect))

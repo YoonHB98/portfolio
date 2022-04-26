@@ -7,6 +7,7 @@
 #include "Point100.h"
 #include "LevelIntro.h"
 #include "WorldCount.h"
+#include "BigPlayer.h"
 
 Mushroom::Mushroom()
 {
@@ -33,6 +34,8 @@ void Mushroom::Start()
 	//Actor->CreateCollision("Mushroom", { 80, 10 }, CoPivot);
 	MushroomCollision = CreateCollision("UpMushroom", { 40, 5 }, { 0, 20 });
 	MushroomHitBox = CreateCollision("UpMushroom", { 40, 40 }, { 0, 0 });
+	MushroomColor = CreateCollision("NNN", { 5, 5 }, { 20, 0 });
+	MushroomDownColor = CreateCollision("NNN", { 5, 5 }, { -20, 19 });
 
 	Actor = CreateRenderer("Mushroom.bmp");
 
@@ -97,29 +100,25 @@ void Mushroom::Update()
 			{
 				Pause::PlayerStatus = "big";
 				Pause::bigfirst = true;
+				BigPlayer::Change = true;
 			}
 			Death();
 		}
-		if (RGB(255, 255, 255) == ColorDown)
+		if (RGB(255, 255, 255) == ColorDown && true != MushroomDownColor->CollisionCheck("Move", CollisionType::Rect, CollisionType::Rect))
 		{
 			MoveDir = float4::RIGHT + float4::DOWN * 1.5;
 		}
-		if (RGB(255, 255, 255) != ColorDown)
+		if (RGB(255, 255, 255) != ColorDown || true == MushroomDownColor->CollisionCheck("Move", CollisionType::Rect, CollisionType::Rect))
 		{
 			MoveDir.y = 0.0f;
 		}
-
-		//if (RGB(255, 255, 255) != ColorDown)
-		//{
-		//	MoveDir = MoveDir * float4{ 1, 0 };
-		//}
 		if (RGB(255, 255, 255) != Color)
 		{
 			MoveDir = MoveDir * float4{ -1, 1 };
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 			return;
 		}
-		if (RGB(255, 255, 255) == Color)
+		if (RGB(255, 255, 255) == Color || true != MushroomDownColor->CollisionCheck("Move", CollisionType::Rect, CollisionType::Rect))
 		{
 				SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 		}

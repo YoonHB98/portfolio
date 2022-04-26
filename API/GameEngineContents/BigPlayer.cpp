@@ -119,6 +119,7 @@ void BigPlayer::Update()
 		}
 		else
 		{
+			ChangeTime = 0;
 			Change = false;
 			Changefirst = true;
 			AnimationChange("BMRight");
@@ -582,3 +583,5 @@ void BigPlayer::Render()
 {
 
 }
+
+bool BigPlayer::Change = true;

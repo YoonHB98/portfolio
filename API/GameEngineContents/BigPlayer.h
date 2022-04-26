@@ -25,11 +25,12 @@ public:
 	BigPlayer& operator=(const BigPlayer& _Other) = delete;
 	BigPlayer& operator=(BigPlayer&& _Other) noexcept = delete;
 	float GetCurrentPosition();
+	static bool Change;
 protected:
 
 private:
 	void CameraPos();
-	bool Change = true;
+
 
 	float4 MoveDir;
 	GameEngineRenderer* RenderRun;

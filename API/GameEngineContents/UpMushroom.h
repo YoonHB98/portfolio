@@ -24,6 +24,8 @@ public:
 
 	GameEngineCollision* UpMushroomCollision;
 	GameEngineCollision* UpMushroomHitBox;
+	GameEngineCollision* MushroomColor;
+	GameEngineCollision* MushroomDownColor;
 	void CreateUpMushroom(const float4& _Pivot);
 	GameEngineSoundPlayer BgmPlayer;
 	float4 MoveDir;

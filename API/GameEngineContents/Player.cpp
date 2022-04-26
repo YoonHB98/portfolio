@@ -420,24 +420,7 @@ void Player::Update()
 		int ColorUp = WhiteMap_->GetImagePixel(GetPosition() + float4(0.0f, -19.0f));
 
 
-		if ((RGB(255, 255, 255) != Color)
-			&& GameEngineInput::GetInst()->IsFree("Jump")
-			)
-
-		{
-			if (RenderRun->IsAnimationName("JumpLeft"))
-			{
-				RenderRun->ChangeAnimation("MarioLeft");
-			}
-			else
-				if (RenderRun->IsAnimationName("JumpRight"))
-				{
-					RenderRun->ChangeAnimation("MarioRight");
-				}
-			MoveDir.y = 0;
-			AccGravity_ = 0;
-		}else
-		if (true == Down_->NextPosCollisionCheck("Move", NextPos + float4(0.0f, 19.0f), CollisionType::Rect, CollisionType::Rect)
+		if (((RGB(255, 255, 255) != Color) || true == Down_->NextPosCollisionCheck("Move", NextPos + float4(0.0f, 19.0f), CollisionType::Rect, CollisionType::Rect))
 			&& GameEngineInput::GetInst()->IsFree("Jump")
 			)
 
