@@ -264,6 +264,8 @@ public:
 
 	bool IsAnimationName(const std::string& _Name);
 
+	std::string CurrentAnimationName();
+
 	const FrameAnimation* FindAnimation(const std::string& _Name);
 
 	inline const FrameAnimation* CurrentAnimation()

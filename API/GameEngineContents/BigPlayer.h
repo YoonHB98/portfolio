@@ -48,10 +48,12 @@ private:
 	GameEngineCollision* BigPlayerLeft_;
 	float ChangeTime = 0;
 	float Time_ = 0;
+	float AnimationTime_ = 0;
+	void AnimationChange(const std::string &Name);
 	void Start() override;
 	void Update() override;
 	void Render() override;
-	
+	std::string animation = "";
 	void HitBlock();
 	bool RightBotCheck();
 	bool LeftBotCheck();

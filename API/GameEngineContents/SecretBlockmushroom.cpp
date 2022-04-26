@@ -1,5 +1,7 @@
 #include "SecretBlockmushroom.h"
 #include "Mushroom2.h"
+#include "Pause.h"
+#include "Flower.h"
 
 SecretBlockmushroom::SecretBlockmushroom() 
 {
@@ -35,8 +37,17 @@ void SecretBlockmushroom::Update()
 		Actor->CreateAnimation("QuestionBlock.bmp", "Block", 0, 2, 0.15f, true);
 		Actor->CreateAnimation("QuestionBlock.bmp", "HitBlock", 3, 3, 0.1f, false);
 		Actor->ChangeAnimation("Block");
-		Mushroom2* CoinActor = GetLevel()->CreateActor<Mushroom2>(1);
-		CoinActor->CreateMushroom(GetPosition());
+		if (Pause::PlayerStatus == "small")
+		{
+			Mushroom2* CoinActor = GetLevel()->CreateActor<Mushroom2>(1);
+			CoinActor->CreateMushroom(GetPosition());
+		}
+		else
+		{
+			Flower* CoinActor = GetLevel()->CreateActor<Flower>(1);
+			CoinActor->CreateFlower(GetPosition());
+		}
+
 		first = false;
 	}
 	if (up)
