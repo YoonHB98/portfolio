@@ -329,15 +329,27 @@ void BigPlayer::Update()
 		if (0.05f >= MoveDir.Len2D())
 		{
 			MoveDir = float4::ZERO;
+			if (RenderRun->IsAnimationName(("RunRight") + animation)
+				|| RenderRun->IsAnimationName(("TurnRight" + animation)))
+			{
+				AnimationChange("BMRight");
+			}
+			if (RenderRun->IsAnimationName(("RunLeft") + animation)
+				|| RenderRun->IsAnimationName(("TurnLeft" + animation)))
+			{
+				AnimationChange("BMLeft");
+			}
 			return;
 		}
 
 
-		if (RenderRun->IsAnimationName(("RunRight")+ animation) )
+		if (RenderRun->IsAnimationName(("RunRight") + animation)
+			|| RenderRun->IsAnimationName(("TurnRight" + animation)))
 		{
 			AnimationChange("BMRight");
 		}
-		if (RenderRun->IsAnimationName(("RunLeft") + animation))
+		if (RenderRun->IsAnimationName(("RunLeft") + animation)
+			|| RenderRun->IsAnimationName(("TurnLeft" + animation)))
 		{
 			AnimationChange("BMLeft");
 		}

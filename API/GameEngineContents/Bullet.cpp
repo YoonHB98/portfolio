@@ -31,11 +31,11 @@ void Bullet::Start()
 
 	
 
-	YDir_ = float4::DOWN * 200.0f;
+	YDir_ = float4::DOWN * 30.0f;
 	BulletDir_ = {1, 0};
-	XSpeed = 500.0f;
-	YSpeed = 600.0f;
-	DownSpeed = 2000.0f;
+	XSpeed = 600.0f;
+	YSpeed = 300.0f;
+	DownSpeed = 1200.0f;
 }
 void Bullet::Update()
 {
