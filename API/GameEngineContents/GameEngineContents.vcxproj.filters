@@ -182,6 +182,9 @@
     <ClInclude Include="Flower.h">
       <Filter>Map\Item</Filter>
     </ClInclude>
+    <ClInclude Include="Point1000.h">
+      <Filter>Play\Global\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -320,6 +323,9 @@
     </ClCompile>
     <ClCompile Include="Flower.cpp">
       <Filter>Map\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Point1000.cpp">
+      <Filter>Play\Global\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

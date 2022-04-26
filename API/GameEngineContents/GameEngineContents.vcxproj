@@ -99,6 +99,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Point1000.h" />
     <ClInclude Include="Point200.h" />
     <ClInclude Include="QuestionBlock.h">
       <SubType>
@@ -232,6 +233,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Point1000.cpp" />
     <ClCompile Include="Point200.cpp" />
     <ClCompile Include="QuestionBlock.cpp">
       <SubType>

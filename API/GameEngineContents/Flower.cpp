@@ -4,7 +4,7 @@
 #include "Coin.h"
 #include "Sound.h"
 #include "Pause.h"
-#include "Point100.h"
+#include "Point1000.h"
 #include "LevelIntro.h"
 #include "WorldCount.h"
 
@@ -91,6 +91,13 @@ void Flower::Update()
 		if (true == FlowerHitBox->CollisionCheck("PlayerItem", CollisionType::Rect, CollisionType::Rect))
 		{
 			GameEngineSound::SoundPlayOneShot("Mushroomeat.wav", 0);
+			if (Pause::flower)
+			{
+				Point1000* Actor = GetLevel()->CreateActor<Point1000>(2);
+				Actor->SetPosition(GetPosition());
+				Death();
+				return;
+			}
 			Pause::flower = true;
 			Pause::flowerfirst = true;
 			Death();
