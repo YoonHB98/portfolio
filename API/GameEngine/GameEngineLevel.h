@@ -36,20 +36,19 @@ public:
 	GameEngineLevel& operator=(const GameEngineLevel& _Other) = delete;
 	GameEngineLevel& operator=(GameEngineLevel&& _Other) noexcept = delete;
 
-	bool IsDebugModeOn() 
+	static void IsDebugModeOn() 
 	{
 		IsDebug = true;
 	}
 
-	bool IsDebugModeOff()
+	static void IsDebugModeOff()
 	{
 		IsDebug = false;
 	}
 
-	bool IsDebugModeSwitch()
+	static void IsDebugModeSwitch()
 	{
 		IsDebug = !IsDebug;
-		return IsDebug;
 	}
 
 	template<typename ActorType>
