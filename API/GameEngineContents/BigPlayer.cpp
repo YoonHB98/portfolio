@@ -333,11 +333,11 @@ void BigPlayer::Update()
 		}
 
 
-		if (RenderRun->IsAnimationName("RunRight"))
+		if (RenderRun->IsAnimationName(("RunRight")+ animation) )
 		{
 			AnimationChange("BMRight");
 		}
-		if (RenderRun->IsAnimationName("RunLeft"))
+		if (RenderRun->IsAnimationName(("RunLeft") + animation))
 		{
 			AnimationChange("BMLeft");
 		}
@@ -364,12 +364,12 @@ void BigPlayer::Update()
 			)
 
 		{
-			if (RenderRun->IsAnimationName("BMJL"))
+			if (RenderRun->IsAnimationName(("BMJL")+ animation))
 			{
 				AnimationChange("BMLeft");
 			}
 			else
-				if (RenderRun->IsAnimationName("BMJR"))
+				if (RenderRun->IsAnimationName(("BMJR") + animation))
 				{
 					AnimationChange("BMRight");
 				}
@@ -445,11 +445,15 @@ void BigPlayer::Update()
 			)
 
 		{
-			if (RenderRun->IsAnimationName("RunRight") || RenderRun->IsAnimationName("BMRight") || RenderRun->IsAnimationName("BMJR"))
+			if (RenderRun->IsAnimationName(("RunRight") + animation) 
+				|| RenderRun->IsAnimationName(("BMRight") + animation) 
+				|| RenderRun->IsAnimationName(("BMJR") + animation))
 			{
 				AnimationChange("BMJR");
 			}
-			else if (RenderRun->IsAnimationName("RunLeft") || RenderRun->IsAnimationName("BMLeft") || RenderRun->IsAnimationName("BMJL"))
+			else if (RenderRun->IsAnimationName(("RunLeft") + animation)
+				|| RenderRun->IsAnimationName(("BMLeft") + animation)
+				|| RenderRun->IsAnimationName(("BMJL")  + animation))
 			{
 				AnimationChange("BMJL");
 			}
