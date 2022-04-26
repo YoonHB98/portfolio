@@ -2,6 +2,7 @@
 #include <GameEngineBase/GameEngineSound.h>
 #include "Point100.h"
 #include "Pause.h"
+#include "WorldCount.h"
 
 
 
@@ -31,6 +32,27 @@ void Goomba::CreateGoomba(const float4& _Pivot)
 
 	}
 }
+void Goomba::ColMap()
+{
+	if (WorldCount::WorldCountUI == 1)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	}
+	if (WorldCount::WorldCountUI == 2)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	}
+	if (WorldCount::WorldCountUI == 3)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	}
+	if (WorldCount::WorldCountUI == 4)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	}
+
+
+}
 
 
 void Goomba::Start()
@@ -54,7 +76,7 @@ void Goomba::Update()
 		return;
 	}
 	Actor->PauseOff();
-	ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	ColMap();
 	float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 	float4 CheckPos = NextPos - float4(0.0f, 20.0f);
 	CheckPos = CheckPos + MoveDir * float4(20.0f, 1.0f, 1.0f, 1.0f);

@@ -185,6 +185,9 @@
     <ClInclude Include="Point1000.h">
       <Filter>Play\Global\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -326,6 +329,9 @@
     </ClCompile>
     <ClCompile Include="Point1000.cpp">
       <Filter>Play\Global\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

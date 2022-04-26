@@ -48,6 +48,7 @@ private:
 	bool DeathFirst = true;
 	float Speed_;
 	float4 ReturnPosition();
+	void ColMap();
 
 	void Start() override;
 	void Update() override;

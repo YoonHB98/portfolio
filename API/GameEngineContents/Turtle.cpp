@@ -3,6 +3,7 @@
 #include "Point100.h"
 #include "Pause.h"
 #include "TurtleDead.h"
+#include "WorldCount.h"
 
 
 
@@ -35,6 +36,28 @@ void Turtle::CreateTurtle(const float4& _Pivot)
 }
 
 
+void Turtle::ColMap()
+{
+	if (WorldCount::WorldCountUI ==1)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	}
+	if (WorldCount::WorldCountUI == 2)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	}
+	if (WorldCount::WorldCountUI == 3)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	}
+	if (WorldCount::WorldCountUI == 4)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	}
+
+	
+}
+
 void Turtle::Start()
 {
 	TurtleCollision = CreateCollision("MonsterTop", { 40, 5 }, { 0, -30 });
@@ -54,7 +77,7 @@ void Turtle::Update()
 		return;
 	}
 	Actor->PauseOff();
-	ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	ColMap();
 	float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 	float4 CheckPos = NextPos - float4(0.0f, 30.0f);
 	CheckPos = CheckPos + MoveDir * float4(20.0f, 1.0f, 1.0f, 1.0f);

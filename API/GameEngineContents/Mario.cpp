@@ -217,6 +217,10 @@ void Mario::GameInit()
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Bullet.bmp");
 		Image->Cut({ 20,20 });
 	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Boom.bmp");
+		Image->Cut({ 40,40 });
+	}
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<Stage1>("Stage1");
 	CreateLevel<EndingLevel>("Ending");

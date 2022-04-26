@@ -5,6 +5,7 @@
 #include "Point100.h"
 #include <GameEngine/GameEngineCollision.h>
 #include "WorldCount.h"
+#include "Bullet.h"
 
 
 
@@ -80,6 +81,7 @@ void BigPlayer::Start()
 	{
 		GameEngineInput::GetInst()->CreateKey("BMMoveLeft", 'A');
 		GameEngineInput::GetInst()->CreateKey("BMMoveRight", 'D');
+		GameEngineInput::GetInst()->CreateKey("Fire", 'O');
 		GameEngineInput::GetInst()->CreateKey("BMJump", VK_LSHIFT);
 		// VK_LBUTTON; ¸¶¿ì½º
 	}
@@ -239,6 +241,11 @@ void BigPlayer::Update()
 	if (true == GameEngineInput::GetInst()->IsPress("Down"))
 	{
 		MoveDir += float4::DOWN;
+	}
+	if (true == GameEngineInput::GetInst()->IsDown("Fire"))
+	{
+		Bullet* Ptr = GetLevel()->CreateActor<Bullet>(2);
+		Ptr->SetPosition(GetPosition());
 	}
 	if (true == GameEngineInput::GetInst()->IsFree("BMJump"))
 	{

@@ -12,12 +12,6 @@
 
 // Ό³Έν :
 
-enum GoombaState
-{
-	GoombaIdle,
-	GoombaMove,
-
-};
 
 class Goomba : public GameEngineActor
 {
@@ -50,7 +44,7 @@ private:
 	bool DeathFirst = true;
 	float Speed_;
 	float4 ReturnPosition();
-
+	void ColMap();
 	void Start() override;
 	void Update() override;
 	GameEngineRenderer* Actor;
