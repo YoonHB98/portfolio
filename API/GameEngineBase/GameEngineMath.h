@@ -166,7 +166,7 @@ public:
 	float4 operator*(const float _Value) const
 	{
 		return { x * _Value, y * _Value, z * _Value, 1.0f };
-	}
+	}	
 	float4 operator*(const float4& _Value) const
 	{
 		return { x * _Value.x, y * _Value.y, z * _Value.z, 1.0f };
@@ -184,6 +184,7 @@ public:
 
 		return false;
 	}
+
 
 	float4& operator+=(const float4& _Other)
 	{

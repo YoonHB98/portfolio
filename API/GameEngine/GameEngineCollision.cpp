@@ -122,7 +122,7 @@ bool GameEngineCollision::NextPosCollisionCheck(
 	std::list<GameEngineCollision*>::iterator StartIter = TargetGroup.begin();
 	std::list<GameEngineCollision*>::iterator EndIter = TargetGroup.end();
 
-	NextPos_ = _NextPos;
+	GetActor()->GetPosition() + Pivot_ = _NextPos;
 
 	for (; StartIter != EndIter; ++StartIter)
 	{

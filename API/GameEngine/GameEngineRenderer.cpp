@@ -356,12 +356,10 @@ bool GameEngineRenderer::IsAnimationName(const std::string& _Name)
 {
 	return CurrentAnimation_->GetNameConstRef() == _Name;
 }
-
 std::string GameEngineRenderer::CurrentAnimationName()
 {
 	return  CurrentAnimation_->GetNameConstRef();
 }
-
 const GameEngineRenderer::FrameAnimation* GameEngineRenderer::FindAnimation(const std::string& _Name)
 {
 	std::map<std::string, FrameAnimation>::iterator FindIter = Animations_.find(_Name);

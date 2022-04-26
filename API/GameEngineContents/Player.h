@@ -47,6 +47,8 @@ private:
 	GameEngineCollision* PlayerCollision;
 	GameEngineCollision* PlayerRight_;
 	GameEngineCollision* PlayerLeft_;
+	GameEngineCollision* Down_;
+	GameEngineCollision* Up_;
 	GameEngineCollision* Move_;
 	float nodie = 0;
 	float nodiecount = 0;
@@ -54,7 +56,7 @@ private:
 	void Start() override;
 	void Update() override;
 	void Render() override;
-	
+
 	void HitBlock();
 };
 
