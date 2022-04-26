@@ -34,7 +34,9 @@ public:
 	GameEngineCollision* CheckCollision;
 	GameEngineCollision* GoombaCollision;
 	GameEngineCollision* RightCollision;
-	GameEngineCollision* LeftCollision;
+	GameEngineCollision* LeftCollision;	
+	GameEngineCollision* GoombaColor;
+	GameEngineCollision* GoombaDownColor;
 	void CreateGoomba(const float4& _Pivot);
 	Player* Player;
 	Goomba* Goom;

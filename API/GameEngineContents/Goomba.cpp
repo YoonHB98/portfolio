@@ -39,6 +39,8 @@ void Goomba::Start()
 	RightCollision = CreateCollision("MonsterRight", { 5,30 }, { 20, 5 });
 	LeftCollision = CreateCollision("MonsterLeft", { 5, 30 }, { -20, 5 });
 	CheckCollision = CreateCollision("CheckPos", { 40, 2400 }, { -310, 20 });
+	GoombaColor = CreateCollision("NNN", { 5, 5 }, { 20, 0 });
+	GoombaDownColor = CreateCollision("NNN", { 5, 5 }, { 10, 19 });
 	MoveDir = float4::LEFT;
 }
 
@@ -69,7 +71,7 @@ void Goomba::Update()
 		}
 		
 	}
-	if (RGB(255, 255, 255) == ColorLeftBot)
+	if (RGB(255, 255, 255) == ColorLeftBot&& true != GoombaDownColor->CollisionCheck("Move", CollisionType::Rect, CollisionType::Rect))
 	{
 		if (up == 1)
 		{
@@ -82,11 +84,11 @@ void Goomba::Update()
 		}
 
 	}
-	if (RGB(255, 255, 255) != ColorLeftBot)
+	if (RGB(255, 255, 255) != ColorLeftBot || true == GoombaDownColor->CollisionCheck("Move", CollisionType::Rect, CollisionType::Rect))
 	{
 		MoveDir.y = 0.0f;
 	}
-	if (RGB(255, 255, 255) == Color)
+	if (RGB(255, 255, 255) == Color && true != GoombaColor->CollisionCheck("Move", CollisionType::Rect, CollisionType::Rect))
 	{
 		if (up == 1)
 		{
@@ -97,7 +99,7 @@ void Goomba::Update()
 	if (RGB(255, 255, 255) != Color)
 	{
 		MoveDir = MoveDir * float4{ -1 , -1 };
-		if (RGB(255, 255, 255) == Color)
+		if (RGB(255, 255, 255) == Color && true != GoombaColor->CollisionCheck("Move", CollisionType::Rect, CollisionType::Rect))
 		{
 				SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 		}
@@ -105,7 +107,7 @@ void Goomba::Update()
 	if (true == RightCollision->CollisionCheck("MonsterLeft", CollisionType::Rect, CollisionType::Rect))
 	{
 		MoveDir = MoveDir * float4{ -1 , -1 };
-		if (RGB(255, 255, 255) == Color)
+		if (RGB(255, 255, 255) == Color && true != GoombaColor->CollisionCheck("Move", CollisionType::Rect, CollisionType::Rect))
 		{
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 		}
@@ -113,7 +115,7 @@ void Goomba::Update()
 	if (true == LeftCollision->CollisionCheck("MonsterRight", CollisionType::Rect, CollisionType::Rect))
 	{
 		MoveDir = MoveDir * float4{ -1 , -1 };
-		if (RGB(255, 255, 255) == Color)
+		if (RGB(255, 255, 255) == Color && true != GoombaColor->CollisionCheck("Move", CollisionType::Rect, CollisionType::Rect))
 		{
 			int a = 0;
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
