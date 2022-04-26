@@ -186,6 +186,22 @@ void Mario::GameInit()
 		Image->Cut({ 40,80 });
 	}
 	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("BigMarioFlower.bmp");
+		Image->Cut({ 40,80 });
+	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("BigStarAnimation.bmp");
+		Image->Cut({ 40,80 });
+	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("StarAnimation.bmp");
+		Image->Cut({ 40,40 });
+	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Flower.bmp");
+		Image->Cut({ 40,40 });
+	}
+	{
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("BlockBreak.bmp");
 		Image->Cut({ 20,20 });
 	}

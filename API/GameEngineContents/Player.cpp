@@ -31,6 +31,7 @@ void Player::Start()
 	PlayerCollision = CreateCollision("PlayerBot", { 40, 10 }, { 0, 20 });
 	PlayerRight_ = CreateCollision("PlayerItem", { 2,40 }, { 20, 0 });
 	PlayerLeft_ = CreateCollision("PlayerItem", { 2, 40 }, { -20, 0 });
+	Move_ = CreateCollision("NNN", {40, 40 }, { 0, 0 });
 	Right = 0;
 	Left = 0;
 
@@ -477,66 +478,68 @@ void Player::Update()
 		{
 			LeftCheck = true;
 		}
-		if ((RGB(0, 0, 0) != (Left))
-			&& LeftCheck
-			)
-
-		{
-			SetMove(LeftRight * GameEngineTime::GetDeltaTime() * Speed_);
-		}
-		if ((RGB(0, 0, 0) != (Right))
-			&& RightCheck
-			)
-
-		{
-			SetMove(LeftRight * GameEngineTime::GetDeltaTime() * Speed_);
-		}
-		if ((RGB(0, 0, 0) != (Up)))
-		{
-
-		}
-		if ((RGB(0, 0, 0) != (Up))
-			&& UpCheck
-			)
-
-		{
-			SetMove(UpUp * GameEngineTime::GetDeltaTime() * Speed_);
-			if (RenderRun->IsAnimationName("RunRight") || RenderRun->IsAnimationName("MarioRight") || RenderRun->IsAnimationName("JumpRight"))
-			{
-				RenderRun->ChangeAnimation("JumpRight");
-			}
-			else if (RenderRun->IsAnimationName("RunLeft") || RenderRun->IsAnimationName("MarioLeft") || RenderRun->IsAnimationName("JumpLeft"))
-			{
-				RenderRun->ChangeAnimation("JumpLeft");
-			}
-		}
-		if ((RGB(0, 0, 0) != (Down1)))
+		if (true == Move_->NextPosCollisionCheck("Move", NextPos + float4(0.0f, -19.0f), CollisionType::Rect, CollisionType::Rect)) 
 		{
 			int a = 0;
 		}
-		if ((RGB(0, 0, 0) != (Down2)))
+		if (true != Move_->NextPosCollisionCheck("Move", NextPos + float4(0.0f, -19.0f), CollisionType::Rect, CollisionType::Rect))
 		{
-			int a = 0;
-		}
-		if ((RGB(0, 0, 0) != (Down)
-			&& (RGB(0, 0, 0) != (Down1))
-			&& (RGB(0, 0, 0) != (Down2))
-			&& DownCheck)
-			)
+			if ((RGB(0, 0, 0) != (Left))
+				&& LeftCheck
+				&& false == PlayerCollision->CollisionCheck("Move", CollisionType::Rect, CollisionType::Rect)
+				)
 
+			{
+				SetMove(LeftRight * GameEngineTime::GetDeltaTime() * Speed_);
+			}
+		}
+		if (true != Move_->NextPosCollisionCheck("Move", NextPos + float4(0.0f, -19.0f), CollisionType::Rect, CollisionType::Rect))
 		{
-			SetMove(DownDown * GameEngineTime::GetDeltaTime() * Speed_);
-			if (RenderRun->IsAnimationName("RunRight") || RenderRun->IsAnimationName("MarioRight") || RenderRun->IsAnimationName("JumpRight"))
+			if ((RGB(0, 0, 0) != (Right))
+				&& RightCheck
+				&& false == PlayerCollision->CollisionCheck("Move", CollisionType::Rect, CollisionType::Rect)
+				)
 			{
-				RenderRun->ChangeAnimation("JumpRight");
+				SetMove(LeftRight * GameEngineTime::GetDeltaTime() * Speed_);
 			}
-			else if (RenderRun->IsAnimationName("RunLeft") || RenderRun->IsAnimationName("MarioLeft") || RenderRun->IsAnimationName("JumpLeft"))
-			{
-				RenderRun->ChangeAnimation("JumpLeft");
-			}
-
 		}
-		Pause::PlayerPosition = GetPosition();
+		if (true != Move_->NextPosCollisionCheck("Move", NextPos + float4(0.0f, -19.0f), CollisionType::Rect, CollisionType::Rect))
+		{
+			if ((RGB(0, 0, 0) != (Up))
+				&& UpCheck)
+			{
+				SetMove(UpUp * GameEngineTime::GetDeltaTime() * Speed_);
+				if (RenderRun->IsAnimationName("RunRight") || RenderRun->IsAnimationName("MarioRight") || RenderRun->IsAnimationName("JumpRight"))
+				{
+					RenderRun->ChangeAnimation("JumpRight");
+				}
+				else if (RenderRun->IsAnimationName("RunLeft") || RenderRun->IsAnimationName("MarioLeft") || RenderRun->IsAnimationName("JumpLeft"))
+				{
+					RenderRun->ChangeAnimation("JumpLeft");
+				}
+			}
+		}
+		if (true != Move_->NextPosCollisionCheck("Move", NextPos + float4(0.0f, 19.0f), CollisionType::Rect, CollisionType::Rect))
+		{
+			if ((RGB(0, 0, 0) != (Down)
+				&& (RGB(0, 0, 0) != (Down1))
+				&& (RGB(0, 0, 0) != (Down2))
+				&& DownCheck))
+			{
+				SetMove(DownDown * GameEngineTime::GetDeltaTime() * Speed_);
+				if (RenderRun->IsAnimationName("RunRight") || RenderRun->IsAnimationName("MarioRight") || RenderRun->IsAnimationName("JumpRight"))
+				{
+					RenderRun->ChangeAnimation("JumpRight");
+				}
+				else if (RenderRun->IsAnimationName("RunLeft") || RenderRun->IsAnimationName("MarioLeft") || RenderRun->IsAnimationName("JumpLeft"))
+				{
+					RenderRun->ChangeAnimation("JumpLeft");
+				}
+
+			}
+			Pause::PlayerPosition = GetPosition();
+		}
+
 	}
 }
 

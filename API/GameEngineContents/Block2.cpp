@@ -28,6 +28,7 @@ void Block2::Start()
 	//Actor->SetPosition(Pivot);
 	//Actor->CreateCollision("Block2", { 80, 10 }, CoPivot);
 	Block2Collision = CreateCollision("Block", { 40, 1 }, { 0, 20 });
+	Block2Collision = CreateCollision("Move", { 40, 40 }, { 0, 0 });
 
 	CreateRenderer("Block.bmp");
 	

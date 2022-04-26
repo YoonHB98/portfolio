@@ -38,7 +38,7 @@ void Mushroom::Start()
 
 	
 	Time_ = 400;
-	Speed_ = 60;
+	Speed_ = 150;
 	//
 	/*Image_ = CreateRenderer();*/
 	
@@ -98,18 +98,15 @@ void Mushroom::Update()
 				Pause::PlayerStatus = "big";
 				Pause::bigfirst = true;
 			}
-			else		
-				if (Pause::PlayerStatus == "big")
-			{
-				Pause::PlayerStatus = "fire";
-			}
 			Death();
 		}
-		if (RGB(255, 255, 255) == ColorDown
-			&& DownFirst_)
+		if (RGB(255, 255, 255) == ColorDown)
 		{
-			MoveDir = float4::RIGHT + float4::DOWN;
-			DownFirst_ = false;
+			MoveDir = float4::RIGHT + float4::DOWN * 1.5;
+		}
+		if (RGB(255, 255, 255) != ColorDown)
+		{
+			MoveDir.y = 0.0f;
 		}
 
 		//if (RGB(255, 255, 255) != ColorDown)

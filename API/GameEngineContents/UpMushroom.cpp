@@ -99,7 +99,7 @@ void UpMushroom::Update()
 			Death();
 		}
 		if (RGB(255, 255, 255) == ColorDown
-			&& DownFirst_)
+	)
 		{
 			MoveDir = float4::RIGHT + float4::DOWN * 1.2f;
 			DownFirst_ = false;

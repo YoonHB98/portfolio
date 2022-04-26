@@ -1,5 +1,6 @@
 #include "SecretBlockmushroom.h"
 #include "Mushroom2.h"
+#include "Mushroom.h"
 #include "Pause.h"
 #include "Flower.h"
 
@@ -25,33 +26,36 @@ void SecretBlockmushroom::CreateSecretBlockmushroom(const float4& _Pivot)
 void SecretBlockmushroom::Start()
 {
 	BlockCollision = CreateCollision("Block", { 40, 1 }, { 0, 20 });
+	BlockCollision = CreateCollision("Move", { 40, 40 }, { 0, 0 });
+	Actor = CreateRenderer("QuestionBlock.bmp");
+	Actor->SetIndex(0);
+	Actor->CreateAnimation("QuestionBlock.bmp", "Block", 0, 2, 0.15f, true);
+	Actor->CreateAnimation("QuestionBlock.bmp", "HitBlock", 3, 3, 0.1f, false);
+	Actor->ChangeAnimation("Block");
 }
 
 void SecretBlockmushroom::Update()
 {
 
-	if ( first)
-	{
-		Actor = CreateRenderer("QuestionBlock.bmp");
-		Actor->SetIndex(0);
-		Actor->CreateAnimation("QuestionBlock.bmp", "Block", 0, 2, 0.15f, true);
-		Actor->CreateAnimation("QuestionBlock.bmp", "HitBlock", 3, 3, 0.1f, false);
-		Actor->ChangeAnimation("Block");
-		if (Pause::PlayerStatus == "small")
-		{
-			Mushroom2* CoinActor = GetLevel()->CreateActor<Mushroom2>(1);
-			CoinActor->CreateMushroom(GetPosition());
-		}
-		else
-		{
-			Flower* CoinActor = GetLevel()->CreateActor<Flower>(1);
-			CoinActor->CreateFlower(GetPosition());
-		}
 
-		first = false;
-	}
 	if (up)
 	{
+		if (first)
+		{
+
+			if (Pause::PlayerStatus == "small")
+			{
+				Mushroom* CoinActor = GetLevel()->CreateActor<Mushroom>(1);
+				CoinActor->CreateMushroom(GetPosition());
+			}
+			else
+			{
+				Flower* CoinActor = GetLevel()->CreateActor<Flower>(1);
+				CoinActor->CreateFlower(GetPosition());
+			}
+
+			first = false;
+		}
 		Actor->ChangeAnimation("HitBlock");
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
 		SetMove(float4::UP * GameEngineTime::GetDeltaTime() * 100.0f);

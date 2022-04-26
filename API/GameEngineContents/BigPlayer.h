@@ -50,6 +50,7 @@ private:
 	float Time_ = 0;
 	float AnimationTime_ = 0;
 	void AnimationChange(const std::string &Name);
+	bool flowerAnimation = true;
 	void Start() override;
 	void Update() override;
 	void Render() override;

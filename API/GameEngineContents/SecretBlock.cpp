@@ -23,6 +23,7 @@ void SecretBlock::CreateSecretBlock(const float4& _Pivot)
 void SecretBlock::Start()
 {
 	BlockCollision = CreateCollision("Block", { 40, 1 }, { 0, 20 });
+	BlockCollision = CreateCollision("Move", { 40, 40 }, { 0, 0 });
 }
 
 void SecretBlock::Update()

@@ -67,6 +67,14 @@ void Stage1::Loading()
 		Actor->CreateBlock2(float4{ 200, 380 });
 	}
 	{
+		SecretBlockmushroom* Actor = CreateActor<SecretBlockmushroom>(2);
+		Actor->CreateSecretBlockmushroom(float4{ 300, 380 });
+	}
+	{
+		SecretBlockmushroom* Actor = CreateActor<SecretBlockmushroom>(2);
+		Actor->CreateSecretBlockmushroom(float4{ 400, 380 });
+	}
+	{
 		SecretBlock* Actor = CreateActor<SecretBlock>(2);
 		Actor->CreateSecretBlock(float4{ 2580, 340 });
 	}
@@ -114,10 +122,8 @@ void Stage1::Loading()
 		Actor->CreateBlock(float4{ 3100, 380 });
 	}
 	{
-		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-		Actor->CreateQuestionBlock(float4{ 3140, 380 });
-		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-		CoinActor->CreateBoxCoin(float4{ 3140, 380 });
+		SecretBlockmushroom* Actor = CreateActor<SecretBlockmushroom>(2);
+		Actor->CreateSecretBlockmushroom(float4{ 3140, 380 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
@@ -205,10 +211,8 @@ void Stage1::Loading()
 		CoinActor->CreateBoxCoin(float4{ 4500, 380 });
 	}
 	{
-		QuestionBlock* Actor = CreateActor<QuestionBlock>(2);
-		Actor->CreateQuestionBlock(float4{ 4380, 220 });
-		BoxCoin* CoinActor = CreateActor<BoxCoin>(1);
-		CoinActor->CreateBoxCoin(float4{ 4380, 220 });
+		SecretBlockmushroom* Actor = CreateActor<SecretBlockmushroom>(2);
+		Actor->CreateSecretBlockmushroom(float4{ 4380,220 });
 	}
 	{
 		Block* Actor = CreateActor<Block>(2);
@@ -359,8 +363,14 @@ void Stage1::Update()
 		|| Pause::end)
 	{
 		BgmPlayer.Stop();
+		pausefirst_ = true;
+		return;
 	}
-
+	if (pausefirst_)
+	{
+		BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");
+		pausefirst_ = false;
+	}
 	if (Pause::PlayerStatus == "big"
 		&& Pause::bigfirst)
 	{

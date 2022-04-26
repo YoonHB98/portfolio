@@ -27,6 +27,7 @@ void Secret10CoinBlock::Start()
 	//Actor->SetPosition(Pivot);
 	//Actor->CreateCollision("Secret10CoinBlock", { 80, 10 }, CoPivot);
 	BlockCollision = CreateCollision("Block", { 40, 1 }, { 0, 20 });
+	BlockCollision = CreateCollision("Move", { 40, 40 }, { 0, 0 });
 
 	Actor = CreateRenderer("Block.bmp");
 	Actor->CreateAnimation("SecretCoinBlock.bmp", "Block", 0, 0, 0.1f, false);

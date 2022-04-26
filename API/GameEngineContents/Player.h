@@ -47,6 +47,7 @@ private:
 	GameEngineCollision* PlayerCollision;
 	GameEngineCollision* PlayerRight_;
 	GameEngineCollision* PlayerLeft_;
+	GameEngineCollision* Move_;
 	float nodie = 0;
 	float nodiecount = 0;
 	float Time_ = 0;

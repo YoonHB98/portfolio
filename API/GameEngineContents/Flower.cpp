@@ -31,13 +31,16 @@ void Flower::Start()
 {
 	//Actor->SetPosition(Pivot);
 	//Actor->CreateCollision("Flower", { 80, 10 }, CoPivot);
+	FlowerCollision = CreateCollision("Flower", { 40, 5 }, { 0, 20 });
 	FlowerHitBox = CreateCollision("Flower", { 40, 40 }, { 0, 0 });
 
 	Actor = CreateRenderer("Flower.bmp");
+	Actor->CreateAnimation("Flower.bmp", "Flower", 0, 3, 0.1f);
+	Actor->ChangeAnimation("Flower");
 
 
 	Time_ = 400;
-	Speed_ = 60;
+	Speed_ = 150;
 	//
 	/*Image_ = CreateRenderer();*/
 
@@ -76,39 +79,32 @@ void Flower::Update()
 		}
 		if (Time_ < 4.1f)
 		{
+			MoveDir = float4::ZERO;
 			up = 0;
+			down = 1;
 		}
 		return;
 	}
-	if (true == FlowerHitBox->CollisionCheck("PlayerItem", CollisionType::Rect, CollisionType::Rect))
+	if (down == 1)
 	{
-		GameEngineSound::SoundPlayOneShot("Flowereat.wav", 0);
-		if (Pause::PlayerStatus == "small")
+
+		if (true == FlowerHitBox->CollisionCheck("PlayerItem", CollisionType::Rect, CollisionType::Rect))
 		{
-			Pause::PlayerStatus = "big";
-			Pause::bigfirst = true;
+			GameEngineSound::SoundPlayOneShot("Mushroomeat.wav", 0);
+			Pause::flower = true;
+			Pause::flowerfirst = true;
+			Death();
 		}
-		else
-			if (Pause::PlayerStatus == "big")
-			{
-				Pause::PlayerStatus = "fire";
-			}
-		Death();
-	
-		return;
+
+
 	}
-
-
 	if (true == FlowerCollision->CollisionCheck("PlayerHitBox", CollisionType::Rect, CollisionType::Rect))
 	{
 		up = 1;
 		Time_ = 5.0f;
-		GameEngineSound::SoundPlayOneShot("mushroomappear.wav", 0);
+		GameEngineSound::SoundPlayOneShot("Mushroomappear.wav", 0);
 	}
-
-
 }
-
 void Flower::ColMap()
 {
 	if (WorldCount::WorldCountUI == 1)
