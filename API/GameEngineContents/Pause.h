@@ -23,6 +23,7 @@ public:
 	static bool star;
 	static bool end;
 	static bool first;
+	static bool endtime;
 	static std::string PlayerStatus;
 	static float4 PlayerPosition;
 protected:

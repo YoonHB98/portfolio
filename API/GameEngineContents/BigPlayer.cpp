@@ -179,6 +179,7 @@ void BigPlayer::Update()
 			}
 			if (blank)
 			{
+				Pause::endtime = true;
 				RenderRun->ChangeAnimation("Blank");
 			}
 			  MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * 600;

@@ -77,6 +77,7 @@ void Point::Start()
 
 void Point::Update()
 {
+	int a = static_cast<int>(TimePoint);
 		if ((0<= PointUI % 1000)
 			&& (99 >= PointUI % 1000))
 		{
@@ -180,4 +181,5 @@ void Point::Update()
 	
 }
 
-int Point::PointUI = 0;
+float Point::PointUI = 0;
+float Point::TimePoint = 0;

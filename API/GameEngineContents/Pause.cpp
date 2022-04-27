@@ -19,3 +19,4 @@ bool Pause::smallfirst =false;
 bool Pause::flowerfirst = false;
 bool Pause::flower = false;
 bool Pause::star = false;
+bool Pause::endtime = false;

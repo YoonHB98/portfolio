@@ -167,6 +167,7 @@ void Player::Update()
 			if (blank)
 			{
 				RenderRun->ChangeAnimation("Blank");
+				Pause::endtime = true;
 			}
 			MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * 300;
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);

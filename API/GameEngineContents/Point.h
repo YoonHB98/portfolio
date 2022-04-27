@@ -20,7 +20,7 @@ public:
 	{
 			PointUI = PointUI + _Other;
 	}
-	
+	static float TimePoint;
 protected:
 
 private:

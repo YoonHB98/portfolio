@@ -5,6 +5,7 @@
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngineBase/GameEngineTime.h>
 #include "Pause.h"
+#include "Point.h"
 
 
 
@@ -98,12 +99,18 @@ void TopUI::Start()
 
 void TopUI::Update()
 {
-	
-	if (Pause::pause || Pause::end ||Pause::death)
+
+	if (false == Pause::endtime
+		&& false ==Pause::end)
 	{
-		return;
+		Time_ = Time_ - GameEngineTime::GetDeltaTime() * 2;
 	}
-	Time_ = Time_ - GameEngineTime::GetDeltaTime() * 2;
+	if (Pause::endtime)
+	{
+		Time_ = Time_ - GameEngineTime::GetDeltaTime() * 80;
+		Point::TimePoint = Point::TimePoint + GameEngineTime::GetDeltaTime() * 500;
+	}
+
 	int TimeTwo = static_cast<int>(Time_) /(10);
 	int TimeThree = static_cast<int>(Time_) / (100);
 
