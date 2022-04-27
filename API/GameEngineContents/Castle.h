@@ -25,6 +25,7 @@ public:
 protected:
 
 private:
+	bool flagfirst = true;
 	float Time_ = 0;
 	void Start() override;
 	void Update() override;

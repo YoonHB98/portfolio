@@ -203,6 +203,9 @@
     <ClInclude Include="Map1Under.h">
       <Filter>Map</Filter>
     </ClInclude>
+    <ClInclude Include="UnderWorldCoin.h">
+      <Filter>Map\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -362,6 +365,9 @@
     </ClCompile>
     <ClCompile Include="Map1Under.cpp">
       <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="UnderWorldCoin.cpp">
+      <Filter>Map\Item</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

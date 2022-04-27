@@ -187,7 +187,7 @@ void BigPlayer::Update()
 		}
 		if (1.5f <= Time_)
 		{
-			AnimationChange("RunRight");
+		
 			if ((RGB(0, 0, 0) != (Down)))
 			{
 				MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * 50;
@@ -199,11 +199,15 @@ void BigPlayer::Update()
 			if ((RGB(255, 0, 0) == (Right)))
 			{
 				blank = true;
-				Pause::endtime = true;
 			}
 			if (blank)
 			{
 				RenderRun->ChangeAnimation("Blank");
+				Pause::endtime = true;
+			}
+			else
+			{
+				AnimationChange("RunRight");
 			}
 			  MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * 600;
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * 150);

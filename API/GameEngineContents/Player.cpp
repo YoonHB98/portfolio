@@ -159,16 +159,21 @@ void Player::Update()
 			Pause::PlayerPosition = GetPosition();
 		}
 		if (1.2f <= Time_
-			&& 1.3f > Time_)
+			&& 1.5f > Time_)
 		{
-			SetPosition(float4{ 7955, 480 });
+			if (PosChange)
+			{
+				SetPosition(GetPosition() + float4{ 45, 0 });
+				Pause::PlayerPosition = GetPosition();
+				PosChange = false;
+			}
 			RenderRun->ChangeAnimation("End");
 			Pause::PlayerPosition = GetPosition();
 			return;
 		}
-		if (1.3f <= Time_)
+		if (1.5f <= Time_)
 		{
-			RenderRun->ChangeAnimation("RunRight");
+			PosChange = true;
 			if ((RGB(0, 0, 0) != (Down)))
 			{
 				MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * 50;
@@ -177,6 +182,7 @@ void Player::Update()
 			{
 				MoveDir = float4::ZERO;
 			}
+
 			if ((RGB(255, 0, 0) == (Right)))
 			{
 				blank = true;
@@ -186,8 +192,12 @@ void Player::Update()
 				RenderRun->ChangeAnimation("Blank");
 				Pause::endtime = true;
 			}
+			else
+			{
+				RenderRun->ChangeAnimation("RunRight");;
+			}
 			MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * 300;
-			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_ *4);
 			Pause::PlayerPosition = GetPosition();
 		}
 		return;
@@ -549,10 +559,16 @@ void Player::HitBlock()
 }
 void Player::ColMap()
 {
-	if (WorldCount::WorldCountUI == 1)
+	if (WorldCount::WorldCountUI == 1
+		&& WorldCount::Under)
 	{
-		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapUnderWhite.bmp");
 	}
+	else
+		if (WorldCount::WorldCountUI == 1)
+		{
+			ColMap_ = GameEngineImageManager::GetInst()->Find("11mapwhite.bmp");
+		}
 	if (WorldCount::WorldCountUI == 2)
 	{
 		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
@@ -570,17 +586,14 @@ void Player::ColMap()
 }
 void Player::CameraPos()
 {
+	if (CameraUnder)
+	{
+		return;
+	}
 	float CameraRectX = 620;
 	float CameraRectY = 550;
 	float Camera = GetLevel()->GetCameraPos().x;
 	GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
-	if (WorldCount::Under)
-	{
-		float4 CurCameraPos = GetLevel()->GetCameraPos();
-		CurCameraPos.x = Camera;
-			GetLevel()->SetCameraPos(float4{639,600});
-			return;
-	}
 
 	if ((GetPosition().x - 300) > GetLevel()->GetCameraPos().x)
 	{
@@ -619,6 +632,10 @@ void Player::CameraPos()
 		float4 CurCameraPos = GetLevel()->GetCameraPos();
 		CurCameraPos.x = GetLevel()->GetCameraPos().x - (GetLevel()->GetCameraPos().x + CameraRectX - MapSizeX);
 		GetLevel()->SetCameraPos(CurCameraPos);
+		if (WorldCount::Under)
+		{
+			CameraUnder = true;
+		}
 	}
 
 

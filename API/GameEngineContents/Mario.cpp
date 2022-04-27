@@ -226,6 +226,10 @@ void Mario::GameInit()
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("MarioFire.bmp");
 		Image->Cut({ 40,80 });
 	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("UnderWorldCoin.bmp");
+		Image->Cut({ 40,40 });
+	}
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<Stage1>("Stage1");
 	CreateLevel<Stage1Under>("Stage1Under");

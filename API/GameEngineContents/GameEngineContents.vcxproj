@@ -158,6 +158,7 @@
     <ClInclude Include="TurtleDead.h" />
     <ClInclude Include="Turtle.h" />
     <ClInclude Include="TurtleDeath.h" />
+    <ClInclude Include="UnderWorldCoin.h" />
     <ClInclude Include="UP1.h" />
     <ClInclude Include="UpMushroom.h" />
     <ClInclude Include="UpMushroom2.h" />
@@ -295,6 +296,7 @@
     <ClCompile Include="TurtleDead.cpp" />
     <ClCompile Include="Turtle.cpp" />
     <ClCompile Include="TurtleDeath.cpp" />
+    <ClCompile Include="UnderWorldCoin.cpp" />
     <ClCompile Include="UP1.cpp" />
     <ClCompile Include="UpMushroom.cpp" />
     <ClCompile Include="UpMushroom2.cpp" />

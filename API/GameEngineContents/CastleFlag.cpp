@@ -35,8 +35,9 @@ void CastleFlag::Update()
 	if (Pause::end)
 	{
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
-		if (Time_ > 2.0f)
+		if (Time_ > 4.0f)
 		{
+			WorldCount::WorldCountUI = WorldCount::WorldCountUI + 1;
 			GameEngine::GetInst().ChangeLevel("StageIntro");
 			return;
 		}

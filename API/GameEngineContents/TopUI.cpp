@@ -107,16 +107,21 @@ void TopUI::Update()
 	}
 	if (Pause::endtime)
 	{
-		GameEngineSound::SoundPlayOneShot("scorering.wav", 2);
+	
 		int Time = static_cast<int>(Time_);
 		if (Time_<= 0
 			&& (static_cast<int>(Point::PointUI) % 500 == 0))
 		{
-			Pause::endtime = false;
 			Pause::flag = true;
+			Pause::endtime = false;
+		}
+		else
+		{
+			GameEngineSound::SoundPlayOneShot("scorering.wav");
+			Point::PointUI = Point::PointUI + GameEngineTime::GetDeltaTime() * 5000;
 		}
 		Time_ = Time_ - GameEngineTime::GetDeltaTime() * 80;
-		Point::PointUI = Point::PointUI + GameEngineTime::GetDeltaTime() * 5000;
+
 	}
 
 	int TimeTwo = static_cast<int>(Time_) /(10);

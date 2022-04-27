@@ -36,8 +36,10 @@ void Castle::Start()
 
 void Castle::Update()
 {
-	if (Pause::flag)
+	if (Pause::flag
+		&& flagfirst)
 	{
+		flagfirst = false;
 		Pause::flag = false;
 		CastleFlag* Ptr = GetLevel()->CreateActor<CastleFlag>(1);
 		Ptr->SetPosition(GetPosition() + float4{ 0, -50 });
@@ -47,7 +49,6 @@ void Castle::Update()
 	{
 		Pause::first = false;
 		Pause::end = true;
-		WorldCount::WorldCountUI = WorldCount::WorldCountUI + 1;
 		GameEngineSound::SoundPlayOneShot("levelend.wav");
 	}
 }

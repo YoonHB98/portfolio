@@ -493,7 +493,7 @@ void Stage1::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		Goomba16->up = 0;
 	}
 
-	(Pause::PlayerPosition = (float4{ 100, 500 }));
+	(Pause::PlayerPosition = (float4{ 7880, 500 }));
 	Mario->SetPosition(float4{ 100, 500 });
 		UI->TimerReset();
 		BgmPlayer.Stop();

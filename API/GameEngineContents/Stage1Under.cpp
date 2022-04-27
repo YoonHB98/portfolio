@@ -17,6 +17,7 @@
 #include "GoombaDead.h"
 #include "CastleFlag.h"
 #include "Pipe.h"
+#include "UnderWorldCoin.h"
 
 Stage1Under::Stage1Under() 
 {
@@ -66,7 +67,10 @@ void Stage1Under::Loading()
 		Actor->GetRenderer()->SetPivot(BackActor);
 	}
 	// ºí·Ï
-
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{175, 380});
+	}
 	BgmPlayer = GameEngineSound::SoundPlayControl("blank.wav");
 }
 

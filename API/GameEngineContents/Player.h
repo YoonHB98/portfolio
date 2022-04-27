@@ -49,6 +49,8 @@ private:
 	void CameraPos();
 	float MapSizeX = 0;
 	float MapSizeY = 0;
+	bool CameraUnder = false;
+	bool PosChange = true;
 	GameEngineImage* ColMap_;
 	GameEngineCollision* PlayerCollision;
 	GameEngineCollision* PlayerRight_;
