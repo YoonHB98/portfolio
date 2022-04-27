@@ -42,7 +42,9 @@ void UnderWorldCoin::Update()
 
 	if (true == UnderWorldCoinCollision->CollisionCheck("PlayerItem", CollisionType::Rect, CollisionType::Rect))
 	{
-		GameEngineSound::SoundPlayOneShot("scorering.wav", 2);
+		Point::PointUI += 100.0f;
+		Coin::CoinUI = Coin::CoinUI + 1;
+		GameEngineSound::SoundPlayOneShot("coin.wav");
 		Death();
 	}
 

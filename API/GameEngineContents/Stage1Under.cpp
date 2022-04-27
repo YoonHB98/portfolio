@@ -71,6 +71,80 @@ void Stage1Under::Loading()
 		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
 		Pointer->SetPosition(float4{175, 380});
 	}
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{ 215, 380 });
+	}
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{ 255, 380 });
+	}
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{ 295, 380 });
+	}
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{ 335, 380 });
+	}
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{ 375, 380 });
+	}
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{ 415, 380 });
+	}
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{ 175, 340 });
+	}
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{ 215, 340 });
+	}
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{ 255, 340 });
+	}
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{ 295, 340 });
+	}
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{ 335, 340 });
+	}
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{ 375, 340 });
+	}
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{ 415, 340 });
+	}
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{ 215, 300 });
+	}
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{ 255, 300 });
+	}
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{ 295, 300 });
+	}
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{ 335, 300 });
+	}
+	{
+		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
+		Pointer->SetPosition(float4{ 375, 300 });
+	}
+
+
 	BgmPlayer = GameEngineSound::SoundPlayControl("blank.wav");
 }
 
