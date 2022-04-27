@@ -43,7 +43,8 @@ private:
 	float JumpTime_ = 3.0f;
 	bool FirstEnd_ = true;
 	bool blank = false;
-	GameEngineImage* WhiteMap_;
+	void ColMap();
+	GameEngineImage* ColMap_;
 	GameEngineCollision* PlayerCollision;
 	GameEngineCollision* PlayerRight_;
 	GameEngineCollision* PlayerLeft_;

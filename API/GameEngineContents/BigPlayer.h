@@ -30,7 +30,7 @@ protected:
 
 private:
 	void CameraPos();
-
+	void ColMap();
 
 	float4 MoveDir;
 	GameEngineRenderer* RenderRun;
@@ -43,7 +43,7 @@ private:
 	bool FirstEnd_ = true;
 	bool blank = false;
 	bool Changefirst = true;
-	GameEngineImage* WhiteMap_;
+	GameEngineImage* ColMap_;
 	GameEngineCollision* BigPlayerCollision;
 	GameEngineCollision* BigPlayerRight_;
 	GameEngineCollision* BigPlayerLeft_;

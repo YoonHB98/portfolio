@@ -4,6 +4,7 @@
 #include "LevelIntro.h"
 #include "Point100.h"
 #include "BlockBreak.h"
+#include "WorldCount.h"
 
 
 
@@ -122,11 +123,7 @@ void Player::Update()
 			nodiecount = 0;
 		}
 	}
-	WhiteMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
-	if (nullptr == WhiteMap_)
-	{
-		MsgBoxAssert("맵 충돌용 이미지를 찾지 못했습니다.")
-	}
+	ColMap();
 	if (Pause::end)
 	{
 		if (FirstEnd_)
@@ -137,8 +134,8 @@ void Player::Update()
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
 		MoveDir = float4::DOWN;
 		float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
-		int Down = WhiteMap_->GetImagePixel(NextPos + float4(19.0f, 19.0f));
-		int Right = WhiteMap_->GetImagePixel(NextPos + float4(20.0f, 0.0f));
+		int Down = ColMap_->GetImagePixel(NextPos + float4(19.0f, 19.0f));
+		int Right = ColMap_->GetImagePixel(NextPos + float4(20.0f, 0.0f));
 		if ((RGB(0, 0, 0) != (Down)))
 		{
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
@@ -343,7 +340,7 @@ void Player::Update()
 	{
 		if (true == PlayerLeft_->CollisionCheck("MonsterRight", CollisionType::Rect, CollisionType::Rect)
 			|| true == PlayerRight_->CollisionCheck("MonsterLeft", CollisionType::Rect, CollisionType::Rect)
-			|| (RGB(0, 0, 255) == WhiteMap_->GetImagePixel(NextPos))
+			|| (RGB(0, 0, 255) == ColMap_->GetImagePixel(NextPos))
 			)
 		{
 			Pause::death = true;
@@ -414,10 +411,10 @@ void Player::Update()
 		float4 PlayerRight = float4{ 20, 0 };
 		float4 PlayerDown = float4{ 0, 20 };
 
-		int Color = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, 19.0f));
-		int Down1 = WhiteMap_->GetImagePixel(GetPosition() + float4(8.0f, 19.0f));
-		int Down2 = WhiteMap_->GetImagePixel(GetPosition() + float4(-8.0f, 19.0f));
-		int ColorUp = WhiteMap_->GetImagePixel(GetPosition() + float4(0.0f, -19.0f));
+		int Color = ColMap_->GetImagePixel(NextPos + float4(0.0f, 19.0f));
+		int Down1 = ColMap_->GetImagePixel(GetPosition() + float4(8.0f, 19.0f));
+		int Down2 = ColMap_->GetImagePixel(GetPosition() + float4(-8.0f, 19.0f));
+		int ColorUp = ColMap_->GetImagePixel(GetPosition() + float4(0.0f, -19.0f));
 
 
 		if (((RGB(255, 255, 255) != Color) || true == Down_->NextPosCollisionCheck("Move", NextPos + float4(0.0f, 19.0f), CollisionType::Rect, CollisionType::Rect))
@@ -440,10 +437,10 @@ void Player::Update()
 		float4 LeftRight = { 0, 0 };
 		float4 UpUp = { 0, 0 };
 		float4 DownDown = { 0, 0 };
-		int Left = WhiteMap_->GetImagePixel(NextPos + float4(-19.0f, 0.0f));
-		int Right = WhiteMap_->GetImagePixel(NextPos + float4(19.0f, 0.0f));
-		int Down = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, 19.0f));
-		int Up = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, -19.0f));
+		int Left = ColMap_->GetImagePixel(NextPos + float4(-19.0f, 0.0f));
+		int Right = ColMap_->GetImagePixel(NextPos + float4(19.0f, 0.0f));
+		int Down = ColMap_->GetImagePixel(NextPos + float4(0.0f, 19.0f));
+		int Up = ColMap_->GetImagePixel(NextPos + float4(0.0f, -19.0f));
 
 		LeftRight.x = MoveDir.x;
 		UpUp.y = MoveDir.y;
@@ -552,6 +549,27 @@ float Player::GetCurrentPosition()
 
 void Player::HitBlock()
 {
+
+
+}
+void Player::ColMap()
+{
+	if (WorldCount::WorldCountUI == 1)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	}
+	if (WorldCount::WorldCountUI == 2)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	}
+	if (WorldCount::WorldCountUI == 3)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	}
+	if (WorldCount::WorldCountUI == 4)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	}
 
 
 }

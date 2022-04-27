@@ -98,7 +98,7 @@ void BigPlayer::Update()
 	{
 		return;
 	}
-	int a = 0;
+	ColMap();
 	if (Pause::star)
 	{
 		animation = "Star";
@@ -132,13 +132,7 @@ void BigPlayer::Update()
 		}
 		return;
 	}
-	WhiteMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
 	float4 CheckPos;
-
-	if (nullptr == WhiteMap_)
-	{
-		MsgBoxAssert("맵 충돌용 이미지를 찾지 못했습니다.")
-	}
 	if (Pause::end)
 	{
 
@@ -150,8 +144,8 @@ void BigPlayer::Update()
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
 		MoveDir = float4::DOWN;
 		float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
-		int Down = WhiteMap_->GetImagePixel(NextPos + float4(15.0f, 40.0f));
-		int Right = WhiteMap_->GetImagePixel(NextPos + float4(20.0f, 0.0f));
+		int Down = ColMap_->GetImagePixel(NextPos + float4(15.0f, 40.0f));
+		int Right = ColMap_->GetImagePixel(NextPos + float4(20.0f, 0.0f));
 		if ((RGB(0, 0, 0) != (Down)))
 		{
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * 150);
@@ -285,7 +279,7 @@ void BigPlayer::Update()
 	float4 NextPos = GetPosition() +float4 {0, 20};
 	if (true == BigPlayerLeft_->CollisionCheck("MonsterRight", CollisionType::Rect, CollisionType::Rect)
 		|| true == BigPlayerRight_->CollisionCheck("MonsterLeft", CollisionType::Rect, CollisionType::Rect)
-		|| (RGB(0, 0, 255)== WhiteMap_->GetImagePixel(NextPos)))
+		|| (RGB(0, 0, 255)== ColMap_->GetImagePixel(NextPos)))
 	{
 		Pause::PlayerStatus = "small";
 		Pause::smallfirst = true;
@@ -366,10 +360,10 @@ void BigPlayer::Update()
 		float4 BigPlayerRight = float4{ 20, 0 };
 		float4 BigPlayerDown = float4{ 0, 20 };
 
-		int Color = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, 39.0f));
-		int Down1 = WhiteMap_->GetImagePixel(GetPosition() + float4(10.0f, 39.0f));
-		int Down2 = WhiteMap_->GetImagePixel(GetPosition() + float4(-10.0f, 39.0f));
-		int ColorUp = WhiteMap_->GetImagePixel(GetPosition() + float4(0.0f, -39.0f));
+		int Color = ColMap_->GetImagePixel(NextPos + float4(0.0f, 39.0f));
+		int Down1 = ColMap_->GetImagePixel(GetPosition() + float4(10.0f, 39.0f));
+		int Down2 = ColMap_->GetImagePixel(GetPosition() + float4(-10.0f, 39.0f));
+		int ColorUp = ColMap_->GetImagePixel(GetPosition() + float4(0.0f, -39.0f));
 
 
 		if (((RGB(255, 255, 255) != Color) || true == Down_->NextPosCollisionCheck("Move", NextPos + float4(0.0f, 38.0f), CollisionType::Rect, CollisionType::Rect))
@@ -392,10 +386,10 @@ void BigPlayer::Update()
 		float4 LeftRight = { 0, 0 };
 		float4 UpUp = { 0, 0 };
 		float4 DownDown = { 0, 0 };
-		int Left = WhiteMap_->GetImagePixel(NextPos + float4(-19.0f, 0.0f));
-		int Right = WhiteMap_->GetImagePixel(NextPos + float4(19.0f, 0.0f));
-		int Down = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, 39.0f));
-		int Up = WhiteMap_->GetImagePixel(NextPos + float4(0.0f, -39.0f));
+		int Left = ColMap_->GetImagePixel(NextPos + float4(-19.0f, 0.0f));
+		int Right = ColMap_->GetImagePixel(NextPos + float4(19.0f, 0.0f));
+		int Down = ColMap_->GetImagePixel(NextPos + float4(0.0f, 39.0f));
+		int Up = ColMap_->GetImagePixel(NextPos + float4(0.0f, -39.0f));
 
 		LeftRight.x = MoveDir.x;
 		UpUp.y = MoveDir.y;
@@ -579,7 +573,7 @@ bool BigPlayer::RightBotCheck()
 {
 	float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 	float4 CheckPos = NextPos+ float4 {18, 40};
-	int Color = WhiteMap_->GetImagePixel(CheckPos);
+	int Color = ColMap_->GetImagePixel(CheckPos);
 	if (RGB(0, 0, 0) == (Color))
 	{
 		return true;
@@ -594,7 +588,7 @@ bool BigPlayer::LeftBotCheck()
 {
 	float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 	float4 CheckPos = NextPos + float4{ -18, 40 };
-	int Color = WhiteMap_->GetImagePixel(CheckPos);
+	int Color = ColMap_->GetImagePixel(CheckPos);
 	if (RGB(0, 0, 0)== (Color))
 	{
 		return true;
@@ -608,5 +602,27 @@ void BigPlayer::Render()
 {
 
 }
+void BigPlayer::ColMap()
+{
+	if (WorldCount::WorldCountUI == 1)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	}
+	if (WorldCount::WorldCountUI == 2)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	}
+	if (WorldCount::WorldCountUI == 3)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	}
+	if (WorldCount::WorldCountUI == 4)
+	{
+		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+	}
+
+
+}
+
 
 bool BigPlayer::Change = true;

@@ -4,6 +4,7 @@
 #include <GameEngine/GameEngineImageManager.h>
 #include <GameEngine/GameEngineRenderer.h>
 #include <GameEngineBase/GameEngineTime.h>
+#include "Pause.h"
 
 
 
@@ -52,19 +53,39 @@ void TopUI::Start()
 	One_->CameraEffectOff();
 	One_->SetPivot(float4(560, 70));
 
-	Three_->CreateAnimation("numberreverse.bmp", "100", 6,9, 100.0f, true);
-	Three_->CreateAnimation("numberreverse.bmp", "Start", 5, 5, 100.0f, false);
-	Three_->CreateAnimation("blank.bmp", "End", 0, 0, 100.0f, false);
-	Two_->CreateAnimation("numberreverse.bmp", "10", 0, 9, 10.0f, true);
-	Two_->CreateAnimation("numberreverse.bmp", "Start", 9, 9, 10.0f, false);
-	Two_->CreateAnimation("blank.bmp", "End", 0, 0, 100.0f, false);
-	One_->CreateAnimation("numberreverse.bmp", "1", 0, 9, 1.0f, true);
-	One_->CreateAnimation("numberreverse.bmp", "Start", 9, 9, 1.0f, false);
-	One_->CreateAnimation("blank.bmp", "End", 0, 0, 100.0f, false);
-	One_->ChangeAnimation("Start");
-	Two_->ChangeAnimation("Start");
-	Three_->ChangeAnimation("Start");
-
+	Three_->CreateAnimation("number.bmp", "1", 0, 0, 1.0f, false);
+	Three_->CreateAnimation("number.bmp", "2", 1, 1, 1.0f, false);
+	Three_->CreateAnimation("number.bmp", "3", 2, 2, 1.0f, false);
+	Three_->CreateAnimation("number.bmp", "4", 3, 3, 1.0f, false);
+	Three_->CreateAnimation("number.bmp", "5", 4, 4, 1.0f, false);
+	Three_->CreateAnimation("number.bmp", "6", 5, 5, 1.0f, false);
+	Three_->CreateAnimation("number.bmp", "7", 6, 6, 1.0f, false);
+	Three_->CreateAnimation("number.bmp", "8", 7, 7, 1.0f, false);
+	Three_->CreateAnimation("number.bmp", "9", 8, 8, 1.0f, false);
+	Three_->CreateAnimation("number.bmp", "0", 9, 9, 1.0f, false);
+	Two_->CreateAnimation("number.bmp", "1", 0, 0, 1.0f, false);
+	Two_->CreateAnimation("number.bmp", "2", 1, 1, 1.0f, false);
+	Two_->CreateAnimation("number.bmp", "3", 2, 2, 1.0f, false);
+	Two_->CreateAnimation("number.bmp", "4", 3, 3, 1.0f, false);
+	Two_->CreateAnimation("number.bmp", "5", 4, 4, 1.0f, false);
+	Two_->CreateAnimation("number.bmp", "6", 5, 5, 1.0f, false);
+	Two_->CreateAnimation("number.bmp", "7", 6, 6, 1.0f, false);
+	Two_->CreateAnimation("number.bmp", "8", 7, 7, 1.0f, false);
+	Two_->CreateAnimation("number.bmp", "9", 8, 8, 1.0f, false);
+	Two_->CreateAnimation("number.bmp", "0", 9, 9, 1.0f, false);
+	One_->CreateAnimation("number.bmp", "1", 0, 0, 1.0f, false);
+	One_->CreateAnimation("number.bmp", "2", 1, 1, 1.0f, false);
+	One_->CreateAnimation("number.bmp", "3", 2, 2, 1.0f, false);
+	One_->CreateAnimation("number.bmp", "4", 3, 3, 1.0f, false);
+	One_->CreateAnimation("number.bmp", "5", 4, 4, 1.0f, false);
+	One_->CreateAnimation("number.bmp", "6", 5, 5, 1.0f, false);
+	One_->CreateAnimation("number.bmp", "7", 6, 6, 1.0f, false);
+	One_->CreateAnimation("number.bmp", "8", 7, 7, 1.0f, false);
+	One_->CreateAnimation("number.bmp", "9", 8, 8, 1.0f, false);
+	One_->CreateAnimation("number.bmp", "0", 9, 9, 1.0f, false);
+	Three_->ChangeAnimation("0");
+	Two_->ChangeAnimation("0");
+	One_->ChangeAnimation("0");
 	Start_ = true;
 	Time_ = 400;
 	
@@ -78,39 +99,138 @@ void TopUI::Start()
 void TopUI::Update()
 {
 	
-	Time_ = Time_ - GameEngineTime::GetDeltaTime();
-	if (Start_ == true)
+	if (Pause::pause || Pause::end ||Pause::death)
 	{
+		return;
+	}
+	Time_ = Time_ - GameEngineTime::GetDeltaTime() * 2;
+	int TimeTwo = static_cast<int>(Time_) /(10);
+	int TimeThree = static_cast<int>(Time_) / (100);
 
+	if ((0 == static_cast<int>(Time_) % 10))
+	{
+		One_->ChangeAnimation("0");
+	}
+	if (1 == static_cast<int>(Time_) % 10)
+	{
 		One_->ChangeAnimation("1");
-		Two_->ChangeAnimation("10");
-		Three_->ChangeAnimation("100");
-		Start_ = false;
 	}
-
-	if (Time_ < 100)
+	if (2 == static_cast<int>(Time_) % 10)
 	{
-		Three_->ChangeAnimation("End");
-
+		One_->ChangeAnimation("2");
 	}
-	if (Time_ < 10)
+	if (3 == static_cast<int>(Time_) % 10)
 	{
-		Two_->ChangeAnimation("End");
+		One_->ChangeAnimation("3");
 	}
-	if (Time_ < 1)
+	if (4 == static_cast<int>(Time_) % 10)
 	{
-		One_->ChangeAnimation("End");
+		One_->ChangeAnimation("4");
 	}
-
-
-	
+	if (5 == static_cast<int>(Time_) % 10)
+	{
+		One_->ChangeAnimation("5");
+	}
+	if (6 == static_cast<int>(Time_) % 10)
+	{
+		One_->ChangeAnimation("6");
+	}
+	if (7 == static_cast<int>(Time_) % 10)
+	{
+		One_->ChangeAnimation("7");
+	}
+	if (8 == static_cast<int>(Time_) % 10)
+	{
+		One_->ChangeAnimation("8");
+	}
+	if (9 == static_cast<int>(Time_) % 10)
+	{
+		One_->ChangeAnimation("9");
+	}
+	if ((0 == static_cast<int>(TimeTwo) % 10))
+	{
+		Two_->ChangeAnimation("0");
+	}
+	if (1 == static_cast<int>(TimeTwo) % 10)
+	{
+		Two_->ChangeAnimation("1");
+	}
+	if (2 == static_cast<int>(TimeTwo) % 10)
+	{
+		Two_->ChangeAnimation("2");
+	}
+	if (3 == static_cast<int>(TimeTwo) % 10)
+	{
+		Two_->ChangeAnimation("3");
+	}
+	if (4 == static_cast<int>(TimeTwo) % 10)
+	{
+		Two_->ChangeAnimation("4");
+	}
+	if (5 == static_cast<int>(TimeTwo) % 10)
+	{
+		Two_->ChangeAnimation("5");
+	}
+	if (6 == static_cast<int>(TimeTwo) % 10)
+	{
+		Two_->ChangeAnimation("6");
+	}
+	if (7 == static_cast<int>(TimeTwo) % 10)
+	{
+		Two_->ChangeAnimation("7");
+	}
+	if (8 == static_cast<int>(TimeTwo) % 10)
+	{
+		Two_->ChangeAnimation("8");
+	}
+	if (9 == static_cast<int>(TimeTwo) % 10)
+	{
+		Two_->ChangeAnimation("9");
+	}
+	if ((0 == static_cast<int>(TimeThree) % 10))
+	{
+		Three_->ChangeAnimation("0");
+	}
+	if (1 == static_cast<int>(TimeThree) % 10)
+	{
+		Three_->ChangeAnimation("1");
+	}
+	if (2 == static_cast<int>(TimeThree) % 10)
+	{
+		Three_->ChangeAnimation("2");
+	}
+	if (3 == static_cast<int>(TimeThree) % 10)
+	{
+		Three_->ChangeAnimation("3");
+	}
+	if (4 == static_cast<int>(TimeThree) % 10)
+	{
+		Three_->ChangeAnimation("4");
+	}
+	if (5 == static_cast<int>(TimeThree) % 10)
+	{
+		Three_->ChangeAnimation("5");
+	}
+	if (6== static_cast<int>(TimeThree) % 10)
+	{
+		Three_->ChangeAnimation("6");
+	}
+	if (7 == static_cast<int>(TimeThree) % 10)
+	{
+		Three_->ChangeAnimation("7");
+	}
+	if (8 == static_cast<int>(TimeThree) % 10)
+	{
+		Three_->ChangeAnimation("8");
+	}
+	if (9 == static_cast<int>(TimeThree) % 10)
+	{
+		Three_->ChangeAnimation("9");
+	}
 }
 void TopUI::TimerReset()
 {
 	Time_ = 400;
-	One_->ChangeAnimation("Start");
-	Two_->ChangeAnimation("Start");
-	Three_->ChangeAnimation("Start");
 	Start_ = true;
 }
 //랜더러가 다 돌아가고 랜더링
