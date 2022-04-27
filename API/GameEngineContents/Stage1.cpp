@@ -14,6 +14,7 @@
 #include "Block2.h"
 #include "SecretBlockmushroom.h"
 #include "Turtle.h"
+#include "GoombaDead.h"
 
 Stage1::Stage1() 
 {
@@ -346,6 +347,10 @@ void Stage1::Loading()
 		Goomba16->CreateGoomba(float4{ 7040,500 });
 	}
 	{
+		GoombaDead* Actor = CreateActor<GoombaDead>(1);
+		Actor->SetPosition(float4 {100,500});
+	}
+	{
 		Castle* Actor = CreateActor<Castle>(1);
 		Actor->CreateCastle(float4{ 8180,800 });
 	}
@@ -358,14 +363,19 @@ void Stage1::Loading()
 
 void Stage1::Update()
 {
-	if (Pause::pause
-		|| Pause::death
+	if ( Pause::death
 		|| Pause::end)
 	{
 		BgmPlayer.Stop();
-		pausefirst_ = true;
 		return;
 	}
+	
+		if (Pause::pause)
+		{
+			BgmPlayer.Stop();
+			pausefirst_ = true;
+			return;
+		}
 	if (pausefirst_)
 	{
 		BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");

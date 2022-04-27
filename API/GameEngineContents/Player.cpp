@@ -268,7 +268,7 @@ void Player::Update()
 	MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * 100;
 	if (true == GameEngineInput::GetInst()->IsDown("Jump"))
 	{
-		MoveDir += float4::UP * 10;
+		MoveDir += float4::UP * 12;
 		GameEngineSound::SoundPlayOneShot("jumpsmall.wav", 0);
 	}
 	if (true == GameEngineInput::GetInst()->IsPress("Jump"))

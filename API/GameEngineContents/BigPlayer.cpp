@@ -76,6 +76,7 @@ void BigPlayer::Start()
 	RenderRun->CreateAnimation("BigMarioFlower.bmp", "BMJLFlower", 11, 11, 0.1f, false);
 	RenderRun->CreateAnimation("BigMarioFlower.bmp", "FlagFlower", 16, 17, 0.15f, true);
 	RenderRun->CreateAnimation("BigMarioFlower.bmp", "EndFlower", 18, 18, 0.15f, false);
+	RenderRun->CreateAnimation("MarioFire.bmp", "Fire", 0, 0, 0.15f, false);
 
 
 	{
@@ -227,7 +228,7 @@ void BigPlayer::Update()
 	if (true == GameEngineInput::GetInst()->IsPress("BMJump"))
 	{
 
-		MoveDir = MoveDir + float4::UP * GameEngineTime::GetDeltaTime() * 80;
+		MoveDir = MoveDir + float4::UP * GameEngineTime::GetDeltaTime() * 70;
 
 	}
 
@@ -246,6 +247,8 @@ void BigPlayer::Update()
 	{
 		Bullet* Ptr = GetLevel()->CreateActor<Bullet>(2);
 		Ptr->SetPosition(GetPosition());
+		RenderRun->ChangeAnimation("Fire");
+		GameEngineSound::SoundPlayOneShot("fireball.wav");
 	}
 	if (true == GameEngineInput::GetInst()->IsFree("BMJump"))
 	{
@@ -300,7 +303,7 @@ void BigPlayer::Update()
 		if (0.0f <= MoveDir.y
 			&& -0.2f >= MoveDir.y)
 		{
-			MoveDir.y = -0.5f;
+			MoveDir.y = -0.2f;
 		}
 	}
 	if (0 < MoveDir.x)

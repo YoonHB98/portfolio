@@ -188,6 +188,12 @@
     <ClInclude Include="Bullet.h">
       <Filter>Player</Filter>
     </ClInclude>
+    <ClInclude Include="GoombaDead.h">
+      <Filter>Play\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="TurtleDeath.h">
+      <Filter>Play\Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -332,6 +338,12 @@
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GoombaDead.cpp">
+      <Filter>Play\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="TurtleDeath.cpp">
+      <Filter>Play\Monster</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

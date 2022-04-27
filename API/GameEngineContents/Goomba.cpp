@@ -3,6 +3,7 @@
 #include "Point100.h"
 #include "Pause.h"
 #include "WorldCount.h"
+#include "GoombaDead.h"
 
 
 
@@ -57,7 +58,7 @@ void Goomba::ColMap()
 
 void Goomba::Start()
 {
-	GoombaCollision = CreateCollision("MonsterTop", { 40, 5 }, { 0, -20 });
+	GoombaCollision = CreateCollision("MonsterTop", { 40, 10 }, { 0, -20 });
 	RightCollision = CreateCollision("MonsterRight", { 5,30 }, { 20, 5 });
 	LeftCollision = CreateCollision("MonsterLeft", { 5, 30 }, { -20, 5 });
 	CheckCollision = CreateCollision("CheckPos", { 40, 2400 }, { -310, 20 });
@@ -148,11 +149,12 @@ void Goomba::Update()
 	{
 		up = 1;
 	}
-	if (true == GoombaCollision->CollisionCheck("Turtle", CollisionType::Rect, CollisionType::Rect)
+	if ((true == GoombaCollision->CollisionCheck("Turtle", CollisionType::Rect, CollisionType::Rect)
+		|| true == GoombaCollision->CollisionCheck("Bullet", CollisionType::Rect, CollisionType::Rect))
 		&& DeathFirst)
 	{
 		DeathFirst = false;
-		Actor->ChangeAnimation("Death");
+
 		MoveDir = float4::ZERO;
 		if (DeathCount == false)
 		{
@@ -161,7 +163,12 @@ void Goomba::Update()
 			Point::PointUI = Point::PointUI + 100;
 			DeathCount = true;
 		}
-		Death(0.25f);
+		{
+			GoombaDead* Actor = GetLevel()->CreateActor<GoombaDead>(1);
+			Actor->SetPosition(GetPosition());
+			GameEngineSound::SoundPlayOneShot("stomp.wav");
+		}
+		Death();
 	}
 	if (RGB(0, 0, 255) == ColorLeftBot
 		&& DeathFirst)

@@ -1,9 +1,11 @@
 #include "Turtle.h"
 #include <GameEngineBase/GameEngineSound.h>
 #include "Point100.h"
+#include "Point200.h"
 #include "Pause.h"
 #include "TurtleDead.h"
 #include "WorldCount.h"
+#include "TurtleDeath.h"
 
 
 
@@ -186,6 +188,26 @@ void Turtle::Update()
 			Ptr->SetPosition(GetPosition());
 			Point::PointUI = Point::PointUI + 100;
 			DeathCount = true;
+		}
+		Death();
+	}
+	if ((true ==TurtleCollision->CollisionCheck("Bullet", CollisionType::Rect, CollisionType::Rect))
+		&& DeathFirst)
+	{
+		DeathFirst = false;
+
+		MoveDir = float4::ZERO;
+		if (DeathCount == false)
+		{
+			Point200* Ptr = GetLevel()->CreateActor<Point200>(2);
+			Ptr->SetPosition(GetPosition());
+			Point::PointUI = Point::PointUI + 100;
+			DeathCount = true;
+		}
+		{
+			TurtleDeath* Actor = GetLevel()->CreateActor<TurtleDeath>(1);
+			Actor->SetPosition(GetPosition());
+			GameEngineSound::SoundPlayOneShot("stomp.wav");
 		}
 		Death();
 	}

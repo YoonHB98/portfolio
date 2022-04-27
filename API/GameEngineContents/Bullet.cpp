@@ -5,6 +5,7 @@
 #include <GameEngine/GameEngineCollision.h>
 #include "Player.h"
 #include "WorldCount.h"
+#include <GameEngineBase/GameEngineSound.h>
 
 
 Bullet::Bullet()
@@ -49,7 +50,13 @@ void Bullet::Update()
 
 	int Color = ColMap_->GetImagePixel(GetPosition() + float4{0, 10.0f});
 	int ColorRight = ColMap_->GetImagePixel(GetPosition() + float4{ 10.0f, 0.0f });
-	int ColorLeft = ColMap_->GetImagePixel(GetPosition() + float4{ -10.0f, 0.0f });
+	int ColorLeft = ColMap_->GetImagePixel(GetPosition() + float4{ -10.0f, 0.0f }); 
+		if (true == BulletCollision->CollisionCheck("MonsterRight", CollisionType::Rect, CollisionType::Rect)
+			|| true == BulletCollision->CollisionCheck("MonsterLeft", CollisionType::Rect, CollisionType::Rect)
+			|| true == BulletCollision->CollisionCheck("MonsterTop", CollisionType::Rect, CollisionType::Rect))
+		{
+			Death(0.1f);
+		}
 	if (RGB(255, 255, 255) != Color || true == BulletDown->CollisionCheck("Move", CollisionType::Rect, CollisionType::Rect))
 	{
 		YDir_ = float4::UP * YSpeed;
@@ -65,12 +72,12 @@ void Bullet::Update()
 			YSpeed = 0.0f;
 			DownSpeed = 0.0f;
 			Actor->ChangeAnimation("Boom");
-			DeathTime = 3.5f;
+			DeathTime = 0.60f;
 			DeathCheck = false;
 		}
 
 	}
-	if (DeathTime > 4.0f)
+	if (DeathTime > 0.8f)
 	{
 		Death();
 	}
