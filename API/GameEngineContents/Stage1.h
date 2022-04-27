@@ -35,7 +35,7 @@ protected:
 	void Loading() override;
 	void Update() override;
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
-
+	static bool PipeOn;
 private:
 	bool pausefirst_ = false;
 	bool bgm = false;

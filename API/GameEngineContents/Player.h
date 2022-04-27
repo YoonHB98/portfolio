@@ -27,7 +27,7 @@ public:
 	Player& operator=(const Player& _Other) = delete;
 	Player& operator=(Player&& _Other) noexcept = delete;
 	float GetCurrentPosition();
-
+	static float Time_;
 	float Angle;
 protected:
 
@@ -53,7 +53,6 @@ private:
 	GameEngineCollision* Move_;
 	float nodie = 0;
 	float nodiecount = 0;
-	float Time_ = 0;
 	void Start() override;
 	void Update() override;
 	void Render() override;

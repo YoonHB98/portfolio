@@ -2,6 +2,7 @@
 #include "Pause.h"
 #include "WorldCount.h"
 #include "GameEngineBase/GameEngineSound.h"
+#include "CastleFlag.h"
 
 
 Castle::Castle() 
@@ -27,7 +28,7 @@ void Castle::Start()
 {
 	//Actor->SetPosition(Pivot);
 	//Actor->CreateCollision("Castle", { 80, 10 }, CoPivot);
-	EndCollision = CreateCollision("Castle", {10, 600 }, { -238, -400 });
+	EndCollision = CreateCollision("Castle", {10,2000 }, { -238, -400 });
 
 	CreateRenderer("Castle.bmp");
 
@@ -35,6 +36,12 @@ void Castle::Start()
 
 void Castle::Update()
 {
+	if (Pause::flag)
+	{
+		Pause::flag = false;
+		CastleFlag* Ptr = GetLevel()->CreateActor<CastleFlag>(1);
+		Ptr->SetPosition(GetPosition() + float4{ 0, -50 });
+	}
 	if (true == EndCollision->CollisionCheck("PlayerItem", CollisionType::Rect, CollisionType::Rect)
 		&& Pause::first)
 	{

@@ -75,6 +75,7 @@ void Player::Update()
 		return;
 	}
 	RenderRun->SetAlpha(255);
+
 	if (true == GameEngineInput::GetInst()->IsDown("in"))
 	{
 		if (true == Pause::smallfirst)
@@ -100,7 +101,17 @@ void Player::Update()
 		A->IsDebugModeSwitch();
 
 	}
-
+	if (Pause::pipedown )
+	{
+		Time_ = Time_ + GameEngineTime::GetDeltaTime();
+	   SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * 70.0f);
+	   Pause::PlayerPosition = GetPosition();
+	   if (Time_ > 0.5f)
+	   {
+		   Pause::pipedown = false;
+	   }
+	   return;
+	}
 	if (Pause::smallfirst)
 	{
 		nodie = nodie + GameEngineTime::GetDeltaTime();
@@ -579,3 +590,5 @@ void Player::Render()
 {
 
 }
+
+float Player::Time_ = 0;

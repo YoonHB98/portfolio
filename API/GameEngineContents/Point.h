@@ -15,7 +15,7 @@ public:
 	Point(Point&& _Other) noexcept = delete;
 	Point& operator=(const Point& _Other) = delete;
 	Point& operator=(Point&& _Other) noexcept = delete;
-	static int PointUI ;
+	static float PointUI ;
 	inline void Pointer(const int& _Other)
 	{
 			PointUI = PointUI + _Other;

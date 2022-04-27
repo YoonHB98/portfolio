@@ -26,6 +26,7 @@ public:
 	BigPlayer& operator=(BigPlayer&& _Other) noexcept = delete;
 	float GetCurrentPosition();
 	static bool Change;
+	static float Time_;
 protected:
 
 private:
@@ -51,7 +52,6 @@ private:
 	GameEngineCollision* Up_;
 	GameEngineCollision* Move_;
 	float ChangeTime = 0;
-	float Time_ = 0;
 	float AnimationTime_ = 0;
 	void AnimationChange(const std::string &Name);
 	bool flowerAnimation = true;

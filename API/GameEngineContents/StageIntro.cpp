@@ -5,6 +5,8 @@
 #include "Pause.h"
 #include "TopUI.h"
 #include "Sound.h"
+#include "Player.h"
+#include "BigPlayer.h"
 
 StageIntro::StageIntro() 
 {
@@ -29,5 +31,7 @@ void StageIntro::Update()
 	Pause::pause = false;
 	Pause::death = false;
 	Pause::end = false;
+	Player::Time_ = 0;
+	BigPlayer::Time_ = 0;
 }
 

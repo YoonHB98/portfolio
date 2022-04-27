@@ -54,6 +54,7 @@ void Coin::Start()
 
 void Coin::Update()
 {
+	int Second = CoinUI % 10;
 	if (0 == CoinUI % 100)
 	{
 		Two->ChangeAnimation("0");

@@ -24,6 +24,8 @@ public:
 	static bool end;
 	static bool first;
 	static bool endtime;
+	static bool pipedown;
+	static bool flag;
 	static std::string PlayerStatus;
 	static float4 PlayerPosition;
 protected:

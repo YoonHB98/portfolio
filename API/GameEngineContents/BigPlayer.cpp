@@ -132,6 +132,17 @@ void BigPlayer::Update()
 		}
 		return;
 	}
+	if (Pause::pipedown)
+	{
+		Time_ = Time_ + GameEngineTime::GetDeltaTime();
+		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * 70.0f);
+		Pause::PlayerPosition = GetPosition();
+		if (Time_ > 1.17f)
+		{
+			Pause::pipedown = false;
+		}
+		return;
+	}
 	float4 CheckPos;
 	if (Pause::end)
 	{
@@ -176,10 +187,10 @@ void BigPlayer::Update()
 			if ((RGB(255, 0, 0) == (Right)))
 			{
 				blank = true;
+				Pause::endtime = true;
 			}
 			if (blank)
 			{
-				Pause::endtime = true;
 				RenderRun->ChangeAnimation("Blank");
 			}
 			  MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * 600;
@@ -627,3 +638,4 @@ void BigPlayer::ColMap()
 
 
 bool BigPlayer::Change = true;
+float BigPlayer::Time_ = 0;

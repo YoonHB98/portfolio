@@ -194,6 +194,12 @@
     <ClInclude Include="TurtleDeath.h">
       <Filter>Play\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="CastleFlag.h">
+      <Filter>Map\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Pipe.h">
+      <Filter>Map\Block</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -344,6 +350,12 @@
     </ClCompile>
     <ClCompile Include="TurtleDeath.cpp">
       <Filter>Play\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CastleFlag.cpp">
+      <Filter>Map\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Pipe.cpp">
+      <Filter>Map\Block</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

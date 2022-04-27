@@ -15,6 +15,8 @@
 #include "SecretBlockmushroom.h"
 #include "Turtle.h"
 #include "GoombaDead.h"
+#include "CastleFlag.h"
+#include "Pipe.h"
 
 Stage1::Stage1() 
 {
@@ -351,9 +353,13 @@ void Stage1::Loading()
 		Actor->SetPosition(float4 {100,500});
 	}
 	{
-		Castle* Actor = CreateActor<Castle>(1);
-		Actor->CreateCastle(float4{ 8180,800 });
+		Pipe* Actor = CreateActor<Pipe>(3);
+		Actor->SetPosition(float4{ 2321,400 });
 	}
+	{
+		Castle* Actor = CreateActor<Castle>(2);
+		Actor->CreateCastle(float4{ 8180,422 });
+	} 
 	{
 		flag* Actor = CreateActor<flag>(1);
 		Actor->Createflag(float4{ 7920,140 });
@@ -363,6 +369,7 @@ void Stage1::Loading()
 
 void Stage1::Update()
 {
+
 	if ( Pause::death
 		|| Pause::end)
 	{
@@ -479,18 +486,13 @@ void Stage1::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		Goomba16->SetPosition(float4{ 7040, 500 });
 		Goomba16->up = 0;
 	}
-	{
-		Castle* Actor = CreateActor<Castle>(1);
-		Actor->CreateCastle(float4{ 8180,800 });
-	}
-	{
-		flag* Actor = CreateActor<flag>(1);
-		Actor->Createflag(float4{ 7920,140 });
-	}
-	(Pause::PlayerPosition = (float4{ 7860, 500 }));
+
+	(Pause::PlayerPosition = (float4{ 100, 500 }));
 	Mario->SetPosition(float4{ 100, 500 });
 		UI->TimerReset();
 		BgmPlayer.Stop();
 	    BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");
 
 }
+
+bool Stage1::PipeOn = false;

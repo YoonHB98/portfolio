@@ -6,7 +6,7 @@
 #include <GameEngineBase/GameEngineTime.h>
 #include "Pause.h"
 #include "Point.h"
-
+#include "GameEngineBase/GameEngineSound.h"
 
 
 #include <GameEngine/GameEngineImage.h>
@@ -107,8 +107,16 @@ void TopUI::Update()
 	}
 	if (Pause::endtime)
 	{
+		GameEngineSound::SoundPlayOneShot("scorering.wav", 2);
+		int Time = static_cast<int>(Time_);
+		if (Time_<= 0
+			&& (static_cast<int>(Point::PointUI) % 500 == 0))
+		{
+			Pause::endtime = false;
+			Pause::flag = true;
+		}
 		Time_ = Time_ - GameEngineTime::GetDeltaTime() * 80;
-		Point::TimePoint = Point::TimePoint + GameEngineTime::GetDeltaTime() * 500;
+		Point::PointUI = Point::PointUI + GameEngineTime::GetDeltaTime() * 5000;
 	}
 
 	int TimeTwo = static_cast<int>(Time_) /(10);
