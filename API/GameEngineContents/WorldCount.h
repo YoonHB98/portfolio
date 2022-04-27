@@ -16,6 +16,7 @@ public:
 	WorldCount& operator=(const WorldCount& _Other) = delete;
 	WorldCount& operator=(WorldCount&& _Other) noexcept = delete;
 	static int WorldCountUI ;
+	static bool Under;
 	
 protected:
 

@@ -45,6 +45,10 @@ private:
 	bool FirstEnd_ = true;
 	bool blank = false;
 	void ColMap();
+	void MapSize();
+	void CameraPos();
+	float MapSizeX = 0;
+	float MapSizeY = 0;
 	GameEngineImage* ColMap_;
 	GameEngineCollision* PlayerCollision;
 	GameEngineCollision* PlayerRight_;

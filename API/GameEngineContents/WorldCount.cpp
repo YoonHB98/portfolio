@@ -54,3 +54,4 @@ void WorldCount::Update()
 }
 
 int WorldCount::WorldCountUI = 1;
+bool WorldCount::Under = false;

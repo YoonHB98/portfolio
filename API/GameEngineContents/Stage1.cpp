@@ -369,6 +369,12 @@ void Stage1::Loading()
 
 void Stage1::Update()
 {
+	if (WorldCount::Under)
+	{
+		BgmPlayer.Stop();
+		GameEngine::GetInst().ChangeLevel("Stage1Under");
+		return;
+	}
 
 	if ( Pause::death
 		|| Pause::end)

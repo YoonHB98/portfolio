@@ -112,7 +112,7 @@ void Player::Update()
 	   Pause::PlayerPosition = GetPosition();
 	   if (Time_ > 0.5f)
 	   {
-		   GameEngine::GetInst().ChangeLevel("Stage1Under");
+		   WorldCount::Under = true;
 		   PipeDownFirst = true;
 		   Pause::pipedown = false;
 	   }
@@ -234,50 +234,11 @@ void Player::Update()
 	//RenderRun->ChangeAnimation("MarioRight");
 	float4 CheckPos;
 
-	float MapSizeX = 8441;
-	float MapSizeY = 550;
-	float CameraRectX = 620;
-	float CameraRectY = 550;
-	float Camera = GetLevel()->GetCameraPos().x;
-	GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
 
-	if ((GetPosition().x - 300) > GetLevel()->GetCameraPos().x)
-	{
-		float4 CurCameraPos = GetLevel()->GetCameraPos();
-		CurCameraPos.x = (GetPosition().x - 300);
-		GetLevel()->SetCameraPos(CurCameraPos);
-	}
-	if (Camera > (GetPosition().x - 300))
-	{
-		float4 CurCameraPos = GetLevel()->GetCameraPos();
-		CurCameraPos.x = Camera;
-		GetLevel()->SetCameraPos(CurCameraPos);
-	}
-	if (0 > GetLevel()->GetCameraPos().x)
-	{
-		float4 CurCameraPos = GetLevel()->GetCameraPos();
-		CurCameraPos.x = 0;
-		GetLevel()->SetCameraPos(CurCameraPos);
-	}
-
-	if (0 > GetLevel()->GetCameraPos().y)
-	{
-		float4 CurCameraPos = GetLevel()->GetCameraPos();
-		CurCameraPos.y = GetLevel()->GetCameraPos().y - (GetLevel()->GetCameraPos().y);
-		GetLevel()->SetCameraPos(CurCameraPos);
-	}
-	if (MapSizeX <= GetLevel()->GetCameraPos().x + 625)
-	{
-		float4 CurCameraPos = GetLevel()->GetCameraPos();
-		CurCameraPos.x = GetLevel()->GetCameraPos().x - (GetLevel()->GetCameraPos().x + CameraRectX - MapSizeX);
-		GetLevel()->SetCameraPos(CurCameraPos);
-	}
-	if (MapSizeY <= (GetLevel()->GetCameraPos().y + CameraRectY))
-	{
-		float4 CurCameraPos = GetLevel()->GetCameraPos();
-		CurCameraPos.y = GetLevel()->GetCameraPos().y - (GetLevel()->GetCameraPos().y);
-		GetLevel()->SetCameraPos(CurCameraPos);
-	}
+	
+	MapSize();
+	CameraPos();
+	
 
 	//아무것도 안 누를때
 	MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * 100;
@@ -497,7 +458,6 @@ void Player::Update()
 		{
 			LeftCheck = true;
 		}
-
 		if (true != Move_->NextPosCollisionCheck("Move", NextPos, CollisionType::Rect, CollisionType::Rect))
 		{
 			if ((RGB(0, 0, 0) != (Left)
@@ -564,7 +524,24 @@ float Player::GetCurrentPosition()
 	float x = GetPosition().x;
 	return  x;
 }
+void Player::MapSize()
+{
+	std::string MapName = GameEngine::CurrentLevel_->GetNameConstRef();
+	if (WorldCount::WorldCountUI == 1
+		&&WorldCount::Under)
+	{
+		MapSizeX = 640;
+		MapSizeY = 550;
+		return;
+	}else
+	if (WorldCount::WorldCountUI == 1)
+	{
+		MapSizeX = 8441;
+		MapSizeY = 550;
+		return;
+	}
 
+}
 void Player::HitBlock()
 {
 
@@ -588,6 +565,62 @@ void Player::ColMap()
 	{
 		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
 	}
+
+
+}
+void Player::CameraPos()
+{
+	float CameraRectX = 620;
+	float CameraRectY = 550;
+	float Camera = GetLevel()->GetCameraPos().x;
+	GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
+	if (WorldCount::Under)
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.x = Camera;
+			GetLevel()->SetCameraPos(float4{639,600});
+			return;
+	}
+
+	if ((GetPosition().x - 300) > GetLevel()->GetCameraPos().x)
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.x = (GetPosition().x - 300);
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
+	if (Camera > (GetPosition().x - 300))
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.x = Camera;
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
+
+	if (0 > GetLevel()->GetCameraPos().x)
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.x = 0;
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
+
+	if (0 > GetLevel()->GetCameraPos().y)
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.y = GetLevel()->GetCameraPos().y - (GetLevel()->GetCameraPos().y);
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
+	if (MapSizeY <= (GetLevel()->GetCameraPos().y + CameraRectY))
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.y = GetLevel()->GetCameraPos().y - (GetLevel()->GetCameraPos().y);
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
+	if (MapSizeX <= GetLevel()->GetCameraPos().x + 625)
+	{
+		float4 CurCameraPos = GetLevel()->GetCameraPos();
+		CurCameraPos.x = GetLevel()->GetCameraPos().x - (GetLevel()->GetCameraPos().x + CameraRectX - MapSizeX);
+		GetLevel()->SetCameraPos(CurCameraPos);
+	}
+
 
 
 }
