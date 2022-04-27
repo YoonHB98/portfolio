@@ -30,6 +30,7 @@ public:
 protected:
 
 private:
+	bool PipeDownFirst = true;
 	void CameraPos();
 	void ColMap();
 

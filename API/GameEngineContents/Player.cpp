@@ -57,14 +57,13 @@ void Player::Start()
 	RenderRun->ChangeAnimation("MarioRight");
 
 
-
+	if (Pause::CreateKeyFirst)
 	{
 		GameEngineInput::GetInst()->CreateKey("MoveLeft", 'A');
 		GameEngineInput::GetInst()->CreateKey("MoveRight", 'D');
 		GameEngineInput::GetInst()->CreateKey("Jump", VK_LSHIFT);
 		GameEngineInput::GetInst()->CreateKey("Down", 'S');
 		GameEngineInput::GetInst()->CreateKey("in", 'E');
-		// VK_LBUTTON; ¸¶¿ì½º
 	}
 }
 
@@ -103,11 +102,18 @@ void Player::Update()
 	}
 	if (Pause::pipedown )
 	{
+		if (PipeDownFirst == true)
+		{
+			GameEngineSound::SoundPlayOneShot("shrink.wav");
+			PipeDownFirst = false;
+		}
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
 	   SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * 70.0f);
 	   Pause::PlayerPosition = GetPosition();
 	   if (Time_ > 0.5f)
 	   {
+		   GameEngine::GetInst().ChangeLevel("Stage1Under");
+		   PipeDownFirst = true;
 		   Pause::pipedown = false;
 	   }
 	   return;

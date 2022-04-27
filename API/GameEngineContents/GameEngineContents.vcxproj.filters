@@ -70,9 +70,6 @@
     <ClInclude Include="Stage4.h">
       <Filter>Level\Stage1</Filter>
     </ClInclude>
-    <ClInclude Include="UnderStage.h">
-      <Filter>Level\Stage1</Filter>
-    </ClInclude>
     <ClInclude Include="Goomba.h">
       <Filter>Play\Monster</Filter>
     </ClInclude>
@@ -200,6 +197,12 @@
     <ClInclude Include="Pipe.h">
       <Filter>Map\Block</Filter>
     </ClInclude>
+    <ClInclude Include="Stage1Under.h">
+      <Filter>Level\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="Map1Under.h">
+      <Filter>Map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -225,9 +228,6 @@
       <Filter>Level\Stage1</Filter>
     </ClCompile>
     <ClCompile Include="Stage4.cpp">
-      <Filter>Level\Stage1</Filter>
-    </ClCompile>
-    <ClCompile Include="UnderStage.cpp">
       <Filter>Level\Stage1</Filter>
     </ClCompile>
     <ClCompile Include="Goomba.cpp">
@@ -356,6 +356,12 @@
     </ClCompile>
     <ClCompile Include="Pipe.cpp">
       <Filter>Map\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage1Under.cpp">
+      <Filter>Level\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Map1Under.cpp">
+      <Filter>Map</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

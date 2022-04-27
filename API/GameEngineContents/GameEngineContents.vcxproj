@@ -76,6 +76,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Map1Under.h" />
     <ClInclude Include="Mario.h">
       <SubType>
       </SubType>
@@ -120,6 +121,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Stage1Under.h" />
     <ClInclude Include="Stage2.h">
       <SubType>
       </SubType>
@@ -156,10 +158,6 @@
     <ClInclude Include="TurtleDead.h" />
     <ClInclude Include="Turtle.h" />
     <ClInclude Include="TurtleDeath.h" />
-    <ClInclude Include="UnderStage.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="UP1.h" />
     <ClInclude Include="UpMushroom.h" />
     <ClInclude Include="UpMushroom2.h" />
@@ -215,6 +213,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Map1Under.cpp" />
     <ClCompile Include="Mario.cpp">
       <SubType>
       </SubType>
@@ -259,6 +258,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Stage1Under.cpp" />
     <ClCompile Include="Stage2.cpp">
       <SubType>
       </SubType>
@@ -295,10 +295,6 @@
     <ClCompile Include="TurtleDead.cpp" />
     <ClCompile Include="Turtle.cpp" />
     <ClCompile Include="TurtleDeath.cpp" />
-    <ClCompile Include="UnderStage.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="UP1.cpp" />
     <ClCompile Include="UpMushroom.cpp" />
     <ClCompile Include="UpMushroom2.cpp" />

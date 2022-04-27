@@ -22,3 +22,4 @@ bool Pause::star = false;
 bool Pause::endtime = false;
 bool Pause::flag = false;
 bool Pause::pipedown = false;
+bool Pause::CreateKeyFirst = true;

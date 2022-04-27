@@ -32,6 +32,7 @@ public:
 protected:
 
 private:
+	bool PipeDownFirst = true;
 	float4 MoveDir;
 	GameEngineRenderer* RenderRun;
 	int Right;

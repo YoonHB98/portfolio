@@ -82,13 +82,17 @@ void BigPlayer::Start()
 	RenderRun->CreateAnimation("MarioFire.bmp", "Fire", 0, 0, 0.15f, false);
 
 
+	if (Pause::CreateKeyFirst)
 	{
 		GameEngineInput::GetInst()->CreateKey("BMMoveLeft", 'A');
 		GameEngineInput::GetInst()->CreateKey("BMMoveRight", 'D');
 		GameEngineInput::GetInst()->CreateKey("Fire", 'O');
 		GameEngineInput::GetInst()->CreateKey("BMJump", VK_LSHIFT);
-		// VK_LBUTTON; 마우스
+		Pause::CreateKeyFirst = false;
 	}
+	
+		// VK_LBUTTON; 마우스
+
 }
 
 void BigPlayer::Update()
@@ -134,11 +138,19 @@ void BigPlayer::Update()
 	}
 	if (Pause::pipedown)
 	{
+		if (PipeDownFirst == true)
+		{
+			GameEngineSound::SoundPlayOneShot("shrink.wav");
+			PipeDownFirst = false;
+		}
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
 		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * 70.0f);
 		Pause::PlayerPosition = GetPosition();
 		if (Time_ > 1.17f)
 		{
+			Pause::pipedown = false;
+			GameEngine::GetInst().ChangeLevel("Stage1Under");
+			PipeDownFirst = true;
 			Pause::pipedown = false;
 		}
 		return;
