@@ -399,82 +399,82 @@ void Stage1::LevelChangeStart(GameEngineLevel* _PrevLevel)
 { 
 	//200, 500
 	//üũ 14000, 500
-	if (true != Goomba1->IsDeath())
+	if (nullptr != Goomba1)
 	{
 		Goomba1->SetPosition(float4{900, 500});
 		Goomba1->up = 0;
 	}
-	if (true != Goomba2->IsDeath())
+	if (nullptr != Goomba2)
 	{
 		Goomba2->SetPosition(float4{ 2060, 500 });
 		Goomba2->up = 0;
 	}
-	if (true != Goomba3->IsDeath())
+	if (nullptr != Goomba3)
 	{
 		Goomba3->SetPosition(float4{ 2120, 500 });
 		Goomba3->up = 0;
 	}
-	if (true != Goomba4->IsDeath())
+	if (nullptr != Goomba4)
 	{
 		Goomba4->SetPosition(float4{ 1620, 500 });
 		Goomba4->up = 0;
 	}
-	if (true != Goomba5->IsDeath())
+	if (nullptr != Goomba5)
 	{
 		Goomba5->SetPosition(float4{ 3220, 185 });
 		Goomba5->up = 0;
 	}
-	if (true != Goomba6->IsDeath())
+	if (nullptr != Goomba6)
 	{
 		Goomba6->SetPosition(float4{ 3330, 185 });
 		Goomba6->up = 0;
 	}
-	if (true != Goomba7->IsDeath())
+	if (nullptr != Goomba7)
 	{
 		Goomba7->SetPosition(float4{ 3900, 500 });
 		Goomba7->up = 0;
 	}
-	if (true != Goomba8->IsDeath())
+	if (nullptr != Goomba8)
 	{
 		Goomba8->SetPosition(float4{ 3960, 500 });
 		Goomba8->up = 0;
 	}
-	if (true != Goomba9->IsDeath())
+	if (nullptr != Goomba9)
 	{
 		Goomba9->SetPosition(float4{ 4580, 500 });
 		Goomba9->up = 0;
 	}
-	if (true != Goomba10->IsDeath())
+	if (nullptr != Goomba10)
 	{
 		Goomba10->SetPosition(float4{ 4640, 500 });
 		Goomba10->up = 0;
 	}
-	if (true != Goomba11->IsDeath())
+	if (nullptr != Goomba11)
 	{
 		Goomba11->SetPosition(float4{ 4980, 500 });
 		Goomba11->up = 0;
 	}
-	if (true != Goomba12->IsDeath())
+	if (nullptr != Goomba12)
 	{
 		Goomba12->SetPosition(float4{ 5040, 500 });
 		Goomba12->up = 0;
 	}
-	if (true != Goomba13->IsDeath())
+	if (nullptr != Goomba13)
 	{
 		Goomba13->SetPosition(float4{ 5140, 500 });
 		Goomba13->up = 0;
 	}
-	if (true != Goomba14->IsDeath())
+	if (nullptr != Goomba14)
 	{
 		Goomba14->SetPosition(float4{ 5200, 500 });
 		Goomba14->up = 0;
 	}
-	if (true != Goomba15->IsDeath())
+	if (nullptr != Goomba15)
 	{
 		Goomba15->SetPosition(float4{ 6980, 500 });
 		Goomba15->up = 0;
 	}
-	if (true != Goomba16->IsDeath())
+	if (nullptr != Goomba16)
 	{
 		Goomba16->SetPosition(float4{ 7040, 500 });
 		Goomba16->up = 0;
@@ -487,7 +487,7 @@ void Stage1::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		flag* Actor = CreateActor<flag>(1);
 		Actor->Createflag(float4{ 7920,140 });
 	}
-	(Pause::PlayerPosition = (float4{ 100, 500 }));
+	(Pause::PlayerPosition = (float4{ 7860, 500 }));
 	Mario->SetPosition(float4{ 100, 500 });
 		UI->TimerReset();
 		BgmPlayer.Stop();

@@ -47,6 +47,9 @@ private:
 	GameEngineCollision* BigPlayerCollision;
 	GameEngineCollision* BigPlayerRight_;
 	GameEngineCollision* BigPlayerLeft_;
+	GameEngineCollision* Down_;
+	GameEngineCollision* Up_;
+	GameEngineCollision* Move_;
 	float ChangeTime = 0;
 	float Time_ = 0;
 	float AnimationTime_ = 0;

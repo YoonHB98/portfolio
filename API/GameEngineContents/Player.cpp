@@ -105,7 +105,7 @@ void Player::Update()
 		nodie = nodie + GameEngineTime::GetDeltaTime();
 		if (nodie < 0.1f)
 		{
-			RenderRun->SetAlpha(200);
+			RenderRun->SetAlpha(150);
 		}
 		if (nodie > 0.1f)
 		{

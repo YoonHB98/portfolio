@@ -39,6 +39,9 @@ void BigPlayer::Start()
 	BigPlayerCollision = CreateCollision("PlayerBot", { 40, 10 }, { 0, 40 });
 	BigPlayerRight_ = CreateCollision("PlayerItem", { 2,80 }, { 20, 0 });
 	BigPlayerLeft_ = CreateCollision("PlayerItem", { 2, 80 }, { -20, 0 });
+	Move_ = CreateCollision("NNN", { 2, 2 }, { 0, 0 });
+	Up_ = CreateCollision("NNN", { 30, 5 }, { 0, -38 });
+	Down_ = CreateCollision("NNN", { 2, 2 }, { 0, 38 });
 	Right = 0;
 	Left = 0;
 
@@ -147,12 +150,11 @@ void BigPlayer::Update()
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
 		MoveDir = float4::DOWN;
 		float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
-		int Down = WhiteMap_->GetImagePixel(NextPos + float4(19.0f, 40.0f));
+		int Down = WhiteMap_->GetImagePixel(NextPos + float4(15.0f, 40.0f));
 		int Right = WhiteMap_->GetImagePixel(NextPos + float4(20.0f, 0.0f));
 		if ((RGB(0, 0, 0) != (Down)))
 		{
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * 150);
-			BigPlayer::CameraPos();
 			Pause::PlayerPosition == GetPosition();
 		}
 		if (1.2f  <= Time_
@@ -161,14 +163,9 @@ void BigPlayer::Update()
 
 			float MapSizeX = 8441;
 			float MapSizeY = 550;
-			float CameraRectX = 620;
-			float CameraRectY = 550;
-			float Camera = GetLevel()->GetCameraPos().x;
-			GetLevel()->SetCameraPos(GetPosition() - GameEngineWindow::GetInst().GetScale().Half());
-			SetPosition(float4{ MapSizeX - 466, 430});
+			SetPosition(float4{ MapSizeX - 470, 440});
 			AnimationChange("End");
 			Pause::PlayerPosition == GetPosition();
-			BigPlayer::CameraPos();
 			return;
 		}
 		if (1.5f <= Time_)
@@ -190,13 +187,12 @@ void BigPlayer::Update()
 			{
 				RenderRun->ChangeAnimation("Blank");
 			}
-			  MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * 300;
+			  MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * 600;
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * 150);
 	
 			Pause::PlayerPosition == GetPosition();
 
 		}
-		BigPlayer::CameraPos();
 		return;
 	}
 
@@ -293,6 +289,8 @@ void BigPlayer::Update()
 	{
 		Pause::PlayerStatus = "small";
 		Pause::smallfirst = true;
+		Pause::flower = false;
+		Pause::flowerfirst = false;
 		GameEngineSound::SoundPlayOneShot("shrink.wav", 0);
 		return;
 	}
@@ -374,7 +372,7 @@ void BigPlayer::Update()
 		int ColorUp = WhiteMap_->GetImagePixel(GetPosition() + float4(0.0f, -39.0f));
 
 
-		if ((RGB(255, 255, 255) != Color)
+		if (((RGB(255, 255, 255) != Color) || true == Down_->NextPosCollisionCheck("Move", NextPos + float4(0.0f, 38.0f), CollisionType::Rect, CollisionType::Rect))
 			&& GameEngineInput::GetInst()->IsFree("BMJump")
 			)
 
@@ -435,80 +433,81 @@ void BigPlayer::Update()
 		{
 			LeftCheck = true;
 		}
-		if ((RGB(0, 0, 0) != (Left))
-			&& LeftCheck
-			)
-
+		if (true != Move_->NextPosCollisionCheck("Move", NextPos, CollisionType::Rect, CollisionType::Rect))
 		{
-			SetMove(LeftRight * GameEngineTime::GetDeltaTime() * Speed_);
-			CameraPos();
+			if ((RGB(0, 0, 0) != (Left))
+				&& LeftCheck
+				)
+			{
+				SetMove(LeftRight * GameEngineTime::GetDeltaTime() * Speed_);
+				CameraPos();
+				Pause::PlayerPosition = GetPosition();
+			}
 		}
-		if ((RGB(0, 0, 0) != (Right))
-			&& RightCheck
-			)
-
+		if (true != Move_->NextPosCollisionCheck("Move", NextPos, CollisionType::Rect, CollisionType::Rect))
 		{
-			SetMove(LeftRight * GameEngineTime::GetDeltaTime() * Speed_);
-			CameraPos();
+			if ((RGB(0, 0, 0) != (Right))
+				&& RightCheck
+				)
+			{
+				SetMove(LeftRight * GameEngineTime::GetDeltaTime() * Speed_);
+				CameraPos();
+				Pause::PlayerPosition = GetPosition();
+			}
 		}
 		if ((RGB(0, 0, 0) != (Up)))
 		{
 
 		}
-		if ((RGB(0, 0, 0) != (Up))
-			&& UpCheck
-			)
-
+		if (true != Up_->NextPosCollisionCheck("Move", NextPos, CollisionType::Rect, CollisionType::Rect))
 		{
-			if (RenderRun->IsAnimationName(("RunRight") + animation) 
-				|| RenderRun->IsAnimationName(("BMRight") + animation) 
-				|| RenderRun->IsAnimationName(("BMJR") + animation))
+			if ((RGB(0, 0, 0) != (Up))
+				&& UpCheck
+				)
+
 			{
-				AnimationChange("BMJR");
+				if (RenderRun->IsAnimationName(("RunRight") + animation)
+					|| RenderRun->IsAnimationName(("BMRight") + animation)
+					|| RenderRun->IsAnimationName(("BMJR") + animation))
+				{
+					AnimationChange("BMJR");
+				}
+				else if (RenderRun->IsAnimationName(("RunLeft") + animation)
+					|| RenderRun->IsAnimationName(("BMLeft") + animation)
+					|| RenderRun->IsAnimationName(("BMJL") + animation))
+				{
+					AnimationChange("BMJL");
+				}
+				SetMove(UpUp * GameEngineTime::GetDeltaTime() * Speed_);
+				CameraPos();
 			}
-			else if (RenderRun->IsAnimationName(("RunLeft") + animation)
-				|| RenderRun->IsAnimationName(("BMLeft") + animation)
-				|| RenderRun->IsAnimationName(("BMJL")  + animation))
-			{
-				AnimationChange("BMJL");
-			}
-			SetMove(UpUp * GameEngineTime::GetDeltaTime() * Speed_);
-			CameraPos();
 		}
 
-		//BigPlayerCollision = CreateCollision("BigPlayerHitBox", { 40,40 }, CheckPos + float4(-160.0f, -1000.0f));
-		//if ((RGB(0, 0, 0) == (Down)))
-		//{
-		//	AccGravity_ = 0;
-		//}
-		if ((RGB(0, 0, 0) != (Down1)))
+		if (true != Down_->NextPosCollisionCheck("Move", NextPos + float4(0.0f, 38.0f), CollisionType::Rect, CollisionType::Rect)
+			&& true != Down_->NextPosCollisionCheck("Move", GetPosition() + float4(8.0f, 38.0f), CollisionType::Rect, CollisionType::Rect)
+			&& true != Down_->NextPosCollisionCheck("Move", GetPosition() + float4(-8.0f, 38.0f), CollisionType::Rect, CollisionType::Rect))
 		{
-			int a = 0;
-		}
-		if ((RGB(0, 0, 0) != (Down2)))
-		{
-			int a = 0;
-		}
-		if ((RGB(0, 0, 0) != (Down)
-			&& (RGB(0, 0, 0) != (Down1))
-			&&	(RGB(0, 0, 0) != (Down2))
-			&& DownCheck)
-			)
+			if ((RGB(0, 0, 0) != (Down)
+				&& (RGB(0, 0, 0) != (Down1))
+				&& (RGB(0, 0, 0) != (Down2))
+				&& DownCheck)
+				)
 
-		{
-			if (RenderRun->IsAnimationName("RunRight") || RenderRun->IsAnimationName("BMRight") || RenderRun->IsAnimationName("BMJR"))
 			{
-				AnimationChange("BMJR");
+				if (RenderRun->IsAnimationName("RunRight") || RenderRun->IsAnimationName("BMRight") || RenderRun->IsAnimationName("BMJR"))
+				{
+					AnimationChange("BMJR");
+				}
+				else if (RenderRun->IsAnimationName("RunLeft") || RenderRun->IsAnimationName("BMLeft") || RenderRun->IsAnimationName("BMJL"))
+				{
+					AnimationChange("BMJL");
+				}
+				SetMove(DownDown * GameEngineTime::GetDeltaTime() * Speed_);
+				CameraPos();
 			}
-			else if (RenderRun->IsAnimationName("RunLeft") || RenderRun->IsAnimationName("BMLeft") || RenderRun->IsAnimationName("BMJL"))
-			{
-				AnimationChange("BMJL");
-			}
-			SetMove(DownDown * GameEngineTime::GetDeltaTime() * Speed_);
-			CameraPos();
-		}
 
-		Pause::PlayerPosition = GetPosition();
+			Pause::PlayerPosition = GetPosition();
+		}
 	}
 }
 
