@@ -18,7 +18,8 @@ void Pipe::Start()
 
 void Pipe::Update()
 {
-	if (true == PipeCollision->CollisionCheck("PlayerBot"))
+	if (true == PipeCollision->CollisionCheck("PlayerBot")
+		&&Pause::PlayerStatus == "small")
 	{
 		Pause::pipedown = true;
 	}

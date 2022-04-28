@@ -45,6 +45,7 @@ private:
 	bool FirstEnd_ = true;
 	bool blank = false;
 	bool Changefirst = true;
+	bool PosChange = true;
 	GameEngineImage* ColMap_;
 	GameEngineCollision* BigPlayerCollision;
 	GameEngineCollision* BigPlayerRight_;

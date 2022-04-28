@@ -158,17 +158,19 @@ void BigPlayer::Update()
 		if (1.2f  <= Time_
 			&& 1.5f > Time_)
 		{
-
-			float MapSizeX = 8441;
-			float MapSizeY = 550;
-			SetPosition(float4{ MapSizeX - 470, 440});
+			if (PosChange)
+			{
+				SetPosition(GetPosition() + float4{ 45, 0 });
+				Pause::PlayerPosition = GetPosition();
+				PosChange = false;
+			}
 			AnimationChange("End");
 			Pause::PlayerPosition == GetPosition();
 			return;
 		}
 		if (1.5f <= Time_)
 		{
-		
+			PosChange = true;
 			if ((RGB(0, 0, 0) != (Down)))
 			{
 				MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * 50;
@@ -180,10 +182,10 @@ void BigPlayer::Update()
 			if ((RGB(255, 0, 0) == (Right)))
 			{
 				blank = true;
-				Time_ = 0;
 			}
 			if (blank)
 			{
+				Time_ = 0;
 				RenderRun->ChangeAnimation("Blank");
 				Pause::endtime = true;
 			}
@@ -620,15 +622,15 @@ void BigPlayer::ColMap()
 	}
 	if (WorldCount::WorldCountUI == 2)
 	{
-		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+		ColMap_ = GameEngineImageManager::GetInst()->Find("12mapWhite.bmp");
 	}
 	if (WorldCount::WorldCountUI == 3)
 	{
-		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+		ColMap_ = GameEngineImageManager::GetInst()->Find("13mapWhite.bmp");
 	}
 	if (WorldCount::WorldCountUI == 4)
 	{
-		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+		ColMap_ = GameEngineImageManager::GetInst()->Find("14mapWhite.bmp");
 	}
 
 

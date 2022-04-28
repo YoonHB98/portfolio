@@ -349,10 +349,6 @@ void Stage1::Loading()
 		Goomba16->CreateGoomba(float4{ 7040,500 });
 	}
 	{
-		GoombaDead* Actor = CreateActor<GoombaDead>(1);
-		Actor->SetPosition(float4 {100,500});
-	}
-	{
 		Pipe* Actor = CreateActor<Pipe>(3);
 		Actor->SetPosition(float4{ 2321,400 });
 	}

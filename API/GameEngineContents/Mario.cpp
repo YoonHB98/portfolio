@@ -4,6 +4,7 @@
 #include "TitleLevel.h"
 #include "StageIntro.h"
 #include "Stage1Under.h"
+#include "Stage2.h"
 #include <GameEngineBase/GameEngineWindow.h>
 #include <GameEngineBase/GameEngineDirectory.h>
 #include <GameEngineBase/GameEngineFile.h>
@@ -233,6 +234,7 @@ void Mario::GameInit()
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<Stage1>("Stage1");
 	CreateLevel<Stage1Under>("Stage1Under");
+	CreateLevel<Stage2>("Stage2");
 	CreateLevel<EndingLevel>("Ending");
 	CreateLevel<StageIntro>("StageIntro");
 	ChangeLevel("Title");

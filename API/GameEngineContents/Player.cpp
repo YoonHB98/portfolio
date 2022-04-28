@@ -113,7 +113,6 @@ void Player::Update()
 	   if (Time_ > 0.5f)
 	   {
 		   WorldCount::Under = true;
-		   PipeDownFirst = true;
 		   Pause::pipedown = false;
 		   Time_ = 0;
 	   }
@@ -132,7 +131,6 @@ void Player::Update()
 		if (Time_ > 0.5f)
 		{
 			WorldCount::Under = false;
-			PipeLeftFirst = true;
 			Pause::pipeleft = false;
 			WorldCount::Up = true;
 			Time_ = 0;
@@ -187,8 +185,9 @@ void Player::Update()
 				SetPosition(GetPosition() + float4{ 45, 0 });
 				Pause::PlayerPosition = GetPosition();
 				PosChange = false;
+				RenderRun->ChangeAnimation("End");
 			}
-			RenderRun->ChangeAnimation("End");
+
 			Pause::PlayerPosition = GetPosition();
 			return;
 		}
@@ -227,7 +226,7 @@ void Player::Update()
 	if (Pause::death)
 	{
 		float4 MoveDir2;
-		MoveDir2 += float4::DOWN * GameEngineTime::GetDeltaTime() * 3600;
+		MoveDir2 += float4::DOWN * GameEngineTime::GetDeltaTime() * 4000;
 
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
 		if (3.0f <= Time_)
@@ -534,14 +533,18 @@ void Player::Update()
 			{
 				SetMove(DownDown * GameEngineTime::GetDeltaTime() * Speed_);
 				Pause::PlayerPosition = GetPosition();
-				if (RenderRun->IsAnimationName("RunRight") || RenderRun->IsAnimationName("MarioRight") || RenderRun->IsAnimationName("JumpRight"))
+				if (MoveDir.y > 0.05f)
 				{
-					RenderRun->ChangeAnimation("JumpRight");
+					if (RenderRun->IsAnimationName("RunRight") || RenderRun->IsAnimationName("MarioRight") || RenderRun->IsAnimationName("JumpRight"))
+					{
+						RenderRun->ChangeAnimation("JumpRight");
+					}
+					else if (RenderRun->IsAnimationName("RunLeft") || RenderRun->IsAnimationName("MarioLeft") || RenderRun->IsAnimationName("JumpLeft"))
+					{
+						RenderRun->ChangeAnimation("JumpLeft");
+					}
 				}
-				else if (RenderRun->IsAnimationName("RunLeft") || RenderRun->IsAnimationName("MarioLeft") || RenderRun->IsAnimationName("JumpLeft"))
-				{
-					RenderRun->ChangeAnimation("JumpLeft");
-				}
+	
 
 			}
 		}
@@ -570,6 +573,12 @@ void Player::MapSize()
 		MapSizeY = 550;
 		return;
 	}
+	if (WorldCount::WorldCountUI == 2)
+	{
+		MapSizeX = 6400;
+		MapSizeY = 550;
+		return;
+	}
 
 }
 void Player::HitBlock()
@@ -591,15 +600,15 @@ void Player::ColMap()
 		}
 	if (WorldCount::WorldCountUI == 2)
 	{
-		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+		ColMap_ = GameEngineImageManager::GetInst()->Find("12mapWhite.bmp");
 	}
 	if (WorldCount::WorldCountUI == 3)
 	{
-		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+		ColMap_ = GameEngineImageManager::GetInst()->Find("13mapWhite.bmp");
 	}
 	if (WorldCount::WorldCountUI == 4)
 	{
-		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+		ColMap_ = GameEngineImageManager::GetInst()->Find("14mapWhite.bmp");
 	}
 
 

@@ -174,7 +174,7 @@ void Stage1Under::Update()
 		}
 	if (pausefirst_)
 	{
-		BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");
+		BgmPlayer = GameEngineSound::SoundPlayControl("underground.wav");
 		pausefirst_ = false;
 	}
 	if (Pause::PlayerStatus == "big"
@@ -196,6 +196,7 @@ void Stage1Under::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	if (Pause::PlayerStatus == "small")
 	{
 		Mario->SetPosition(float4{ 100, 100 });
+		Pause::PlayerPosition = float4{ 100, 100 };
 	}else
 		if (Pause::PlayerStatus == "big")
 		{
@@ -205,6 +206,6 @@ void Stage1Under::LevelChangeStart(GameEngineLevel* _PrevLevel)
 
 		UI->TimerReset();
 		BgmPlayer.Stop();
-	    BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");
+	    BgmPlayer = GameEngineSound::SoundPlayControl("underground.wav");
 
 }
