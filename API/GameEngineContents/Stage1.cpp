@@ -375,6 +375,14 @@ void Stage1::Update()
 		GameEngine::GetInst().ChangeLevel("Stage1Under");
 		return;
 	}
+	if (WorldCount::Up)
+	{
+		BgmPlayer.Stop();
+		Upfirst = true;
+		WorldCount::Up = false;
+		BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");
+		return;
+	}
 
 	if ( Pause::death
 		|| Pause::end)
@@ -405,6 +413,7 @@ void Stage1::Update()
 	{
 		BigMario->SetPosition(float4{ 100, 3000 });
 		Mario->SetPosition(Pause::PlayerPosition);
+		Mario->CameraPos();
 	}
 
 }
@@ -492,9 +501,29 @@ void Stage1::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		Goomba16->SetPosition(float4{ 7040, 500 });
 		Goomba16->up = 0;
 	}
+	if (WorldCount::Up)
+	{
+		BgmPlayer.Stop();
+		Upfirst = true;
+	}
+	if (Upfirst)
+	{
+		if (Pause::PlayerStatus == "big")
+		{
+			Mario->SetPosition(float4{ 6560, 400 });
+			(Pause::PlayerPosition = (float4{ 6560, 400 }));
+		}else
+			if (Pause::PlayerStatus == "small")
+			{
+				Mario->SetPosition(float4{ 6560, 420 });
+				(Pause::PlayerPosition = (float4{ 6560, 420 }));
+			}
 
-	(Pause::PlayerPosition = (float4{ 7880, 500 }));
-	Mario->SetPosition(float4{ 100, 500 });
+	}
+	else {
+		Mario->SetPosition(float4{ 100, 500 });
+		(Pause::PlayerPosition = (float4{ 100, 500 }));
+	}
 		UI->TimerReset();
 		BgmPlayer.Stop();
 	    BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");

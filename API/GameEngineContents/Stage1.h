@@ -39,6 +39,7 @@ protected:
 private:
 	bool pausefirst_ = false;
 	bool bgm = false;
+	bool Upfirst = false;
 	BigPlayer* BigMario;
 	Player* Mario;
 	float Time;

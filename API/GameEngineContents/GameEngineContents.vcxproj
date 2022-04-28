@@ -92,6 +92,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Pipe.h" />
+    <ClInclude Include="PipeLeft.h" />
     <ClInclude Include="Player.h">
       <SubType>
       </SubType>
@@ -230,6 +231,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Pipe.cpp" />
+    <ClCompile Include="PipeLeft.cpp" />
     <ClCompile Include="Player.cpp">
       <SubType>
       </SubType>

@@ -16,7 +16,7 @@
 #include "Turtle.h"
 #include "GoombaDead.h"
 #include "CastleFlag.h"
-#include "Pipe.h"
+#include "PipeLeft.h"
 #include "UnderWorldCoin.h"
 
 Stage1Under::Stage1Under() 
@@ -143,14 +143,22 @@ void Stage1Under::Loading()
 		UnderWorldCoin* Pointer = CreateActor<UnderWorldCoin>(2);
 		Pointer->SetPosition(float4{ 375, 300 });
 	}
-
+	{
+		PipeLeft* Pointer = CreateActor<PipeLeft>(4);
+		Pointer->SetPosition(float4{ 571, 480 });
+	}
 
 	BgmPlayer = GameEngineSound::SoundPlayControl("blank.wav");
 }
 
 void Stage1Under::Update()
 {
-
+	if (WorldCount::Up)
+	{
+		BgmPlayer.Stop();
+		GameEngine::GetInst().ChangeLevel("Stage1");
+		return;
+	}
 	if ( Pause::death
 		|| Pause::end)
 	{
@@ -185,9 +193,16 @@ void Stage1Under::Update()
 }
 void Stage1Under::LevelChangeStart(GameEngineLevel* _PrevLevel)
 { 
-	
-	(Pause::PlayerPosition = (float4{ 100, 100 }));
-	Mario->SetPosition(float4{ 100, 500 });
+	if (Pause::PlayerStatus == "small")
+	{
+		Mario->SetPosition(float4{ 100, 100 });
+	}else
+		if (Pause::PlayerStatus == "big")
+		{
+			BigMario->SetPosition(float4{ 100, 100 });
+
+		}
+
 		UI->TimerReset();
 		BgmPlayer.Stop();
 	    BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");

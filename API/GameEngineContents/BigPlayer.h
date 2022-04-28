@@ -26,14 +26,14 @@ public:
 	BigPlayer& operator=(BigPlayer&& _Other) noexcept = delete;
 	float GetCurrentPosition();
 	static bool Change;
+	void CameraPos();
 	static float Time_;
 protected:
 
 private:
 	bool PipeDownFirst = true;
-	void CameraPos();
 	void ColMap();
-
+	bool PipeLeftFirst = true;
 	float4 MoveDir;
 	GameEngineRenderer* RenderRun;
 	int Right;

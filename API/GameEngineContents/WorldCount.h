@@ -17,6 +17,7 @@ public:
 	WorldCount& operator=(WorldCount&& _Other) noexcept = delete;
 	static int WorldCountUI ;
 	static bool Under;
+	static bool Up;
 	
 protected:
 

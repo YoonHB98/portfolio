@@ -115,8 +115,29 @@ void Player::Update()
 		   WorldCount::Under = true;
 		   PipeDownFirst = true;
 		   Pause::pipedown = false;
+		   Time_ = 0;
 	   }
 	   return;
+	}
+	if (Pause::pipeleft)
+	{
+		if (PipeLeftFirst == true)
+		{
+			GameEngineSound::SoundPlayOneShot("shrink.wav");
+			PipeLeftFirst = false;
+		}
+		Time_ = Time_ + GameEngineTime::GetDeltaTime();
+		SetMove(float4::RIGHT * GameEngineTime::GetDeltaTime() * 70.0f);
+		Pause::PlayerPosition = GetPosition();
+		if (Time_ > 0.5f)
+		{
+			WorldCount::Under = false;
+			PipeLeftFirst = true;
+			Pause::pipeleft = false;
+			WorldCount::Up = true;
+			Time_ = 0;
+		}
+		return;
 	}
 	if (Pause::smallfirst)
 	{
@@ -189,6 +210,7 @@ void Player::Update()
 			}
 			if (blank)
 			{
+				Time_ = 0;
 				RenderRun->ChangeAnimation("Blank");
 				Pause::endtime = true;
 			}
@@ -232,7 +254,6 @@ void Player::Update()
 		if (1.2f >= Time_)
 		{
 			SetMove(MoveDir2 * GameEngineTime::GetDeltaTime() * Speed_);
-			Pause::PlayerPosition = GetPosition();
 			return;
 		}
 		return;
@@ -245,10 +266,9 @@ void Player::Update()
 	float4 CheckPos;
 
 
-	
 	MapSize();
+
 	CameraPos();
-	
 
 	//아무것도 안 누를때
 	MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * 100;

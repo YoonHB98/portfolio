@@ -235,7 +235,7 @@ void Mario::GameInit()
 	CreateLevel<Stage1Under>("Stage1Under");
 	CreateLevel<EndingLevel>("Ending");
 	CreateLevel<StageIntro>("StageIntro");
-	ChangeLevel("Stage1Under");
+	ChangeLevel("Title");
 }
 
 void Mario::GameLoop()

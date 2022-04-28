@@ -136,25 +136,6 @@ void BigPlayer::Update()
 		}
 		return;
 	}
-	if (Pause::pipedown)
-	{
-		if (PipeDownFirst == true)
-		{
-			GameEngineSound::SoundPlayOneShot("shrink.wav");
-			PipeDownFirst = false;
-		}
-		Time_ = Time_ + GameEngineTime::GetDeltaTime();
-		SetMove(float4::DOWN * GameEngineTime::GetDeltaTime() * 70.0f);
-		Pause::PlayerPosition = GetPosition();
-		if (Time_ > 1.17f)
-		{
-			Pause::pipedown = false;
-			GameEngine::GetInst().ChangeLevel("Stage1Under");
-			PipeDownFirst = true;
-			Pause::pipedown = false;
-		}
-		return;
-	}
 	float4 CheckPos;
 	if (Pause::end)
 	{
@@ -199,6 +180,7 @@ void BigPlayer::Update()
 			if ((RGB(255, 0, 0) == (Right)))
 			{
 				blank = true;
+				Time_ = 0;
 			}
 			if (blank)
 			{

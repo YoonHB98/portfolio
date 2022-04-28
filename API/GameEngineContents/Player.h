@@ -28,11 +28,13 @@ public:
 	Player& operator=(Player&& _Other) noexcept = delete;
 	float GetCurrentPosition();
 	static float Time_;
+	void CameraPos();
 	float Angle;
 protected:
 
 private:
 	bool PipeDownFirst = true;
+	bool PipeLeftFirst = true;
 	float4 MoveDir;
 	GameEngineRenderer* RenderRun;
 	int Right;
@@ -46,7 +48,6 @@ private:
 	bool blank = false;
 	void ColMap();
 	void MapSize();
-	void CameraPos();
 	float MapSizeX = 0;
 	float MapSizeY = 0;
 	bool CameraUnder = false;
