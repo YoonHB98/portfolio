@@ -66,10 +66,6 @@ void Stage1::Loading()
 	}
 	// ºí·Ï
 	{
-		Block2* Actor = CreateActor<Block2>(2);
-		Actor->CreateBlock2(float4{ 200, 380 });
-	}
-	{
 		SecretBlockmushroom* Actor = CreateActor<SecretBlockmushroom>(2);
 		Actor->CreateSecretBlockmushroom(float4{ 300, 380 });
 	}
