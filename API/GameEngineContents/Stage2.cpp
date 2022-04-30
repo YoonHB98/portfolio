@@ -18,6 +18,8 @@
 #include "CastleFlag.h"
 #include "PipeLeft.h"
 #include "UnderWorldCoin.h"
+#include "Fire.h"
+#include "FireBlock.h"
 
 Stage2::Stage2() 
 {
@@ -66,6 +68,47 @@ void Stage2::Loading()
 		Actor->GetRenderer()->SetPivot(BackActor);
 	}
 	// ºí·Ï
+	{
+		Fire* Actor = CreateActor<Fire>(2);
+		Actor->CreateFire(float4{ 100, 100 }, {20, 0});
+	}
+	{
+		Fire* Actor = CreateActor<Fire>(2);
+		Actor->CreateFire(float4{ 100, 100 }, { 40, 0 });
+	}
+	{
+		Fire* Actor = CreateActor<Fire>(2);
+		Actor->CreateFire(float4{ 100, 100 }, { 60, 0 });
+	}
+	{
+		FireBlock* Actor = CreateActor<FireBlock>(2);
+		Actor->SetPosition(float4{ 1220, 420 });
+	}
+	{
+		FireBlock* Actor = CreateActor<FireBlock>(2);
+		Actor->SetPosition(float4{ 1980,260 });
+	}
+	{
+		FireBlock* Actor = CreateActor<FireBlock>(2);
+		Actor->SetPosition(float4{ 2420,260 });
+	}
+	{
+		FireBlock* Actor = CreateActor<FireBlock>(2);
+		Actor->SetPosition(float4{ 2700, 260 });
+	}
+
+	{
+		FireBlock* Actor = CreateActor<FireBlock>(2);
+		Actor->SetPosition(float4{ 3060, 380 });
+	}
+	{
+		FireBlock* Actor = CreateActor<FireBlock>(2);
+		Actor->SetPosition(float4{ 3380, 380 });
+	}
+	{
+		FireBlock* Actor = CreateActor<FireBlock>(2);
+		Actor->SetPosition(float4{ 3540, 180 });
+	}
 
 	BgmPlayer = GameEngineSound::SoundPlayControl("blank.wav");
 }

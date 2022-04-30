@@ -91,7 +91,7 @@ void Bullet::ColMap()
 	}
 	if (WorldCount::WorldCountUI == 2)
 	{
-		ColMap_ = GameEngineImageManager::GetInst()->Find("11mapWhite.bmp");
+		ColMap_ = GameEngineImageManager::GetInst()->Find("12mapWhite.bmp");
 	}
 	if (WorldCount::WorldCountUI == 3)
 	{

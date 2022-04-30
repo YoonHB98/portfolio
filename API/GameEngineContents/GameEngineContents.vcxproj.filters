@@ -43,6 +43,9 @@
     <Filter Include="Player">
       <UniqueIdentifier>{9b5fa49c-02c4-411c-a3a8-c4e003cd7eb0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Play\Monster\Fire">
+      <UniqueIdentifier>{98c85f9e-4b56-4ce9-b32d-11e1e5493d03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TitleLevel.h">
@@ -209,6 +212,12 @@
     <ClInclude Include="PipeLeft.h">
       <Filter>Map\Block</Filter>
     </ClInclude>
+    <ClInclude Include="Fire.h">
+      <Filter>Play\Monster\Fire</Filter>
+    </ClInclude>
+    <ClInclude Include="FireBlock.h">
+      <Filter>Play\Monster\Fire</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -374,6 +383,12 @@
     </ClCompile>
     <ClCompile Include="PipeLeft.cpp">
       <Filter>Map\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Fire.cpp">
+      <Filter>Play\Monster\Fire</Filter>
+    </ClCompile>
+    <ClCompile Include="FireBlock.cpp">
+      <Filter>Play\Monster\Fire</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
