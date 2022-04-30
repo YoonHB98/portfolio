@@ -152,8 +152,8 @@ void Stage2::LevelChangeStart(GameEngineLevel* _PrevLevel)
 { 
 	if (Pause::PlayerStatus == "small")
 	{
-		Mario->SetPosition(float4{ 30, 280 });
-		Pause::PlayerPosition = float4{ 30, 280 };
+		Mario->SetPosition(float4{ 30, 260 });
+		Pause::PlayerPosition = float4{ 30, 260 };
 	}else
 		if (Pause::PlayerStatus == "big")
 		{

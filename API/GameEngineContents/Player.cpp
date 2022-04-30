@@ -367,7 +367,7 @@ void Player::Update()
 		if (0.0f <= MoveDir.y
 			&& -0.2f >= MoveDir.y)
 		{
-			MoveDir.y = -0.5f;
+			MoveDir.y = -0.2f;
 		}
 	}
 	if (0 < MoveDir.x)
@@ -399,11 +399,11 @@ void Player::Update()
 		}
 
 
-		if (RenderRun->IsAnimationName("RunRight"))
+		if (RenderRun->IsAnimationName("RunRight") || RenderRun->IsAnimationName("TurnLeft"))
 		{
 			RenderRun->ChangeAnimation("MarioRight");
 		}
-		if (RenderRun->IsAnimationName("RunLeft"))
+		if (RenderRun->IsAnimationName("RunLeft") || RenderRun->IsAnimationName("TurnRight"))
 		{
 			RenderRun->ChangeAnimation("MarioLeft");
 		}
