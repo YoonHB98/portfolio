@@ -399,7 +399,19 @@ void BigPlayer::Update()
 		float4 UpUp = { 0, 0 };
 		float4 DownDown = { 0, 0 };
 		int Left = ColMap_->GetImagePixel(NextPos + float4(-19.0f, 0.0f));
+		int Left2 = ColMap_->GetImagePixel(NextPos + float4(-19.0f, 10.0f));
+		int Left3 = ColMap_->GetImagePixel(NextPos + float4(-19.0f, 20.0f));
+		int Left4 = ColMap_->GetImagePixel(NextPos + float4(-19.0f, 30.0f));
+		int Left5 = ColMap_->GetImagePixel(NextPos + float4(-19.0f, -10.0f));
+		int Left6 = ColMap_->GetImagePixel(NextPos + float4(-19.0f, -20.0f));
+		int Left7 = ColMap_->GetImagePixel(NextPos + float4(-19.0f, -30.0f));
 		int Right = ColMap_->GetImagePixel(NextPos + float4(19.0f, 0.0f));
+		int Right2 = ColMap_->GetImagePixel(NextPos + float4(19.0f, 10.0f));
+		int Right3 = ColMap_->GetImagePixel(NextPos + float4(19.0f, 20.0f));
+		int Right4 = ColMap_->GetImagePixel(NextPos + float4(19.0f, 30.0f));
+		int Right5 = ColMap_->GetImagePixel(NextPos + float4(19.0f, -10.0f));
+		int Right6 = ColMap_->GetImagePixel(NextPos + float4(19.0f, -20.0f));
+		int Right7 = ColMap_->GetImagePixel(NextPos + float4(19.0f, -30.0f));
 		int Down = ColMap_->GetImagePixel(NextPos + float4(0.0f, 39.0f));
 		int Up = ColMap_->GetImagePixel(NextPos + float4(0.0f, -39.0f));
 
@@ -441,7 +453,13 @@ void BigPlayer::Update()
 		}
 		if (true != Move_->NextPosCollisionCheck("Move", NextPos, CollisionType::Rect, CollisionType::Rect))
 		{
-			if ((RGB(0, 0, 0) != (Left))
+			if ((RGB(0, 0, 0) != (Left)
+				&& (RGB(0, 0, 0) != (Left2)))
+				&& (RGB(0, 0, 0) != (Left3))
+				&& (RGB(0, 0, 0) != (Left4))
+				&& (RGB(0, 0, 0) != (Left5))
+				&& (RGB(0, 0, 0) != (Left6))
+				&& (RGB(0, 0, 0) != (Left7))
 				&& LeftCheck
 				)
 			{
@@ -452,7 +470,13 @@ void BigPlayer::Update()
 		}
 		if (true != Move_->NextPosCollisionCheck("Move", NextPos, CollisionType::Rect, CollisionType::Rect))
 		{
-			if ((RGB(0, 0, 0) != (Right))
+			if ((RGB(0, 0, 0) != (Right)
+				&& (RGB(0, 0, 0) != (Right2)))
+				&& (RGB(0, 0, 0) != (Right3))
+				&& (RGB(0, 0, 0) != (Right4))
+				&& (RGB(0, 0, 0) != (Right5))
+				&& (RGB(0, 0, 0) != (Right6))
+				&& (RGB(0, 0, 0) != (Right7))
 				&& RightCheck
 				)
 			{
@@ -535,6 +559,14 @@ void BigPlayer::CameraPos()
 		MapSizeY = 550;
 		CameraRectX = 620;
 		CameraRectY = 550;
+	}
+	if (WorldCount::WorldCountUI == 2)
+	{
+		MapSizeX = 6400;
+		MapSizeY = 550;
+		CameraRectX = 620;
+		CameraRectY = 550;
+		return;
 	}
 	if (Pause::end)
 	{

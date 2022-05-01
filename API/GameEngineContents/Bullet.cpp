@@ -67,6 +67,7 @@ void Bullet::Update()
 	{
 		if (DeathCheck)
 		{
+			GameEngineSound::SoundPlayOneShot("boom.wav");
 			YDir_ = float4::ZERO;
 			XSpeed = 0.0f;
 			YSpeed = 0.0f;

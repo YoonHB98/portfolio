@@ -44,6 +44,7 @@
     </ClInclude>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Castle.h" />
+    <ClInclude Include="CastleFire.h" />
     <ClInclude Include="CastleFlag.h" />
     <ClInclude Include="Coin.h">
       <SubType>
@@ -118,6 +119,7 @@
     </ClInclude>
     <ClInclude Include="Secret10CoinBlock.h" />
     <ClInclude Include="SecretBlock.h" />
+    <ClInclude Include="SecretBlockCoin.h" />
     <ClInclude Include="SecretBlockmushroom.h" />
     <ClInclude Include="Sound.h">
       <SubType>
@@ -188,6 +190,7 @@
     </ClCompile>
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Castle.cpp" />
+    <ClCompile Include="CastleFire.cpp" />
     <ClCompile Include="CastleFlag.cpp" />
     <ClCompile Include="Coin.cpp">
       <SubType>
@@ -262,6 +265,7 @@
     </ClCompile>
     <ClCompile Include="Secret10CoinBlock.cpp" />
     <ClCompile Include="SecretBlock.cpp" />
+    <ClCompile Include="SecretBlockCoin.cpp" />
     <ClCompile Include="SecretBlockmushroom.cpp" />
     <ClCompile Include="Sound.cpp">
       <SubType>

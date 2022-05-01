@@ -3,7 +3,7 @@
 #include "Sound.h"
 #include "WorldCount.h"
 #include "SecretBlock.h"
-#include "Secret10CoinBlock.h"
+#include "SecretBlockCoin.h"
 #include "Pause.h"
 #include "Castle.h"
 #include "flag.h"
@@ -20,6 +20,7 @@
 #include "UnderWorldCoin.h"
 #include "Fire.h"
 #include "FireBlock.h"
+#include "CastleFire.h"
 
 Stage2::Stage2() 
 {
@@ -69,18 +70,6 @@ void Stage2::Loading()
 	}
 	// ºí·Ï
 	{
-		Fire* Actor = CreateActor<Fire>(2);
-		Actor->CreateFire(float4{ 100, 100 }, {20, 0});
-	}
-	{
-		Fire* Actor = CreateActor<Fire>(2);
-		Actor->CreateFire(float4{ 100, 100 }, { 40, 0 });
-	}
-	{
-		Fire* Actor = CreateActor<Fire>(2);
-		Actor->CreateFire(float4{ 100, 100 }, { 60, 0 });
-	}
-	{
 		FireBlock* Actor = CreateActor<FireBlock>(2);
 		Actor->SetPosition(float4{ 1220, 420 });
 	}
@@ -96,7 +85,10 @@ void Stage2::Loading()
 		FireBlock* Actor = CreateActor<FireBlock>(2);
 		Actor->SetPosition(float4{ 2700, 260 });
 	}
-
+	{
+		SecretBlockmushroom* Actor = CreateActor<SecretBlockmushroom>(2);
+		Actor->SetPosition(float4{ 1220, 260 });
+	}
 	{
 		FireBlock* Actor = CreateActor<FireBlock>(2);
 		Actor->SetPosition(float4{ 3060, 380 });
@@ -109,7 +101,42 @@ void Stage2::Loading()
 		FireBlock* Actor = CreateActor<FireBlock>(2);
 		Actor->SetPosition(float4{ 3540, 180 });
 	}
-
+	{
+		CastleFire* Actor = CreateActor<CastleFire>(2);
+		Actor->SetPosition(float4{ 4100, 330 });
+	}
+	{
+		CastleFire* Actor = CreateActor<CastleFire>(2);
+		Actor->SetPosition(float4{ 4620, 370 });
+	}
+	{
+		CastleFire* Actor = CreateActor<CastleFire>(2);
+		Actor->SetPosition(float4{ 5120, 330 });
+	}
+	{
+		SecretBlockCoin* Actor = CreateActor<SecretBlockCoin>(2);
+		Actor->CreateSecretBlockCoin(float4{ 4260, 380 });
+	}
+	{
+		SecretBlockCoin* Actor = CreateActor<SecretBlockCoin>(2);
+		Actor->CreateSecretBlockCoin(float4{ 4380, 380 });
+	}
+	{
+		SecretBlockCoin* Actor = CreateActor<SecretBlockCoin>(2);
+		Actor->CreateSecretBlockCoin(float4{ 4500, 380 });
+	}
+	{
+		SecretBlockCoin* Actor = CreateActor<SecretBlockCoin>(2);
+		Actor->CreateSecretBlockCoin(float4{ 4300, 220 });
+	}
+	{
+		SecretBlockCoin* Actor = CreateActor<SecretBlockCoin>(2);
+		Actor->CreateSecretBlockCoin(float4{ 4420, 220 });
+	}
+	{
+		SecretBlockCoin* Actor = CreateActor<SecretBlockCoin>(2);
+		Actor->CreateSecretBlockCoin(float4{ 4540, 220 });
+	}
 	BgmPlayer = GameEngineSound::SoundPlayControl("blank.wav");
 }
 

@@ -230,7 +230,7 @@ void Player::Update()
 	if (Pause::death)
 	{
 		float4 MoveDir2;
-		MoveDir2 += float4::DOWN * GameEngineTime::GetDeltaTime() * 5000;
+
 
 		Time_ = Time_ + GameEngineTime::GetDeltaTime();
 		if (3.5f <= Time_)
@@ -244,21 +244,23 @@ void Player::Update()
 		}
 		if (0.4f >= Time_)
 		{
-			MoveDir2 += float4::UP * 7000 * GameEngineTime::GetDeltaTime();
+			MoveDir2 += float4::UP * 3000 * GameEngineTime::GetDeltaTime();
 			SetMove(MoveDir2 * GameEngineTime::GetDeltaTime() * Speed_);
 			Pause::PlayerPosition = GetPosition();
 			return;
 		}
-		if (1.1f > Time_)
+		if (1.1f >= Time_)
+		{
+			MoveDir2 += float4::DOWN * GameEngineTime::GetDeltaTime() * 5000;
+			SetMove(MoveDir2 * GameEngineTime::GetDeltaTime() * Speed_);
+			return;
+		}
+		if (1.0f > Time_)
 		{
 			MoveDir2 = float4::ZERO;
 			return;
 		}
-		if (1.2f >= Time_)
-		{
-			SetMove(MoveDir2 * GameEngineTime::GetDeltaTime() * Speed_);
-			return;
-		}
+
 		return;
 	}
 	//bool Down_; // 최초 키를 눌렀을때

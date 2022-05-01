@@ -160,6 +160,10 @@ void Mario::GameInit()
 		Image->Cut({ 40,40 });
 	}
 	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("QuestionBlockCastle.bmp");
+		Image->Cut({ 40,40 });
+	}
+	{
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Goomba.bmp");
 		Image->Cut({ 40,40 });
 	}
@@ -231,13 +235,17 @@ void Mario::GameInit()
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("UnderWorldCoin.bmp");
 		Image->Cut({ 40,40 });
 	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Fire.bmp");
+		Image->Cut({ 60,20 });
+	}
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<Stage1>("Stage1");
 	CreateLevel<Stage1Under>("Stage1Under");
 	CreateLevel<Stage2>("Stage2");
 	CreateLevel<EndingLevel>("Ending");
 	CreateLevel<StageIntro>("StageIntro");
-	ChangeLevel("Stage2");
+	ChangeLevel("Title");
 }
 
 void Mario::GameLoop()

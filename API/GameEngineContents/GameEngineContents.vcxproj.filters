@@ -218,6 +218,12 @@
     <ClInclude Include="FireBlock.h">
       <Filter>Play\Monster\Fire</Filter>
     </ClInclude>
+    <ClInclude Include="CastleFire.h">
+      <Filter>Play\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="SecretBlockCoin.h">
+      <Filter>Map\Block</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -389,6 +395,12 @@
     </ClCompile>
     <ClCompile Include="FireBlock.cpp">
       <Filter>Play\Monster\Fire</Filter>
+    </ClCompile>
+    <ClCompile Include="CastleFire.cpp">
+      <Filter>Play\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="SecretBlockCoin.cpp">
+      <Filter>Map\Block</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
