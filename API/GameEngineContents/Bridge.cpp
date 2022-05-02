@@ -15,6 +15,12 @@ Bridge::~Bridge()
 {
 }
 
+void Bridge::D_()
+{
+	GameEngineSound::SoundPlayOneShot("bridgebreak.wav");
+	Death();
+}
+
 void Bridge::Start()
 {
 	Actor = CreateRenderer("Bridge.bmp");
@@ -24,10 +30,7 @@ void Bridge::Start()
 
 void Bridge::Update()
 {
-	if (Pause::gameend)
-	{
-		Death();
-	}
+	
 
 }
 

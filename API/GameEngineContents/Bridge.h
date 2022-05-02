@@ -26,9 +26,11 @@ public:
 	Bridge& operator=(const Bridge& _Other) = delete;
 	Bridge& operator=(Bridge&& _Other) noexcept = delete;
 	GameEngineCollision* BridgeCollision;
+	void D_();
 protected:
 
 private:
+
 	void Start() override;
 	void Update() override;
 	GameEngineRenderer* Actor;

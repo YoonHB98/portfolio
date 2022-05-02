@@ -46,6 +46,9 @@
     <Filter Include="Play\Monster\Fire">
       <UniqueIdentifier>{98c85f9e-4b56-4ce9-b32d-11e1e5493d03}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Map\Text">
+      <UniqueIdentifier>{96beb264-6fe8-4a9d-9af9-d42cf2afe4d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TitleLevel.h">
@@ -239,6 +242,24 @@
     <ClInclude Include="Bridge.h">
       <Filter>Map\Block</Filter>
     </ClInclude>
+    <ClInclude Include="BridgeTile.h">
+      <Filter>Map\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Text1.h">
+      <Filter>Map\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Text2.h">
+      <Filter>Map\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Text3.h">
+      <Filter>Map\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Text4.h">
+      <Filter>Map\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Text5.h">
+      <Filter>Map\Text</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -431,6 +452,24 @@
     </ClCompile>
     <ClCompile Include="Bridge.cpp">
       <Filter>Map\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="BridgeTile.cpp">
+      <Filter>Map\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Text1.cpp">
+      <Filter>Map\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Text2.cpp">
+      <Filter>Map\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Text3.cpp">
+      <Filter>Map\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Text4.cpp">
+      <Filter>Map\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Text5.cpp">
+      <Filter>Map\Text</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

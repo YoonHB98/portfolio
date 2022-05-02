@@ -25,3 +25,6 @@ bool Pause::pipedown = false;
 bool Pause::pipeleft = false;
 bool Pause::CreateKeyFirst = true;
 bool Pause::gameend = false;
+bool Pause::KoopaDeath = false;
+bool Pause::Stage2Sound = false;
+bool Pause::GameRealEnd = false;

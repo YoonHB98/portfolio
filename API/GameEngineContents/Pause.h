@@ -29,6 +29,9 @@ public:
 	static bool flag;
 	static bool gameend;
 	static bool CreateKeyFirst;
+	static bool KoopaDeath;
+	static bool Stage2Sound;
+	static bool GameRealEnd;
 	static std::string PlayerStatus;
 	static float4 PlayerPosition;
 protected:

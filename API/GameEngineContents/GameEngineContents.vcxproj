@@ -44,6 +44,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Bridge.h" />
+    <ClInclude Include="BridgeTile.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Castle.h" />
     <ClInclude Include="CastleFire.h" />
@@ -150,6 +151,11 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Text1.h" />
+    <ClInclude Include="Text2.h" />
+    <ClInclude Include="Text3.h" />
+    <ClInclude Include="Text4.h" />
+    <ClInclude Include="Text5.h" />
     <ClInclude Include="Three.h">
       <SubType>
       </SubType>
@@ -195,6 +201,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Bridge.cpp" />
+    <ClCompile Include="BridgeTile.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Castle.cpp" />
     <ClCompile Include="CastleFire.cpp" />
@@ -301,6 +308,11 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Text1.cpp" />
+    <ClCompile Include="Text2.cpp" />
+    <ClCompile Include="Text3.cpp" />
+    <ClCompile Include="Text4.cpp" />
+    <ClCompile Include="Text5.cpp" />
     <ClCompile Include="Three.cpp">
       <SubType>
       </SubType>

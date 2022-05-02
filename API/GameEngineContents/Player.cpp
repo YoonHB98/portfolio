@@ -104,6 +104,81 @@ void Player::Update()
 		A->IsDebugModeSwitch();
 
 	}
+	if (Pause::Stage2Sound)
+	{
+		GameEnd = true;
+	}
+	if (GameEnd)
+	{
+		if (blank)
+		{
+			EndTime_ = EndTime_ + GameEngineTime::GetDeltaTime();
+		}
+		if (blank)
+		{
+			if (EndTime_ > 2.0f)
+			{
+				Pause::GameRealEnd = true;
+			}
+			RenderRun->ChangeAnimation("MarioRight");
+			return;
+		}
+		RenderRun->ChangeAnimation("RunRight");
+		Time_ = Time_ + GameEngineTime::GetDeltaTime();
+		MoveDir = float4::DOWN;
+		float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+		int Down = ColMap_->GetImagePixel(NextPos + float4(-19.0f, 19.0f));
+		int Right = ColMap_->GetImagePixel(NextPos + float4(-25.0f, 0.0f));
+		if ((RGB(0, 0, 0) != (Down)))
+		{
+			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
+			Pause::PlayerPosition = GetPosition();
+		}
+	
+	
+			if ((RGB(0, 0, 0) != (Down)))
+			{
+				MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
+			}
+			else
+			{
+				MoveDir = float4::ZERO;
+			}
+
+			if ((RGB(255, 0, 0) == (Right)))
+			{
+				blank = true;
+				RenderRun->ChangeAnimation("MarioRight");
+			}
+			if (blank)
+			{
+				PosChange = false;
+				Time_ = 0;
+				return;
+				Pause::endtime = true;
+			}
+			else
+			{
+				RenderRun->ChangeAnimation("RunRight");
+			}
+
+			//float4 CurCameraPos = GetLevel()->GetCameraPos();
+			//float CurCameraPosX = GetLevel()->GetCameraPos().x;
+			//CurCameraPosX = CurCameraPosX + (1.0f * GameEngineTime::GetDeltaTime() * Speed_ * 4);
+			//CurCameraPos.x = CurCameraPosX;
+			//GetLevel()->SetCameraPos(CurCameraPos);
+			MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * 300;
+			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_ * 4);
+			Pause::PlayerPosition = GetPosition();
+			MapSize();
+			CameraPos();
+		
+		return;
+	}
+	if (Pause::gameend)
+	{
+		return;
+	}
 	if (Pause::pipedown )
 	{
 		if (PipeDownFirst == true)
@@ -615,9 +690,15 @@ void Player::MapSize()
 		MapSizeY = 550;
 		return;
 	}
+	if (GameEnd)
+	{
+		MapSizeX =6400;
+		MapSizeY = 550;
+		return;
+	}
 	if (WorldCount::WorldCountUI == 2)
 	{
-		MapSizeX = 6400;
+		MapSizeX = 5760;
 		MapSizeY = 550;
 		return;
 	}

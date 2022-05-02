@@ -94,6 +94,27 @@ void Koopa::Update()
 		return;
 	}
 	Actor->PauseOff();
+	if (Pause::gameend)
+	{
+		if (Pause::KoopaDeath && Sound_)
+		{
+			Sound_ = false;
+			GameEngineSound::SoundPlayOneShot("bowserfall.wav");
+		}
+		if (Pause::KoopaDeath)
+		{
+			MoveDir = float4::DOWN;
+			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * 250);
+		}
+		if (GetPosition().y > 645
+			&&DeathFirst_)
+		{
+			DeathFirst_ = false;
+			MoveDir = float4::DOWN;
+			Pause::Stage2Sound = true;
+		}
+		return;
+	}
 	ColMap();
 	float4 NextPos = GetPosition() + (MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 	float4 CheckPos = NextPos - float4(0.0f, 40.0f);

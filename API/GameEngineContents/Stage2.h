@@ -37,11 +37,13 @@ protected:
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 	static bool PipeOn;
 private:
+	bool MarioText_ = false;
+	bool GameRealEnd = true;
 	bool pausefirst_ = false;
 	bool bgm = false;
 	BigPlayer* BigMario;
 	Player* Mario;
-	float Time;
+	float Time_ = 0;
 	TopUI* UI;
 	Coin* UICOIN;
 

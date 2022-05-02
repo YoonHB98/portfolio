@@ -42,12 +42,13 @@ public:
 protected:
 
 private:
+	bool Sound_ = true;
+	bool DeathFirst_ = true;
 	int Random_;
 	bool First_ = true;
 	bool Second_ = false;
 	float Time_ = 0;
 	bool DeathCount = false;
-	bool DeathFirst = true;
 	float Speed_;
 	float4 ReturnPosition();
 	void ColMap();

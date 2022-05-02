@@ -33,6 +33,8 @@ public:
 protected:
 
 private:
+	float EndTime_ = 0.0f;
+	bool GameEnd = false;
 	bool PipeDownFirst = true;
 	bool PipeLeftFirst = true;
 	float4 MoveDir;

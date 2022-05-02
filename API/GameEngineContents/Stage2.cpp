@@ -24,6 +24,12 @@
 #include "Koopa.h"
 #include "Axe.h"
 #include "Tie.h"
+#include "BridgeTile.h"
+#include "Text1.h"
+#include "Text2.h"
+#include "Text3.h"
+#include "Text4.h"
+#include "Text5.h"
 
 Stage2::Stage2() 
 {
@@ -152,6 +158,10 @@ void Stage2::Loading()
 		Tie* Actor = CreateActor<Tie>(2);
 		Actor->SetPosition(float4{ 5620, 380 });
 	}
+	{
+		BridgeTile* Actor = CreateActor<BridgeTile>(2);
+		Actor->SetPosition(float4{ 5100, 420 });
+	}
 	BgmPlayer = GameEngineSound::SoundPlayControl("blank.wav");
 }
 
@@ -188,14 +198,56 @@ void Stage2::Update()
 		BigMario->SetPosition(float4{ 100, 3000 });
 		Mario->SetPosition(Pause::PlayerPosition);
 	}
+	if (Pause::Stage2Sound )
+	{
+		BgmPlayer.Stop();
+		GameEngineSound::SoundPlayOneShot("castleend.wav");
+		Pause::Stage2Sound = false;
+	}
+	if (Pause::GameRealEnd && GameRealEnd)
+	{
+		GameRealEnd = false;
+		MarioText_ = true;
+		BgmPlayer.Stop();
+		BgmPlayer = GameEngineSound::SoundPlayControl("princessmusic.wav");
+	}
 
+	if (MarioText_)
+	{
+		Time_ = Time_ + GameEngineTime::GetDeltaTime();
+		if (Time_ > 1.0f)
+		{
+			Text1* Actor = CreateActor<Text1>(2);
+			Actor->SetPosition(float4{ 6120, 200 });
+		}
+		if (Time_ > 2.5f)
+		{
+			Text2* Actor = CreateActor<Text2>(2);
+			Actor->SetPosition(float4{ 6100, 260 });
+		}
+		if (Time_ > 4.0f)
+		{
+			Text3* Actor = CreateActor<Text3>(2);
+			Actor->SetPosition(float4{ 6100, 300 });
+		}
+		if (Time_ > 5.5f)
+		{
+			Text4* Actor = CreateActor<Text4>(2);
+			Actor->SetPosition(float4{ 6100, 360 });
+		}
+		if (Time_ > 7.0f)
+		{
+			Text5* Actor = CreateActor<Text5>(2);
+			Actor->SetPosition(float4{ 6100, 400 });
+		}
+	}
 }
 void Stage2::LevelChangeStart(GameEngineLevel* _PrevLevel)
 { 
 	if (Pause::PlayerStatus == "small")
 	{
 		Mario->SetPosition(float4{ 30, 260 });
-		Pause::PlayerPosition = float4{5400, 260 };
+		Pause::PlayerPosition = float4{30, 260 };
 	}else
 		if (Pause::PlayerStatus == "big")
 		{
