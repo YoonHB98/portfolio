@@ -22,6 +22,8 @@
 #include "FireBlock.h"
 #include "CastleFire.h"
 #include "Koopa.h"
+#include "Axe.h"
+#include "Tie.h"
 
 Stage2::Stage2() 
 {
@@ -142,6 +144,14 @@ void Stage2::Loading()
 		Koopa* Actor = CreateActor<Koopa>(2);
 		Actor->CreateKoopa(float4{ 5450, 360 });
 	}
+	{
+		Axe* Actor = CreateActor<Axe>(2);
+		Actor->SetPosition(float4{ 5660, 340 });
+	}
+	{
+		Tie* Actor = CreateActor<Tie>(2);
+		Actor->SetPosition(float4{ 5620, 380 });
+	}
 	BgmPlayer = GameEngineSound::SoundPlayControl("blank.wav");
 }
 
@@ -185,7 +195,7 @@ void Stage2::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	if (Pause::PlayerStatus == "small")
 	{
 		Mario->SetPosition(float4{ 30, 260 });
-		Pause::PlayerPosition = float4{ 30, 260 };
+		Pause::PlayerPosition = float4{5400, 260 };
 	}else
 		if (Pause::PlayerStatus == "big")
 		{

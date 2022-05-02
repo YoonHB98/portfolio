@@ -24,3 +24,4 @@ bool Pause::flag = false;
 bool Pause::pipedown = false;
 bool Pause::pipeleft = false;
 bool Pause::CreateKeyFirst = true;
+bool Pause::gameend = false;

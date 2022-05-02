@@ -27,6 +27,7 @@ public:
 	static bool pipedown;
 	static bool pipeleft;
 	static bool flag;
+	static bool gameend;
 	static bool CreateKeyFirst;
 	static std::string PlayerStatus;
 	static float4 PlayerPosition;

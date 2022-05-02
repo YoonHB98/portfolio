@@ -236,6 +236,18 @@ void Mario::GameInit()
 		Image->Cut({ 40,40 });
 	}
 	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("tie.bmp");
+		Image->Cut({ 40,40 });
+	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("axe.bmp");
+		Image->Cut({ 40,40 });
+	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("bridge.bmp");
+		Image->Cut({ 40,40 });
+	}
+	{
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Fire.bmp");
 		Image->Cut({ 60,20 });
 	}

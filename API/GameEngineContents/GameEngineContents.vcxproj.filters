@@ -230,6 +230,15 @@
     <ClInclude Include="CastleFireRight.h">
       <Filter>Play\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="Axe.h">
+      <Filter>Map\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Tie.h">
+      <Filter>Map\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge.h">
+      <Filter>Map\Block</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -413,6 +422,15 @@
     </ClCompile>
     <ClCompile Include="CastleFireRight.cpp">
       <Filter>Play\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Axe.cpp">
+      <Filter>Map\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Tie.cpp">
+      <Filter>Map\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Bridge.cpp">
+      <Filter>Map\Block</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

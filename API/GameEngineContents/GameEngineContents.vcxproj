@@ -27,6 +27,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Axe.h" />
     <ClInclude Include="BigPlayer.h" />
     <ClInclude Include="Block.h">
       <SubType>
@@ -42,6 +43,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Bridge.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Castle.h" />
     <ClInclude Include="CastleFire.h" />
@@ -152,6 +154,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Tie.h" />
     <ClInclude Include="TitleBackGround.h" />
     <ClInclude Include="TitleCharacter.h">
       <SubType>
@@ -175,6 +178,7 @@
     <ClInclude Include="WorldCount.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Axe.cpp" />
     <ClCompile Include="BigPlayer.cpp" />
     <ClCompile Include="Block.cpp">
       <SubType>
@@ -190,6 +194,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Bridge.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Castle.cpp" />
     <ClCompile Include="CastleFire.cpp" />
@@ -300,6 +305,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Tie.cpp" />
     <ClCompile Include="TitleBackGround.cpp" />
     <ClCompile Include="TitleCharacter.cpp">
       <SubType>
