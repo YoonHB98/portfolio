@@ -134,12 +134,6 @@ void Player::Update()
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_);
 			Pause::PlayerPosition = GetPosition();
 		}
-	
-	
-			if ((RGB(0, 0, 0) != (Down)))
-			{
-				MoveDir += float4::DOWN * GameEngineTime::GetDeltaTime() * Speed_;
-			}
 			else
 			{
 				MoveDir = float4::ZERO;
@@ -161,12 +155,6 @@ void Player::Update()
 			{
 				RenderRun->ChangeAnimation("RunRight");
 			}
-
-			//float4 CurCameraPos = GetLevel()->GetCameraPos();
-			//float CurCameraPosX = GetLevel()->GetCameraPos().x;
-			//CurCameraPosX = CurCameraPosX + (1.0f * GameEngineTime::GetDeltaTime() * Speed_ * 4);
-			//CurCameraPos.x = CurCameraPosX;
-			//GetLevel()->SetCameraPos(CurCameraPos);
 			MoveDir += float4::RIGHT * GameEngineTime::GetDeltaTime() * 300;
 			SetMove(MoveDir * GameEngineTime::GetDeltaTime() * Speed_ * 4);
 			Pause::PlayerPosition = GetPosition();
