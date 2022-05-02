@@ -54,53 +54,44 @@ void Coin::Start()
 
 void Coin::Update()
 {
-	int Second = CoinUI % 10;
-	if (0 == CoinUI % 100)
+	int Second = CoinUI / 10;
+	if (0 == Second % 10)
 	{
 		Two->ChangeAnimation("0");
 	}
-	if ((10 <= CoinUI % 100)
-		&& 19>= CoinUI % 100)
+	if (1 == Second % 10)
 	{
 		Two->ChangeAnimation("1");
 	}
-	if ((20 <= CoinUI % 100)
-		&& 29 >= CoinUI % 100)
+	if (2 == Second % 10)
 	{
 		Two->ChangeAnimation("2");
 	}
-	if ((30 <= CoinUI % 100)
-		&& 39 >= CoinUI % 100)
+	if (3 == Second % 10)
 	{
 		Two->ChangeAnimation("3");
 	}
-	if ((40 <= CoinUI % 100)
-		&& 49 >= CoinUI % 100)
+	if (4 == Second % 10)
 	{
 		Two->ChangeAnimation("4");
 	}
-	if ((50 <= CoinUI % 100)
-		&& 59 >= CoinUI % 100)
+	if (5 == Second % 10)
 	{
 		Two->ChangeAnimation("5");
 	}
-	if ((60 <= CoinUI % 100)
-		&& 69 >= CoinUI % 100)
+	if (6 == Second % 10)
 	{
 		Two->ChangeAnimation("6");
 	}
-	if ((70 <= CoinUI % 100)
-		&& 79 >= CoinUI % 100)
+	if (7 == Second % 10)
 	{
 		Two->ChangeAnimation("7");
 	}
-	if ((80 <= CoinUI % 100)
-		&& 89 >= CoinUI % 100)
+	if (8 == Second % 10)
 	{
 		Two->ChangeAnimation("8");
 	}
-	if ((90 <= CoinUI % 100)
-		&& 99 >= CoinUI % 100)
+	if (9 == Second % 10)
 	{
 		Two->ChangeAnimation("9");
 	}

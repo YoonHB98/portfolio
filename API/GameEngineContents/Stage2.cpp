@@ -21,6 +21,7 @@
 #include "Fire.h"
 #include "FireBlock.h"
 #include "CastleFire.h"
+#include "Koopa.h"
 
 Stage2::Stage2() 
 {
@@ -136,6 +137,10 @@ void Stage2::Loading()
 	{
 		SecretBlockCoin* Actor = CreateActor<SecretBlockCoin>(2);
 		Actor->CreateSecretBlockCoin(float4{ 4540, 220 });
+	}
+	{
+		Koopa* Actor = CreateActor<Koopa>(2);
+		Actor->CreateKoopa(float4{ 5450, 360 });
 	}
 	BgmPlayer = GameEngineSound::SoundPlayControl("blank.wav");
 }

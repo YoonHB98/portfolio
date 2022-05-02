@@ -45,6 +45,7 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Castle.h" />
     <ClInclude Include="CastleFire.h" />
+    <ClInclude Include="CastleFireRight.h" />
     <ClInclude Include="CastleFlag.h" />
     <ClInclude Include="Coin.h">
       <SubType>
@@ -77,6 +78,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="GoombaDead.h" />
+    <ClInclude Include="Koopa.h" />
     <ClInclude Include="LevelIntro.h" />
     <ClInclude Include="Map1.h">
       <SubType>
@@ -191,6 +193,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Castle.cpp" />
     <ClCompile Include="CastleFire.cpp" />
+    <ClCompile Include="CastleFireRight.cpp" />
     <ClCompile Include="CastleFlag.cpp" />
     <ClCompile Include="Coin.cpp">
       <SubType>
@@ -223,6 +226,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="GoombaDead.cpp" />
+    <ClCompile Include="Koopa.cpp" />
     <ClCompile Include="LevelIntro.cpp" />
     <ClCompile Include="Map1.cpp">
       <SubType>

@@ -239,13 +239,21 @@ void Mario::GameInit()
 		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Fire.bmp");
 		Image->Cut({ 60,20 });
 	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("FireRight.bmp");
+		Image->Cut({ 60,20 });
+	}
+	{
+		GameEngineImage* Image = GameEngineImageManager::GetInst()->Find("Koopa.bmp");
+		Image->Cut({ 80,80 });
+	}
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<Stage1>("Stage1");
 	CreateLevel<Stage1Under>("Stage1Under");
 	CreateLevel<Stage2>("Stage2");
 	CreateLevel<EndingLevel>("Ending");
 	CreateLevel<StageIntro>("StageIntro");
-	ChangeLevel("Title");
+	ChangeLevel("Stage2");
 }
 
 void Mario::GameLoop()

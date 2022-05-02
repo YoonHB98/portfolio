@@ -13,21 +13,21 @@
 // Ό³Έν :
 
 
-class CastleFire : public GameEngineActor
+class CastleFireRight : public GameEngineActor
 {
 public:
 	// constrcuter destructer
-	CastleFire();
-	~CastleFire();
+	CastleFireRight();
+	~CastleFireRight();
 
 	// delete Function
-	CastleFire(const CastleFire& _Other) = delete;
-	CastleFire(CastleFire&& _Other) noexcept = delete;
-	CastleFire& operator=(const CastleFire& _Other) = delete;
-	CastleFire& operator=(CastleFire&& _Other) noexcept = delete;
+	CastleFireRight(const CastleFireRight& _Other) = delete;
+	CastleFireRight(CastleFireRight&& _Other) noexcept = delete;
+	CastleFireRight& operator=(const CastleFireRight& _Other) = delete;
+	CastleFireRight& operator=(CastleFireRight&& _Other) noexcept = delete;
 	GameEngineCollision* CheckCollision;
-	GameEngineCollision* CastleFireCollision;
-	void CreateCastleFire(const float4& _Pivot, const float4& _Angle);
+	GameEngineCollision* CastleFireRightCollision;
+	void CreateCastleFireRight(const float4& _Pivot, const float4& _Angle);
 	bool CheckFirst = true;
 protected:
 

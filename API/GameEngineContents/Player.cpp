@@ -213,6 +213,7 @@ void Player::Update()
 			}
 			if (blank)
 			{
+				PosChange = false;
 				Time_ = 0;
 				RenderRun->ChangeAnimation("Blank");
 				Pause::endtime = true;

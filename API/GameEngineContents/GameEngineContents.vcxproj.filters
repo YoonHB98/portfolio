@@ -224,6 +224,12 @@
     <ClInclude Include="SecretBlockCoin.h">
       <Filter>Map\Block</Filter>
     </ClInclude>
+    <ClInclude Include="Koopa.h">
+      <Filter>Play\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CastleFireRight.h">
+      <Filter>Play\Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleLevel.cpp">
@@ -401,6 +407,12 @@
     </ClCompile>
     <ClCompile Include="SecretBlockCoin.cpp">
       <Filter>Map\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Koopa.cpp">
+      <Filter>Play\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CastleFireRight.cpp">
+      <Filter>Play\Monster</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
