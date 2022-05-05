@@ -31,7 +31,7 @@ void Stage1::Loading()
 	{
 		WorldCount* UI = CreateActor<WorldCount>(2);
 	}
-
+	GameEngineInput::GetInst()->CreateKey("Move", '5');
 	{
 		UI = CreateActor<TopUI>(1);
 	}
@@ -407,7 +407,12 @@ void Stage1::Update()
 		Mario->SetPosition(Pause::PlayerPosition);
 		Mario->CameraPos();
 	}
-
+	if (true == GameEngineInput::GetInst()->IsDown("Move"))
+	{
+		Mario->SetPosition(float4{ 2570, 500 });
+		Pause::PlayerPosition = float4{ 2570, 500 };
+		Mario->GetLevel()->SetCameraPos(float4{2570,550});
+	}
 }
 void Stage1::LevelChangeStart(GameEngineLevel* _PrevLevel)
 { 
@@ -519,6 +524,7 @@ void Stage1::LevelChangeStart(GameEngineLevel* _PrevLevel)
 		UI->TimerReset();
 		BgmPlayer.Stop();
 	    BgmPlayer = GameEngineSound::SoundPlayControl("overworld.wav");
+
 
 }
 

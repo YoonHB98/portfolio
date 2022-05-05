@@ -61,7 +61,7 @@ void Goomba::Start()
 	GoombaCollision = CreateCollision("MonsterTop", { 40, 10 }, { 0, -20 });
 	RightCollision = CreateCollision("MonsterRight", { 5,30 }, { 20, 5 });
 	LeftCollision = CreateCollision("MonsterLeft", { 5, 30 }, { -20, 5 });
-	CheckCollision = CreateCollision("CheckPos", { 40, 2400 }, { -310, 20 });
+	CheckCollision = CreateCollision("CheckPos", { 40, 2400 }, { -380, 20 });
 	GoombaColor = CreateCollision("NNN", { 5, 5 }, { 20, 0 });
 	GoombaDownColor = CreateCollision("NNN", { 5, 5 }, { 10, 19 });
 	MoveDir = float4::LEFT;

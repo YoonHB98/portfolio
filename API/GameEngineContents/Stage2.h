@@ -41,6 +41,7 @@ private:
 	bool GameRealEnd = true;
 	bool pausefirst_ = false;
 	bool bgm = false;
+	bool endtimefirst = true;
 	BigPlayer* BigMario;
 	Player* Mario;
 	float Time_ = 0;

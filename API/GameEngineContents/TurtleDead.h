@@ -38,9 +38,11 @@ public:
 protected:
 
 private:
+	float Time_ = 0.0f;
 	bool DeathCount = false;
 	bool DeathFirst = true;
 	float Speed_;
+	bool First = true;
 	float4 ReturnPosition();
 	void ColMap();
 	void Start() override;

@@ -22,10 +22,8 @@ void TurtleDead::Start()
 	Actor->CreateAnimation("Turtle.bmp", "Death", 0, 0, 0.2f, true);
 	Actor->ChangeAnimation("Death");
 
-	TurtleDeadCollision = CreateCollision("MonsterTop", { 40, 5 }, { 0, -20 });
-	RightCollision = CreateCollision("Turtle", { 20,40 }, { 20, 0 });
-	LeftCollision = CreateCollision("Turtle", { 20, 40 }, { -20, 0 });
-	MoveDir = float4::LEFT;
+
+	MoveDir = float4::ZERO;
 }
 void TurtleDead::ColMap()
 {
@@ -57,6 +55,19 @@ void TurtleDead::Update()
 	{
 		Actor->PauseOn();
 		return;
+	}
+	Time_ = Time_ + GameEngineTime::GetDeltaTime();
+	if (Time_ < 1.0f)
+	{
+		return;
+	}
+	if (Time_ >= 1.0f
+		&&First)
+	{
+		TurtleDeadCollision = CreateCollision("MonsterTop", { 40, 5 }, { 0, -15 });
+		RightCollision = CreateCollision("Turtle", { 20,42 }, { 10, 0 });
+		LeftCollision = CreateCollision("Turtle", { 20, 42 }, { -10, 0 });
+		First = false;
 	}
 	Actor->PauseOff();
 	ColMap();
@@ -100,19 +111,6 @@ void TurtleDead::Update()
 	{
 		if (DeathFirst)
 		{
-			MoveDir = float4::LEFT;
-			DeathFirst = false;
-			TurtleDeadCollision = CreateCollision("MonsterLeft", { 5, 10 }, { -20, 5 });
-			TurtleDeadCollision = CreateCollision("MonsterRight", { 5, 10 }, { 20, 5 });
-			GameEngineSound::SoundPlayOneShot("stomp.wav");
-		}
-
-	}
-	if (true == RightCollision->CollisionCheck("PlayerItem", CollisionType::Rect, CollisionType::Rect)
-		|| true == RightCollision->CollisionCheck("PlayerBot", CollisionType::Rect, CollisionType::Rect))
-	{
-		if (DeathFirst) 
-		{
 			MoveDir = float4::RIGHT;
 			DeathFirst = false;
 			TurtleDeadCollision = CreateCollision("MonsterLeft", { 1, 10 }, { -20, 0 });
@@ -121,6 +119,20 @@ void TurtleDead::Update()
 		}
 
 	}
+	if (true == RightCollision->CollisionCheck("PlayerItem", CollisionType::Rect, CollisionType::Rect)
+		|| true == RightCollision->CollisionCheck("PlayerBot", CollisionType::Rect, CollisionType::Rect))
+	{
+		if (DeathFirst)
+		{
+			MoveDir = float4::LEFT;
+			DeathFirst = false;
+			TurtleDeadCollision = CreateCollision("MonsterLeft", { 5, 10 }, { -20, 5 });
+			TurtleDeadCollision = CreateCollision("MonsterRight", { 5, 10 }, { 20, 5 });
+			GameEngineSound::SoundPlayOneShot("stomp.wav");
+		}
+
+	}
+
 	if (RGB(0, 0, 255) == ColorLeftBot
 		&& DeathFirst)
 	{

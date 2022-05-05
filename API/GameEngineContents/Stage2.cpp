@@ -204,8 +204,19 @@ void Stage2::Update()
 		GameEngineSound::SoundPlayOneShot("castleend.wav");
 		Pause::Stage2Sound = false;
 	}
-	if (Pause::GameRealEnd && GameRealEnd)
+	if (Pause::GameRealEnd
+		&&endtimefirst)
 	{
+		Time_ = Time_ + GameEngineTime::GetDeltaTime();
+		if (Time_ >1.5f)
+		{
+			endtimefirst = false;
+		}
+	}
+	if (Pause::GameRealEnd && GameRealEnd
+		&& Time_ >1.5f)
+	{
+		Time_ = 0.0f;
 		GameRealEnd = false;
 		MarioText_ = true;
 		BgmPlayer.Stop();
